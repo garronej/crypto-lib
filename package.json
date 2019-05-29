@@ -1,0 +1,26 @@
+{
+  "name": "crypto-lib",
+  "main": "./dist/async/index.js",
+  "types": "./dist/async/index.d.ts",
+  "description": "...",
+  "version": "0.1.0",
+  "scripts": {
+    "tsc": "node ./node_modules/typescript/bin/tsc -p ",
+    "build": "npm run tsc -- ./builder && node ./dist/builder/build.js"
+  },
+  "author": "Joseph Garrone",
+  "license": "MIT",
+  "dependencies": {
+    "aes-js": "3.1.2",
+    "node-rsa": "github:garronej/node-rsa",
+    "randombytes": "^2.1.0",
+    "scryptsy": "github:garronej/scryptsy",
+    "transfer-tools": "garronej/transfer-tools",
+    "ts-events-extended": "github:garronej/ts-events-extended"
+  },
+  "devDependencies": {
+    "@types/node": "^8.9.1",
+    "frontend-build-tools": "github:garronej/frontend-build-tools",
+    "typescript": "^3.4.5"
+  }
+}

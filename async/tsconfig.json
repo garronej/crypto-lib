@@ -1,0 +1,10 @@
+{
+  "extends": "../tsproject.json",
+  "compilerOptions": {
+    "outDir": "../dist/async",
+    "rootDir": "."
+  },
+  "references": [
+    { "path": "../sync" }
+  ]
+}

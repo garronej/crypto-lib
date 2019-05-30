@@ -20,7 +20,7 @@ export declare const rsa: {
     syncDecryptorFactory(decryptKey: RsaKey): import("../dist/sync").Sync<import("../dist/sync").Decryptor>;
     syncEncryptorDecryptorFactory(encryptKey: RsaKey.Private, decryptKey: RsaKey.Public): import("../dist/sync").Sync<EncryptorDecryptor>;
     syncEncryptorDecryptorFactory(encryptKey: RsaKey.Public, decryptKey: RsaKey.Private): import("../dist/sync").Sync<EncryptorDecryptor>;
-    syncGenerateKeys(seed: Uint8Array): {
+    syncGenerateKeys(seed: Uint8Array, keysLengthBytes?: number | undefined): {
         publicKey: RsaKey.Public;
         privateKey: RsaKey.Private;
     };
@@ -30,7 +30,7 @@ export declare const rsa: {
         (encryptKey: RsaKey.Private, decryptKey: RsaKey.Public, workerThreadId?: string | undefined): EncryptorDecryptor;
         (encryptKey: RsaKey.Public, decryptKey: RsaKey.Private, workerThreadId?: string | undefined): EncryptorDecryptor;
     };
-    generateKeys: (seed: Uint8Array, workerThreadId?: string | undefined) => Promise<{
+    generateKeys: (seed: Uint8Array, keysLengthBytes?: number | undefined, workerThreadId?: string | undefined) => Promise<{
         publicKey: RsaKey.Public;
         privateKey: RsaKey.Private;
     }>;

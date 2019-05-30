@@ -249,7 +249,7 @@ export const rsa = (() => {
     }
 
 
-    const generateKeys = async (seed: Uint8Array, workerThreadId?: string) => {
+    const generateKeys = async (seed: Uint8Array, keysLengthBytes?: number, workerThreadId?: string) => {
 
         type Action = GenerateRsaKeys.Action;
         type Response = GenerateRsaKeys.Response;
@@ -265,17 +265,17 @@ export const rsa = (() => {
             const action: Action = {
                 "action": "GenerateRsaKeys",
                 actionId,
-                "params": [seed]
+                "params": [seed, keysLengthBytes]
             };
 
             return action;
 
         })());
 
-        const { outputs } = (await appWorker.evtResponse.waitFor(
+        const { outputs } = await appWorker.evtResponse.waitFor(
             (response): response is Response =>
                 response.actionId === actionId
-        ));
+        );
 
         return outputs;
 

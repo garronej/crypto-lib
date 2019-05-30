@@ -13,7 +13,9 @@ var __assign = (this && this.__assign) || function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var types_1 = require("../types");
 var NodeRSA = require("node-rsa");
-var newNodeRSA = function (key) { return new NodeRSA(Buffer.from(key.data), key.format); };
+var environnement_1 = require("../environnement");
+var getEnvironment = function () { return environnement_1.isBrowser() ? "browser" : "node"; };
+var newNodeRSA = function (key) { return new NodeRSA(Buffer.from(key.data), key.format, { "environment": getEnvironment() }); };
 /**
  * NOTE: The toBuffer function of the library does not
  * guaranty that the returned object is an actually
@@ -43,8 +45,8 @@ function syncDecryptorFactory(decryptKey) {
         "decrypt": (function () {
             var decryptNodeRSA = newNodeRSA(decryptKey);
             var decryptMethod = types_1.RsaKey.Public.match(decryptKey) ?
-                "decrypt" :
-                "decryptPublic";
+                "decryptPublic" :
+                "decrypt";
             return function (encryptedData) {
                 return decryptNodeRSA[decryptMethod](toRealBuffer(encryptedData));
             };
@@ -56,8 +58,9 @@ function syncEncryptorDecryptorFactory(encryptKey, decryptKey) {
     return __assign({}, syncEncryptorFactory(encryptKey), syncDecryptorFactory(decryptKey));
 }
 exports.syncEncryptorDecryptorFactory = syncEncryptorDecryptorFactory;
-function syncGenerateKeys(seed) {
-    var nodeRSA = NodeRSA.generateKeyPairFromSeed(toRealBuffer(seed), 8 * 80);
+function syncGenerateKeys(seed, keysLengthBytes) {
+    if (keysLengthBytes === void 0) { keysLengthBytes = 80; }
+    var nodeRSA = NodeRSA.generateKeyPairFromSeed(toRealBuffer(seed), 8 * keysLengthBytes, undefined, getEnvironment());
     var getData = function (format) { return nodeRSA.exportKey(format); };
     return {
         "publicKey": (function () {

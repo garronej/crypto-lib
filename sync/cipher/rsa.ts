@@ -1,13 +1,18 @@
 import { Encryptor, Decryptor, EncryptorDecryptor, Sync } from "../types";
 import { RsaKey } from "../types";
 import * as NodeRSA from "node-rsa";
+import { isBrowser } from "../environnement";
 
 declare type Buffer= any;
 declare const Buffer: any;
 
+const getEnvironment= ()=> isBrowser() ? "browser" : "node";
 
-const newNodeRSA = (key: RsaKey) => new NodeRSA(Buffer.from(key.data), key.format);
-
+const newNodeRSA = (key: RsaKey) => new NodeRSA(
+    Buffer.from(key.data), 
+    key.format,
+    { "environment": getEnvironment() }
+);
 
 /** 
  * NOTE: The toBuffer function of the library does not  
@@ -48,8 +53,8 @@ export function syncDecryptorFactory(decryptKey: RsaKey): Sync<Decryptor> {
             const decryptNodeRSA = newNodeRSA(decryptKey);
 
             const decryptMethod = RsaKey.Public.match(decryptKey) ?
-                "decrypt" :
-                "decryptPublic"
+                "decryptPublic" :
+                "decrypt" 
                 ;
 
             return (encryptedData: Uint8Array): Uint8Array =>
@@ -72,16 +77,16 @@ export function syncEncryptorDecryptorFactory(encryptKey, decryptKey) {
 
 }
 
-
-
-export function syncGenerateKeys(seed: Uint8Array): {
+export function syncGenerateKeys(seed: Uint8Array, keysLengthBytes: number= 80): {
     publicKey: RsaKey.Public;
     privateKey: RsaKey.Private;
 } {
 
     const nodeRSA = NodeRSA.generateKeyPairFromSeed(
         toRealBuffer(seed),
-        8 * 80
+        8 * keysLengthBytes,
+        undefined,
+        getEnvironment()
     );
 
     const getData = (format: RsaKey["format"]) => nodeRSA.exportKey(format) as Uint8Array;

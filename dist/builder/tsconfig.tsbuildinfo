@@ -78,11 +78,11 @@
         "signature": "28569d59e07d4378cb3d54979c4c60f9f06305c9bb6999ffe6cab758957adc46"
       },
       "c:/users/joseph/dropbox/shell/local-github/crypto-lib/node_modules/frontend-build-tools/dist/index.d.ts": {
-        "version": "c0cc8d8ac3838c6fa5c04c9e9ebde97738d693ba7835124d5e66da12ce0ca653",
-        "signature": "c0cc8d8ac3838c6fa5c04c9e9ebde97738d693ba7835124d5e66da12ce0ca653"
+        "version": "8adfd6bf8b5d5133d391c7aba3ac802b0a5e45b819d17b1c3997bf00a7579382",
+        "signature": "8adfd6bf8b5d5133d391c7aba3ac802b0a5e45b819d17b1c3997bf00a7579382"
       },
       "c:/users/joseph/dropbox/shell/local-github/crypto-lib/builder/build.ts": {
-        "version": "09821499b94b97743d5e57a5489e93b546110fa9c39d53cef8e9c933192f39e3",
+        "version": "49f112d39c29c17cd7bfa09a00f8257f2eedd1ee1780877035d9c78854c5c6ac",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "c:/users/joseph/dropbox/shell/local-github/crypto-lib/node_modules/@types/node/inspector.d.ts": {

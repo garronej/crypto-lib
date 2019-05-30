@@ -40,39 +40,48 @@ var buildTools = require("frontend-build-tools");
 var path = require("path");
 var module_dir_path = path.join(__dirname, "..", "..");
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var _i, _a, test_file_basename, entry_point_file_path, dst_file_path;
+    var watch, _loop_1, _i, _a, test_file_basename;
+    var _this = this;
     return __generator(this, function (_b) {
         switch (_b.label) {
-            case 0: return [4 /*yield*/, buildTools.tsc_browserify_minify(path.join(module_dir_path, "sync", "tsconfig.json"), path.join(module_dir_path, "dist", "sync", "_worker_thread", "main.js"), path.join(module_dir_path, "dist", "sync", "_worker_thread", "bundle.js"))];
+            case 0:
+                watch = process.argv[2] === "-w" ? "WATCH" : undefined;
+                return [4 /*yield*/, buildTools.tsc_browserify_minify(path.join(module_dir_path, "sync", "tsconfig.json"), path.join(module_dir_path, "dist", "sync", "_worker_thread", "main.js"), path.join(module_dir_path, "dist", "sync", "_worker_thread", "bundle.js"), watch)];
             case 1:
                 _b.sent();
-                return [4 /*yield*/, buildTools.tsc(path.join(module_dir_path, "async", "tsconfig.json"))];
+                return [4 /*yield*/, buildTools.tsc(path.join(module_dir_path, "async", "tsconfig.json"), watch)];
             case 2:
                 _b.sent();
-                return [4 /*yield*/, buildTools.tsc(path.join(module_dir_path, "test", "tsconfig.json"))];
+                return [4 /*yield*/, buildTools.tsc(path.join(module_dir_path, "test", "tsconfig.json"), watch)];
             case 3:
                 _b.sent();
-                _i = 0, _a = ["aes", "perf"];
-                _b.label = 4;
-            case 4:
-                if (!(_i < _a.length)) return [3 /*break*/, 9];
-                test_file_basename = _a[_i];
-                entry_point_file_path = path.join(module_dir_path, "dist", "test", test_file_basename + ".js");
-                dst_file_path = path.join(path.dirname(entry_point_file_path), test_file_basename + "-bundled.js");
-                return [4 /*yield*/, buildTools.browserify(entry_point_file_path, dst_file_path)];
-            case 5:
-                _b.sent();
-                return [4 /*yield*/, buildTools.minify(dst_file_path)];
-            case 6:
-                _b.sent();
-                return [4 /*yield*/, buildTools.buildTestHtmlPage(dst_file_path)];
-            case 7:
-                _b.sent();
-                _b.label = 8;
-            case 8:
-                _i++;
-                return [3 /*break*/, 4];
-            case 9: return [2 /*return*/];
+                _loop_1 = function (test_file_basename) {
+                    (function () { return __awaiter(_this, void 0, void 0, function () {
+                        var entry_point_file_path, dst_file_path;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    entry_point_file_path = path.join(module_dir_path, "dist", "test", test_file_basename + ".js");
+                                    dst_file_path = path.join(path.dirname(entry_point_file_path), test_file_basename + "-bundled.js");
+                                    return [4 /*yield*/, buildTools.browserify(entry_point_file_path, dst_file_path, watch)];
+                                case 1:
+                                    _a.sent();
+                                    return [4 /*yield*/, buildTools.minify(dst_file_path, watch)];
+                                case 2:
+                                    _a.sent();
+                                    return [4 /*yield*/, buildTools.buildTestHtmlPage(dst_file_path, watch)];
+                                case 3:
+                                    _a.sent();
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); })();
+                };
+                for (_i = 0, _a = ["aes", "rsa", "perf"]; _i < _a.length; _i++) {
+                    test_file_basename = _a[_i];
+                    _loop_1(test_file_basename);
+                }
+                return [2 /*return*/];
         }
     });
 }); })();

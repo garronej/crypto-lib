@@ -3,7 +3,7 @@ declare const addEventListener: any;
 declare const document: any;
 
 import * as cryptoLib from "../index";
-import * as environnement from "./environnement";
+import * as environnement from "../environnement";
 import { ThreadMessage, GenerateRsaKeys, CipherFactory, EncryptOrDecrypt, transfer } from "./ThreadMessage";
 
 declare let __process_node: any;

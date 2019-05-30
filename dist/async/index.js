@@ -188,7 +188,7 @@ exports.rsa = (function () {
             "params": [encryptKey, decryptKey]
         }, workerThreadId);
     }
-    var generateKeys = function (seed, workerThreadId) { return __awaiter(_this, void 0, void 0, function () {
+    var generateKeys = function (seed, keysLengthBytes, workerThreadId) { return __awaiter(_this, void 0, void 0, function () {
         var actionId, appWorker, outputs;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -199,7 +199,7 @@ exports.rsa = (function () {
                         var action = {
                             "action": "GenerateRsaKeys",
                             actionId: actionId,
-                            "params": [seed]
+                            "params": [seed, keysLengthBytes]
                         };
                         return action;
                     })());

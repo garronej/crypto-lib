@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var cryptoLib = require("../index");
-var environnement = require("./environnement");
+var environnement = require("../environnement");
 var ThreadMessage_1 = require("./ThreadMessage");
 if ((function () {
     var isMainThead = environnement.isBrowser() ?

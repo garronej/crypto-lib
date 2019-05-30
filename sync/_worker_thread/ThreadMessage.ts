@@ -1,5 +1,5 @@
 
-import * as environnement from "./environnement";
+import * as environnement from "../environnement";
 import { toBuffer } from "../toBuffer";
 import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey } from "../types";
 declare const Buffer: any;

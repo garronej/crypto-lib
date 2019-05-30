@@ -2,9 +2,16 @@
   "extends": "../tsproject.json",
   "compilerOptions": {
     "outDir": "../dist/test",
-    "rootDir": "."
+    "rootDir": ".",
+    "lib": [
+      "es5",
+      "es2015",
+      "dom"
+    ]
   },
   "references": [
-    { "path": "../async" }
+    {
+      "path": "../async"
+    }
   ]
 }

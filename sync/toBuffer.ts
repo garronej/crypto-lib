@@ -1,6 +1,6 @@
 declare const Buffer: any;
 
-import * as types from "./types";
+import { Encoding } from "./types";
 
 /** 
  * NOTE: Does not guaranty that the returned object is an acutal
@@ -8,7 +8,7 @@ import * as types from "./types";
  * as on the Buffer prototype. ( even if the current implementation does)
  */
 export function toBuffer(uint8Array: Uint8Array): {
-    toString(encoding: types.Encoding): string;
+    toString(encoding: Encoding): string;
 } {
     return (uint8Array instanceof Buffer || Object.getPrototypeOf(uint8Array).name === "Buffer") ?
         uint8Array :

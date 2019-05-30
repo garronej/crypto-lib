@@ -8,18 +8,13 @@ function syncEncryptorDecryptorFactory(key) {
         "encrypt": (function () {
             var counter = new aesjs.Counter(5);
             return function (plainData) {
-                try {
-                    var _counter = counter._counter.slice();
-                    var payload = (new aesjs.ModeOfOperation.ctr(key, counter))
-                        .encrypt(plainData);
-                    var encryptedData = new Uint8Array(_counterLength + payload.length);
-                    encryptedData.set(_counter);
-                    encryptedData.set(payload, _counterLength);
-                    return encryptedData;
-                }
-                catch (error) {
-                    throw new Error("key ============> " + require("util" + "").inspect(key) + error.stack);
-                }
+                var _counter = counter._counter.slice();
+                var payload = (new aesjs.ModeOfOperation.ctr(key, counter))
+                    .encrypt(plainData);
+                var encryptedData = new Uint8Array(_counterLength + payload.length);
+                encryptedData.set(_counter);
+                encryptedData.set(payload, _counterLength);
+                return encryptedData;
             };
         })(),
         "decrypt": (function () {

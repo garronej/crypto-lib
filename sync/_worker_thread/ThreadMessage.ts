@@ -1,5 +1,8 @@
 
 import * as environnement from "./environnement";
+import { toBuffer } from "../toBuffer";
+import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey } from "../types";
+declare const Buffer: any;
 
 export type ThreadMessage = ThreadMessage.Action | ThreadMessage.Response;
 
@@ -7,176 +10,182 @@ export namespace ThreadMessage {
 
     export type Action =
         GenerateRsaKeys.Action |
-        DummyEncryptorDecryptorFactory.Action |
-        AesEncryptorDecryptorFactory.Action |
-        RsaDecryptorFactory.Action |
-        RsaEncryptorFactory.Action |
+        CipherFactory.Action |
         EncryptOrDecrypt.Action;
 
     export type Response =
         GenerateRsaKeys.Response |
         EncryptOrDecrypt.Response;
 
+}
 
-    export namespace GenerateRsaKeys {
+export namespace GenerateRsaKeys {
 
-        export type Action = {
-            action: "GenerateRsaKeys";
-            actionId: number;
-            params: Parameters<typeof import("../rsa").syncEncryptorFactory>;
-        };
+    export type Action = {
+        action: "GenerateRsaKeys";
+        actionId: number;
+        params: Parameters<typeof import("../cipher/rsa").syncGenerateKeys>;
+    };
 
-        export type Response = {
-            actionId: number;
-            outputs: ReturnType<typeof import("../rsa").syncGenerateKeys>;
-        };
+    export type Response = {
+        actionId: number;
+        outputs: ReturnType<typeof import("../cipher/rsa").syncGenerateKeys>;
+    };
 
-    }
+}
 
-    export namespace DummyEncryptorDecryptorFactory {
+export namespace CipherFactory {
 
-        export type Action = {
-            action: "DummyEncryptorDecryptorFactory",
-            instanceRef: number
-        };
+    export type CipherName = "aes" | "rsa" | "plain";
+    export type Components = "Encryptor" | "Decryptor" | "EncryptorDecryptor";
 
-    }
+    export type Type<U extends Components> =
+        U extends "EncryptorDecryptor" ?
+        EncryptorDecryptor :
+        U extends "Encryptor" ? Encryptor : Decryptor
+        ;
 
-    export namespace AesEncryptorDecryptorFactory {
 
-        export type Action = {
-            action: "AesEncryptorDecryptorFactory",
-            instanceRef: number,
-            params: Parameters<typeof import("../aes").syncEncryptorDecryptorFactory>;
-        };
+    export type ActionPoly<T extends CipherName, U extends Components> = {
+        action: "CipherFactory";
+        cipherName: T;
+        components: U;
+        cipherInstanceRef: number;
+        params:
+        T extends "aes" ?
+        (
+            Parameters<typeof import("../cipher/aes").syncEncryptorDecryptorFactory>
+        )
+        : T extends "rsa" ?
+        (
+            U extends "EncryptorDecryptor" ?
+            [ RsaKey.Private, RsaKey.Public ] | [ RsaKey.Public, RsaKey.Private ]
+            : Parameters<typeof import("../cipher/rsa").syncEncryptorFactory>
+        )
+        :
+        (
+            []
+        );
+    };
 
-    }
+    export type Action = ActionPoly<CipherName, Components>;
 
-    export namespace RsaEncryptorFactory {
+}
 
-        export type Action = {
-            action: "RsaEncryptorFactory";
-            instanceRef: number;
-            params: Parameters<typeof import("../rsa").syncEncryptorFactory>;
-        };
+export namespace EncryptOrDecrypt {
 
-    }
+    export type Action = {
+        action: "EncryptOrDecrypt";
+        actionId: number;
+        cipherInstanceRef: number;
+        method: keyof import("../types").EncryptorDecryptor;
+        input: Uint8Array;
+    };
 
-    export namespace RsaDecryptorFactory {
+    export type Response = {
+        actionId: number;
+        output: Uint8Array
+    };
 
-        export type Action = {
-            action: "RsaDecryptorFactory";
-            instanceRef: number;
-            params: Parameters<typeof import("../rsa").syncDecryptorFactory>;
-        };
+}
 
-    }
 
-    export namespace EncryptOrDecrypt {
+export namespace transfer {
 
-        export type Action = {
-            action: "EncryptOrDecrypt";
-            actionId: number;
-            instanceRef: number;
-            method: keyof import("../types").EncryptorDecryptor;
-            input: Uint8Array;
-        };
+    type SerializableUint8Array = {
+        type: "Uint8Array";
+        data: string;
+    };
 
-        export type Response = {
-            actionId: number;
-            output: Uint8Array
-        };
+    namespace SerializableUint8Array {
 
-    }
+        export function match(value: any): value is SerializableUint8Array {
+            return (
+                value instanceof Object &&
+                (value as SerializableUint8Array).type === "Uint8Array" &&
+                typeof (value as SerializableUint8Array).data === "string"
+            );
+        }
 
-    export namespace transfer {
-
-        type SerializableUint8Array = {
-            type: "Uint8Array",
-            data: number[]
-        };
-
-        namespace SerializableUint8Array {
-
-            export function match(value: any): value is SerializableUint8Array {
-                return (
-                    value instanceof Object &&
-                    (value as SerializableUint8Array).type === "Uint8Array" &&
-                    (value as SerializableUint8Array).data instanceof Array
-                );
+        export function build(value: Uint8Array): SerializableUint8Array {
+            return {
+                "type": "Uint8Array",
+                "data": toBuffer(value).toString("binary")
             }
+        }
 
-            export function build(value: Uint8Array): SerializableUint8Array {
-                return {
-                    "type": "Uint8Array",
-                    "data": Array.from(value)
+        export function restore(value: SerializableUint8Array): Uint8Array {
+            return Buffer.from(value.data, "binary");
+        }
+
+    }
+
+
+    export function prepare<T extends ThreadMessage>(threadMessage: T): any {
+
+        if (environnement.isBrowser()) {
+            throw new Error("only for node");
+        }
+
+        const message = (() => {
+
+            if (threadMessage instanceof Uint8Array) {
+                return SerializableUint8Array.build(threadMessage);
+            } else if (threadMessage instanceof Array) {
+                return threadMessage.map(entry => prepare<any>(entry));
+            } else if (threadMessage instanceof Object) {
+
+                const out: any = {};
+
+                for (const key in threadMessage) {
+                    out[key] = prepare<any>(threadMessage[key]);
                 }
+
+                return out;
+
+
+            } else {
+                return threadMessage;
             }
 
-            export function restore(value: SerializableUint8Array): Uint8Array {
-                return Uint8Array.from(value.data);
-            }
+        })();
 
+        return message;
+
+    }
+
+
+    export function restore<T extends ThreadMessage>(message: any): T {
+
+        if (environnement.isBrowser()) {
+            throw new Error("only for node");
         }
 
+        const threadMessage = (() => {
 
-        export function prepare<T extends ThreadMessage>(data: T): any {
+            if (SerializableUint8Array.match(message)) {
+                return SerializableUint8Array.restore(message);
+            } else if (message instanceof Array) {
+                return message.map(entry => restore(entry));
+            } else if (message instanceof Object) {
 
-            if (environnement.isBrowser()) {
-                throw new Error("only for node");
+                const out: any = {};
+
+                for (const key in message) {
+                    out[key] = restore<any>(message[key]);
+                }
+
+                return out;
+
+
+            } else {
+                return message;
             }
 
-            const message: any = {};
+        })();
 
-            for (const key in data) {
+        return threadMessage;
 
-                const value = data[key];
-
-                message[key] = (() => {
-                    if (value instanceof Uint8Array) {
-                        return SerializableUint8Array.build(value);
-                    } else if (value instanceof Object) {
-                        return prepare<any>(value);
-                    } else {
-                        return value;
-                    }
-                })();
-
-
-            }
-
-            return message;
-
-        }
-
-
-        export function restore<T extends ThreadMessage>(message: any): T {
-
-            if (environnement.isBrowser()) {
-                throw new Error("only for node");
-            }
-
-            const data: any = {};
-
-            for (const key in message) {
-
-                const value = message[key];
-
-                data[key] = (() => {
-                    if (SerializableUint8Array.match(value)) {
-                        return SerializableUint8Array.restore(value);
-                    } else if (value instanceof Object) {
-                        return restore(value);
-                    } else {
-                        return value;
-                    }
-                })();
-
-            }
-
-            return data;
-
-        }
 
     }
 

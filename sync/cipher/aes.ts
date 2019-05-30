@@ -1,11 +1,8 @@
 import * as aesjs from "aes-js";
-import * as types from "./types";
 import * as randomBytes from "randombytes";
+import { EncryptorDecryptor, Sync } from "../types";
 
-declare const require: any;
-
-export function syncEncryptorDecryptorFactory(key: Uint8Array): types.Sync<types.EncryptorDecryptor> {
-
+export function syncEncryptorDecryptorFactory(key: Uint8Array): Sync<EncryptorDecryptor> {
 
     const _counterLength = (new aesjs.Counter(0))._counter.length;
 
@@ -16,22 +13,15 @@ export function syncEncryptorDecryptorFactory(key: Uint8Array): types.Sync<types
 
             return (plainData: Uint8Array) => {
 
-                try {
-                    const _counter = counter._counter.slice();
-                    const payload = (new aesjs.ModeOfOperation.ctr(key, counter))
-                        .encrypt(plainData);
+                const _counter = counter._counter.slice();
+                const payload = (new aesjs.ModeOfOperation.ctr(key, counter))
+                    .encrypt(plainData);
 
-                    const encryptedData = new Uint8Array(_counterLength + payload.length);
-                    encryptedData.set(_counter);
-                    encryptedData.set(payload, _counterLength);
+                const encryptedData = new Uint8Array(_counterLength + payload.length);
+                encryptedData.set(_counter);
+                encryptedData.set(payload, _counterLength);
 
-                    return encryptedData;
-                } catch (error) {
-
-                    throw new Error(`key ============> ${require("util" + "").inspect(key)}${error.stack}`);
-
-                }
-
+                return encryptedData;
 
             };
 
@@ -58,7 +48,6 @@ export function syncEncryptorDecryptorFactory(key: Uint8Array): types.Sync<types
 
         })()
     };
-
 
 }
 

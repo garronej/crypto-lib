@@ -15,9 +15,9 @@ function stringifyThenEncryptFactory(encryptor) {
                 .join("")
         ].join(""), "utf8"));
         var finalize = function (value) { return toBuffer_1.toBuffer(value).toString(stringifyThenEncryptFactory.stringRepresentationEncoding); };
-        return matchPromise(prOrValue) ?
+        return (matchPromise(prOrValue) ?
             prOrValue.then(function (value) { return finalize(value); }) :
-            finalize(prOrValue);
+            finalize(prOrValue));
     };
 }
 exports.stringifyThenEncryptFactory = stringifyThenEncryptFactory;

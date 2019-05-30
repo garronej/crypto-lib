@@ -14,7 +14,7 @@ declare const Buffer: any;
         let encrypt: lib.Encryptor["encrypt"] | undefined = undefined;
         let decrypt: lib.Decryptor["decrypt"] | undefined = undefined;
 
-        const text = ttTesting.genUtf8Str(60);
+        const text = ttTesting.genUtf8Str(60,undefined, "seed");
 
         for (let i = 1; i < 100; i++) {
 
@@ -73,7 +73,7 @@ declare const Buffer: any;
 
             for (let i = 1; i < 500; i++) {
 
-                const text = ttTesting.genUtf8Str(60);
+                const text = ttTesting.genUtf8Str(60, undefined, `${i}`);
 
                 if (text !== await decryptThenParse<string>(await stringifyThenEncrypt<string>(text))) {
 

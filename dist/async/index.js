@@ -1,7 +1,4 @@
 "use strict";
-//TODO: Handle when not in the browser
-/// <reference lib="dom"/> 
-/// <reference path="../node_modules/@types/node/index.d.ts"/> 
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -48,26 +45,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var ts_events_extended_1 = require("ts-events-extended");
 var requireNodeBuiltIn_1 = require("./requireNodeBuiltIn");
+var environnement_1 = require("../sync/_worker_thread/environnement");
+var ThreadMessage_1 = require("../sync/_worker_thread/ThreadMessage");
 var fs = require("fs");
 var path = require("path");
-//declare const __dirname: any;
 //NOTE: Path has to be static or it wont be bundled.
-var bundle_source = fs.readFileSync(path.join(__dirname, "..", "sync", "_worker_thread", "bundle.js")).toString("utf8");
+var bundle_source = fs.readFileSync(path.join(__dirname, "..", "sync", "_worker_thread", "bundle.min.js")).toString("utf8");
 var __hook;
 eval(bundle_source);
-var _a = __hook, _worker_thread = _a._worker_thread, toBuffer = _a.toBuffer, serializer = _a.serializer, scryptSync = _a.scrypt, aesSync = _a.aes, rsaSync = _a.rsa, dummySync = _a.dummy;
+var _a = __hook, toBuffer = _a.toBuffer, serializer = _a.serializer, sync_scrypt = _a.scrypt, sync_aes = _a.aes, sync_rsa = _a.rsa, sync_plain = _a.plain;
 exports.toBuffer = toBuffer;
 exports.serializer = serializer;
+__export(require("../sync/types"));
 var getCounter = (function () {
     var counter = 0;
     return function () { return counter++; };
 })();
 var evtWorkerMessage = new ts_events_extended_1.SyncEvent();
 var getPostMessage = (function () {
-    if (_worker_thread.isBrowser()) {
+    if (environnement_1.isBrowser()) {
         var worker_1 = undefined;
         return function () {
             if (worker_1 === undefined) {
@@ -80,13 +83,18 @@ var getPostMessage = (function () {
         };
     }
     else {
-        var child_process_1 = require("child_process" + "");
+        var child_process_1 = requireNodeBuiltIn_1.requireNodeBuiltIn("child_process");
         var childProcess_1 = undefined;
         return function () {
             if (childProcess_1 === undefined) {
                 var fs_1 = requireNodeBuiltIn_1.requireNodeBuiltIn("fs");
-                var random_file_path = (function () {
-                    var generateRandomFilePath = function () { return path.join(".", requireNodeBuiltIn_1.requireNodeBuiltIn("crypto")
+                var path_1 = requireNodeBuiltIn_1.requireNodeBuiltIn("path");
+                var random_file_path_1 = (function () {
+                    var base_path = path_1.join("/", "tmp");
+                    if (!fs_1.existsSync(base_path)) {
+                        base_path = path_1.join(".");
+                    }
+                    var generateRandomFilePath = function () { return path_1.join(base_path, requireNodeBuiltIn_1.requireNodeBuiltIn("crypto")
                         .randomBytes(4)
                         .toString("hex")); };
                     var out = generateRandomFilePath();
@@ -95,39 +103,20 @@ var getPostMessage = (function () {
                     }
                     return out;
                 })();
-                fs_1.writeFileSync(random_file_path, Buffer.from([
+                fs_1.writeFileSync(random_file_path_1, Buffer.from([
                     "console.log(\"LOADED\");",
                     "var __process_node= process;",
                     bundle_source
                 ].join("\n"), "utf8"));
-                childProcess_1 = child_process_1.fork(random_file_path, undefined, { "stdio": ["pipe", "pipe", "pipe", "ipc"] });
-                childProcess_1.on("message", function (message) { return evtWorkerMessage.post(_worker_thread.ThreadMessage.transfer.restore(message)); });
-                /*
-                childProcess.stdout.once(
-                    "data",
-                    () => fs.unlinkSync(random_file_path)
-                );
-                */
-                childProcess_1.stdout.on("data", function (data) {
-                    console.log("ChildProcess => " + data.toString("utf8"));
-                });
+                childProcess_1 = child_process_1.fork(random_file_path_1, [], { "silent": true });
+                childProcess_1.stdout.once("data", function () { return fs_1.unlinkSync(random_file_path_1); });
+                childProcess_1.on("message", function (message) { return evtWorkerMessage.post(ThreadMessage_1.transfer.restore(message)); });
             }
-            /*
-            return (action: import("../sync/_worker_thread").ThreadMessage.Action) => childProcess!.send(
-                _worker_thread.ThreadMessage.transfer.prepare(
-                    action
-                )
-            );
-            */
-            return function (action) { return childProcess_1.send((function () {
-                var message = _worker_thread.ThreadMessage.transfer.prepare(action);
-                console.log("before send: " + require("util" + "").inspect(message));
-                return message;
-            })()); };
+            return function (action) { return childProcess_1.send(ThreadMessage_1.transfer.prepare(action)); };
         };
     }
 })();
-function encryptOrDecrypt(instanceRef, method, input) {
+function encryptOrDecrypt(cipherInstanceRef, method, input) {
     return __awaiter(this, void 0, void 0, function () {
         var actionId, output;
         return __generator(this, function (_a) {
@@ -138,8 +127,8 @@ function encryptOrDecrypt(instanceRef, method, input) {
                         var action = {
                             "action": "EncryptOrDecrypt",
                             actionId: actionId,
+                            cipherInstanceRef: cipherInstanceRef,
                             method: method,
-                            instanceRef: instanceRef,
                             input: input
                         };
                         return action;
@@ -155,41 +144,86 @@ function encryptOrDecrypt(instanceRef, method, input) {
         });
     });
 }
-exports.dummy = __assign({ "encryptorDecryptorFactory": (function () {
-        var factory = function () {
-            var instanceRef = getCounter();
-            getPostMessage()((function () {
-                var action = {
-                    "action": "DummyEncryptorDecryptorFactory",
-                    instanceRef: instanceRef,
-                };
-                return action;
-            })());
-            return {
-                "encrypt": function (plainData) { return encryptOrDecrypt(instanceRef, "encrypt", plainData); },
-                "decrypt": function (encryptedData) { return encryptOrDecrypt(instanceRef, "decrypt", encryptedData); }
-            };
-        };
-        return factory;
-    })() }, dummySync);
-exports.aes = __assign({ "encryptorDecryptorFactory": (function () {
-        var factory = function (key) {
-            console.log("" + require("util" + "").inspect({ key: key }));
-            var instanceRef = getCounter();
-            getPostMessage()((function () {
-                var action = {
-                    "action": "AesEncryptorDecryptorFactory",
-                    instanceRef: instanceRef,
-                    "params": [key]
-                };
-                return action;
-            })());
-            return {
-                "encrypt": function (plainData) { return encryptOrDecrypt(instanceRef, "encrypt", plainData); },
-                "decrypt": function (encryptedData) { return encryptOrDecrypt(instanceRef, "decrypt", encryptedData); }
-            };
-        };
-        return factory;
-    })() }, aesSync);
-exports.rsa = __assign({}, rsaSync);
-exports.scrypt = __assign({}, scryptSync);
+function cipherFactory(params) {
+    var cipherInstanceRef = getCounter();
+    getPostMessage()((function () {
+        var action = __assign({ "action": "CipherFactory", cipherInstanceRef: cipherInstanceRef }, params);
+        return action;
+    })());
+    var cipher = (function () {
+        var encrypt = function (plainData) { return encryptOrDecrypt(cipherInstanceRef, "encrypt", plainData); };
+        var decrypt = function (encryptedData) { return encryptOrDecrypt(cipherInstanceRef, "decrypt", encryptedData); };
+        switch (params.components) {
+            case "EncryptorDecryptor": return { encrypt: encrypt, decrypt: decrypt };
+            case "Decryptor": return { decrypt: decrypt };
+            case "Encryptor": return { encrypt: encrypt };
+        }
+    })();
+    return cipher;
+}
+exports.plain = (function () {
+    var encryptorDecryptorFactory = function () { return cipherFactory({
+        "cipherName": "plain",
+        "components": "EncryptorDecryptor",
+        "params": []
+    }); };
+    return __assign({ encryptorDecryptorFactory: encryptorDecryptorFactory }, sync_plain);
+})();
+exports.aes = (function () {
+    var encryptorDecryptorFactory = function (key) { return cipherFactory({
+        "cipherName": "aes",
+        "components": "EncryptorDecryptor",
+        "params": [key]
+    }); };
+    return __assign({ encryptorDecryptorFactory: encryptorDecryptorFactory }, sync_aes);
+})();
+exports.rsa = (function () {
+    var encryptorFactory = function (encryptKey) { return cipherFactory({
+        "cipherName": "rsa",
+        "components": "Encryptor",
+        "params": [encryptKey]
+    }); };
+    var decryptorFactory = function (decryptKey) { return cipherFactory({
+        "cipherName": "rsa",
+        "components": "Decryptor",
+        "params": [decryptKey]
+    }); };
+    function encryptorDecryptorFactory(encryptKey, decryptKey) {
+        return cipherFactory({
+            "cipherName": "rsa",
+            "components": "EncryptorDecryptor",
+            "params": [encryptKey, decryptKey]
+        });
+    }
+    var generateKeys = function (seed) { return __awaiter(_this, void 0, void 0, function () {
+        var actionId, outputs;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    actionId = getCounter();
+                    getPostMessage()((function () {
+                        var action = {
+                            "action": "GenerateRsaKeys",
+                            actionId: actionId,
+                            "params": [seed]
+                        };
+                        return action;
+                    })());
+                    return [4 /*yield*/, evtWorkerMessage.waitFor(function (_a) {
+                            var actionId_ = _a.actionId;
+                            return actionId_ === actionId;
+                        })];
+                case 1:
+                    outputs = (_a.sent()).outputs;
+                    return [2 /*return*/, outputs];
+            }
+        });
+    }); };
+    return __assign({ encryptorFactory: encryptorFactory,
+        decryptorFactory: decryptorFactory,
+        encryptorDecryptorFactory: encryptorDecryptorFactory,
+        generateKeys: generateKeys }, sync_rsa);
+})();
+exports.scrypt = (function () {
+    return __assign({}, sync_scrypt);
+})();

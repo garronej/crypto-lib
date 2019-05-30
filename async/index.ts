@@ -1,17 +1,20 @@
-//TODO: Handle when not in the browser
-/// <reference lib="dom"/> 
-/// <reference path="../node_modules/@types/node/index.d.ts"/> 
+declare const require: any;
+declare const __dirname: any;
+declare type ChildProcess= any;
+declare const Buffer: any;
 
 import { SyncEvent } from "ts-events-extended";
 import { requireNodeBuiltIn } from "./requireNodeBuiltIn";
-declare const require: any;
-const fs = require("fs");
-const path = require("path");
-//declare const __dirname: any;
+import { Sync, EncryptorDecryptor, RsaKey } from "../sync/types";
+import { isBrowser } from "../sync/_worker_thread/environnement";
+import { ThreadMessage, GenerateRsaKeys, CipherFactory, EncryptOrDecrypt, transfer } from "../sync/_worker_thread/ThreadMessage";
+
+const fs= require("fs");
+const path= require("path");
 
 //NOTE: Path has to be static or it wont be bundled.
 const bundle_source = fs.readFileSync(
-    path.join(__dirname, "..", "sync","_worker_thread", "bundle.js")
+    path.join(__dirname, "..", "sync", "_worker_thread", "bundle.min.js")
 ).toString("utf8");
 
 let __hook: typeof import("../sync");
@@ -19,24 +22,17 @@ let __hook: typeof import("../sync");
 eval(bundle_source);
 
 const {
-    _worker_thread,
     toBuffer,
     serializer,
-    scrypt: scryptSync,
-    aes: aesSync,
-    rsa: rsaSync,
-    dummy: dummySync
+    scrypt: sync_scrypt,
+    aes: sync_aes,
+    rsa: sync_rsa,
+    plain: sync_plain
 } = __hook!;
 
 export { toBuffer, serializer };
+export * from "../sync/types";
 
-export type Encryptor = import("../sync/types").Encryptor;
-export type Decryptor = import("../sync/types").Decryptor;
-export type EncryptorDecryptor = import("../sync/types").EncryptorDecryptor;
-export type Sync<T extends Encryptor | Decryptor | EncryptorDecryptor> = import("../sync/types").Sync<T>;
-export type Encoding = import("../sync/types").Encoding;
-
-type AsyncFactory<T> = T extends (...args: infer A) => Sync<infer R> ? (...args: A) => R : never;
 
 const getCounter = (() => {
 
@@ -47,11 +43,11 @@ const getCounter = (() => {
 })();
 
 
-const evtWorkerMessage: SyncEvent<import("../sync/_worker_thread").ThreadMessage.Response> = new SyncEvent();
+const evtWorkerMessage: SyncEvent<ThreadMessage.Response> = new SyncEvent();
 
-const getPostMessage: () => ((action: import("../sync/_worker_thread").ThreadMessage.Action, transfer?: Transferable[]) => void) = (() => {
+const getPostMessage: () => ((action: ThreadMessage.Action, transfer?: ArrayBuffer[]) => void) = (() => {
 
-    if (_worker_thread.isBrowser()) {
+    if (isBrowser()) {
 
         let worker: Worker | undefined = undefined;
 
@@ -72,13 +68,13 @@ const getPostMessage: () => ((action: import("../sync/_worker_thread").ThreadMes
                 worker.addEventListener(
                     "message",
                     ev => evtWorkerMessage.post(
-                            ev.data
+                        ev.data
                     )
                 );
 
             }
 
-            return (action: import("../sync/_worker_thread").ThreadMessage.Action, transfer?: Transferable[]) =>
+            return (action: ThreadMessage.Action, transfer?: ArrayBuffer[]) =>
                 worker!.postMessage(
                     action, transfer
                 );
@@ -87,20 +83,27 @@ const getPostMessage: () => ((action: import("../sync/_worker_thread").ThreadMes
 
     } else {
 
-        const child_process: typeof import("child_process") = require("child_process" + "");
+        const child_process = requireNodeBuiltIn("child_process");
 
-        let childProcess: import("child_process").ChildProcess | undefined = undefined;
+        let childProcess: ChildProcess | undefined = undefined;
 
         return () => {
 
             if (childProcess === undefined) {
 
                 const fs = requireNodeBuiltIn("fs");
+                const path= requireNodeBuiltIn("path");
 
                 const random_file_path = (() => {
 
+                    let base_path = path.join("/", "tmp");
+
+                    if (!fs.existsSync(base_path)) {
+                        base_path = path.join(".");
+                    }
+
                     const generateRandomFilePath = () => path.join(
-                        ".",
+                        base_path,
                         requireNodeBuiltIn("crypto")
                             .randomBytes(4)
                             .toString("hex")
@@ -130,57 +133,31 @@ const getPostMessage: () => ((action: import("../sync/_worker_thread").ThreadMes
 
                 childProcess = child_process.fork(
                     random_file_path,
-                    undefined, 
-                    { "stdio": [ "pipe", "pipe", "pipe", "ipc"] }
+                    [],
+                    { "silent": true }
+                );
+
+                childProcess.stdout.once(
+                    "data",
+                    () => fs.unlinkSync(random_file_path)
                 );
 
                 childProcess.on(
                     "message",
                     message => evtWorkerMessage.post(
-                        _worker_thread.ThreadMessage.transfer.restore(
+                        transfer.restore(
                             message
                         )
                     )
                 );
 
-                /*
-                childProcess.stdout.once(
-                    "data",
-                    () => fs.unlinkSync(random_file_path)
-                );
-                */
-
-                childProcess.stdout.on(
-                    "data",
-                    (data: Buffer) => {
-
-                        console.log(`ChildProcess => ${data.toString("utf8")}`);
-
-                    }
-                );
-
-
             }
 
-            /*
-            return (action: import("../sync/_worker_thread").ThreadMessage.Action) => childProcess!.send(
-                _worker_thread.ThreadMessage.transfer.prepare(
+            return (action: ThreadMessage.Action) => childProcess!.send(
+                transfer.prepare(
                     action
                 )
             );
-            */
-
-            return (action: import("../sync/_worker_thread").ThreadMessage.Action) => childProcess!.send((() => {
-
-                const message = _worker_thread.ThreadMessage.transfer.prepare(
-                    action
-                );
-
-                console.log(`before send: ${require("util" + "").inspect(message)}`);
-
-                return message;
-
-            })());
 
         };
 
@@ -190,7 +167,7 @@ const getPostMessage: () => ((action: import("../sync/_worker_thread").ThreadMes
 
 
 async function encryptOrDecrypt(
-    instanceRef: number,
+    cipherInstanceRef: number,
     method: keyof EncryptorDecryptor,
     input: Uint8Array
 ): Promise<Uint8Array> {
@@ -199,11 +176,11 @@ async function encryptOrDecrypt(
 
     getPostMessage()((() => {
 
-        const action: import("../sync/_worker_thread").ThreadMessage.EncryptOrDecrypt.Action = {
+        const action: EncryptOrDecrypt.Action = {
             "action": "EncryptOrDecrypt",
             actionId,
+            cipherInstanceRef,
             method,
-            instanceRef,
             input
         };
 
@@ -213,85 +190,149 @@ async function encryptOrDecrypt(
 
     const { output } = (await evtWorkerMessage.waitFor(
         ({ actionId: actionId_ }) => actionId_ === actionId
-    )) as import("../sync/_worker_thread").ThreadMessage.EncryptOrDecrypt.Response;
+    )) as EncryptOrDecrypt.Response;
 
     return output;
 
 }
 
+function cipherFactory<A extends CipherFactory.Action>(
+    params: Pick<A, Exclude<keyof A, "action" | "cipherInstanceRef">>
+): A extends CipherFactory.ActionPoly<any, infer U> ? CipherFactory.Type<U> : never {
 
-export const dummy = {
-    "encryptorDecryptorFactory": (() => {
-        const factory: AsyncFactory<typeof dummySync.syncEncryptorDecryptorFactory>
-            = () => {
+    const cipherInstanceRef = getCounter();
 
-                const instanceRef = getCounter();
+    getPostMessage()((() => {
 
-                getPostMessage()((() => {
+        const action: CipherFactory.Action = {
+            "action": "CipherFactory",
+            cipherInstanceRef,
+            ...params
+        };
 
-                    const action: import("../sync/_worker_thread").ThreadMessage.DummyEncryptorDecryptorFactory.Action = {
-                        "action": "DummyEncryptorDecryptorFactory",
-                        instanceRef,
-                    };
+        return action;
 
-                    return action;
+    })());
 
-                })());
+    const cipher: any = (() => {
 
-                return {
-                    "encrypt": plainData => encryptOrDecrypt(instanceRef, "encrypt", plainData),
-                    "decrypt": encryptedData => encryptOrDecrypt(instanceRef, "decrypt", encryptedData)
+        const encrypt = (plainData: Uint8Array) => encryptOrDecrypt(cipherInstanceRef, "encrypt", plainData);
+        const decrypt = (encryptedData: Uint8Array) => encryptOrDecrypt(cipherInstanceRef, "decrypt", encryptedData);
+
+        switch (params.components) {
+            case "EncryptorDecryptor": return { encrypt, decrypt };
+            case "Decryptor": return { decrypt };
+            case "Encryptor": return { encrypt };
+        }
+
+    })();
+
+    return cipher;
+
+}
+
+type AsyncFactory<T> = T extends (...args: infer A) => Sync<infer R> ? (...args: A) => R : never;
+
+export const plain = (() => {
+
+    const encryptorDecryptorFactory: AsyncFactory<typeof sync_plain.syncEncryptorDecryptorFactory> =
+        () => cipherFactory<CipherFactory.ActionPoly<"plain", "EncryptorDecryptor">>({
+            "cipherName": "plain",
+            "components": "EncryptorDecryptor",
+            "params": []
+        });
+
+    return {
+        encryptorDecryptorFactory,
+        ...sync_plain
+    };
+
+})();
+
+export const aes = (() => {
+
+    const encryptorDecryptorFactory: AsyncFactory<typeof sync_aes.syncEncryptorDecryptorFactory> =
+        key => cipherFactory<CipherFactory.ActionPoly<"aes", "EncryptorDecryptor">>({
+            "cipherName": "aes",
+            "components": "EncryptorDecryptor",
+            "params": [key]
+        });
+
+    return {
+        encryptorDecryptorFactory,
+        ...sync_aes
+    };
+
+
+})();
+
+export const rsa = (() => {
+
+    const encryptorFactory: AsyncFactory<typeof sync_rsa.syncEncryptorFactory>
+        = encryptKey => cipherFactory<CipherFactory.ActionPoly<"rsa", "Encryptor">>({
+            "cipherName": "rsa",
+            "components": "Encryptor",
+            "params": [encryptKey]
+        });
+
+    const decryptorFactory: AsyncFactory<typeof sync_rsa.syncDecryptorFactory>
+        = decryptKey => cipherFactory<CipherFactory.ActionPoly<"rsa", "Decryptor">>({
+            "cipherName": "rsa",
+            "components": "Decryptor",
+            "params": [decryptKey]
+        });
+
+    function encryptorDecryptorFactory(encryptKey: RsaKey.Private, decryptKey: RsaKey.Public): EncryptorDecryptor;
+    function encryptorDecryptorFactory(encryptKey: RsaKey.Public, decryptKey: RsaKey.Private): EncryptorDecryptor;
+    function encryptorDecryptorFactory(encryptKey, decryptKey) {
+        return cipherFactory<CipherFactory.ActionPoly<"rsa", "EncryptorDecryptor">>({
+            "cipherName": "rsa",
+            "components": "EncryptorDecryptor",
+            "params": [encryptKey, decryptKey]
+        });
+    }
+
+    type AsyncFn<T> = T extends (...args: infer A) => infer R ? (...args: A) => Promise<R> : never;
+
+    const generateKeys: AsyncFn<typeof sync_rsa.syncGenerateKeys> =
+        async seed => {
+
+            const actionId = getCounter();
+
+            getPostMessage()((() => {
+
+                const action: GenerateRsaKeys.Action = {
+                    "action": "GenerateRsaKeys",
+                    actionId,
+                    "params": [seed]
                 };
 
-            };
+                return action;
 
-        return factory;
+            })());
 
-    })(),
-    ...dummySync
-};
+            const { outputs } = (await evtWorkerMessage.waitFor(
+                ({ actionId: actionId_ }) => actionId_ === actionId
+            )) as GenerateRsaKeys.Response;
 
-export const aes = {
-    "encryptorDecryptorFactory": (() => {
-        const factory: AsyncFactory<typeof aesSync.syncEncryptorDecryptorFactory>
-            = key => {
+            return outputs;
 
-                console.log(`${require("util" + "").inspect({ key })}`);
+        };
 
-                const instanceRef = getCounter();
+    return {
+        encryptorFactory,
+        decryptorFactory,
+        encryptorDecryptorFactory,
+        generateKeys,
+        ...sync_rsa
+    };
 
-                getPostMessage()((() => {
+})();
 
-                    const action: import("../sync/_worker_thread").ThreadMessage.AesEncryptorDecryptorFactory.Action = {
-                        "action": "AesEncryptorDecryptorFactory",
-                        instanceRef,
-                        "params": [key]
-                    };
+export const scrypt = (()=>{
 
-                    return action;
+    return {
+        ...sync_scrypt
+    };
 
-                })());
-
-                return {
-                    "encrypt": plainData => encryptOrDecrypt(instanceRef, "encrypt", plainData),
-                    "decrypt": encryptedData => encryptOrDecrypt(instanceRef, "decrypt", encryptedData)
-                };
-
-            };
-
-        return factory;
-
-    })(),
-    ...aesSync
-};
-
-export const rsa = {
-    ...rsaSync
-};
-
-export const scrypt = {
-    ...scryptSync
-};
-
-
-
+})();

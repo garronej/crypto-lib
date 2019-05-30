@@ -1,85 +1,85 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var environnement = require("./environnement");
-var ThreadMessage;
-(function (ThreadMessage) {
-    var transfer;
-    (function (transfer) {
-        var SerializableUint8Array;
-        (function (SerializableUint8Array) {
-            function match(value) {
-                return (value instanceof Object &&
-                    value.type === "Uint8Array" &&
-                    value.data instanceof Array);
-            }
-            SerializableUint8Array.match = match;
-            function build(value) {
-                return {
-                    "type": "Uint8Array",
-                    "data": Array.from(value)
-                };
-            }
-            SerializableUint8Array.build = build;
-            function restore(value) {
-                return Uint8Array.from(value.data);
-            }
-            SerializableUint8Array.restore = restore;
-        })(SerializableUint8Array || (SerializableUint8Array = {}));
-        function prepare(data) {
-            if (environnement.isBrowser()) {
-                throw new Error("only for node");
-            }
-            var message = {};
-            var _loop_1 = function (key) {
-                var value = data[key];
-                message[key] = (function () {
-                    if (value instanceof Uint8Array) {
-                        return SerializableUint8Array.build(value);
-                    }
-                    else if (value instanceof Object) {
-                        return prepare(value);
-                    }
-                    else {
-                        return value;
-                    }
-                })();
-            };
-            for (var key in data) {
-                _loop_1(key);
-            }
-            return message;
+var toBuffer_1 = require("../toBuffer");
+var transfer;
+(function (transfer) {
+    var SerializableUint8Array;
+    (function (SerializableUint8Array) {
+        function match(value) {
+            return (value instanceof Object &&
+                value.type === "Uint8Array" &&
+                typeof value.data === "string");
         }
-        transfer.prepare = prepare;
-        function restore(message) {
-            if (environnement.isBrowser()) {
-                throw new Error("only for node");
-            }
-            var data = {};
-            var _loop_2 = function (key) {
-                var value = message[key];
-                data[key] = (function () {
-                    if (SerializableUint8Array.match(value)) {
-                        return SerializableUint8Array.restore(value);
-                    }
-                    else if (value instanceof Object) {
-                        return restore(value);
-                    }
-                    else {
-                        return value;
-                    }
-                })();
+        SerializableUint8Array.match = match;
+        function build(value) {
+            return {
+                "type": "Uint8Array",
+                "data": toBuffer_1.toBuffer(value).toString("binary")
             };
-            for (var key in message) {
-                _loop_2(key);
-            }
-            return data;
         }
-        transfer.restore = restore;
-    })(transfer = ThreadMessage.transfer || (ThreadMessage.transfer = {}));
-})(ThreadMessage = exports.ThreadMessage || (exports.ThreadMessage = {}));
+        SerializableUint8Array.build = build;
+        function restore(value) {
+            return Buffer.from(value.data, "binary");
+        }
+        SerializableUint8Array.restore = restore;
+    })(SerializableUint8Array || (SerializableUint8Array = {}));
+    function prepare(threadMessage) {
+        if (environnement.isBrowser()) {
+            throw new Error("only for node");
+        }
+        var message = (function () {
+            if (threadMessage instanceof Uint8Array) {
+                return SerializableUint8Array.build(threadMessage);
+            }
+            else if (threadMessage instanceof Array) {
+                return threadMessage.map(function (entry) { return prepare(entry); });
+            }
+            else if (threadMessage instanceof Object) {
+                var out = {};
+                for (var key in threadMessage) {
+                    out[key] = prepare(threadMessage[key]);
+                }
+                return out;
+            }
+            else {
+                return threadMessage;
+            }
+        })();
+        return message;
+    }
+    transfer.prepare = prepare;
+    function restore(message) {
+        if (environnement.isBrowser()) {
+            throw new Error("only for node");
+        }
+        var threadMessage = (function () {
+            if (SerializableUint8Array.match(message)) {
+                return SerializableUint8Array.restore(message);
+            }
+            else if (message instanceof Array) {
+                return message.map(function (entry) { return restore(entry); });
+            }
+            else if (message instanceof Object) {
+                var out = {};
+                for (var key in message) {
+                    out[key] = restore(message[key]);
+                }
+                return out;
+            }
+            else {
+                return message;
+            }
+        })();
+        return threadMessage;
+    }
+    transfer.restore = restore;
+})(transfer = exports.transfer || (exports.transfer = {}));
 
-},{"./environnement":2}],2:[function(require,module,exports){
+}).call(this,require("buffer").Buffer)
+},{"../toBuffer":10,"./environnement":2,"buffer":25}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function isBrowser() {
@@ -90,41 +90,31 @@ exports.isBrowser = isBrowser;
 
 },{}],3:[function(require,module,exports){
 "use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(require("./ThreadMessage"));
-__export(require("./environnement"));
-
-},{"./ThreadMessage":1,"./environnement":2}],4:[function(require,module,exports){
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-//TODO: Handle case when we are not running in a browser
-/// <reference lib="dom"/>
-/* /// <reference path="../../node_modules/@types/node/index.d.ts"/> */
 var cryptoLib = require("../index");
 var environnement = require("./environnement");
 var ThreadMessage_1 = require("./ThreadMessage");
-var isMainThead = environnement.isBrowser() ?
-    (typeof document !== "undefined") :
-    (typeof __process_node === "undefined");
-if (isMainThead) {
+if ((function () {
+    var isMainThead = environnement.isBrowser() ?
+        (typeof document !== "undefined") :
+        (typeof __process_node === "undefined");
+    return isMainThead;
+})()) {
     __hook = cryptoLib;
 }
 else {
     var postMessage_1 = environnement.isBrowser() ?
         self.postMessage :
-        function (response) { return __process_node.send(ThreadMessage_1.ThreadMessage.transfer.prepare(response)); };
+        function (response) { return __process_node.send(ThreadMessage_1.transfer.prepare(response)); };
     var setActionListener = function (actionListener) {
         return environnement.isBrowser() ?
             addEventListener("message", function (_a) {
                 var data = _a.data;
                 return actionListener(data);
             }) :
-            __process_node.on("message", function (message) { return actionListener(ThreadMessage_1.ThreadMessage.transfer.restore(message)); });
+            __process_node.on("message", function (message) { return actionListener(ThreadMessage_1.transfer.restore(message)); });
     };
-    var map_1 = new Map();
+    var cipherInstances_1 = new Map();
     setActionListener(function (action) {
         switch (action.action) {
             case "GenerateRsaKeys":
@@ -136,21 +126,21 @@ else {
                     return message;
                 })());
                 break;
-            case "DummyEncryptorDecryptorFactory":
-                map_1.set(action.instanceRef, cryptoLib.dummy.syncEncryptorDecryptorFactory.apply(cryptoLib.dummy));
-                break;
-            case "AesEncryptorDecryptorFactory":
-                map_1.set(action.instanceRef, cryptoLib.aes.syncEncryptorDecryptorFactory.apply(cryptoLib.aes, action.params));
-                break;
-            case "RsaDecryptorFactory":
-                map_1.set(action.instanceRef, cryptoLib.rsa.syncDecryptorFactory.apply(cryptoLib.rsa, action.params));
-                break;
-            case "RsaEncryptorFactory":
-                map_1.set(action.instanceRef, cryptoLib.rsa.syncEncryptorFactory.apply(cryptoLib.rsa, action.params));
+            case "CipherFactory":
+                {
+                    var m = function (components) {
+                        switch (components) {
+                            case "Decryptor": return "syncDecryptorFactory";
+                            case "Encryptor": return "syncEncryptorFactory";
+                            case "EncryptorDecryptor": return "syncEncryptorDecryptorFactory";
+                        }
+                    };
+                    cipherInstances_1.set(action.cipherInstanceRef, cryptoLib[action.cipherName][m(action.components)].apply(null, action.params));
+                }
                 break;
             case "EncryptOrDecrypt":
                 {
-                    var output_1 = map_1.get(action.instanceRef)[action.method](action.input);
+                    var output_1 = cipherInstances_1.get(action.cipherInstanceRef)[action.method](action.input);
                     postMessage_1((function () {
                         var message = {
                             "actionId": action.actionId,
@@ -164,7 +154,7 @@ else {
     });
 }
 
-},{"../index":7,"./ThreadMessage":1,"./environnement":2}],5:[function(require,module,exports){
+},{"../index":7,"./ThreadMessage":1,"./environnement":2}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var aesjs = require("aes-js");
@@ -175,18 +165,13 @@ function syncEncryptorDecryptorFactory(key) {
         "encrypt": (function () {
             var counter = new aesjs.Counter(5);
             return function (plainData) {
-                try {
-                    var _counter = counter._counter.slice();
-                    var payload = (new aesjs.ModeOfOperation.ctr(key, counter))
-                        .encrypt(plainData);
-                    var encryptedData = new Uint8Array(_counterLength + payload.length);
-                    encryptedData.set(_counter);
-                    encryptedData.set(payload, _counterLength);
-                    return encryptedData;
-                }
-                catch (error) {
-                    throw new Error("key ============> " + require("util" + "").inspect(key) + error.stack);
-                }
+                var _counter = counter._counter.slice();
+                var payload = (new aesjs.ModeOfOperation.ctr(key, counter))
+                    .encrypt(plainData);
+                var encryptedData = new Uint8Array(_counterLength + payload.length);
+                encryptedData.set(_counter);
+                encryptedData.set(payload, _counterLength);
+                return encryptedData;
             };
         })(),
         "decrypt": (function () {
@@ -220,7 +205,7 @@ function generateTestKey() {
 }
 exports.generateTestKey = generateTestKey;
 
-},{"aes-js":12,"randombytes":64}],6:[function(require,module,exports){
+},{"aes-js":12,"randombytes":64}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function syncEncryptorDecryptorFactory() {
@@ -231,27 +216,7 @@ function syncEncryptorDecryptorFactory() {
 }
 exports.syncEncryptorDecryptorFactory = syncEncryptorDecryptorFactory;
 
-},{}],7:[function(require,module,exports){
-"use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(require("./toBuffer"));
-var serializer = require("./serializer");
-exports.serializer = serializer;
-var scrypt = require("./scrypt");
-exports.scrypt = scrypt;
-var aes = require("./aes");
-exports.aes = aes;
-var rsa = require("./rsa");
-exports.rsa = rsa;
-var dummy = require("./dummy");
-exports.dummy = dummy;
-var _worker_thread = require("./_worker_thread");
-exports._worker_thread = _worker_thread;
-
-},{"./_worker_thread":3,"./aes":5,"./dummy":6,"./rsa":8,"./scrypt":9,"./serializer":10,"./toBuffer":11}],8:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 var __assign = (this && this.__assign) || function () {
@@ -266,8 +231,170 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var toBuffer_1 = require("./toBuffer");
+var types_1 = require("../types");
 var NodeRSA = require("node-rsa");
+var newNodeRSA = function (key) { return new NodeRSA(Buffer.from(key.data), key.format); };
+/**
+ * NOTE: The toBuffer function of the library does not
+ * guaranty that the returned object is an actually
+ * buffer instance.
+ * */
+var toRealBuffer = function (data) {
+    return data instanceof Buffer || Object.getPrototypeOf(data).name === "Buffer" ?
+        data :
+        Buffer.from(data);
+};
+function syncEncryptorFactory(encryptKey) {
+    return {
+        "encrypt": (function () {
+            var encryptNodeRSA = newNodeRSA(encryptKey);
+            var encryptMethod = types_1.RsaKey.Private.match(encryptKey) ?
+                "encryptPrivate" :
+                "encrypt";
+            return function (plainData) {
+                return encryptNodeRSA[encryptMethod](toRealBuffer(plainData));
+            };
+        })()
+    };
+}
+exports.syncEncryptorFactory = syncEncryptorFactory;
+function syncDecryptorFactory(decryptKey) {
+    return {
+        "decrypt": (function () {
+            var decryptNodeRSA = newNodeRSA(decryptKey);
+            var decryptMethod = types_1.RsaKey.Public.match(decryptKey) ?
+                "decrypt" :
+                "decryptPublic";
+            return function (encryptedData) {
+                return decryptNodeRSA[decryptMethod](toRealBuffer(encryptedData));
+            };
+        })()
+    };
+}
+exports.syncDecryptorFactory = syncDecryptorFactory;
+function syncEncryptorDecryptorFactory(encryptKey, decryptKey) {
+    return __assign({}, syncEncryptorFactory(encryptKey), syncDecryptorFactory(decryptKey));
+}
+exports.syncEncryptorDecryptorFactory = syncEncryptorDecryptorFactory;
+function syncGenerateKeys(seed) {
+    var nodeRSA = NodeRSA.generateKeyPairFromSeed(toRealBuffer(seed), 8 * 80);
+    var getData = function (format) { return nodeRSA.exportKey(format); };
+    return {
+        "publicKey": (function () {
+            var format = "pkcs1-public-der";
+            return types_1.RsaKey.build(getData(format), format);
+        })(),
+        "privateKey": (function () {
+            var format = "pkcs1-private-der";
+            return types_1.RsaKey.build(getData(format), format);
+        })()
+    };
+}
+exports.syncGenerateKeys = syncGenerateKeys;
+
+}).call(this,require("buffer").Buffer)
+},{"../types":11,"buffer":25,"node-rsa":41}],7:[function(require,module,exports){
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(require("./types"));
+__export(require("./toBuffer"));
+var serializer = require("./serializer");
+exports.serializer = serializer;
+var scrypt = require("./scrypt");
+exports.scrypt = scrypt;
+var aes = require("./cipher/aes");
+exports.aes = aes;
+var rsa = require("./cipher/rsa");
+exports.rsa = rsa;
+var plain = require("./cipher/plain");
+exports.plain = plain;
+
+},{"./cipher/aes":4,"./cipher/plain":5,"./cipher/rsa":6,"./scrypt":8,"./serializer":9,"./toBuffer":10,"./types":11}],8:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var scryptsy = require("scryptsy");
+function syncHash(text, salt, progress) {
+    //The 2^number of iterations. number (integer)
+    var n = 13;
+    //Memory factor. number (integer)
+    var r = 8;
+    //Parallelization factor. number (integer)
+    var p = 1;
+    //The number of bytes to return. number (integer)
+    var keyLenBytes = 254;
+    return scryptsy(text, salt, Math.pow(2, n), r, p, keyLenBytes, progress !== undefined ?
+        (function (_a) {
+            var percent = _a.percent;
+            return progress(percent);
+        }) :
+        undefined);
+}
+exports.syncHash = syncHash;
+
+},{"scryptsy":81}],9:[function(require,module,exports){
+(function (Buffer){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var toBuffer_1 = require("./toBuffer");
+var ttJC = require("transfer-tools/dist/lib/JSON_CUSTOM");
+function matchPromise(prOrValue) {
+    return "then" in prOrValue;
+}
+function stringifyThenEncryptFactory(encryptor) {
+    var stringify = ttJC.get().stringify;
+    return function stringifyThenEncrypt(value) {
+        var prOrValue = encryptor.encrypt(Buffer.from([
+            stringify(value),
+            (new Array(9 + Math.floor(Math.random() * 50)))
+                .fill(" ")
+                .join("")
+        ].join(""), "utf8"));
+        var finalize = function (value) { return toBuffer_1.toBuffer(value).toString(stringifyThenEncryptFactory.stringRepresentationEncoding); };
+        return (matchPromise(prOrValue) ?
+            prOrValue.then(function (value) { return finalize(value); }) :
+            finalize(prOrValue));
+    };
+}
+exports.stringifyThenEncryptFactory = stringifyThenEncryptFactory;
+stringifyThenEncryptFactory.stringRepresentationEncoding = "binary";
+function decryptThenParseFactory(decryptor) {
+    var parse = ttJC.get().parse;
+    return function decryptThenParse(encryptedValue) {
+        var prOrValue = decryptor.decrypt(Buffer.from(encryptedValue, stringifyThenEncryptFactory.stringRepresentationEncoding));
+        var finalize = function (value) { return parse(toBuffer_1.toBuffer(value).toString("utf8")); };
+        return matchPromise(prOrValue) ?
+            prOrValue.then(function (value) { return finalize(value); }) :
+            finalize(prOrValue);
+    };
+}
+exports.decryptThenParseFactory = decryptThenParseFactory;
+
+}).call(this,require("buffer").Buffer)
+},{"./toBuffer":10,"buffer":25,"transfer-tools/dist/lib/JSON_CUSTOM":102}],10:[function(require,module,exports){
+(function (Buffer){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * NOTE: Does not guaranty that the returned object is an acutal
+ * buffer instance, just that the to string method can be called
+ * as on the Buffer prototype. ( even if the current implementation does)
+ */
+function toBuffer(uint8Array) {
+    return (uint8Array instanceof Buffer || Object.getPrototypeOf(uint8Array).name === "Buffer") ?
+        uint8Array :
+        Buffer.from(uint8Array);
+}
+exports.toBuffer = toBuffer;
+
+}).call(this,require("buffer").Buffer)
+},{"buffer":25}],11:[function(require,module,exports){
+(function (Buffer){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var toBuffer_1 = require("./toBuffer");
 var RsaKey;
 (function (RsaKey) {
     function stringify(rsaKey) {
@@ -310,145 +437,9 @@ var RsaKey;
         Private.match = match;
     })(Private = RsaKey.Private || (RsaKey.Private = {}));
 })(RsaKey = exports.RsaKey || (exports.RsaKey = {}));
-var newNodeRSA = function (key) { return new NodeRSA(Buffer.from(key.data), key.format); };
-/**
- * NOTE: The toBuffer function of the library does not
- * guaranty that the returned object is an actually
- * buffer instance.
- * */
-var toRealBuffer = function (data) {
-    return data instanceof Buffer || Object.getPrototypeOf(data).name === "Buffer" ?
-        data :
-        Buffer.from(data);
-};
-function syncEncryptorFactory(encryptKey) {
-    return {
-        "encrypt": (function () {
-            var encryptNodeRSA = newNodeRSA(encryptKey);
-            var encryptMethod = RsaKey.Private.match(encryptKey) ?
-                "encryptPrivate" :
-                "encrypt";
-            return function (plainData) {
-                return encryptNodeRSA[encryptMethod](toRealBuffer(plainData));
-            };
-        })()
-    };
-}
-exports.syncEncryptorFactory = syncEncryptorFactory;
-function syncDecryptorFactory(decryptKey) {
-    return {
-        "decrypt": (function () {
-            var decryptNodeRSA = newNodeRSA(decryptKey);
-            var decryptMethod = RsaKey.Public.match(decryptKey) ?
-                "decrypt" :
-                "decryptPublic";
-            return function (encryptedData) {
-                return decryptNodeRSA[decryptMethod](toRealBuffer(encryptedData));
-            };
-        })()
-    };
-}
-exports.syncDecryptorFactory = syncDecryptorFactory;
-function encryptorDecryptorFactory(encryptKey, decryptKey) {
-    return __assign({}, syncEncryptorFactory(encryptKey), syncDecryptorFactory(decryptKey));
-}
-exports.encryptorDecryptorFactory = encryptorDecryptorFactory;
-function syncGenerateKeys(seed) {
-    var nodeRSA = NodeRSA.generateKeyPairFromSeed(toRealBuffer(seed), 8 * 80);
-    var getData = function (format) { return nodeRSA.exportKey(format); };
-    return {
-        "publicKey": (function () {
-            var format = "pkcs1-public-der";
-            return RsaKey.build(getData(format), format);
-        })(),
-        "privateKey": (function () {
-            var format = "pkcs1-private-der";
-            return RsaKey.build(getData(format), format);
-        })()
-    };
-}
-exports.syncGenerateKeys = syncGenerateKeys;
 
 }).call(this,require("buffer").Buffer)
-},{"./toBuffer":11,"buffer":25,"node-rsa":41}],9:[function(require,module,exports){
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var scryptsy = require("scryptsy");
-function syncHash(text, salt, progress) {
-    //The 2^number of iterations. number (integer)
-    var n = 13;
-    //Memory factor. number (integer)
-    var r = 8;
-    //Parallelization factor. number (integer)
-    var p = 1;
-    //The number of bytes to return. number (integer)
-    var keyLenBytes = 254;
-    return scryptsy(text, salt, Math.pow(2, n), r, p, keyLenBytes, progress !== undefined ?
-        (function (_a) {
-            var percent = _a.percent;
-            return progress(percent);
-        }) :
-        undefined);
-}
-exports.syncHash = syncHash;
-
-},{"scryptsy":81}],10:[function(require,module,exports){
-(function (Buffer){
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var toBuffer_1 = require("./toBuffer");
-var ttJC = require("transfer-tools/dist/lib/JSON_CUSTOM");
-function matchPromise(prOrValue) {
-    return "then" in prOrValue;
-}
-function stringifyThenEncryptFactory(encryptor) {
-    var stringify = ttJC.get().stringify;
-    return function stringifyThenEncrypt(value) {
-        var prOrValue = encryptor.encrypt(Buffer.from([
-            stringify(value),
-            (new Array(9 + Math.floor(Math.random() * 50)))
-                .fill(" ")
-                .join("")
-        ].join(""), "utf8"));
-        var finalize = function (value) { return toBuffer_1.toBuffer(value).toString(stringifyThenEncryptFactory.stringRepresentationEncoding); };
-        return matchPromise(prOrValue) ?
-            prOrValue.then(function (value) { return finalize(value); }) :
-            finalize(prOrValue);
-    };
-}
-exports.stringifyThenEncryptFactory = stringifyThenEncryptFactory;
-stringifyThenEncryptFactory.stringRepresentationEncoding = "binary";
-function decryptThenParseFactory(decryptor) {
-    var parse = ttJC.get().parse;
-    return function decryptThenParse(encryptedValue) {
-        var prOrValue = decryptor.decrypt(Buffer.from(encryptedValue, stringifyThenEncryptFactory.stringRepresentationEncoding));
-        var finalize = function (value) { return parse(toBuffer_1.toBuffer(value).toString("utf8")); };
-        return matchPromise(prOrValue) ?
-            prOrValue.then(function (value) { return finalize(value); }) :
-            finalize(prOrValue);
-    };
-}
-exports.decryptThenParseFactory = decryptThenParseFactory;
-
-}).call(this,require("buffer").Buffer)
-},{"./toBuffer":11,"buffer":25,"transfer-tools/dist/lib/JSON_CUSTOM":102}],11:[function(require,module,exports){
-(function (Buffer){
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * NOTE: Does not guaranty that the returned object is an acutal
- * buffer instance, just that the to string method can be called
- * as on the Buffer prototype. ( even if the current implementation does)
- */
-function toBuffer(uint8Array) {
-    return (uint8Array instanceof Buffer || Object.getPrototypeOf(uint8Array).name === "Buffer") ?
-        uint8Array :
-        Buffer.from(uint8Array);
-}
-exports.toBuffer = toBuffer;
-
-}).call(this,require("buffer").Buffer)
-},{"buffer":25}],12:[function(require,module,exports){
+},{"./toBuffer":10,"buffer":25}],12:[function(require,module,exports){
 /*! MIT License. Copyright 2015-2018 Richard Moore <me@ricmoo.com>. See LICENSE.txt. */
 (function(root) {
     "use strict";
@@ -16289,4 +16280,4 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[4]);
+},{}]},{},[3]);

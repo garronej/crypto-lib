@@ -1,4 +1,4 @@
-import * as types from "./types";
+import { Encryptor, Decryptor, Sync, Encoding } from "./types";
 import { toBuffer } from "./toBuffer";
 import * as ttJC from "transfer-tools/dist/lib/JSON_CUSTOM";
 
@@ -8,13 +8,11 @@ function matchPromise<T>(prOrValue: T | Promise<T>): prOrValue is Promise<T> {
     return "then" in prOrValue;
 }
 
-export function stringifyThenEncryptFactory(encryptor: types.Sync<types.Encryptor>): <T>(value: T) => string;
-export function stringifyThenEncryptFactory(encryptor: types.Encryptor): <T>(value: T) => Promise<string>;
-export function stringifyThenEncryptFactory(encryptor: types.Sync<types.Encryptor> | types.Encryptor): <T>(value: T) => string | Promise<string> {
+export function stringifyThenEncryptFactory<T extends Encryptor | Sync<Encryptor>>(encryptor: T) {
 
     const { stringify } = ttJC.get();
 
-    return function stringifyThenEncrypt<T>(value: T): string | Promise<string> {
+    return function stringifyThenEncrypt<V>(value: V): T extends Encryptor ? Promise<string> : string {
 
         const prOrValue = encryptor.encrypt(
             Buffer.from(
@@ -32,23 +30,21 @@ export function stringifyThenEncryptFactory(encryptor: types.Sync<types.Encrypto
             value
         ).toString(stringifyThenEncryptFactory.stringRepresentationEncoding);
 
-        return matchPromise(prOrValue) ?
+        return (matchPromise(prOrValue) ?
             prOrValue.then(value => finalize(value)) :
-            finalize(prOrValue);
+            finalize(prOrValue)) as any;
 
     };
 
 }
 
-stringifyThenEncryptFactory.stringRepresentationEncoding = "binary" as types.Encoding;
+stringifyThenEncryptFactory.stringRepresentationEncoding = "binary" as Encoding;
 
-export function decryptThenParseFactory(decryptor: types.Sync<types.Decryptor>): <T>(encryptedValue: string) => T;
-export function decryptThenParseFactory(decryptor: types.Decryptor): <T>(encryptedValue: string) => Promise<T>;
-export function decryptThenParseFactory(decryptor: types.Sync<types.Decryptor> | types.Decryptor): <T>(encryptedValue: string) => T | Promise<T> {
+export function decryptThenParseFactory<T extends Decryptor | Sync<Decryptor>>(decryptor: T) {
 
     const { parse } = ttJC.get();
 
-    return function decryptThenParse<T>(encryptedValue: string): T | Promise<T> {
+    return function decryptThenParse<V>(encryptedValue: string): T extends Decryptor ? Promise<V> : V {
 
         const prOrValue = decryptor.decrypt(
             Buffer.from(
@@ -67,7 +63,7 @@ export function decryptThenParseFactory(decryptor: types.Sync<types.Decryptor> |
             prOrValue.then(value => finalize(value)) :
             finalize(prOrValue);
 
-
     }
 
 }
+

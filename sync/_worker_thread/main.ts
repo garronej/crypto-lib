@@ -1,31 +1,35 @@
-//TODO: Handle case when we are not running in a browser
-/// <reference lib="dom"/>
-/* /// <reference path="../../node_modules/@types/node/index.d.ts"/> */
+declare const self: any;
+declare const addEventListener: any;
+declare const document: any;
+
 import * as cryptoLib from "../index";
 import * as environnement from "./environnement";
-import { ThreadMessage } from "./ThreadMessage";
+import { ThreadMessage, GenerateRsaKeys, CipherFactory, EncryptOrDecrypt, transfer } from "./ThreadMessage";
 
 declare let __process_node: any;
 //@ts-ignore
 declare let __hook: typeof cryptoLib;
 
-const isMainThead= environnement.isBrowser() ?
-                (typeof document !== "undefined") :
-                (typeof __process_node === "undefined")
-    ;
+if ((() => {
 
+    const isMainThead = environnement.isBrowser() ?
+        (typeof document !== "undefined") :
+        (typeof __process_node === "undefined")
+        ;
 
-if (isMainThead) {
+    return isMainThead;
+
+})()) {
 
     __hook = cryptoLib;
 
 } else {
 
-    const postMessage: ((response: ThreadMessage.Response, transfer?: Transferable[]) => void) =
+    const postMessage: ((response: ThreadMessage.Response, transfer?: ArrayBuffer[]) => void) =
         environnement.isBrowser() ?
             self.postMessage as any :
             response => __process_node.send(
-                ThreadMessage.transfer.prepare(
+                transfer.prepare(
                     response
                 )
             )
@@ -40,14 +44,14 @@ if (isMainThead) {
             __process_node.on(
                 "message",
                 message => actionListener(
-                    ThreadMessage.transfer.restore(
+                    transfer.restore(
                         message
                     )
                 )
             )
         ;
 
-    const map = new Map<number, cryptoLib.EncryptorDecryptor | cryptoLib.Decryptor | cryptoLib.Encryptor>();
+    const cipherInstances = new Map<number, cryptoLib.Cipher>();
 
     setActionListener((action: ThreadMessage.Action) => {
 
@@ -55,7 +59,7 @@ if (isMainThead) {
             case "GenerateRsaKeys":
                 postMessage((() => {
 
-                    const message: ThreadMessage.GenerateRsaKeys.Response = {
+                    const message: GenerateRsaKeys.Response = {
                         "actionId": action.actionId,
                         "outputs": cryptoLib.rsa.syncGenerateKeys.apply(
                             cryptoLib.rsa,
@@ -67,48 +71,31 @@ if (isMainThead) {
 
                 })());
                 break;
-            case "DummyEncryptorDecryptorFactory":
-                map.set(
-                    action.instanceRef,
-                    cryptoLib.dummy.syncEncryptorDecryptorFactory.apply(
-                        cryptoLib.dummy
-                    )
+            case "CipherFactory": {
+
+                const m = (components: CipherFactory.Components) => {
+                    switch (components) {
+                        case "Decryptor": return "syncDecryptorFactory";
+                        case "Encryptor": return "syncEncryptorFactory";
+                        case "EncryptorDecryptor": return "syncEncryptorDecryptorFactory";
+                    }
+                };
+
+                cipherInstances.set(
+                    action.cipherInstanceRef,
+                    cryptoLib[action.cipherName][m(action.components)].apply(null, action.params)
                 );
-                break;
-            case "AesEncryptorDecryptorFactory":
-                map.set(
-                    action.instanceRef,
-                    cryptoLib.aes.syncEncryptorDecryptorFactory.apply(
-                        cryptoLib.aes,
-                        action.params
-                    )
-                );
-                break;
-            case "RsaDecryptorFactory":
-                map.set(
-                    action.instanceRef,
-                    cryptoLib.rsa.syncDecryptorFactory.apply(
-                        cryptoLib.rsa,
-                        action.params
-                    )
-                );
-                break;
-            case "RsaEncryptorFactory":
-                map.set(
-                    action.instanceRef,
-                    cryptoLib.rsa.syncEncryptorFactory.apply(
-                        cryptoLib.rsa,
-                        action.params
-                    )
-                );
-                break;
+
+            } break;
             case "EncryptOrDecrypt": {
 
-                const output = map.get(action.instanceRef)![action.method](action.input);
+                const output = cipherInstances.get(
+                    action.cipherInstanceRef
+                )![action.method](action.input);
 
                 postMessage((() => {
 
-                    const message: ThreadMessage.EncryptOrDecrypt.Response = {
+                    const message: EncryptOrDecrypt.Response = {
                         "actionId": action.actionId,
                         output
                     };

@@ -1,60 +1,47 @@
+import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey } from "../types";
 export declare type ThreadMessage = ThreadMessage.Action | ThreadMessage.Response;
 export declare namespace ThreadMessage {
-    type Action = GenerateRsaKeys.Action | DummyEncryptorDecryptorFactory.Action | AesEncryptorDecryptorFactory.Action | RsaDecryptorFactory.Action | RsaEncryptorFactory.Action | EncryptOrDecrypt.Action;
+    type Action = GenerateRsaKeys.Action | CipherFactory.Action | EncryptOrDecrypt.Action;
     type Response = GenerateRsaKeys.Response | EncryptOrDecrypt.Response;
-    namespace GenerateRsaKeys {
-        type Action = {
-            action: "GenerateRsaKeys";
-            actionId: number;
-            params: Parameters<typeof import("../rsa").syncEncryptorFactory>;
-        };
-        type Response = {
-            actionId: number;
-            outputs: ReturnType<typeof import("../rsa").syncGenerateKeys>;
-        };
-    }
-    namespace DummyEncryptorDecryptorFactory {
-        type Action = {
-            action: "DummyEncryptorDecryptorFactory";
-            instanceRef: number;
-        };
-    }
-    namespace AesEncryptorDecryptorFactory {
-        type Action = {
-            action: "AesEncryptorDecryptorFactory";
-            instanceRef: number;
-            params: Parameters<typeof import("../aes").syncEncryptorDecryptorFactory>;
-        };
-    }
-    namespace RsaEncryptorFactory {
-        type Action = {
-            action: "RsaEncryptorFactory";
-            instanceRef: number;
-            params: Parameters<typeof import("../rsa").syncEncryptorFactory>;
-        };
-    }
-    namespace RsaDecryptorFactory {
-        type Action = {
-            action: "RsaDecryptorFactory";
-            instanceRef: number;
-            params: Parameters<typeof import("../rsa").syncDecryptorFactory>;
-        };
-    }
-    namespace EncryptOrDecrypt {
-        type Action = {
-            action: "EncryptOrDecrypt";
-            actionId: number;
-            instanceRef: number;
-            method: keyof import("../types").EncryptorDecryptor;
-            input: Uint8Array;
-        };
-        type Response = {
-            actionId: number;
-            output: Uint8Array;
-        };
-    }
-    namespace transfer {
-        function prepare<T extends ThreadMessage>(data: T): any;
-        function restore<T extends ThreadMessage>(message: any): T;
-    }
+}
+export declare namespace GenerateRsaKeys {
+    type Action = {
+        action: "GenerateRsaKeys";
+        actionId: number;
+        params: Parameters<typeof import("../cipher/rsa").syncGenerateKeys>;
+    };
+    type Response = {
+        actionId: number;
+        outputs: ReturnType<typeof import("../cipher/rsa").syncGenerateKeys>;
+    };
+}
+export declare namespace CipherFactory {
+    type CipherName = "aes" | "rsa" | "plain";
+    type Components = "Encryptor" | "Decryptor" | "EncryptorDecryptor";
+    type Type<U extends Components> = U extends "EncryptorDecryptor" ? EncryptorDecryptor : U extends "Encryptor" ? Encryptor : Decryptor;
+    type ActionPoly<T extends CipherName, U extends Components> = {
+        action: "CipherFactory";
+        cipherName: T;
+        components: U;
+        cipherInstanceRef: number;
+        params: T extends "aes" ? (Parameters<typeof import("../cipher/aes").syncEncryptorDecryptorFactory>) : T extends "rsa" ? (U extends "EncryptorDecryptor" ? [RsaKey.Private, RsaKey.Public] | [RsaKey.Public, RsaKey.Private] : Parameters<typeof import("../cipher/rsa").syncEncryptorFactory>) : ([]);
+    };
+    type Action = ActionPoly<CipherName, Components>;
+}
+export declare namespace EncryptOrDecrypt {
+    type Action = {
+        action: "EncryptOrDecrypt";
+        actionId: number;
+        cipherInstanceRef: number;
+        method: keyof import("../types").EncryptorDecryptor;
+        input: Uint8Array;
+    };
+    type Response = {
+        actionId: number;
+        output: Uint8Array;
+    };
+}
+export declare namespace transfer {
+    function prepare<T extends ThreadMessage>(threadMessage: T): any;
+    function restore<T extends ThreadMessage>(message: any): T;
 }

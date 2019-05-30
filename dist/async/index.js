@@ -50,80 +50,65 @@ function __export(m) {
 }
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var ts_events_extended_1 = require("ts-events-extended");
-var requireNodeBuiltIn_1 = require("./requireNodeBuiltIn");
-var environnement_1 = require("../sync/_worker_thread/environnement");
-var ThreadMessage_1 = require("../sync/_worker_thread/ThreadMessage");
-var fs = require("fs");
-var path = require("path");
+var WorkerThread_1 = require("./WorkerThread");
 //NOTE: Path has to be static or it wont be bundled.
-var bundle_source = fs.readFileSync(path.join(__dirname, "..", "sync", "_worker_thread", "bundle.min.js")).toString("utf8");
+var bundle_source = (function () {
+    var fs = require("fs");
+    var path = require("path");
+    return fs.readFileSync(path.join(__dirname, "..", "sync", "_worker_thread", "bundle.min.js")).toString("utf8");
+})();
 var __hook;
 eval(bundle_source);
 var _a = __hook, toBuffer = _a.toBuffer, serializer = _a.serializer, sync_scrypt = _a.scrypt, sync_aes = _a.aes, sync_rsa = _a.rsa, sync_plain = _a.plain;
 exports.toBuffer = toBuffer;
 exports.serializer = serializer;
 __export(require("../sync/types"));
+var _b = (function () {
+    var spawn = WorkerThread_1.WorkerThread.factory(bundle_source);
+    var record = {};
+    return [
+        function (workerThreadId) {
+            var appWorker = record[workerThreadId];
+            if (appWorker === undefined) {
+                appWorker = spawn();
+                record[workerThreadId] = appWorker;
+            }
+            return appWorker;
+        },
+        function (match) {
+            return Object.keys(record)
+                .filter(function (id) { return !!match ? match(id) : true; })
+                .map(function (id) { return [record[id], id]; })
+                .filter(function (_a) {
+                var appWorker = _a[0];
+                return appWorker !== undefined;
+            })
+                .forEach(function (_a) {
+                var appWorker = _a[0], id = _a[1];
+                appWorker.terminate();
+                delete record[id];
+            });
+        }
+    ];
+})(), getWorkerThread = _b[0], terminateWorkerThreads = _b[1];
+exports.terminateWorkerThreads = terminateWorkerThreads;
+function preSpawnWorkerThread(workerThreadId) {
+    getWorkerThread(workerThreadId);
+}
+exports.preSpawnWorkerThread = preSpawnWorkerThread;
 var getCounter = (function () {
     var counter = 0;
     return function () { return counter++; };
 })();
-var evtWorkerMessage = new ts_events_extended_1.SyncEvent();
-var getPostMessage = (function () {
-    if (environnement_1.isBrowser()) {
-        var worker_1 = undefined;
-        return function () {
-            if (worker_1 === undefined) {
-                worker_1 = new Worker(window.URL.createObjectURL(new Blob([bundle_source], { "type": 'text/javascript' })));
-                worker_1.addEventListener("message", function (ev) { return evtWorkerMessage.post(ev.data); });
-            }
-            return function (action, transfer) {
-                return worker_1.postMessage(action, transfer);
-            };
-        };
-    }
-    else {
-        var child_process_1 = requireNodeBuiltIn_1.requireNodeBuiltIn("child_process");
-        var childProcess_1 = undefined;
-        return function () {
-            if (childProcess_1 === undefined) {
-                var fs_1 = requireNodeBuiltIn_1.requireNodeBuiltIn("fs");
-                var path_1 = requireNodeBuiltIn_1.requireNodeBuiltIn("path");
-                var random_file_path_1 = (function () {
-                    var base_path = path_1.join("/", "tmp");
-                    if (!fs_1.existsSync(base_path)) {
-                        base_path = path_1.join(".");
-                    }
-                    var generateRandomFilePath = function () { return path_1.join(base_path, requireNodeBuiltIn_1.requireNodeBuiltIn("crypto")
-                        .randomBytes(4)
-                        .toString("hex")); };
-                    var out = generateRandomFilePath();
-                    while (fs_1.existsSync(out)) {
-                        out = generateRandomFilePath();
-                    }
-                    return out;
-                })();
-                fs_1.writeFileSync(random_file_path_1, Buffer.from([
-                    "console.log(\"LOADED\");",
-                    "var __process_node= process;",
-                    bundle_source
-                ].join("\n"), "utf8"));
-                childProcess_1 = child_process_1.fork(random_file_path_1, [], { "silent": true });
-                childProcess_1.stdout.once("data", function () { return fs_1.unlinkSync(random_file_path_1); });
-                childProcess_1.on("message", function (message) { return evtWorkerMessage.post(ThreadMessage_1.transfer.restore(message)); });
-            }
-            return function (action) { return childProcess_1.send(ThreadMessage_1.transfer.prepare(action)); };
-        };
-    }
-})();
-function encryptOrDecrypt(cipherInstanceRef, method, input) {
+function encryptOrDecrypt(cipherInstanceRef, method, input, workerThreadId) {
     return __awaiter(this, void 0, void 0, function () {
-        var actionId, output;
+        var actionId, appWorker, output;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     actionId = getCounter();
-                    getPostMessage()((function () {
+                    appWorker = getWorkerThread(workerThreadId);
+                    appWorker.send((function () {
                         var action = {
                             "action": "EncryptOrDecrypt",
                             actionId: actionId,
@@ -133,9 +118,8 @@ function encryptOrDecrypt(cipherInstanceRef, method, input) {
                         };
                         return action;
                     })(), [input.buffer]);
-                    return [4 /*yield*/, evtWorkerMessage.waitFor(function (_a) {
-                            var actionId_ = _a.actionId;
-                            return actionId_ === actionId;
+                    return [4 /*yield*/, appWorker.evtResponse.waitFor(function (response) {
+                            return response.actionId === actionId;
                         })];
                 case 1:
                     output = (_a.sent()).output;
@@ -144,15 +128,16 @@ function encryptOrDecrypt(cipherInstanceRef, method, input) {
         });
     });
 }
-function cipherFactory(params) {
+function cipherFactory(params, workerThreadId) {
     var cipherInstanceRef = getCounter();
-    getPostMessage()((function () {
+    var appWorker = getWorkerThread(params.cipherName);
+    appWorker.send((function () {
         var action = __assign({ "action": "CipherFactory", cipherInstanceRef: cipherInstanceRef }, params);
         return action;
     })());
     var cipher = (function () {
-        var encrypt = function (plainData) { return encryptOrDecrypt(cipherInstanceRef, "encrypt", plainData); };
-        var decrypt = function (encryptedData) { return encryptOrDecrypt(cipherInstanceRef, "decrypt", encryptedData); };
+        var _a = ["encrypt", "decrypt"]
+            .map(function (method) { return (function (data) { return encryptOrDecrypt(cipherInstanceRef, method, data, workerThreadId === undefined ? params.cipherName : workerThreadId); }); }), encrypt = _a[0], decrypt = _a[1];
         switch (params.components) {
             case "EncryptorDecryptor": return { encrypt: encrypt, decrypt: decrypt };
             case "Decryptor": return { decrypt: decrypt };
@@ -162,46 +147,55 @@ function cipherFactory(params) {
     return cipher;
 }
 exports.plain = (function () {
-    var encryptorDecryptorFactory = function () { return cipherFactory({
-        "cipherName": "plain",
-        "components": "EncryptorDecryptor",
-        "params": []
-    }); };
+    var encryptorDecryptorFactory = function (workerThreadId) {
+        return cipherFactory({
+            "cipherName": "plain",
+            "components": "EncryptorDecryptor",
+            "params": []
+        }, workerThreadId);
+    };
     return __assign({ encryptorDecryptorFactory: encryptorDecryptorFactory }, sync_plain);
 })();
 exports.aes = (function () {
-    var encryptorDecryptorFactory = function (key) { return cipherFactory({
-        "cipherName": "aes",
-        "components": "EncryptorDecryptor",
-        "params": [key]
-    }); };
+    var encryptorDecryptorFactory = function (key, workerThreadId) {
+        return cipherFactory({
+            "cipherName": "aes",
+            "components": "EncryptorDecryptor",
+            "params": [key]
+        }, workerThreadId);
+    };
     return __assign({ encryptorDecryptorFactory: encryptorDecryptorFactory }, sync_aes);
 })();
 exports.rsa = (function () {
-    var encryptorFactory = function (encryptKey) { return cipherFactory({
-        "cipherName": "rsa",
-        "components": "Encryptor",
-        "params": [encryptKey]
-    }); };
-    var decryptorFactory = function (decryptKey) { return cipherFactory({
-        "cipherName": "rsa",
-        "components": "Decryptor",
-        "params": [decryptKey]
-    }); };
-    function encryptorDecryptorFactory(encryptKey, decryptKey) {
+    var encryptorFactory = function (encryptKey, workerThreadId) {
+        return cipherFactory({
+            "cipherName": "rsa",
+            "components": "Encryptor",
+            "params": [encryptKey]
+        }, workerThreadId);
+    };
+    var decryptorFactory = function (decryptKey, workerThreadId) {
+        return cipherFactory({
+            "cipherName": "rsa",
+            "components": "Decryptor",
+            "params": [decryptKey]
+        }, workerThreadId);
+    };
+    function encryptorDecryptorFactory(encryptKey, decryptKey, workerThreadId) {
         return cipherFactory({
             "cipherName": "rsa",
             "components": "EncryptorDecryptor",
             "params": [encryptKey, decryptKey]
-        });
+        }, workerThreadId);
     }
-    var generateKeys = function (seed) { return __awaiter(_this, void 0, void 0, function () {
-        var actionId, outputs;
+    var generateKeys = function (seed, workerThreadId) { return __awaiter(_this, void 0, void 0, function () {
+        var actionId, appWorker, outputs;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     actionId = getCounter();
-                    getPostMessage()((function () {
+                    appWorker = getWorkerThread(workerThreadId === undefined ? "rsa" : workerThreadId);
+                    appWorker.send((function () {
                         var action = {
                             "action": "GenerateRsaKeys",
                             actionId: actionId,
@@ -209,9 +203,8 @@ exports.rsa = (function () {
                         };
                         return action;
                     })());
-                    return [4 /*yield*/, evtWorkerMessage.waitFor(function (_a) {
-                            var actionId_ = _a.actionId;
-                            return actionId_ === actionId;
+                    return [4 /*yield*/, appWorker.evtResponse.waitFor(function (response) {
+                            return response.actionId === actionId;
                         })];
                 case 1:
                     outputs = (_a.sent()).outputs;

@@ -92,7 +92,8 @@ declare const Buffer: any;
 
     }
 
-    console.log("DONE");
+    lib.terminateWorkerThreads();
 
+    console.log("DONE");
 
 })();

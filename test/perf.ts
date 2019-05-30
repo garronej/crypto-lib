@@ -26,8 +26,6 @@ declare const Buffer: any;
             }
         })();
 
-        await new Promise(resolve=> setTimeout(resolve, 3000));
-
         console.log(`Go ${type}`);
 
         const timeStart = Date.now();
@@ -69,5 +67,7 @@ declare const Buffer: any;
     }
 
     console.log("DONE");
+
+    lib.terminateWorkerThreads();
 
 })();

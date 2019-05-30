@@ -2,6 +2,7 @@ import { EncryptorDecryptor, RsaKey } from "../sync/types";
 declare const toBuffer: typeof import("../dist/sync").toBuffer, serializer: typeof import("../dist/sync/serializer");
 export { toBuffer, serializer };
 export * from "../sync/types";
+export declare function disableMultithreading(): void;
 declare const terminateWorkerThreads: (match?: ((workerThreadId: string) => boolean) | undefined) => void;
 export { terminateWorkerThreads };
 export declare function preSpawnWorkerThread(workerThreadId: string): void;

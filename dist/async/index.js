@@ -51,20 +51,27 @@ function __export(m) {
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var WorkerThread_1 = require("./WorkerThread");
-//NOTE: Path has to be static or it wont be bundled.
+var environnement_1 = require("../sync/environnement");
 var bundle_source = (function () {
     var fs = require("fs");
     var path = require("path");
     return fs.readFileSync(path.join(__dirname, "..", "sync", "_worker_thread", "bundle.min.js")).toString("utf8");
 })();
-var __hook;
+var __cryptoLib;
 eval(bundle_source);
-var _a = __hook, toBuffer = _a.toBuffer, serializer = _a.serializer, sync_scrypt = _a.scrypt, sync_aes = _a.aes, sync_rsa = _a.rsa, sync_plain = _a.plain;
+var _a = __cryptoLib, toBuffer = _a.toBuffer, serializer = _a.serializer, sync_scrypt = _a.scrypt, sync_aes = _a.aes, sync_rsa = _a.rsa, sync_plain = _a.plain;
 exports.toBuffer = toBuffer;
 exports.serializer = serializer;
 __export(require("../sync/types"));
+var isMultithreadingEnabled = environnement_1.isBrowser() ? (typeof Worker !== "undefined" &&
+    typeof URL !== "undefined" &&
+    typeof Blob !== "undefined") : true;
+function disableMultithreading() {
+    isMultithreadingEnabled = false;
+}
+exports.disableMultithreading = disableMultithreading;
 var _b = (function () {
-    var spawn = WorkerThread_1.WorkerThread.factory(bundle_source);
+    var spawn = WorkerThread_1.WorkerThread.factory(bundle_source, function () { return isMultithreadingEnabled; });
     var record = {};
     return [
         function (workerThreadId) {

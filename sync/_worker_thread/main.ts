@@ -6,11 +6,24 @@ import * as cryptoLib from "../index";
 import * as environnement from "../environnement";
 import { ThreadMessage, GenerateRsaKeys, CipherFactory, EncryptOrDecrypt, transfer } from "./ThreadMessage";
 
-declare let __process_node: any;
+
+declare const __process_node: { send: Function; on: Function } | undefined;
+
+export type MainThreadApi = {
+    sendResponse(response: ThreadMessage.Response, transfer?: ArrayBuffer[]): void;
+    setActionListener(actionListener: (action: ThreadMessage.Action) => void): void;
+};
+
+declare const __simulatedMainThreadApi: MainThreadApi | undefined;
+
 //@ts-ignore
-declare let __hook: typeof cryptoLib;
+declare let __cryptoLib: typeof cryptoLib;
 
 if ((() => {
+
+    if (typeof __simulatedMainThreadApi !== "undefined") {
+        return false;
+    }
 
     const isMainThead = environnement.isBrowser() ?
         (typeof document !== "undefined") :
@@ -21,43 +34,40 @@ if ((() => {
 
 })()) {
 
-    __hook = cryptoLib;
+    __cryptoLib = cryptoLib;
 
 } else {
 
-    const postMessage: ((response: ThreadMessage.Response, transfer?: ArrayBuffer[]) => void) =
+    const mainThreadApi: MainThreadApi = typeof __simulatedMainThreadApi !== "undefined" ?
+        __simulatedMainThreadApi :
         environnement.isBrowser() ?
-            self.postMessage as any :
-            response => __process_node.send(
-                transfer.prepare(
-                    response
+            {
+                "sendResponse": self.postMessage.bind(self),
+                "setActionListener": actionListener => addEventListener(
+                    "message",
+                    ({ data }) => actionListener(data)
                 )
-            )
-        ;
-
-    const setActionListener = (actionListener: (action: ThreadMessage.Action) => void) =>
-        environnement.isBrowser() ?
-            addEventListener(
-                "message",
-                ({ data }) => actionListener(data)
-            ) :
-            __process_node.on(
-                "message",
-                message => actionListener(
-                    transfer.restore(
-                        message
+            } : {
+                "sendResponse": response => __process_node!.send(
+                    transfer.prepare(response)
+                ),
+                "setActionListener": actionListener => __process_node!.on(
+                    "message",
+                    message => actionListener(
+                        transfer.restore(message)
                     )
                 )
-            )
+            }
         ;
+
 
     const cipherInstances = new Map<number, cryptoLib.Cipher>();
 
-    setActionListener((action: ThreadMessage.Action) => {
+    mainThreadApi.setActionListener((action: ThreadMessage.Action) => {
 
         switch (action.action) {
             case "GenerateRsaKeys":
-                postMessage((() => {
+                mainThreadApi.sendResponse((() => {
 
                     const message: GenerateRsaKeys.Response = {
                         "actionId": action.actionId,
@@ -93,7 +103,7 @@ if ((() => {
                     action.cipherInstanceRef
                 )![action.method](action.input);
 
-                postMessage((() => {
+                mainThreadApi.sendResponse((() => {
 
                     const message: EncryptOrDecrypt.Response = {
                         "actionId": action.actionId,

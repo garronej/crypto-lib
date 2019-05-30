@@ -90,8 +90,8 @@
         "signature": "fbb50f2b49f2148b551ae823c4bb2d781ba9187514d53f919e5a0f396781cd49"
       },
       "c:/users/joseph/dropbox/shell/local-github/crypto-lib/sync/_worker_thread/main.ts": {
-        "version": "eb4c65e69d5f3f677ad14cf7c1b52869e6d54768e68608183e9f4f148fc3a5d2",
-        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+        "version": "324da9cfe7708e0006e242f6f62e8da6d2d08473dd87db226827b01507dc1628",
+        "signature": "b73ee1883213f339609f406a91845000178156cb60f3d50f8ff3f8373ff4879a"
       }
     },
     "options": {
@@ -114,6 +114,7 @@
       "types": [],
       "rootDir": "C:/Users/joseph/Dropbox/shell/local-github/crypto-lib/sync",
       "project": "C:\\Users\\joseph\\Dropbox\\shell\\local-github\\crypto-lib\\sync\\tsconfig.json",
+      "watch": true,
       "configFilePath": "C:/Users/joseph/Dropbox/shell/local-github/crypto-lib/sync/tsconfig.json"
     },
     "referencedMap": {
@@ -189,6 +190,9 @@
         "c:/users/joseph/dropbox/shell/local-github/crypto-lib/sync/cipher/rsa.ts",
         "c:/users/joseph/dropbox/shell/local-github/crypto-lib/sync/cipher/aes.ts",
         "c:/users/joseph/dropbox/shell/local-github/crypto-lib/sync/types.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/local-github/crypto-lib/sync/_worker_thread/main.ts": [
+        "c:/users/joseph/dropbox/shell/local-github/crypto-lib/sync/_worker_thread/threadmessage.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [

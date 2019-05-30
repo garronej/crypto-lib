@@ -4,8 +4,8 @@ declare const __dirname: any;
 import { EncryptorDecryptor, RsaKey } from "../sync/types";
 import { GenerateRsaKeys, CipherFactory, EncryptOrDecrypt } from "../sync/_worker_thread/ThreadMessage";
 import { WorkerThread } from "./WorkerThread";
+import { isBrowser } from "../sync/environnement";
 
-//NOTE: Path has to be static or it wont be bundled.
 const bundle_source = (() => {
 
     const fs = require("fs");
@@ -17,7 +17,7 @@ const bundle_source = (() => {
 
 })();
 
-let __hook: typeof import("../sync");
+let __cryptoLib: typeof import("../sync");
 
 eval(bundle_source);
 
@@ -28,14 +28,27 @@ const {
     aes: sync_aes,
     rsa: sync_rsa,
     plain: sync_plain
-} = __hook!;
+} = __cryptoLib!;
 
 export { toBuffer, serializer };
 export * from "../sync/types";
 
+let isMultithreadingEnabled = isBrowser() ? (
+    typeof Worker !== "undefined" &&
+    typeof URL !== "undefined" &&
+    typeof Blob !== "undefined") : true;
+
+export function disableMultithreading() {
+    isMultithreadingEnabled = false;
+}
+
 const [getWorkerThread, terminateWorkerThreads] = (() => {
 
-    const spawn = WorkerThread.factory(bundle_source);
+    const spawn = WorkerThread.factory(
+        bundle_source,
+        () => isMultithreadingEnabled
+    );
+
     const record: Record<string, WorkerThread> = {};
 
     return [

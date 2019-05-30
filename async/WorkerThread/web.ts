@@ -7,7 +7,7 @@ export function spawn(source: string): import("../WorkerThread").WorkerThread {
     const evtResponse = new SyncEvent<ThreadMessage.Response>();
 
     const worker = new Worker(
-        window.URL.createObjectURL(
+        URL.createObjectURL(
             new Blob(
                 [source],
                 { "type": 'text/javascript' }

@@ -6,5 +6,5 @@ export declare type WorkerThread = {
     terminate(): void;
 };
 export declare namespace WorkerThread {
-    function factory(source: string): () => WorkerThread;
+    function factory(source: string, isMultithreadingEnabled: () => boolean): () => WorkerThread;
 }

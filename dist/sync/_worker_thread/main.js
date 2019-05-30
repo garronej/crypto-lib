@@ -4,30 +4,35 @@ var cryptoLib = require("../index");
 var environnement = require("../environnement");
 var ThreadMessage_1 = require("./ThreadMessage");
 if ((function () {
+    if (typeof __simulatedMainThreadApi !== "undefined") {
+        return false;
+    }
     var isMainThead = environnement.isBrowser() ?
         (typeof document !== "undefined") :
         (typeof __process_node === "undefined");
     return isMainThead;
 })()) {
-    __hook = cryptoLib;
+    __cryptoLib = cryptoLib;
 }
 else {
-    var postMessage_1 = environnement.isBrowser() ?
-        self.postMessage :
-        function (response) { return __process_node.send(ThreadMessage_1.transfer.prepare(response)); };
-    var setActionListener = function (actionListener) {
-        return environnement.isBrowser() ?
-            addEventListener("message", function (_a) {
-                var data = _a.data;
-                return actionListener(data);
-            }) :
-            __process_node.on("message", function (message) { return actionListener(ThreadMessage_1.transfer.restore(message)); });
-    };
+    var mainThreadApi_1 = typeof __simulatedMainThreadApi !== "undefined" ?
+        __simulatedMainThreadApi :
+        environnement.isBrowser() ?
+            {
+                "sendResponse": self.postMessage.bind(self),
+                "setActionListener": function (actionListener) { return addEventListener("message", function (_a) {
+                    var data = _a.data;
+                    return actionListener(data);
+                }); }
+            } : {
+            "sendResponse": function (response) { return __process_node.send(ThreadMessage_1.transfer.prepare(response)); },
+            "setActionListener": function (actionListener) { return __process_node.on("message", function (message) { return actionListener(ThreadMessage_1.transfer.restore(message)); }); }
+        };
     var cipherInstances_1 = new Map();
-    setActionListener(function (action) {
+    mainThreadApi_1.setActionListener(function (action) {
         switch (action.action) {
             case "GenerateRsaKeys":
-                postMessage_1((function () {
+                mainThreadApi_1.sendResponse((function () {
                     var message = {
                         "actionId": action.actionId,
                         "outputs": cryptoLib.rsa.syncGenerateKeys.apply(cryptoLib.rsa, action.params)
@@ -50,7 +55,7 @@ else {
             case "EncryptOrDecrypt":
                 {
                     var output_1 = cipherInstances_1.get(action.cipherInstanceRef)[action.method](action.input);
-                    postMessage_1((function () {
+                    mainThreadApi_1.sendResponse((function () {
                         var message = {
                             "actionId": action.actionId,
                             output: output_1

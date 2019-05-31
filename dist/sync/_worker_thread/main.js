@@ -33,35 +33,52 @@ else {
         switch (action.action) {
             case "GenerateRsaKeys":
                 mainThreadApi_1.sendResponse((function () {
-                    var message = {
+                    var response = {
                         "actionId": action.actionId,
                         "outputs": cryptoLib.rsa.syncGenerateKeys.apply(cryptoLib.rsa, action.params)
                     };
-                    return message;
+                    return response;
                 })());
                 break;
             case "CipherFactory":
-                {
-                    var m = function (components) {
-                        switch (components) {
-                            case "Decryptor": return "syncDecryptorFactory";
-                            case "Encryptor": return "syncEncryptorFactory";
-                            case "EncryptorDecryptor": return "syncEncryptorDecryptorFactory";
-                        }
-                    };
-                    cipherInstances_1.set(action.cipherInstanceRef, cryptoLib[action.cipherName][m(action.components)].apply(null, action.params));
-                }
+                cipherInstances_1.set(action.cipherInstanceRef, cryptoLib[action.cipherName][(function () {
+                    switch (action.components) {
+                        case "Decryptor": return "syncDecryptorFactory";
+                        case "Encryptor": return "syncEncryptorFactory";
+                        case "EncryptorDecryptor": return "syncEncryptorDecryptorFactory";
+                    }
+                })()].apply(null, action.params));
                 break;
             case "EncryptOrDecrypt":
                 {
                     var output_1 = cipherInstances_1.get(action.cipherInstanceRef)[action.method](action.input);
                     mainThreadApi_1.sendResponse((function () {
-                        var message = {
+                        var response = {
                             "actionId": action.actionId,
                             output: output_1
                         };
-                        return message;
+                        return response;
                     })(), [output_1.buffer]);
+                }
+                break;
+            case "ScryptHash":
+                {
+                    var digest_1 = cryptoLib.scrypt.syncHash.apply(null, action.params.concat([
+                        function (percent) { return mainThreadApi_1.sendResponse((function () {
+                            var response = {
+                                "actionId": action.actionId,
+                                percent: percent
+                            };
+                            return response;
+                        })()); }
+                    ]));
+                    mainThreadApi_1.sendResponse((function () {
+                        var response = {
+                            "actionId": action.actionId,
+                            digest: digest_1
+                        };
+                        return response;
+                    })(), [digest_1.buffer]);
                 }
                 break;
         }

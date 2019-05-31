@@ -1,8 +1,8 @@
 import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey } from "../types";
 export declare type ThreadMessage = ThreadMessage.Action | ThreadMessage.Response;
 export declare namespace ThreadMessage {
-    type Action = GenerateRsaKeys.Action | CipherFactory.Action | EncryptOrDecrypt.Action;
-    type Response = GenerateRsaKeys.Response | EncryptOrDecrypt.Response;
+    type Action = ScryptHash.Action | GenerateRsaKeys.Action | CipherFactory.Action | EncryptOrDecrypt.Action;
+    type Response = ScryptHash.Response | GenerateRsaKeys.Response | EncryptOrDecrypt.Response;
 }
 export declare namespace GenerateRsaKeys {
     type Action = {
@@ -40,6 +40,24 @@ export declare namespace EncryptOrDecrypt {
         actionId: number;
         output: Uint8Array;
     };
+}
+export declare namespace ScryptHash {
+    type Action = {
+        action: "ScryptHash";
+        actionId: number;
+        params: [string, string, Partial<import("../scrypt").ScryptParams>];
+    };
+    type Response = Response.Progress | Response.Final;
+    namespace Response {
+        type Progress = {
+            actionId: number;
+            percent: number;
+        };
+        type Final = {
+            actionId: number;
+            digest: Uint8Array;
+        };
+    }
 }
 export declare namespace transfer {
     function prepare<T extends ThreadMessage>(threadMessage: T): any;

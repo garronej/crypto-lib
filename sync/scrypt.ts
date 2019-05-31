@@ -1,20 +1,41 @@
 
 import * as scryptsy from "scryptsy";
 
+export type ScryptParams = {
+    /** 2^|n| of iterations. */
+    n: number;
+    /** Memory factor. */
+    r: number;
+    /** Parallelization factor. */
+    p: number;
+    digestLengthBytes: number;
+};
+
+export const defaultParams: ScryptParams = {
+    "n": 13,
+    "r": 8,
+    "p": 1,
+    "digestLengthBytes": 254
+};
+
 export function syncHash(
     text: string,
     salt: string,
+    params: Partial<ScryptParams> = {},
     progress?: (percent: number) => void
 ): Uint8Array {
 
-    //The 2^number of iterations. number (integer)
-    const n = 13;
-    //Memory factor. number (integer)
-    const r = 8;
-    //Parallelization factor. number (integer)
-    const p = 1;
-    //The number of bytes to return. number (integer)
-    const keyLenBytes = 254;
+    const { n, r, p, digestLengthBytes } = (() => {
+
+        const out = { ...defaultParams };
+
+        Object.keys(params)
+            .filter(key => params[key] !== undefined)
+            .forEach(key => out[key] = params[key]);
+
+        return out;
+
+    })();
 
     return scryptsy(
         text,
@@ -22,7 +43,7 @@ export function syncHash(
         Math.pow(2, n),
         r,
         p,
-        keyLenBytes,
+        digestLengthBytes,
         progress !== undefined ?
             (({ percent }) => progress(percent)) :
             undefined

@@ -3,8 +3,8 @@ declare const toBuffer: typeof import("../dist/sync").toBuffer, serializer: type
 export { toBuffer, serializer };
 export * from "../sync/types";
 export declare function disableMultithreading(): void;
-declare const terminateWorkerThreads: (match?: ((workerThreadId: string) => boolean) | undefined) => void;
-export { terminateWorkerThreads };
+declare const terminateWorkerThreads: (match?: string | ((workerThreadId: string) => boolean) | undefined) => void, listWorkerThread: () => string[];
+export { terminateWorkerThreads, listWorkerThread };
 export declare function preSpawnWorkerThread(workerThreadId: string): void;
 export declare const plain: {
     syncEncryptorDecryptorFactory(): import("../dist/sync").Sync<EncryptorDecryptor>;
@@ -37,5 +37,7 @@ export declare const rsa: {
     }>;
 };
 export declare const scrypt: {
-    syncHash(text: string, salt: string, progress?: ((percent: number) => void) | undefined): Uint8Array;
+    syncHash(text: string, salt: string, params?: Partial<import("../dist/sync/scrypt").ScryptParams> | undefined, progress?: ((percent: number) => void) | undefined): Uint8Array;
+    defaultParams: import("../dist/sync/scrypt").ScryptParams;
+    hash: (text: string, salt: string, params?: Partial<import("../dist/sync/scrypt").ScryptParams>, progress?: (percent: number) => void, workerThreadId?: string | undefined) => Promise<Uint8Array>;
 };

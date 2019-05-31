@@ -2,7 +2,9 @@ declare const require: any;
 declare const __dirname: any;
 
 import { EncryptorDecryptor, RsaKey } from "../sync/types";
-import { GenerateRsaKeys, CipherFactory, EncryptOrDecrypt } from "../sync/_worker_thread/ThreadMessage";
+import { 
+    GenerateRsaKeys, CipherFactory, EncryptOrDecrypt, ScryptHash 
+} from "../sync/_worker_thread/ThreadMessage";
 import { WorkerThread } from "./WorkerThread";
 import { isBrowser } from "../sync/environnement";
 
@@ -42,7 +44,9 @@ export function disableMultithreading() {
     isMultithreadingEnabled = false;
 }
 
-const [getWorkerThread, terminateWorkerThreads] = (() => {
+const defaultWorkerThreadId= (name: string)=> `__default_wt_${name}__`;
+
+const [getWorkerThread, terminateWorkerThreads, listWorkerThread] = (() => {
 
     const spawn = WorkerThread.factory(
         bundle_source,
@@ -67,20 +71,21 @@ const [getWorkerThread, terminateWorkerThreads] = (() => {
             return appWorker;
 
         },
-        (match?: (workerThreadId: string) => boolean) =>
+        (match?: string | ((workerThreadId: string) => boolean) ) =>
             Object.keys(record)
-                .filter(id => !!match ? match(id) : true)
+                .filter(id => !match ? true : typeof match === "string" ? id === match : match(id))
                 .map(id => [record[id], id] as const)
                 .filter(([appWorker]) => appWorker !== undefined)
                 .forEach(([appWorker, id]) => {
                     appWorker.terminate();
                     delete record[id];
-                })
+                }),
+        ()=> Object.keys(record)
     ] as const;
 
 })();
 
-export { terminateWorkerThreads };
+export { terminateWorkerThreads, listWorkerThread };
 
 export function preSpawnWorkerThread(workerThreadId: string) {
     getWorkerThread(workerThreadId);
@@ -139,14 +144,14 @@ async function encryptOrDecrypt(
 
 function cipherFactory<A extends CipherFactory.Action>(
     params: Pick<A, Exclude<keyof A, "action" | "cipherInstanceRef">>,
-    workerThreadId?: string
+    workerThreadId: string = defaultWorkerThreadId(params.cipherName)
 ): A extends CipherFactory.ActionPoly<any, infer U> ? CipherFactory.Type<U> : never {
 
     type Action = CipherFactory.Action;
 
     const cipherInstanceRef = getCounter();
 
-    const appWorker = getWorkerThread(params.cipherName);
+    const appWorker = getWorkerThread(workerThreadId);
 
     appWorker.send(
         (() => {
@@ -170,7 +175,7 @@ function cipherFactory<A extends CipherFactory.Action>(
                 cipherInstanceRef,
                 method,
                 data,
-                workerThreadId === undefined ? params.cipherName : workerThreadId
+                workerThreadId 
             )))
             ;
 
@@ -262,15 +267,25 @@ export const rsa = (() => {
     }
 
 
-    const generateKeys = async (seed: Uint8Array, keysLengthBytes?: number, workerThreadId?: string) => {
+    const generateKeys = async (
+        seed: Uint8Array,
+        keysLengthBytes?: number,
+        workerThreadId?: string
+    ) => {
 
         type Action = GenerateRsaKeys.Action;
         type Response = GenerateRsaKeys.Response;
 
+        const wasWorkerThreadIdSpecified = workerThreadId !== undefined;
+
+        workerThreadId = workerThreadId !== undefined ?
+            workerThreadId :
+            defaultWorkerThreadId("rsa generate keys");
+
         const actionId = getCounter();
 
         const appWorker = getWorkerThread(
-            workerThreadId === undefined ? "rsa" : workerThreadId
+            workerThreadId
         );
 
         appWorker.send((() => {
@@ -290,6 +305,12 @@ export const rsa = (() => {
                 response.actionId === actionId
         );
 
+        if (!wasWorkerThreadIdSpecified) {
+
+            terminateWorkerThreads(workerThreadId);
+
+        }
+
         return outputs;
 
     };
@@ -306,7 +327,74 @@ export const rsa = (() => {
 
 export const scrypt = (() => {
 
+    const hash = async (
+        text: string,
+        salt: string,
+        params: Partial<import("../sync/scrypt").ScryptParams> = {},
+        progress: (percent: number) => void = (() => { }),
+        workerThreadId?: string
+    ) => {
+
+        type Action = ScryptHash.Action;
+        type Response_Progress = ScryptHash.Response.Progress;
+        type Response_Final = ScryptHash.Response.Final;
+
+        const actionId = getCounter();
+
+        const wasWorkerThreadIdSpecified = workerThreadId !== undefined;
+
+        workerThreadId = workerThreadId !== undefined ?
+            workerThreadId :
+            defaultWorkerThreadId(`scrypt${actionId}`);
+
+        const appWorker = getWorkerThread(
+            workerThreadId
+        );
+
+        appWorker.send((() => {
+
+            const action: Action = {
+                "action": "ScryptHash",
+                actionId,
+                "params": [text, salt, params]
+            };
+
+            return action;
+
+        })());
+
+        const boundTo = {};
+
+        appWorker.evtResponse.attach(
+            (response): response is Response_Progress => (
+                response.actionId === actionId &&
+                "percent" in response
+            ),
+            boundTo,
+            ({ percent }) => progress(percent)
+        );
+
+        const { digest } = await appWorker.evtResponse.waitFor(
+            (response): response is Response_Final => (
+                response.actionId === actionId &&
+                "digest" in response
+            )
+        );
+
+        appWorker.evtResponse.detach(boundTo);
+
+        if (!wasWorkerThreadIdSpecified) {
+
+            terminateWorkerThreads(workerThreadId);
+
+        }
+
+        return digest;
+
+    }
+
     return {
+        hash,
         ...sync_scrypt
     };
 

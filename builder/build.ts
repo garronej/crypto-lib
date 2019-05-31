@@ -25,7 +25,7 @@ const module_dir_path = path.join(__dirname, "..", "..");
     );
 
 
-    for (const test_file_basename of ["aes", "rsa", "perf"]) {
+    for (const test_file_basename of ["aes", "rsa", "perf", "scrypt"]) {
 
         (async () => {
 

@@ -4,7 +4,10 @@ declare const document: any;
 
 import * as cryptoLib from "../index";
 import * as environnement from "../environnement";
-import { ThreadMessage, GenerateRsaKeys, CipherFactory, EncryptOrDecrypt, transfer } from "./ThreadMessage";
+import { 
+    ThreadMessage, GenerateRsaKeys, EncryptOrDecrypt, ScryptHash,
+    transfer 
+} from "./ThreadMessage";
 
 
 declare const __process_node: { send: Function; on: Function } | undefined;
@@ -69,7 +72,7 @@ if ((() => {
             case "GenerateRsaKeys":
                 mainThreadApi.sendResponse((() => {
 
-                    const message: GenerateRsaKeys.Response = {
+                    const response: GenerateRsaKeys.Response = {
                         "actionId": action.actionId,
                         "outputs": cryptoLib.rsa.syncGenerateKeys.apply(
                             cryptoLib.rsa,
@@ -77,26 +80,25 @@ if ((() => {
                         )
                     };
 
-                    return message;
+                    return response;
 
                 })());
                 break;
-            case "CipherFactory": {
-
-                const m = (components: CipherFactory.Components) => {
-                    switch (components) {
-                        case "Decryptor": return "syncDecryptorFactory";
-                        case "Encryptor": return "syncEncryptorFactory";
-                        case "EncryptorDecryptor": return "syncEncryptorDecryptorFactory";
-                    }
-                };
-
+            case "CipherFactory":
                 cipherInstances.set(
                     action.cipherInstanceRef,
-                    cryptoLib[action.cipherName][m(action.components)].apply(null, action.params)
+                    cryptoLib[action.cipherName][(() => {
+                        switch (action.components) {
+                            case "Decryptor": return "syncDecryptorFactory";
+                            case "Encryptor": return "syncEncryptorFactory";
+                            case "EncryptorDecryptor": return "syncEncryptorDecryptorFactory";
+                        }
+                    })()].apply(
+                        null,
+                        action.params
+                    )
                 );
-
-            } break;
+                break;
             case "EncryptOrDecrypt": {
 
                 const output = cipherInstances.get(
@@ -105,14 +107,45 @@ if ((() => {
 
                 mainThreadApi.sendResponse((() => {
 
-                    const message: EncryptOrDecrypt.Response = {
+                    const response: EncryptOrDecrypt.Response = {
                         "actionId": action.actionId,
                         output
                     };
 
-                    return message;
+                    return response;
 
                 })(), [output.buffer]);
+
+            } break;
+            case "ScryptHash": {
+
+                const digest = cryptoLib.scrypt.syncHash.apply(
+                    null,
+                    [
+                        ...action.params,
+                        percent => mainThreadApi.sendResponse((() => {
+
+                            const response: ScryptHash.Response.Progress = {
+                                "actionId": action.actionId,
+                                percent
+                            }
+
+                            return response;
+
+                        })())
+                    ]
+                );
+
+                mainThreadApi.sendResponse((() => {
+
+                    const response: ScryptHash.Response.Final = {
+                        "actionId": action.actionId,
+                        digest
+                    }
+
+                    return response;
+
+                })(), [digest.buffer]);
 
             } break;
         }

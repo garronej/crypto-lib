@@ -9,11 +9,13 @@ export type ThreadMessage = ThreadMessage.Action | ThreadMessage.Response;
 export namespace ThreadMessage {
 
     export type Action =
+        ScryptHash.Action |
         GenerateRsaKeys.Action |
         CipherFactory.Action |
         EncryptOrDecrypt.Action;
 
     export type Response =
+        ScryptHash.Response |
         GenerateRsaKeys.Response |
         EncryptOrDecrypt.Response;
 
@@ -59,7 +61,7 @@ export namespace CipherFactory {
         : T extends "rsa" ?
         (
             U extends "EncryptorDecryptor" ?
-            [ RsaKey.Private, RsaKey.Public ] | [ RsaKey.Public, RsaKey.Private ]
+            [RsaKey.Private, RsaKey.Public] | [RsaKey.Public, RsaKey.Private]
             : Parameters<typeof import("../cipher/rsa").syncEncryptorFactory>
         )
         :
@@ -86,6 +88,32 @@ export namespace EncryptOrDecrypt {
         actionId: number;
         output: Uint8Array
     };
+
+}
+
+export namespace ScryptHash {
+
+    export type Action = {
+        action: "ScryptHash";
+        actionId: number;
+        params: [string, string, Partial<import("../scrypt").ScryptParams>]
+    };
+
+    export type Response = Response.Progress | Response.Final;
+
+    export namespace Response {
+
+        export type Progress = {
+            actionId: number;
+            percent: number;
+        };
+
+        export type Final = {
+            actionId: number;
+            digest: Uint8Array;
+        };
+
+    }
 
 }
 

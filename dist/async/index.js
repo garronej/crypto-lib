@@ -70,6 +70,7 @@ function disableMultithreading() {
     isMultithreadingEnabled = false;
 }
 exports.disableMultithreading = disableMultithreading;
+var defaultWorkerThreadId = function (name) { return "__default_wt_" + name + "__"; };
 var _b = (function () {
     var spawn = WorkerThread_1.WorkerThread.factory(bundle_source, function () { return isMultithreadingEnabled; });
     var record = {};
@@ -84,7 +85,7 @@ var _b = (function () {
         },
         function (match) {
             return Object.keys(record)
-                .filter(function (id) { return !!match ? match(id) : true; })
+                .filter(function (id) { return !match ? true : typeof match === "string" ? id === match : match(id); })
                 .map(function (id) { return [record[id], id]; })
                 .filter(function (_a) {
                 var appWorker = _a[0];
@@ -95,10 +96,12 @@ var _b = (function () {
                 appWorker.terminate();
                 delete record[id];
             });
-        }
+        },
+        function () { return Object.keys(record); }
     ];
-})(), getWorkerThread = _b[0], terminateWorkerThreads = _b[1];
+})(), getWorkerThread = _b[0], terminateWorkerThreads = _b[1], listWorkerThread = _b[2];
 exports.terminateWorkerThreads = terminateWorkerThreads;
+exports.listWorkerThread = listWorkerThread;
 function preSpawnWorkerThread(workerThreadId) {
     getWorkerThread(workerThreadId);
 }
@@ -136,15 +139,16 @@ function encryptOrDecrypt(cipherInstanceRef, method, input, workerThreadId) {
     });
 }
 function cipherFactory(params, workerThreadId) {
+    if (workerThreadId === void 0) { workerThreadId = defaultWorkerThreadId(params.cipherName); }
     var cipherInstanceRef = getCounter();
-    var appWorker = getWorkerThread(params.cipherName);
+    var appWorker = getWorkerThread(workerThreadId);
     appWorker.send((function () {
         var action = __assign({ "action": "CipherFactory", cipherInstanceRef: cipherInstanceRef }, params);
         return action;
     })());
     var cipher = (function () {
         var _a = ["encrypt", "decrypt"]
-            .map(function (method) { return (function (data) { return encryptOrDecrypt(cipherInstanceRef, method, data, workerThreadId === undefined ? params.cipherName : workerThreadId); }); }), encrypt = _a[0], decrypt = _a[1];
+            .map(function (method) { return (function (data) { return encryptOrDecrypt(cipherInstanceRef, method, data, workerThreadId); }); }), encrypt = _a[0], decrypt = _a[1];
         switch (params.components) {
             case "EncryptorDecryptor": return { encrypt: encrypt, decrypt: decrypt };
             case "Decryptor": return { decrypt: decrypt };
@@ -196,12 +200,16 @@ exports.rsa = (function () {
         }, workerThreadId);
     }
     var generateKeys = function (seed, keysLengthBytes, workerThreadId) { return __awaiter(_this, void 0, void 0, function () {
-        var actionId, appWorker, outputs;
+        var wasWorkerThreadIdSpecified, actionId, appWorker, outputs;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    wasWorkerThreadIdSpecified = workerThreadId !== undefined;
+                    workerThreadId = workerThreadId !== undefined ?
+                        workerThreadId :
+                        defaultWorkerThreadId("rsa generate keys");
                     actionId = getCounter();
-                    appWorker = getWorkerThread(workerThreadId === undefined ? "rsa" : workerThreadId);
+                    appWorker = getWorkerThread(workerThreadId);
                     appWorker.send((function () {
                         var action = {
                             "action": "GenerateRsaKeys",
@@ -215,6 +223,9 @@ exports.rsa = (function () {
                         })];
                 case 1:
                     outputs = (_a.sent()).outputs;
+                    if (!wasWorkerThreadIdSpecified) {
+                        terminateWorkerThreads(workerThreadId);
+                    }
                     return [2 /*return*/, outputs];
             }
         });
@@ -225,5 +236,46 @@ exports.rsa = (function () {
         generateKeys: generateKeys }, sync_rsa);
 })();
 exports.scrypt = (function () {
-    return __assign({}, sync_scrypt);
+    var hash = function (text, salt, params, progress, workerThreadId) {
+        if (params === void 0) { params = {}; }
+        if (progress === void 0) { progress = (function () { }); }
+        return __awaiter(_this, void 0, void 0, function () {
+            var actionId, wasWorkerThreadIdSpecified, appWorker, boundTo, digest;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        actionId = getCounter();
+                        wasWorkerThreadIdSpecified = workerThreadId !== undefined;
+                        workerThreadId = workerThreadId !== undefined ?
+                            workerThreadId :
+                            defaultWorkerThreadId("scrypt" + actionId);
+                        appWorker = getWorkerThread(workerThreadId);
+                        appWorker.send((function () {
+                            var action = {
+                                "action": "ScryptHash",
+                                actionId: actionId,
+                                "params": [text, salt, params]
+                            };
+                            return action;
+                        })());
+                        boundTo = {};
+                        appWorker.evtResponse.attach(function (response) { return (response.actionId === actionId &&
+                            "percent" in response); }, boundTo, function (_a) {
+                            var percent = _a.percent;
+                            return progress(percent);
+                        });
+                        return [4 /*yield*/, appWorker.evtResponse.waitFor(function (response) { return (response.actionId === actionId &&
+                                "digest" in response); })];
+                    case 1:
+                        digest = (_a.sent()).digest;
+                        appWorker.evtResponse.detach(boundTo);
+                        if (!wasWorkerThreadIdSpecified) {
+                            terminateWorkerThreads(workerThreadId);
+                        }
+                        return [2 /*return*/, digest];
+                }
+            });
+        });
+    };
+    return __assign({ hash: hash }, sync_scrypt);
 })();

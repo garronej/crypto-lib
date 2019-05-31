@@ -33,9 +33,9 @@ export function spawn(source: string): import("../WorkerThread").WorkerThread {
 
             return () => path.join(
                 base_path,
-                crypto
+                ".you_can_remove_me_" + crypto
                     .randomBytes(4)
-                    .toString("hex")
+                    .toString("hex") + ".js"
             );
 
         })();
@@ -54,7 +54,7 @@ export function spawn(source: string): import("../WorkerThread").WorkerThread {
         random_file_path,
         Buffer.from(
             [
-                `console.log("LOADED");`,
+                `console.log("__LOADED__");`,
                 `var __process_node= process;`,
                 source
             ].join("\n"),
@@ -70,7 +70,7 @@ export function spawn(source: string): import("../WorkerThread").WorkerThread {
 
     childProcess.stdout.once(
         "data",
-        () => fs.unlinkSync(random_file_path)
+        () => fs.unlink(random_file_path, ()=>{})
     );
 
     const evtResponse = new SyncEvent<ThreadMessage.Response>();

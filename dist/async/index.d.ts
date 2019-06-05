@@ -1,35 +1,40 @@
-import { EncryptorDecryptor, RsaKey } from "../sync/types";
+import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey } from "../sync/types";
 declare const toBuffer: typeof import("../dist/sync").toBuffer, serializer: typeof import("../dist/sync/serializer");
 export { toBuffer, serializer };
 export * from "../sync/types";
 export declare function disableMultithreading(): void;
-declare const terminateWorkerThreads: (match?: string | ((workerThreadId: string) => boolean) | undefined) => void, listWorkerThread: () => string[];
-export { terminateWorkerThreads, listWorkerThread };
+declare const terminateWorkerThreads: (workerThreadId?: string | undefined) => void, listWorkerThreadIds: () => string[];
+export { terminateWorkerThreads, listWorkerThreadIds };
 export declare function preSpawnWorkerThread(workerThreadId: string): void;
+export declare namespace workerThreadPool {
+    function preSpawn(workerThreadPoolId: string, poolSize: number): void;
+    function listIds(workerThreadPoolId: string): string[];
+    function terminate(workerThreadPoolId: string): void;
+}
 export declare const plain: {
     syncEncryptorDecryptorFactory(): import("../dist/sync").Sync<EncryptorDecryptor>;
-    encryptorDecryptorFactory: (workerThreadId?: string | undefined) => EncryptorDecryptor;
+    encryptorDecryptorFactory: (workerThreadPoolId?: string | undefined) => EncryptorDecryptor;
 };
 export declare const aes: {
     syncEncryptorDecryptorFactory(key: Uint8Array): import("../dist/sync").Sync<EncryptorDecryptor>;
     generateKey(): Promise<Uint8Array>;
-    generateTestKey(): Promise<Uint8Array>;
-    encryptorDecryptorFactory: (key: Uint8Array, workerThreadId?: string | undefined) => EncryptorDecryptor;
+    getTestKey(): Promise<Uint8Array>;
+    encryptorDecryptorFactory: (key: Uint8Array, workerThreadPoolId?: string | undefined) => EncryptorDecryptor;
 };
 export declare const rsa: {
-    syncEncryptorFactory(encryptKey: RsaKey): import("../dist/sync").Sync<import("../dist/sync").Encryptor>;
-    syncDecryptorFactory(decryptKey: RsaKey): import("../dist/sync").Sync<import("../dist/sync").Decryptor>;
+    syncEncryptorFactory(encryptKey: RsaKey): import("../dist/sync").Sync<Encryptor>;
+    syncDecryptorFactory(decryptKey: RsaKey): import("../dist/sync").Sync<Decryptor>;
     syncEncryptorDecryptorFactory(encryptKey: RsaKey.Private, decryptKey: RsaKey.Public): import("../dist/sync").Sync<EncryptorDecryptor>;
     syncEncryptorDecryptorFactory(encryptKey: RsaKey.Public, decryptKey: RsaKey.Private): import("../dist/sync").Sync<EncryptorDecryptor>;
     syncGenerateKeys(seed: Uint8Array, keysLengthBytes?: number | undefined): {
         publicKey: RsaKey.Public;
         privateKey: RsaKey.Private;
     };
-    encryptorFactory: (encryptKey: RsaKey, workerThreadId?: string | undefined) => import("../dist/sync").Encryptor;
-    decryptorFactory: (decryptKey: RsaKey, workerThreadId?: string | undefined) => import("../dist/sync").Decryptor;
+    encryptorFactory: (encryptKey: RsaKey, workerThreadPoolId?: string | undefined) => Encryptor;
+    decryptorFactory: (decryptKey: RsaKey, workerThreadPoolId?: string | undefined) => Decryptor;
     encryptorDecryptorFactory: {
-        (encryptKey: RsaKey.Private, decryptKey: RsaKey.Public, workerThreadId?: string | undefined): EncryptorDecryptor;
-        (encryptKey: RsaKey.Public, decryptKey: RsaKey.Private, workerThreadId?: string | undefined): EncryptorDecryptor;
+        (encryptKey: RsaKey.Private, decryptKey: RsaKey.Public, workerThreadPoolId?: string | undefined): EncryptorDecryptor;
+        (encryptKey: RsaKey.Public, decryptKey: RsaKey.Private, workerThreadPoolId?: string | undefined): EncryptorDecryptor;
     };
     generateKeys: (seed: Uint8Array, keysLengthBytes?: number | undefined, workerThreadId?: string | undefined) => Promise<{
         publicKey: RsaKey.Public;

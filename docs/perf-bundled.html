@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Test perf-bundled.js</title>
+
+    <script src="./perf-bundled.js"></script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+
+            var start = Date.now();
+            var interval = 100;
+            var last = start;
+
+            setInterval(function () {
+
+                var now = Date.now();
+                var elapsed = now - last;
+
+                if (elapsed > interval + 35) {
+                    console.log("UI tread blocked for ~" + (elapsed - interval).toString() + "ms");
+                }
+
+                last += elapsed;
+
+            }, interval);
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <h4>Running C:\Users\joseph\Dropbox\shell\local-github\crypto-lib\docs\perf-bundled.js (CTRL + MAJ + i)</h4>
+</body>
+
+</html>

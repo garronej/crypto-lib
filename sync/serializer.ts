@@ -8,6 +8,8 @@ function matchPromise<T>(prOrValue: T | Promise<T>): prOrValue is Promise<T> {
     return "then" in prOrValue;
 }
 
+let stringRepresentationEncoding = "binary" as Encoding;
+
 export function stringifyThenEncryptFactory<T extends Encryptor | Sync<Encryptor>>(encryptor: T) {
 
     const { stringify } = ttJC.get();
@@ -28,7 +30,7 @@ export function stringifyThenEncryptFactory<T extends Encryptor | Sync<Encryptor
 
         const finalize = (value: Uint8Array) => toBuffer(
             value
-        ).toString(stringifyThenEncryptFactory.stringRepresentationEncoding);
+        ).toString(stringRepresentationEncoding);
 
         return (matchPromise(prOrValue) ?
             prOrValue.then(value => finalize(value)) :
@@ -38,7 +40,6 @@ export function stringifyThenEncryptFactory<T extends Encryptor | Sync<Encryptor
 
 }
 
-stringifyThenEncryptFactory.stringRepresentationEncoding = "binary" as Encoding;
 
 export function decryptThenParseFactory<T extends Decryptor | Sync<Decryptor>>(decryptor: T) {
 
@@ -49,7 +50,7 @@ export function decryptThenParseFactory<T extends Decryptor | Sync<Decryptor>>(d
         const prOrValue = decryptor.decrypt(
             Buffer.from(
                 encryptedValue,
-                stringifyThenEncryptFactory.stringRepresentationEncoding
+                stringRepresentationEncoding
             )
         );
 

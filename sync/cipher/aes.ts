@@ -66,7 +66,7 @@ export function generateKey() {
     );
 }
 
-export function generateTestKey(): Promise<Uint8Array> {
+export function getTestKey(): Promise<Uint8Array> {
     return Promise.resolve(
         new Uint8Array([
             0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,

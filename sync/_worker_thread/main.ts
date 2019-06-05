@@ -74,10 +74,7 @@ if ((() => {
 
                     const response: GenerateRsaKeys.Response = {
                         "actionId": action.actionId,
-                        "outputs": cryptoLib.rsa.syncGenerateKeys.apply(
-                            cryptoLib.rsa,
-                            action.params
-                        )
+                        "outputs": cryptoLib.rsa.syncGenerateKeys(...action.params)
                     };
 
                     return response;
@@ -93,10 +90,7 @@ if ((() => {
                             case "Encryptor": return "syncEncryptorFactory";
                             case "EncryptorDecryptor": return "syncEncryptorDecryptorFactory";
                         }
-                    })()].apply(
-                        null,
-                        action.params
-                    )
+                    })()](...action.params)
                 );
                 break;
             case "EncryptOrDecrypt": {
@@ -119,9 +113,8 @@ if ((() => {
             } break;
             case "ScryptHash": {
 
-                const digest = cryptoLib.scrypt.syncHash.apply(
-                    null,
-                    [
+                const digest = cryptoLib.scrypt.syncHash(
+                    ...([
                         ...action.params,
                         percent => mainThreadApi.sendResponse((() => {
 
@@ -133,7 +126,7 @@ if ((() => {
                             return response;
 
                         })())
-                    ]
+                    ] as Parameters<typeof cryptoLib.scrypt.syncHash>)
                 );
 
                 mainThreadApi.sendResponse((() => {

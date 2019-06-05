@@ -1,7 +1,7 @@
 
 import * as environnement from "../environnement";
 import { toBuffer } from "../toBuffer";
-import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey } from "../types";
+import { RsaKey } from "../types";
 declare const Buffer: any;
 
 export type ThreadMessage = ThreadMessage.Action | ThreadMessage.Response;
@@ -40,13 +40,6 @@ export namespace CipherFactory {
 
     export type CipherName = "aes" | "rsa" | "plain";
     export type Components = "Encryptor" | "Decryptor" | "EncryptorDecryptor";
-
-    export type Type<U extends Components> =
-        U extends "EncryptorDecryptor" ?
-        EncryptorDecryptor :
-        U extends "Encryptor" ? Encryptor : Decryptor
-        ;
-
 
     export type ActionPoly<T extends CipherName, U extends Components> = {
         action: "CipherFactory";

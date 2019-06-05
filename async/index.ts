@@ -1,9 +1,13 @@
 declare const require: any;
 declare const __dirname: any;
 
-import { EncryptorDecryptor, RsaKey } from "../sync/types";
-import { 
-    GenerateRsaKeys, CipherFactory, EncryptOrDecrypt, ScryptHash 
+import * as runExclusive from "run-exclusive";
+
+import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey } from "../sync/types";
+
+//TODO: See if it need to be exported for types...
+import {
+    GenerateRsaKeys, CipherFactory, EncryptOrDecrypt, ScryptHash
 } from "../sync/_worker_thread/ThreadMessage";
 import { WorkerThread } from "./WorkerThread";
 import { isBrowser } from "../sync/environnement";
@@ -44,9 +48,8 @@ export function disableMultithreading() {
     isMultithreadingEnabled = false;
 }
 
-const defaultWorkerThreadId= (name: string)=> `__default_wt_${name}__`;
 
-const [getWorkerThread, terminateWorkerThreads, listWorkerThread] = (() => {
+const [getWorkerThread, terminateWorkerThreads, listWorkerThreadIds] = (() => {
 
     const spawn = WorkerThread.factory(
         bundle_source,
@@ -71,24 +74,61 @@ const [getWorkerThread, terminateWorkerThreads, listWorkerThread] = (() => {
             return appWorker;
 
         },
-        (match?: string | ((workerThreadId: string) => boolean) ) =>
+        (workerThreadId?: string) =>
             Object.keys(record)
-                .filter(id => !match ? true : typeof match === "string" ? id === match : match(id))
+                .filter(id => workerThreadId !== undefined ? id === workerThreadId : true)
                 .map(id => [record[id], id] as const)
                 .filter(([appWorker]) => appWorker !== undefined)
                 .forEach(([appWorker, id]) => {
                     appWorker.terminate();
                     delete record[id];
                 }),
-        ()=> Object.keys(record)
+        () => Object.keys(record)
     ] as const;
 
 })();
 
-export { terminateWorkerThreads, listWorkerThread };
+export { terminateWorkerThreads, listWorkerThreadIds };
 
 export function preSpawnWorkerThread(workerThreadId: string) {
     getWorkerThread(workerThreadId);
+}
+
+export namespace workerThreadPool {
+
+    function getWorkerThreadId(workerThreadPoolId: string, i?: number) {
+        return `__pool_${workerThreadPoolId}_${i !== undefined ? i : ""}`;
+    }
+
+    export function preSpawn(workerThreadPoolId: string, poolSize: number) {
+
+        for (let i = 1; i <= poolSize; i++) {
+
+            preSpawnWorkerThread(getWorkerThreadId(workerThreadPoolId, i));
+
+        }
+
+    }
+
+    export function listIds(workerThreadPoolId: string) {
+
+        return listWorkerThreadIds()
+            .filter(
+                workerThreadId => workerThreadId.startsWith(
+                    getWorkerThreadId(workerThreadPoolId)
+                )
+            );
+
+    }
+
+    export function terminate(workerThreadPoolId: string) {
+
+        listIds(workerThreadPoolId).forEach(
+            workerThreadId => terminateWorkerThreads(workerThreadId)
+        );
+
+    }
+
 }
 
 const getCounter = (() => {
@@ -99,84 +139,49 @@ const getCounter = (() => {
 
 })();
 
+const generateId = (name: string) => `__]]>>${name}<<[[__`;
 
-async function encryptOrDecrypt(
-    cipherInstanceRef: number,
-    method: keyof EncryptorDecryptor,
-    input: Uint8Array,
-    workerThreadId: string
-): Promise<Uint8Array> {
+function cipherFactoryPool<A extends CipherFactory.Action>(
+    params: cipherFactoryPool.ActionPartial<A>,
+    workerThreadPoolId?: string
+): cipherFactoryPool.Cipher<A> {
 
-    type Action = EncryptOrDecrypt.Action;
-    type Response = EncryptOrDecrypt.Response;
+    if (workerThreadPoolId === undefined) {
 
-    const actionId = getCounter();
+        workerThreadPoolId = generateId(params.cipherName);
 
-    const appWorker = getWorkerThread(workerThreadId);
+        workerThreadPool.preSpawn(workerThreadPoolId, 4);
 
-    appWorker.send(
-        (() => {
+    } else if (workerThreadPool.listIds(workerThreadPoolId).length === 0) {
 
-            const action: Action = {
-                "action": "EncryptOrDecrypt",
-                actionId,
-                cipherInstanceRef,
-                method,
-                input
-            };
+        throw new Error("No thread in the pool");
 
-            return action;
+    }
 
-        })(),
-        [input.buffer]
-    );
+    const runExclusiveFunctions = workerThreadPool.listIds(workerThreadPoolId)
+        .map(workerThreadId => {
 
-    const { output } = await appWorker.evtResponse.waitFor(
-        (response): response is Response =>
-            response.actionId === actionId
-    );
+            const cipher = cipherFactoryPool.cipherFactory<A>(params, workerThreadId);
 
-    return output;
+            return runExclusive.build(
+                async (method: keyof EncryptorDecryptor, data: Uint8Array) =>
+                    cipher[method](data) as Uint8Array
+            );
 
-}
+        })
+        ;
 
-
-
-function cipherFactory<A extends CipherFactory.Action>(
-    params: Pick<A, Exclude<keyof A, "action" | "cipherInstanceRef">>,
-    workerThreadId: string = defaultWorkerThreadId(params.cipherName)
-): A extends CipherFactory.ActionPoly<any, infer U> ? CipherFactory.Type<U> : never {
-
-    type Action = CipherFactory.Action;
-
-    const cipherInstanceRef = getCounter();
-
-    const appWorker = getWorkerThread(workerThreadId);
-
-    appWorker.send(
-        (() => {
-
-            const action: Action = {
-                "action": "CipherFactory",
-                cipherInstanceRef,
-                ...params
-            };
-
-            return action;
-
-        })()
-    );
-
-
-    const cipher: any = (() => {
+    return (() => {
 
         const [encrypt, decrypt] = (["encrypt", "decrypt"] as const)
-            .map(method => ((data: Uint8Array) => encryptOrDecrypt(
-                cipherInstanceRef,
-                method,
-                data,
-                workerThreadId 
-            )))
+            .map(method => async (data: Uint8Array) =>
+                runExclusiveFunctions
+                    .map(runExclusiveFunction => [
+                        runExclusive.getQueuedCallCount(runExclusiveFunction),
+                        runExclusiveFunction
+                    ] as const)
+                    .sort(([n1], [n2]) => n1 - n2)[0][1](method, data)
+            )
             ;
 
         switch (params.components) {
@@ -185,23 +190,130 @@ function cipherFactory<A extends CipherFactory.Action>(
             case "Encryptor": return { encrypt };
         }
 
-    })();
-
-    return cipher;
+    })() as any;
 
 }
 
+namespace cipherFactoryPool {
+
+    type Action = CipherFactory.Action;
+
+    export type ActionPartial<A extends Action> =
+        Pick<A, Exclude<keyof A, "action" | "cipherInstanceRef">>;
+
+    export type Cipher<A extends Action> =
+        A extends CipherFactory.ActionPoly<any, infer U> ?
+        (
+            U extends "EncryptorDecryptor" ?
+            EncryptorDecryptor
+            :
+            U extends "Encryptor" ? Encryptor : Decryptor
+        )
+        : never
+        ;
+
+    export function cipherFactory<A extends Action>(
+        params: ActionPartial<A>,
+        workerThreadId: string
+    ): Cipher<A> {
+
+        const cipherInstanceRef = getCounter();
+
+        const appWorker = getWorkerThread(workerThreadId);
+
+        appWorker.send(
+            (() => {
+
+                const action: Action = {
+                    "action": "CipherFactory",
+                    cipherInstanceRef,
+                    ...params
+                };
+
+                return action;
+
+            })()
+        );
+
+        return (() => {
+
+            const [encrypt, decrypt] = (["encrypt", "decrypt"] as const)
+                .map(method => ((data: Uint8Array) => cipherFactory.encryptOrDecrypt(
+                    cipherInstanceRef,
+                    method,
+                    data,
+                    workerThreadId
+                )))
+                ;
+
+            switch (params.components) {
+                case "EncryptorDecryptor": return { encrypt, decrypt };
+                case "Decryptor": return { decrypt };
+                case "Encryptor": return { encrypt };
+            }
+
+        })() as any;
+
+
+    }
+
+    export namespace cipherFactory {
+
+        export async function encryptOrDecrypt(
+            cipherInstanceRef: number,
+            method: keyof EncryptorDecryptor,
+            input: Uint8Array,
+            workerThreadId: string
+        ): Promise<Uint8Array> {
+
+            type Action = EncryptOrDecrypt.Action;
+            type Response = EncryptOrDecrypt.Response;
+
+            const actionId = getCounter();
+
+            const appWorker = getWorkerThread(workerThreadId);
+
+            appWorker.send(
+                (() => {
+
+                    const action: Action = {
+                        "action": "EncryptOrDecrypt",
+                        actionId,
+                        cipherInstanceRef,
+                        method,
+                        input
+                    };
+
+                    return action;
+
+                })(),
+                [input.buffer]
+            );
+
+            const { output } = await appWorker.evtResponse.waitFor(
+                (response): response is Response =>
+                    response.actionId === actionId
+            );
+
+            return output;
+
+        }
+
+    }
+
+
+}
 
 export const plain = (() => {
 
-    const encryptorDecryptorFactory = (workerThreadId?: string) =>
-        cipherFactory<CipherFactory.ActionPoly<"plain", "EncryptorDecryptor">>(
+    const encryptorDecryptorFactory = (workerThreadPoolId?: string) =>
+        cipherFactoryPool<CipherFactory.ActionPoly<"plain", "EncryptorDecryptor">>(
             {
                 "cipherName": "plain",
                 "components": "EncryptorDecryptor",
                 "params": []
             },
-            workerThreadId
+            workerThreadPoolId
         );
 
     return {
@@ -213,14 +325,14 @@ export const plain = (() => {
 
 export const aes = (() => {
 
-    const encryptorDecryptorFactory = (key: Uint8Array, workerThreadId?: string) =>
-        cipherFactory<CipherFactory.ActionPoly<"aes", "EncryptorDecryptor">>(
+    const encryptorDecryptorFactory = (key: Uint8Array, workerThreadPoolId?: string) =>
+        cipherFactoryPool<CipherFactory.ActionPoly<"aes", "EncryptorDecryptor">>(
             {
                 "cipherName": "aes",
                 "components": "EncryptorDecryptor",
                 "params": [key]
             },
-            workerThreadId
+            workerThreadPoolId
         );
 
     return {
@@ -233,36 +345,36 @@ export const aes = (() => {
 
 export const rsa = (() => {
 
-    const encryptorFactory = (encryptKey: RsaKey, workerThreadId?: string) =>
-        cipherFactory<CipherFactory.ActionPoly<"rsa", "Encryptor">>(
+    const encryptorFactory = (encryptKey: RsaKey, workerThreadPoolId?: string) =>
+        cipherFactoryPool<CipherFactory.ActionPoly<"rsa", "Encryptor">>(
             {
                 "cipherName": "rsa",
                 "components": "Encryptor",
                 "params": [encryptKey]
             },
-            workerThreadId
+            workerThreadPoolId
         );
 
-    const decryptorFactory = (decryptKey: RsaKey, workerThreadId?: string) =>
-        cipherFactory<CipherFactory.ActionPoly<"rsa", "Decryptor">>(
+    const decryptorFactory = (decryptKey: RsaKey, workerThreadPoolId?: string) =>
+        cipherFactoryPool<CipherFactory.ActionPoly<"rsa", "Decryptor">>(
             {
                 "cipherName": "rsa",
                 "components": "Decryptor",
                 "params": [decryptKey]
             },
-            workerThreadId
+            workerThreadPoolId
         );
 
-    function encryptorDecryptorFactory(encryptKey: RsaKey.Private, decryptKey: RsaKey.Public, workerThreadId?: string): EncryptorDecryptor;
-    function encryptorDecryptorFactory(encryptKey: RsaKey.Public, decryptKey: RsaKey.Private, workerThreadId?: string): EncryptorDecryptor;
-    function encryptorDecryptorFactory(encryptKey, decryptKey, workerThreadId?: string): EncryptorDecryptor {
-        return cipherFactory<CipherFactory.ActionPoly<"rsa", "EncryptorDecryptor">>(
+    function encryptorDecryptorFactory(encryptKey: RsaKey.Private, decryptKey: RsaKey.Public, workerThreadPoolId?: string): EncryptorDecryptor;
+    function encryptorDecryptorFactory(encryptKey: RsaKey.Public, decryptKey: RsaKey.Private, workerThreadPoolId?: string): EncryptorDecryptor;
+    function encryptorDecryptorFactory(encryptKey, decryptKey, workerThreadPoolId?: string): EncryptorDecryptor {
+        return cipherFactoryPool<CipherFactory.ActionPoly<"rsa", "EncryptorDecryptor">>(
             {
                 "cipherName": "rsa",
                 "components": "EncryptorDecryptor",
                 "params": [encryptKey, decryptKey]
             },
-            workerThreadId
+            workerThreadPoolId
         );
     }
 
@@ -280,7 +392,7 @@ export const rsa = (() => {
 
         workerThreadId = workerThreadId !== undefined ?
             workerThreadId :
-            defaultWorkerThreadId("rsa generate keys");
+            generateId("rsa generate keys");
 
         const actionId = getCounter();
 
@@ -345,7 +457,7 @@ export const scrypt = (() => {
 
         workerThreadId = workerThreadId !== undefined ?
             workerThreadId :
-            defaultWorkerThreadId(`scrypt${actionId}`);
+            generateId(`scrypt${actionId}`);
 
         const appWorker = getWorkerThread(
             workerThreadId

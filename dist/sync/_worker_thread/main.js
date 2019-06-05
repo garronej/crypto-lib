@@ -30,24 +30,26 @@ else {
         };
     var cipherInstances_1 = new Map();
     mainThreadApi_1.setActionListener(function (action) {
+        var _a, _b;
         switch (action.action) {
             case "GenerateRsaKeys":
                 mainThreadApi_1.sendResponse((function () {
+                    var _a;
                     var response = {
                         "actionId": action.actionId,
-                        "outputs": cryptoLib.rsa.syncGenerateKeys.apply(cryptoLib.rsa, action.params)
+                        "outputs": (_a = cryptoLib.rsa).syncGenerateKeys.apply(_a, action.params)
                     };
                     return response;
                 })());
                 break;
             case "CipherFactory":
-                cipherInstances_1.set(action.cipherInstanceRef, cryptoLib[action.cipherName][(function () {
+                cipherInstances_1.set(action.cipherInstanceRef, (_a = cryptoLib[action.cipherName])[(function () {
                     switch (action.components) {
                         case "Decryptor": return "syncDecryptorFactory";
                         case "Encryptor": return "syncEncryptorFactory";
                         case "EncryptorDecryptor": return "syncEncryptorDecryptorFactory";
                     }
-                })()].apply(null, action.params));
+                })()].apply(_a, action.params));
                 break;
             case "EncryptOrDecrypt":
                 {
@@ -63,7 +65,7 @@ else {
                 break;
             case "ScryptHash":
                 {
-                    var digest_1 = cryptoLib.scrypt.syncHash.apply(null, action.params.concat([
+                    var digest_1 = (_b = cryptoLib.scrypt).syncHash.apply(_b, action.params.concat([
                         function (percent) { return mainThreadApi_1.sendResponse((function () {
                             var response = {
                                 "actionId": action.actionId,

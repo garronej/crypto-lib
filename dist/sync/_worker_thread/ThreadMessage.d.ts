@@ -1,4 +1,4 @@
-import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey } from "../types";
+import { RsaKey } from "../types";
 export declare type ThreadMessage = ThreadMessage.Action | ThreadMessage.Response;
 export declare namespace ThreadMessage {
     type Action = ScryptHash.Action | GenerateRsaKeys.Action | CipherFactory.Action | EncryptOrDecrypt.Action;
@@ -18,7 +18,6 @@ export declare namespace GenerateRsaKeys {
 export declare namespace CipherFactory {
     type CipherName = "aes" | "rsa" | "plain";
     type Components = "Encryptor" | "Decryptor" | "EncryptorDecryptor";
-    type Type<U extends Components> = U extends "EncryptorDecryptor" ? EncryptorDecryptor : U extends "Encryptor" ? Encryptor : Decryptor;
     type ActionPoly<T extends CipherName, U extends Components> = {
         action: "CipherFactory";
         cipherName: T;

@@ -6,8 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * as on the Buffer prototype. ( even if the current implementation does)
  */
 function toBuffer(uint8Array) {
-    return (uint8Array instanceof Buffer || Object.getPrototypeOf(uint8Array).name === "Buffer") ?
-        uint8Array :
-        Buffer.from(uint8Array);
+    return Buffer.from(uint8Array.buffer, uint8Array.byteOffset, uint8Array.length);
 }
 exports.toBuffer = toBuffer;

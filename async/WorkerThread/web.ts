@@ -25,7 +25,7 @@ export function spawn(source: string): import("../WorkerThread").WorkerThread {
         evtResponse,
         "send": (action, transfer) => {
             worker.postMessage(
-                action, transfer
+                action, transfer || []
             );
         },
         "terminate": () => worker.terminate()

@@ -62,7 +62,7 @@ var module_dir_path = path.join(__dirname, "..", "..");
                             switch (_a.label) {
                                 case 0:
                                     entry_point_file_path = path.join(module_dir_path, "dist", "test", test_file_basename + ".js");
-                                    dst_file_path = path.join(path.dirname(entry_point_file_path), test_file_basename + "-bundled.js");
+                                    dst_file_path = path.join(module_dir_path, "docs", test_file_basename + "-bundled.js");
                                     return [4 /*yield*/, buildTools.browserify(entry_point_file_path, dst_file_path, watch)];
                                 case 1:
                                     _a.sent();

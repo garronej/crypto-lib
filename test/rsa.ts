@@ -14,7 +14,7 @@ declare const Buffer: any;
         let encrypt: lib.Encryptor["encrypt"] | undefined = undefined;
         let decrypt: lib.Decryptor["decrypt"] | undefined = undefined;
 
-        const text = ttTesting.genUtf8Str(60,undefined, "seed");
+        const text = ttTesting.genUtf8Str(60, undefined, "seed");
 
         for (let i = 1; i < 100; i++) {
 
@@ -28,7 +28,7 @@ declare const Buffer: any;
 
             if (encrypt === undefined) {
 
-                encrypt= lib.rsa.encryptorFactory(privateKey).encrypt;
+                encrypt = lib.rsa.encryptorFactory(privateKey).encrypt;
 
             }
 
@@ -59,30 +59,27 @@ declare const Buffer: any;
     {
 
         const encryptorDecryptor = lib.rsa.encryptorDecryptorFactory(privateKey, publicKey);
+        //const encryptorDecryptor = lib.rsa.encryptorDecryptorFactory(publicKey, privateKey);
 
-        for (const encoding of ["hex", "base64", "binary"] as const) {
 
-            const start= Date.now();
+        const start = Date.now();
 
-            lib.serializer.stringifyThenEncryptFactory.stringRepresentationEncoding = encoding;
+        const stringifyThenEncrypt = lib.serializer.stringifyThenEncryptFactory(encryptorDecryptor);
+        const decryptThenParse = lib.serializer.decryptThenParseFactory(encryptorDecryptor);
 
-            const stringifyThenEncrypt = lib.serializer.stringifyThenEncryptFactory(encryptorDecryptor);
-            const decryptThenParse = lib.serializer.decryptThenParseFactory(encryptorDecryptor);
+        for (let i = 1; i < 500; i++) {
 
-            for (let i = 1; i < 500; i++) {
+            const text = ttTesting.genUtf8Str(60, undefined, `${i}`);
 
-                const text = ttTesting.genUtf8Str(60, undefined, `${i}`);
+            if (text !== await decryptThenParse<string>(await stringifyThenEncrypt<string>(text))) {
 
-                if (text !== await decryptThenParse<string>(await stringifyThenEncrypt<string>(text))) {
-
-                    throw new Error(`failed with ${JSON.stringify(text)}`);
-
-                }
-
+                throw new Error(`failed with ${JSON.stringify(text)}`);
 
             }
 
-            console.log(`PASS ${encoding} in ${Date.now() - start}ms`);
+
+
+            console.log(`PASS ${Date.now() - start}ms`);
 
         }
 

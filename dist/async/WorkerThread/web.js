@@ -11,7 +11,7 @@ function spawn(source) {
     return {
         evtResponse: evtResponse,
         "send": function (action, transfer) {
-            worker.postMessage(action, transfer);
+            worker.postMessage(action, transfer || []);
         },
         "terminate": function () { return worker.terminate(); }
     };

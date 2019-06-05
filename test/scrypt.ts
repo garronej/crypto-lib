@@ -1,7 +1,27 @@
 import * as lib from "../async";
 declare const Buffer: any;
 
-console.log("Started");
+
+var log: any = (function () {
+
+    var acc = "";
+
+    var f: any = function (str) {
+        acc += str + "\n";
+        console.log(str);
+    }
+
+    f.alert = function () {
+
+        alert(acc);
+
+    }
+
+    return f;
+
+})();
+
+log("Started");
 
 const text = "<<secret>>";
 const salt = "...salty?";
@@ -10,7 +30,7 @@ const salt = "...salty?";
 
     const n = 4;
 
-    console.log({ n });
+    log(n);
 
     const digest = await lib.scrypt.hash(text, salt);
 
@@ -39,7 +59,7 @@ const salt = "...salty?";
 
     {
 
-        console.log("start multithreading");
+        log("start multithreading");
 
         const start = Date.now();
 
@@ -60,7 +80,7 @@ const salt = "...salty?";
 
         duration_multi = Date.now() - start;
 
-        console.log(`Duration with multithreading: ${duration_multi}`);
+        log(`Duration with multithreading: ${duration_multi}`);
 
     }
 
@@ -82,17 +102,25 @@ const salt = "...salty?";
 
         duration_single = Date.now() - start;
 
-        console.log(`Duration single thread: ${duration_single}`);
+        log(`Duration single thread: ${duration_single}`);
 
     }
 
-    console.log(`ratio single/multi: ${(duration_single / duration_multi).toFixed(2)}`);
+    log(`ratio single/multi: ${(duration_single / duration_multi).toFixed(2)}`);
 
     lib.terminateWorkerThreads();
 
-    console.log("DONE");
+    log("DONE");
+
+    if (typeof alert !== "undefined") {
+
+        log.alert();
+
+    }
 
 })();
+
+
 
 
 

@@ -653,7 +653,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var lib = require("../async");
-console.log("Started");
+var log = (function () {
+    var acc = "";
+    var f = function (str) {
+        acc += str + "\n";
+        console.log(str);
+    };
+    f.alert = function () {
+        alert(acc);
+    };
+    return f;
+})();
+log("Started");
 var text = "<<secret>>";
 var salt = "...salty?";
 (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -662,7 +673,7 @@ var salt = "...salty?";
         switch (_a.label) {
             case 0:
                 n = 4;
-                console.log({ n: n });
+                log(n);
                 return [4 /*yield*/, lib.scrypt.hash(text, salt)];
             case 1:
                 digest = _a.sent();
@@ -682,7 +693,7 @@ var salt = "...salty?";
                 return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 3000); })];
             case 2:
                 _a.sent();
-                console.log("start multithreading");
+                log("start multithreading");
                 start = Date.now();
                 return [4 /*yield*/, Promise.all((new Array(n))
                         .fill("")
@@ -694,7 +705,7 @@ var salt = "...salty?";
             case 3:
                 _a.sent();
                 duration_multi = Date.now() - start;
-                console.log("Duration with multithreading: " + duration_multi);
+                log("Duration with multithreading: " + duration_multi);
                 {
                     start = Date.now();
                     for (i = 0; i < n; i++) {
@@ -704,11 +715,14 @@ var salt = "...salty?";
                         }
                     }
                     duration_single = Date.now() - start;
-                    console.log("Duration single thread: " + duration_single);
+                    log("Duration single thread: " + duration_single);
                 }
-                console.log("ratio single/multi: " + (duration_single / duration_multi).toFixed(2));
+                log("ratio single/multi: " + (duration_single / duration_multi).toFixed(2));
                 lib.terminateWorkerThreads();
-                console.log("DONE");
+                log("DONE");
+                if (typeof alert !== "undefined") {
+                    log.alert();
+                }
                 return [2 /*return*/];
         }
     });

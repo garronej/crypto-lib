@@ -1,5 +1,5 @@
 
+# Test to run in the browser:  
 
-[aes](/aes-bundled.html)
-[perf](/perf-bundled.html)
-[scrypt](/scrypt-bundled.html)
+[perf: AES, RSA](/perf-bundled.html)  
+[scrypt: Key derivation](/scrypt-bundled.html)  

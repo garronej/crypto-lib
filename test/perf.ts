@@ -4,8 +4,6 @@ import * as sync from "../sync";
 
 declare const Buffer: any;
 
-const text = ttTesting.genUtf8Str(1000, undefined, "salt");
-
 type Params = {
     target: "SYNC" | "SYNC BUNDLED" | "ASYNC";
     cipherName: "plain" | "aes" | "rsa";
@@ -28,6 +26,9 @@ namespace Params {
 
 }
 
+const texts: string[] = [];
+
+
 async function perform(p: Params): Promise<number> {
 
     const workerThreadPoolId = p.threadCount !== undefined ? "myPool" : undefined;
@@ -37,9 +38,10 @@ async function perform(p: Params): Promise<number> {
 
         console.log("waiting after fork");
 
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, typeof Worker === "undefined" ? 2000 : 1000));
 
         console.log("continuing");
+
 
     }
 
@@ -47,9 +49,13 @@ async function perform(p: Params): Promise<number> {
 
     const { publicKey, privateKey } = await perform.prRsaKeys;
 
+    let iterations = texts.length;
+
     const encryptorDecryptor = (() => {
         switch (p.cipherName) {
             case "plain": {
+
+
                 switch (p.target) {
                     case "SYNC": return sync.plain.syncEncryptorDecryptorFactory();
                     case "SYNC BUNDLED": return async.plain.syncEncryptorDecryptorFactory();
@@ -64,6 +70,8 @@ async function perform(p: Params): Promise<number> {
                 }
             }
             case "rsa": {
+
+                iterations = 12;
 
                 const [encryptKey, decryptKey]: [any, any] = p.rsaEncryptWith === "private" ?
                     [privateKey, publicKey] :
@@ -86,7 +94,9 @@ async function perform(p: Params): Promise<number> {
 
     const start = Date.now();
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < iterations; i++) {
+
+        const text = texts[i];
 
         tasks[tasks.length] = (async () => {
 
@@ -135,6 +145,8 @@ function compare(results: Result[]) {
 
     const durationMin = Math.min(...results.map(({ duration }) => duration));
 
+    let str = "";
+
     for (const { params, duration } of results) {
 
         const d = (() => {
@@ -146,45 +158,66 @@ function compare(results: Result[]) {
 
         })();
 
-        console.log(`${Params.prettyPrint(params)}: Duration: ${duration} ${d}`);
+        str += `${Params.prettyPrint(params)}: Duration: ${duration} ${d}\n`;
 
+    }
+
+    console.log(str);
+
+    if (typeof alert !== "undefined") {
+        alert(str);
     }
 
 }
 
 (async () => {
 
+    if (typeof alert !== "undefined") {
+        alert("The main thread will now freeze, it's normal");
+    }
+
+    for (let i = 0; i < 150; i++) {
+
+        texts[i] = ttTesting.genUtf8Str(500, undefined, `${i}`);
+
+    }
+
     for (const cipherName of ["aes", "rsa", "plain"] as const) {
 
         console.log({ cipherName });
 
-        const results: Result[] = [];
+        for (const rsaEncryptWith of cipherName === "rsa" ? ["private", "public"] as const : [undefined]) {
 
-        for (const target of ["ASYNC", "SYNC BUNDLED", "SYNC"] as const) {
+            const results: Result[] = [];
 
-            console.log(target);
 
-            const params: Params = {
-                cipherName,
-                target
-            };
+            for (const target of ["ASYNC", "SYNC BUNDLED", "SYNC"] as const) {
 
-            if (target === "ASYNC") {
+                console.log(target);
 
-                for (const i of (new Array(10)).fill(0).map((_, i) => i + 1)) {
+                const params: Params = {
+                    cipherName,
+                    target,
+                    rsaEncryptWith
+                };
 
-                    console.log({ "thread count": i });
+                if (target === "ASYNC") {
 
-                    const params1: Params = { ...params, "threadCount": i };
+                    for (const i of (new Array(10)).fill(0).map((_, i) => i + 1)) {
 
-                    results.push({ "params": params1, "duration": await perform(params1) });
+                        console.log({ "thread count": i });
+
+                        const params1: Params = { ...params, "threadCount": i };
+
+                        results.push({ "params": params1, "duration": await perform(params1) });
+
+                    }
+
+                } else {
+
+                    results.push({ params, "duration": await perform(params) });
 
                 }
-
-
-            } else {
-
-                results.push({ params, "duration": await perform(params) });
 
             }
 

@@ -905,7 +905,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ttTesting = require("transfer-tools/dist/lib/testing");
 var async = require("../async");
 var sync = require("../sync");
-var text = ttTesting.genUtf8Str(1000, undefined, "salt");
 var Params;
 (function (Params) {
     function prettyPrint(p) {
@@ -918,9 +917,10 @@ var Params;
     }
     Params.prettyPrint = prettyPrint;
 })(Params || (Params = {}));
+var texts = [];
 function perform(p) {
     return __awaiter(this, void 0, void 0, function () {
-        var workerThreadPoolId, aesKey, _a, publicKey, privateKey, encryptorDecryptor, stringifyThenEncrypt, decryptThenParse, tasks, start, _loop_1, i, duration;
+        var workerThreadPoolId, aesKey, _a, publicKey, privateKey, iterations, encryptorDecryptor, stringifyThenEncrypt, decryptThenParse, tasks, start, _loop_1, i, duration;
         var _this = this;
         return __generator(this, function (_b) {
             switch (_b.label) {
@@ -929,7 +929,7 @@ function perform(p) {
                     if (!(workerThreadPoolId !== undefined)) return [3 /*break*/, 2];
                     async.workerThreadPool.preSpawn(workerThreadPoolId, p.threadCount);
                     console.log("waiting after fork");
-                    return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 2000); })];
+                    return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, typeof Worker === "undefined" ? 2000 : 1000); })];
                 case 1:
                     _b.sent();
                     console.log("continuing");
@@ -940,6 +940,7 @@ function perform(p) {
                     return [4 /*yield*/, perform.prRsaKeys];
                 case 4:
                     _a = _b.sent(), publicKey = _a.publicKey, privateKey = _a.privateKey;
+                    iterations = texts.length;
                     encryptorDecryptor = (function () {
                         switch (p.cipherName) {
                             case "plain": {
@@ -957,6 +958,7 @@ function perform(p) {
                                 }
                             }
                             case "rsa": {
+                                iterations = 12;
                                 var _a = p.rsaEncryptWith === "private" ?
                                     [privateKey, publicKey] :
                                     [publicKey, privateKey], encryptKey = _a[0], decryptKey = _a[1];
@@ -973,6 +975,7 @@ function perform(p) {
                     tasks = [];
                     start = Date.now();
                     _loop_1 = function (i) {
+                        var text = texts[i];
                         tasks[tasks.length] = (function () { return __awaiter(_this, void 0, void 0, function () {
                             var gotText, _a;
                             return __generator(this, function (_b) {
@@ -992,7 +995,7 @@ function perform(p) {
                             });
                         }); })();
                     };
-                    for (i = 0; i < 5; i++) {
+                    for (i = 0; i < iterations; i++) {
                         _loop_1(i);
                     }
                     return [4 /*yield*/, Promise.all(tasks)];
@@ -1016,77 +1019,97 @@ function compare(results) {
         var duration = _a.duration;
         return duration;
     }));
+    var str = "";
     var _loop_2 = function (params, duration) {
         var d = (function () {
             var v = ((duration / durationMin - 1) * 100).toFixed(2);
             return v === "0.00" ? "ref" : "+" + v + "%";
         })();
-        console.log(Params.prettyPrint(params) + ": Duration: " + duration + " " + d);
+        str += Params.prettyPrint(params) + ": Duration: " + duration + " " + d + "\n";
     };
     for (var _i = 0, results_1 = results; _i < results_1.length; _i++) {
         var _a = results_1[_i], params = _a.params, duration = _a.duration;
         _loop_2(params, duration);
     }
+    console.log(str);
+    if (typeof alert !== "undefined") {
+        alert(str);
+    }
 }
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var _i, _a, cipherName, results, _b, _c, target, params, _d, _e, i, params1, _f, _g, _h, _j, _k, _l, _m, _o;
-    return __generator(this, function (_p) {
-        switch (_p.label) {
+    var i, _i, _a, cipherName, _b, _c, rsaEncryptWith, results, _d, _e, target, params, _f, _g, i, params1, _h, _j, _k, _l, _m, _o, _p, _q;
+    return __generator(this, function (_r) {
+        switch (_r.label) {
             case 0:
+                if (typeof alert !== "undefined") {
+                    alert("The main thread will now freeze, it's normal");
+                }
+                for (i = 0; i < 150; i++) {
+                    texts[i] = ttTesting.genUtf8Str(500, undefined, "" + i);
+                }
                 _i = 0, _a = ["aes", "rsa", "plain"];
-                _p.label = 1;
+                _r.label = 1;
             case 1:
-                if (!(_i < _a.length)) return [3 /*break*/, 12];
+                if (!(_i < _a.length)) return [3 /*break*/, 14];
                 cipherName = _a[_i];
                 console.log({ cipherName: cipherName });
-                results = [];
-                _b = 0, _c = ["ASYNC", "SYNC BUNDLED", "SYNC"];
-                _p.label = 2;
+                _b = 0, _c = cipherName === "rsa" ? ["private", "public"] : [undefined];
+                _r.label = 2;
             case 2:
-                if (!(_b < _c.length)) return [3 /*break*/, 11];
-                target = _c[_b];
+                if (!(_b < _c.length)) return [3 /*break*/, 13];
+                rsaEncryptWith = _c[_b];
+                results = [];
+                _d = 0, _e = ["ASYNC", "SYNC BUNDLED", "SYNC"];
+                _r.label = 3;
+            case 3:
+                if (!(_d < _e.length)) return [3 /*break*/, 11];
+                target = _e[_d];
                 console.log(target);
                 params = {
                     cipherName: cipherName,
-                    target: target
+                    target: target,
+                    rsaEncryptWith: rsaEncryptWith
                 };
-                if (!(target === "ASYNC")) return [3 /*break*/, 7];
-                _d = 0, _e = (new Array(10)).fill(0).map(function (_, i) { return i + 1; });
-                _p.label = 3;
-            case 3:
-                if (!(_d < _e.length)) return [3 /*break*/, 6];
-                i = _e[_d];
+                if (!(target === "ASYNC")) return [3 /*break*/, 8];
+                _f = 0, _g = (new Array(10)).fill(0).map(function (_, i) { return i + 1; });
+                _r.label = 4;
+            case 4:
+                if (!(_f < _g.length)) return [3 /*break*/, 7];
+                i = _g[_f];
                 console.log({ "thread count": i });
                 params1 = __assign({}, params, { "threadCount": i });
-                _g = (_f = results).push;
-                _h = { "params": params1 };
-                _j = "duration";
+                _j = (_h = results).push;
+                _k = { "params": params1 };
+                _l = "duration";
                 return [4 /*yield*/, perform(params1)];
-            case 4:
-                _g.apply(_f, [(_h[_j] = _p.sent(), _h)]);
-                _p.label = 5;
             case 5:
+                _j.apply(_h, [(_k[_l] = _r.sent(), _k)]);
+                _r.label = 6;
+            case 6:
+                _f++;
+                return [3 /*break*/, 4];
+            case 7: return [3 /*break*/, 10];
+            case 8:
+                _o = (_m = results).push;
+                _p = { params: params };
+                _q = "duration";
+                return [4 /*yield*/, perform(params)];
+            case 9:
+                _o.apply(_m, [(_p[_q] = _r.sent(), _p)]);
+                _r.label = 10;
+            case 10:
                 _d++;
                 return [3 /*break*/, 3];
-            case 6: return [3 /*break*/, 9];
-            case 7:
-                _l = (_k = results).push;
-                _m = { params: params };
-                _o = "duration";
-                return [4 /*yield*/, perform(params)];
-            case 8:
-                _l.apply(_k, [(_m[_o] = _p.sent(), _m)]);
-                _p.label = 9;
-            case 9:
+            case 11:
                 compare(results);
-                _p.label = 10;
-            case 10:
+                _r.label = 12;
+            case 12:
                 _b++;
                 return [3 /*break*/, 2];
-            case 11:
+            case 13:
                 _i++;
                 return [3 /*break*/, 1];
-            case 12: return [2 /*return*/];
+            case 14: return [2 /*return*/];
         }
     });
 }); })();

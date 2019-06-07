@@ -44,7 +44,7 @@ export declare namespace ScryptHash {
     type Action = {
         action: "ScryptHash";
         actionId: number;
-        params: [string, string, Partial<import("../scrypt").ScryptParams>];
+        params: [string, string, Partial<import("../types").ScryptParams>];
     };
     type Response = Response.Progress | Response.Final;
     namespace Response {

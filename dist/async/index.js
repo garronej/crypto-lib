@@ -60,10 +60,8 @@ var bundle_source = (function () {
 })();
 var __cryptoLib;
 eval(bundle_source);
-var _a = __cryptoLib, toBuffer = _a.toBuffer, serializer = _a.serializer, sync_scrypt = _a.scrypt, sync_aes = _a.aes, sync_rsa = _a.rsa, sync_plain = _a.plain;
-exports.toBuffer = toBuffer;
-exports.serializer = serializer;
 __export(require("../sync/types"));
+exports.serializer = __assign({}, __cryptoLib.serializer);
 var isMultithreadingEnabled = environnement_1.isBrowser() ? (typeof Worker !== "undefined" &&
     typeof URL !== "undefined" &&
     typeof Blob !== "undefined") : true;
@@ -71,7 +69,7 @@ function disableMultithreading() {
     isMultithreadingEnabled = false;
 }
 exports.disableMultithreading = disableMultithreading;
-var _b = (function () {
+var _a = (function () {
     var spawn = WorkerThread_1.WorkerThread.factory(bundle_source, function () { return isMultithreadingEnabled; });
     var record = {};
     return [
@@ -99,7 +97,7 @@ var _b = (function () {
         },
         function () { return Object.keys(record); }
     ];
-})(), getWorkerThread = _b[0], terminateWorkerThreads = _b[1], listWorkerThreadIds = _b[2];
+})(), getWorkerThread = _a[0], terminateWorkerThreads = _a[1], listWorkerThreadIds = _a[2];
 exports.terminateWorkerThreads = terminateWorkerThreads;
 exports.listWorkerThreadIds = listWorkerThreadIds;
 function preSpawnWorkerThread(workerThreadId) {
@@ -230,7 +228,7 @@ exports.plain = (function () {
             "params": []
         }, workerThreadPoolId);
     };
-    return __assign({ encryptorDecryptorFactory: encryptorDecryptorFactory }, sync_plain);
+    return __assign({ encryptorDecryptorFactory: encryptorDecryptorFactory }, __cryptoLib.plain);
 })();
 exports.aes = (function () {
     var encryptorDecryptorFactory = function (key, workerThreadPoolId) {
@@ -240,7 +238,7 @@ exports.aes = (function () {
             "params": [key]
         }, workerThreadPoolId);
     };
-    return __assign({ encryptorDecryptorFactory: encryptorDecryptorFactory }, sync_aes);
+    return __assign({ encryptorDecryptorFactory: encryptorDecryptorFactory }, __cryptoLib.aes);
 })();
 exports.rsa = (function () {
     var encryptorFactory = function (encryptKey, workerThreadPoolId) {
@@ -298,7 +296,7 @@ exports.rsa = (function () {
     return __assign({ encryptorFactory: encryptorFactory,
         decryptorFactory: decryptorFactory,
         encryptorDecryptorFactory: encryptorDecryptorFactory,
-        generateKeys: generateKeys }, sync_rsa);
+        generateKeys: generateKeys }, __cryptoLib.rsa);
 })();
 exports.scrypt = (function () {
     var hash = function (text, salt, params, progress, workerThreadId) {
@@ -342,5 +340,5 @@ exports.scrypt = (function () {
             });
         });
     };
-    return __assign({ hash: hash }, sync_scrypt);
+    return __assign({ hash: hash }, __cryptoLib.scrypt);
 })();

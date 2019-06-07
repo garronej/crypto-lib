@@ -1,4 +1,3 @@
-import { toBuffer } from "./toBuffer";
 
 declare const Buffer: any;
 
@@ -19,6 +18,15 @@ export type EncryptorDecryptor = Encryptor & Decryptor;
 type SyncFn<T> = T extends (...args: infer A) => Promise<infer R> ? (...args: A) => R : never;
 export type Sync<T extends Cipher> = { [P in keyof T]: SyncFn<T[P]>; };
 
+
+/** 
+ * NOTE: Does not guaranty that the returned object is an acutal
+ * buffer instance, just that the to string method can be called
+ * as on the Buffer prototype. ( even if the current implementation does)
+ */
+export function toBuffer(uint8Array: Uint8Array): { toString(encoding: Encoding): string; } {
+    return Buffer.from(uint8Array.buffer, uint8Array.byteOffset, uint8Array.length);
+}
 
 export type Encoding = "hex" | "base64" | "binary" | "utf8";
 
@@ -91,4 +99,15 @@ export namespace RsaKey {
     }
 
 }
+
+export type ScryptParams = {
+    /** 2^|n| of iterations. */
+    n: number;
+    /** Memory factor. */
+    r: number;
+    /** Parallelization factor. */
+    p: number;
+    digestLengthBytes: number;
+};
+
 

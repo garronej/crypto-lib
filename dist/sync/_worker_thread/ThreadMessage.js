@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var environnement = require("../environnement");
-var toBuffer_1 = require("../toBuffer");
+var types_1 = require("../types");
 var transfer;
 (function (transfer) {
     var SerializableUint8Array;
@@ -15,7 +15,7 @@ var transfer;
         function build(value) {
             return {
                 "type": "Uint8Array",
-                "data": toBuffer_1.toBuffer(value).toString("binary")
+                "data": types_1.toBuffer(value).toString("binary")
             };
         }
         SerializableUint8Array.build = build;

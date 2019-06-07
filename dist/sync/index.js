@@ -4,7 +4,6 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./types"));
-__export(require("./toBuffer"));
 var serializer = require("./serializer");
 exports.serializer = serializer;
 var scrypt = require("./scrypt");

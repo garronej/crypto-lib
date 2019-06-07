@@ -1,7 +1,6 @@
 
 import * as environnement from "../environnement";
-import { toBuffer } from "../toBuffer";
-import { RsaKey } from "../types";
+import { toBuffer, RsaKey } from "../types";
 declare const Buffer: any;
 
 export type ThreadMessage = ThreadMessage.Action | ThreadMessage.Response;
@@ -89,7 +88,7 @@ export namespace ScryptHash {
     export type Action = {
         action: "ScryptHash";
         actionId: number;
-        params: [string, string, Partial<import("../scrypt").ScryptParams>]
+        params: [string, string, Partial<import("../types").ScryptParams>]
     };
 
     export type Response = Response.Progress | Response.Final;

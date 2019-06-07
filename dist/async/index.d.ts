@@ -1,7 +1,9 @@
-import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey } from "../sync/types";
-declare const toBuffer: typeof import("../dist/sync").toBuffer, serializer: typeof import("../dist/sync/serializer");
-export { toBuffer, serializer };
+import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey, ScryptParams } from "../sync/types";
 export * from "../sync/types";
+export declare const serializer: {
+    stringifyThenEncryptFactory<T extends Encryptor | import("../dist/sync").Sync<Encryptor>>(encryptor: T): <V>(value: V) => T extends Encryptor ? Promise<string> : string;
+    decryptThenParseFactory<T extends Decryptor | import("../dist/sync").Sync<Decryptor>>(decryptor: T): <V>(encryptedValue: string) => T extends Decryptor ? Promise<V> : V;
+};
 export declare function disableMultithreading(): void;
 declare const terminateWorkerThreads: (workerThreadId?: string | undefined) => void, listWorkerThreadIds: () => string[];
 export { terminateWorkerThreads, listWorkerThreadIds };
@@ -42,7 +44,7 @@ export declare const rsa: {
     }>;
 };
 export declare const scrypt: {
-    syncHash(text: string, salt: string, params?: Partial<import("../dist/sync/scrypt").ScryptParams> | undefined, progress?: ((percent: number) => void) | undefined): Uint8Array;
-    defaultParams: import("../dist/sync/scrypt").ScryptParams;
-    hash: (text: string, salt: string, params?: Partial<import("../dist/sync/scrypt").ScryptParams>, progress?: (percent: number) => void, workerThreadId?: string | undefined) => Promise<Uint8Array>;
+    syncHash(text: string, salt: string, params?: Partial<ScryptParams> | undefined, progress?: ((percent: number) => void) | undefined): Uint8Array;
+    defaultParams: ScryptParams;
+    hash: (text: string, salt: string, params?: Partial<ScryptParams>, progress?: (percent: number) => void, workerThreadId?: string | undefined) => Promise<Uint8Array>;
 };

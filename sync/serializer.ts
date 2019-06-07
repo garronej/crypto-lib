@@ -1,5 +1,4 @@
-import { Encryptor, Decryptor, Sync, Encoding } from "./types";
-import { toBuffer } from "./toBuffer";
+import { Encryptor, Decryptor, Sync, Encoding, toBuffer } from "./types";
 import * as ttJC from "transfer-tools/dist/lib/JSON_CUSTOM";
 
 declare const Buffer: any;

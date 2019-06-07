@@ -3,7 +3,7 @@ declare const __dirname: any;
 
 import * as runExclusive from "run-exclusive";
 
-import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey } from "../sync/types";
+import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey, ScryptParams } from "../sync/types";
 
 //TODO: See if it need to be exported for types...
 import {
@@ -27,17 +27,11 @@ let __cryptoLib: typeof import("../sync");
 
 eval(bundle_source);
 
-const {
-    toBuffer,
-    serializer,
-    scrypt: sync_scrypt,
-    aes: sync_aes,
-    rsa: sync_rsa,
-    plain: sync_plain
-} = __cryptoLib!;
-
-export { toBuffer, serializer };
 export * from "../sync/types";
+
+export const serializer= {
+    ...__cryptoLib!.serializer
+};
 
 let isMultithreadingEnabled = isBrowser() ? (
     typeof Worker !== "undefined" &&
@@ -318,7 +312,7 @@ export const plain = (() => {
 
     return {
         encryptorDecryptorFactory,
-        ...sync_plain
+        ...__cryptoLib!.plain
     };
 
 })();
@@ -337,7 +331,7 @@ export const aes = (() => {
 
     return {
         encryptorDecryptorFactory,
-        ...sync_aes
+        ...__cryptoLib!.aes
     };
 
 
@@ -432,7 +426,7 @@ export const rsa = (() => {
         decryptorFactory,
         encryptorDecryptorFactory,
         generateKeys,
-        ...sync_rsa
+        ...__cryptoLib!.rsa
     };
 
 })();
@@ -442,7 +436,7 @@ export const scrypt = (() => {
     const hash = async (
         text: string,
         salt: string,
-        params: Partial<import("../sync/scrypt").ScryptParams> = {},
+        params: Partial<ScryptParams>= {},
         progress: (percent: number) => void = (() => { }),
         workerThreadId?: string
     ) => {
@@ -503,11 +497,11 @@ export const scrypt = (() => {
 
         return digest;
 
-    }
+    };
 
     return {
         hash,
-        ...sync_scrypt
+        ...__cryptoLib!.scrypt
     };
 
 })();

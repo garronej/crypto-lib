@@ -1,15 +1,6 @@
 
 import * as scryptsy from "scryptsy";
-
-export type ScryptParams = {
-    /** 2^|n| of iterations. */
-    n: number;
-    /** Memory factor. */
-    r: number;
-    /** Parallelization factor. */
-    p: number;
-    digestLengthBytes: number;
-};
+import { ScryptParams } from "./types";
 
 export const defaultParams: ScryptParams = {
     "n": 13,

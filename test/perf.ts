@@ -87,8 +87,8 @@ async function perform(p: Params): Promise<number> {
         }
     })()!;
 
-    const stringifyThenEncrypt = async.serializer.stringifyThenEncryptFactory(encryptorDecryptor);
-    const decryptThenParse = async.serializer.decryptThenParseFactory(encryptorDecryptor);
+    const stringifyThenEncrypt = async.stringifyThenEncryptFactory(encryptorDecryptor);
+    const decryptThenParse = async.decryptThenParseFactory(encryptorDecryptor);
 
     const tasks: Promise<void>[] = [];
 
@@ -132,7 +132,7 @@ async function perform(p: Params): Promise<number> {
 
 namespace perform {
 
-    export const prAesKey = sync.aes.getTestKey();
+    export const prAesKey = async.aes.getTestKey();
 
     export const prRsaKeys = async.rsa.generateKeys(Buffer.from("seed", "utf8"));
 

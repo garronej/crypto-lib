@@ -14,6 +14,8 @@ Light: 542KB minified, 17KB gziped.
 
 Strongly typed.  
 
+FIXME: Some types for the sync function are not exported.
+
 [Tests and benchmarks for the browser](https://garronej.github.io/crypto-lib/)
 
 ```bash

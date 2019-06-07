@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var types_1 = require("./types");
+var types_1 = require("../sync/types");
 var ttJC = require("transfer-tools/dist/lib/JSON_CUSTOM");
 function matchPromise(prOrValue) {
     return "then" in prOrValue;

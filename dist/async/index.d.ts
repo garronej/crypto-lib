@@ -1,9 +1,6 @@
 import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey, ScryptParams } from "../sync/types";
 export * from "../sync/types";
-export declare const serializer: {
-    stringifyThenEncryptFactory<T extends Encryptor | import("../dist/sync").Sync<Encryptor>>(encryptor: T): <V>(value: V) => T extends Encryptor ? Promise<string> : string;
-    decryptThenParseFactory<T extends Decryptor | import("../dist/sync").Sync<Decryptor>>(decryptor: T): <V>(encryptedValue: string) => T extends Decryptor ? Promise<V> : V;
-};
+export * from "./serializer";
 export declare function disableMultithreading(): void;
 declare const terminateWorkerThreads: (workerThreadId?: string | undefined) => void, listWorkerThreadIds: () => string[];
 export { terminateWorkerThreads, listWorkerThreadIds };

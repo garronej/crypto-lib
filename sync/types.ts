@@ -15,9 +15,8 @@ export type Decryptor = {
 
 export type EncryptorDecryptor = Encryptor & Decryptor;
 
-type SyncFn<T> = T extends (...args: infer A) => Promise<infer R> ? (...args: A) => R : never;
+export type SyncFn<T> = T extends (...args: infer A) => Promise<infer R> ? (...args: A) => R : never;
 export type Sync<T extends Cipher> = { [P in keyof T]: SyncFn<T[P]>; };
-
 
 /** 
  * NOTE: Does not guaranty that the returned object is an acutal

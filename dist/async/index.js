@@ -61,7 +61,7 @@ var bundle_source = (function () {
 var __cryptoLib;
 eval(bundle_source);
 __export(require("../sync/types"));
-exports.serializer = __assign({}, __cryptoLib.serializer);
+__export(require("./serializer"));
 var isMultithreadingEnabled = environnement_1.isBrowser() ? (typeof Worker !== "undefined" &&
     typeof URL !== "undefined" &&
     typeof Blob !== "undefined") : true;

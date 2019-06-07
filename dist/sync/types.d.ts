@@ -8,7 +8,7 @@ export declare type Decryptor = {
     decrypt(encryptedData: Uint8Array): Promise<Uint8Array>;
 };
 export declare type EncryptorDecryptor = Encryptor & Decryptor;
-declare type SyncFn<T> = T extends (...args: infer A) => Promise<infer R> ? (...args: A) => R : never;
+export declare type SyncFn<T> = T extends (...args: infer A) => Promise<infer R> ? (...args: A) => R : never;
 export declare type Sync<T extends Cipher> = {
     [P in keyof T]: SyncFn<T[P]>;
 };
@@ -59,4 +59,3 @@ export declare type ScryptParams = {
     p: number;
     digestLengthBytes: number;
 };
-export {};

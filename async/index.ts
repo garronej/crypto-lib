@@ -29,9 +29,7 @@ eval(bundle_source);
 
 export * from "../sync/types";
 
-export const serializer= {
-    ...__cryptoLib!.serializer
-};
+export * from "./serializer";
 
 let isMultithreadingEnabled = isBrowser() ? (
     typeof Worker !== "undefined" &&

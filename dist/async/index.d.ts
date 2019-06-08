@@ -1,4 +1,5 @@
 import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey, ScryptParams } from "../sync/types";
+import { Sync } from "../sync/types";
 export * from "../sync/types";
 export * from "./serializer";
 export declare function disableMultithreading(): void;
@@ -11,20 +12,20 @@ export declare namespace workerThreadPool {
     function terminate(workerThreadPoolId: string): void;
 }
 export declare const plain: {
-    syncEncryptorDecryptorFactory(): import("../dist/sync").Sync<EncryptorDecryptor>;
+    syncEncryptorDecryptorFactory(): Sync<EncryptorDecryptor>;
     encryptorDecryptorFactory: (workerThreadPoolId?: string | undefined) => EncryptorDecryptor;
 };
 export declare const aes: {
-    syncEncryptorDecryptorFactory(key: Uint8Array): import("../dist/sync").Sync<EncryptorDecryptor>;
+    syncEncryptorDecryptorFactory(key: Uint8Array): Sync<EncryptorDecryptor>;
     generateKey(): Promise<Uint8Array>;
     getTestKey(): Promise<Uint8Array>;
     encryptorDecryptorFactory: (key: Uint8Array, workerThreadPoolId?: string | undefined) => EncryptorDecryptor;
 };
 export declare const rsa: {
-    syncEncryptorFactory(encryptKey: RsaKey): import("../dist/sync").Sync<Encryptor>;
-    syncDecryptorFactory(decryptKey: RsaKey): import("../dist/sync").Sync<Decryptor>;
-    syncEncryptorDecryptorFactory(encryptKey: RsaKey.Private, decryptKey: RsaKey.Public): import("../dist/sync").Sync<EncryptorDecryptor>;
-    syncEncryptorDecryptorFactory(encryptKey: RsaKey.Public, decryptKey: RsaKey.Private): import("../dist/sync").Sync<EncryptorDecryptor>;
+    syncEncryptorFactory(encryptKey: RsaKey): Sync<Encryptor>;
+    syncDecryptorFactory(decryptKey: RsaKey): Sync<Decryptor>;
+    syncEncryptorDecryptorFactory(encryptKey: RsaKey.Private, decryptKey: RsaKey.Public): Sync<EncryptorDecryptor>;
+    syncEncryptorDecryptorFactory(encryptKey: RsaKey.Public, decryptKey: RsaKey.Private): Sync<EncryptorDecryptor>;
     syncGenerateKeys(seed: Uint8Array, keysLengthBytes?: number | undefined): {
         publicKey: RsaKey.Public;
         privateKey: RsaKey.Private;

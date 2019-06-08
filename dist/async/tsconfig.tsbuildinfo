@@ -70,8 +70,8 @@
         "signature": "bc2aa2a3e1a5a6bb6366f9a9427632197796d75658ce9ef545ec829738850e45"
       },
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/types.ts": {
-        "version": "1ea5e25b53943c08162bfa8905094db5c8483f74acd0fc605abdf969ec82436b",
-        "signature": "1ea5e25b53943c08162bfa8905094db5c8483f74acd0fc605abdf969ec82436b"
+        "version": "8064913b56a788560dff224fb6e8f7fc72cb4feda3beab65bd37677e4b59a6b1",
+        "signature": "8064913b56a788560dff224fb6e8f7fc72cb4feda3beab65bd37677e4b59a6b1"
       },
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/cipher/rsa.ts": {
         "version": "04080a298bb530c026a5d32274d6cf304e89c8bed3bf57f98533632a3e21f816",
@@ -134,8 +134,8 @@
         "signature": "6242dfaf7bbce3de59c2029cc1585c4d3f20fb7a9ec8893b3924884e2ef8155b"
       },
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/async/index.ts": {
-        "version": "00e879564b32b9ef202a85b9978d2a0823b5bec573809119c7c89009cd96ccc3",
-        "signature": "58d92ca1fa37d72b6e20983f23d6f9150e6aec2a5466c8358a335b3bbe960049"
+        "version": "266191e30b8e0ad08f933ef2bd5dcbb4ff7ab11d01e1944b76616c5e731b4e74",
+        "signature": "495f34b0af0667db76552b5d82d07579cc139deed7650656b4fe2782643f84f3"
       }
     },
     "options": {
@@ -303,8 +303,7 @@
       ],
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/async/index.ts": [
         "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/dist/sync/types.d.ts",
-        "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/async/serializer.ts",
-        "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/dist/sync/index.d.ts"
+        "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/async/serializer.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [

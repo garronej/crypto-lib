@@ -5,6 +5,9 @@ import * as runExclusive from "run-exclusive";
 
 import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey, ScryptParams } from "../sync/types";
 
+//@ts-ignore: Need to be imported so it can be named.
+import { Sync } from "../sync/types";
+
 //TODO: See if it need to be exported for types...
 import {
     GenerateRsaKeys, CipherFactory, EncryptOrDecrypt, ScryptHash

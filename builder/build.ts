@@ -19,11 +19,15 @@ const module_dir_path = path.join(__dirname, "..", "..");
         watch
     );
 
+    await buildTools.brfs(
+        path.join(module_dir_path, "dist", "async", "index.js"),
+        watch
+    );
+
     await buildTools.tsc(
         path.join(module_dir_path, "test", "tsconfig.json"),
         watch
     );
-
 
     for (const test_file_basename of ["perf", "scrypt"]) {
 

@@ -52,8 +52,11 @@ var module_dir_path = path.join(__dirname, "..", "..");
                 return [4 /*yield*/, buildTools.tsc(path.join(module_dir_path, "async", "tsconfig.json"), watch)];
             case 2:
                 _b.sent();
-                return [4 /*yield*/, buildTools.tsc(path.join(module_dir_path, "test", "tsconfig.json"), watch)];
+                return [4 /*yield*/, buildTools.brfs(path.join(module_dir_path, "dist", "async", "index.js"), watch)];
             case 3:
+                _b.sent();
+                return [4 /*yield*/, buildTools.tsc(path.join(module_dir_path, "test", "tsconfig.json"), watch)];
+            case 4:
                 _b.sent();
                 _loop_1 = function (test_file_basename) {
                     (function () { return __awaiter(_this, void 0, void 0, function () {

@@ -15,13 +15,16 @@ import {
 import { WorkerThread } from "./WorkerThread";
 import { isBrowser } from "../sync/environnement";
 
-//NOTE: brfs, must not be wrapped.
-const fs = require("fs");
-const path = require("path");
+const bundle_source = (() => {
 
-const bundle_source = fs.readFileSync(
-    path.join(__dirname, "..", "sync", "_worker_thread", "bundle.min.js")
-).toString("utf8");
+    const fs = require("fs");
+    const path = require("path");
+
+    return fs.readFileSync(
+        path.join(__dirname, "..", "sync", "_worker_thread", "bundle.min.js")
+    ).toString("utf8");
+
+})();
 
 let __cryptoLib: typeof import("../sync");
 
@@ -434,7 +437,7 @@ export const scrypt = (() => {
     const hash = async (
         text: string,
         salt: string,
-        params: Partial<ScryptParams> = {},
+        params: Partial<ScryptParams>= {},
         progress: (percent: number) => void = (() => { }),
         workerThreadId?: string
     ) => {

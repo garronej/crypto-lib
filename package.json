@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@types/node": "^8.9.1",
+    "brfs": "^2.0.2",
     "frontend-build-tools": "github:garronej/frontend-build-tools",
     "typescript": "^3.4.5"
   }

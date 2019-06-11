@@ -53,11 +53,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var runExclusive = require("run-exclusive");
 var WorkerThread_1 = require("./WorkerThread");
 var environnement_1 = require("../sync/environnement");
-var bundle_source = (function () {
-    var fs = require("fs");
-    var path = require("path");
-    return fs.readFileSync(path.join(__dirname, "..", "sync", "_worker_thread", "bundle.min.js")).toString("utf8");
-})();
+//NOTE: brfs, must not be wrapped.
+var fs = require("fs");
+var path = require("path");
+var bundle_source = fs.readFileSync(path.join(__dirname, "..", "sync", "_worker_thread", "bundle.min.js")).toString("utf8");
 var __cryptoLib;
 eval(bundle_source);
 __export(require("../sync/types"));

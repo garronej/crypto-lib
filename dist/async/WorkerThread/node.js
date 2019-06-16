@@ -16,7 +16,7 @@ function spawn(source) {
                 }
                 return out;
             })();
-            return function () { return path.join(base_path, ".you_can_remove_me_" + crypto
+            return function () { return path.join(base_path, ".tmp_crypto-lib_you_can_remove_me_" + crypto
                 .randomBytes(4)
                 .toString("hex") + ".js"); };
         })();
@@ -28,6 +28,7 @@ function spawn(source) {
     })();
     fs.writeFileSync(random_file_path, Buffer.from([
         "console.log(\"__LOADED__\");",
+        "process.title = \"crypto worker\";",
         "var __process_node= process;",
         source
     ].join("\n"), "utf8"));

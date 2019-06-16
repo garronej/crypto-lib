@@ -24,3 +24,25 @@ OR
 ```bash
 npm run build -- -w
 ```
+
+TODO: Try to use native crypto API instead of scrypt ( too slow ).
+```typescript
+
+const result = crypto.subtle.deriveBits(
+    {
+        "name": "PBKDF2",
+        "hash": "SHA-256",
+        "salt": new Uint8Array(16),
+        "iterations": 100000
+    },
+    await crypto.subtle.importKey(
+        "raw",
+        (new Uint8Array(Buffer.from("password", "utf8"))).buffer,
+        { "name": "PBKDF2" } as any,
+        false,
+        ["deriveBits"]
+    ),
+    265
+);
+
+```

@@ -94,7 +94,7 @@
         "signature": "1650708f52373c53cf443f0398fedcbd98abb0f33e8185455a2cf75031bebc6e"
       },
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/async/workerthread/node.ts": {
-        "version": "d7636abd2c2a7452021ae429fb86b7d09f2c3d4cf6233c64c516248f69f84189",
+        "version": "fd13f9fc0a3ae9a295bbc2028fe50f736c3a27160b94231c97ecb22a13186c06",
         "signature": "1650708f52373c53cf443f0398fedcbd98abb0f33e8185455a2cf75031bebc6e"
       },
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/_worker_thread/main.ts": {
@@ -324,6 +324,10 @@
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/node_modules/ts-events-extended/dist/lib/synceventbase.d.ts",
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/node_modules/ts-events-extended/dist/lib/syncevent.d.ts",
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/node_modules/ts-events-extended/dist/lib/index.d.ts",
+      "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/types.ts",
+      "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/cipher/rsa.ts",
+      "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/cipher/aes.ts",
+      "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/_worker_thread/threadmessage.ts",
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/environnement.ts",
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/async/workerthread/web.ts",
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/async/workerthread/node.ts",
@@ -332,10 +336,6 @@
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/async/workerthread.ts",
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/node_modules/run-exclusive/dist/lib/runexclusive.d.ts",
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/node_modules/transfer-tools/dist/lib/json_custom.d.ts",
-      "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/types.ts",
-      "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/cipher/rsa.ts",
-      "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/cipher/aes.ts",
-      "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/_worker_thread/threadmessage.ts",
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/async/serializer.ts",
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/scrypt.ts",
       "c:/users/joseph/dropbox/shell/pcloud_github/crypto-lib/sync/cipher/plain.ts",

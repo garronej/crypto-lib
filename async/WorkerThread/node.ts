@@ -33,7 +33,7 @@ export function spawn(source: string): import("../WorkerThread").WorkerThread {
 
             return () => path.join(
                 base_path,
-                ".you_can_remove_me_" + crypto
+                ".tmp_crypto-lib_you_can_remove_me_" + crypto
                     .randomBytes(4)
                     .toString("hex") + ".js"
             );
@@ -55,6 +55,7 @@ export function spawn(source: string): import("../WorkerThread").WorkerThread {
         Buffer.from(
             [
                 `console.log("__LOADED__");`,
+                `process.title = "crypto worker";`,
                 `var __process_node= process;`,
                 source
             ].join("\n"),

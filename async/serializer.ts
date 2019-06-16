@@ -7,7 +7,7 @@ function matchPromise<T>(prOrValue: T | Promise<T>): prOrValue is Promise<T> {
     return "then" in prOrValue;
 }
 
-let stringRepresentationEncoding = "binary" as Encoding;
+let stringRepresentationEncoding = "base64" as Encoding;
 
 export function stringifyThenEncryptFactory<T extends Encryptor | Sync<Encryptor>>(encryptor: T) {
 

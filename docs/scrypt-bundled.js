@@ -465,7 +465,7 @@ var ttJC = require("transfer-tools/dist/lib/JSON_CUSTOM");
 function matchPromise(prOrValue) {
     return "then" in prOrValue;
 }
-var stringRepresentationEncoding = "binary";
+var stringRepresentationEncoding = "base64";
 function stringifyThenEncryptFactory(encryptor) {
     var stringify = ttJC.get().stringify;
     return function stringifyThenEncrypt(value) {

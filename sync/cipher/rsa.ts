@@ -89,23 +89,18 @@ export function syncGenerateKeys(seed: Uint8Array, keysLengthBytes: number= 80):
         getEnvironment()
     );
 
-    const getData = (format: RsaKey["format"]) => nodeRSA.exportKey(format) as Uint8Array;
+    function buildKey(format: RsaKey.Public["format"]): RsaKey.Public;
+    function buildKey(format: RsaKey.Private["format"]): RsaKey.Private;
+    function buildKey(format): RsaKey {
+        return {
+            format,
+            "data": nodeRSA.exportKey(format) as Uint8Array
+        };
+    }
 
     return {
-        "publicKey": (() => {
-
-            const format: RsaKey.Public["format"] = "pkcs1-public-der";
-
-            return RsaKey.build(getData(format), format);
-
-        })(),
-        "privateKey": (() => {
-
-            const format: RsaKey.Private["format"] = "pkcs1-private-der";
-
-            return RsaKey.build(getData(format), format);
-
-        })()
+        "publicKey": buildKey("pkcs1-public-der"),
+        "privateKey": buildKey("pkcs1-private-der")
     };
 
 }

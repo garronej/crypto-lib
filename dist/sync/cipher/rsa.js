@@ -61,16 +61,15 @@ exports.syncEncryptorDecryptorFactory = syncEncryptorDecryptorFactory;
 function syncGenerateKeys(seed, keysLengthBytes) {
     if (keysLengthBytes === void 0) { keysLengthBytes = 80; }
     var nodeRSA = NodeRSA.generateKeyPairFromSeed(toRealBuffer(seed), 8 * keysLengthBytes, undefined, getEnvironment());
-    var getData = function (format) { return nodeRSA.exportKey(format); };
+    function buildKey(format) {
+        return {
+            format: format,
+            "data": nodeRSA.exportKey(format)
+        };
+    }
     return {
-        "publicKey": (function () {
-            var format = "pkcs1-public-der";
-            return types_1.RsaKey.build(getData(format), format);
-        })(),
-        "privateKey": (function () {
-            var format = "pkcs1-private-der";
-            return types_1.RsaKey.build(getData(format), format);
-        })()
+        "publicKey": buildKey("pkcs1-public-der"),
+        "privateKey": buildKey("pkcs1-private-der")
     };
 }
 exports.syncGenerateKeys = syncGenerateKeys;

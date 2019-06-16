@@ -12,28 +12,16 @@ exports.toBuffer = toBuffer;
 var RsaKey;
 (function (RsaKey) {
     function stringify(rsaKey) {
-        return JSON.stringify([rsaKey.format, toBuffer(rsaKey.data).toString("binary")]);
+        return JSON.stringify([rsaKey.format, toBuffer(rsaKey.data).toString("base64")]);
     }
     RsaKey.stringify = stringify;
     function parse(stringifiedRsaKey) {
         var _a = JSON.parse(stringifiedRsaKey), format = _a[0], strData = _a[1];
-        return { format: format, "data": new Uint8Array(Buffer.from(strData, "binary")) };
+        return { format: format, "data": new Uint8Array(Buffer.from(strData, "base64")) };
     }
     RsaKey.parse = parse;
-    function build(data, format) {
-        return {
-            format: format,
-            "data": typeof data === "string" ?
-                Buffer.from(data, "binary") : data
-        };
-    }
-    RsaKey.build = build;
     var Public;
     (function (Public) {
-        function build(data) {
-            return RsaKey.build(data, "pkcs1-public-der");
-        }
-        Public.build = build;
         function match(rsaKey) {
             return rsaKey.format === "pkcs1-public-der";
         }
@@ -41,10 +29,6 @@ var RsaKey;
     })(Public = RsaKey.Public || (RsaKey.Public = {}));
     var Private;
     (function (Private) {
-        function build(data) {
-            return RsaKey.build(data, "pkcs1-private-der");
-        }
-        Private.build = build;
         function match(rsaKey) {
             return rsaKey.format === "pkcs1-private-der";
         }

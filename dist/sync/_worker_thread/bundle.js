@@ -296,16 +296,15 @@ exports.syncEncryptorDecryptorFactory = syncEncryptorDecryptorFactory;
 function syncGenerateKeys(seed, keysLengthBytes) {
     if (keysLengthBytes === void 0) { keysLengthBytes = 80; }
     var nodeRSA = NodeRSA.generateKeyPairFromSeed(toRealBuffer(seed), 8 * keysLengthBytes, undefined, getEnvironment());
-    var getData = function (format) { return nodeRSA.exportKey(format); };
+    function buildKey(format) {
+        return {
+            format: format,
+            "data": nodeRSA.exportKey(format)
+        };
+    }
     return {
-        "publicKey": (function () {
-            var format = "pkcs1-public-der";
-            return types_1.RsaKey.build(getData(format), format);
-        })(),
-        "privateKey": (function () {
-            var format = "pkcs1-private-der";
-            return types_1.RsaKey.build(getData(format), format);
-        })()
+        "publicKey": buildKey("pkcs1-public-der"),
+        "privateKey": buildKey("pkcs1-private-der")
     };
 }
 exports.syncGenerateKeys = syncGenerateKeys;
@@ -391,28 +390,16 @@ exports.toBuffer = toBuffer;
 var RsaKey;
 (function (RsaKey) {
     function stringify(rsaKey) {
-        return JSON.stringify([rsaKey.format, toBuffer(rsaKey.data).toString("binary")]);
+        return JSON.stringify([rsaKey.format, toBuffer(rsaKey.data).toString("base64")]);
     }
     RsaKey.stringify = stringify;
     function parse(stringifiedRsaKey) {
         var _a = JSON.parse(stringifiedRsaKey), format = _a[0], strData = _a[1];
-        return { format: format, "data": new Uint8Array(Buffer.from(strData, "binary")) };
+        return { format: format, "data": new Uint8Array(Buffer.from(strData, "base64")) };
     }
     RsaKey.parse = parse;
-    function build(data, format) {
-        return {
-            format: format,
-            "data": typeof data === "string" ?
-                Buffer.from(data, "binary") : data
-        };
-    }
-    RsaKey.build = build;
     var Public;
     (function (Public) {
-        function build(data) {
-            return RsaKey.build(data, "pkcs1-public-der");
-        }
-        Public.build = build;
         function match(rsaKey) {
             return rsaKey.format === "pkcs1-public-der";
         }
@@ -420,10 +407,6 @@ var RsaKey;
     })(Public = RsaKey.Public || (RsaKey.Public = {}));
     var Private;
     (function (Private) {
-        function build(data) {
-            return RsaKey.build(data, "pkcs1-private-der");
-        }
-        Private.build = build;
         function match(rsaKey) {
             return rsaKey.format === "pkcs1-private-der";
         }

@@ -375,7 +375,7 @@ export const rsa = (() => {
 
 
     const generateKeys = async (
-        seed: Uint8Array,
+        seed: Uint8Array | null,
         keysLengthBytes?: number,
         workerThreadId?: string
     ) => {

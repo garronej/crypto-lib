@@ -26,7 +26,7 @@ export declare const rsa: {
     syncDecryptorFactory(decryptKey: RsaKey): Sync<Decryptor>;
     syncEncryptorDecryptorFactory(encryptKey: RsaKey.Private, decryptKey: RsaKey.Public): Sync<EncryptorDecryptor>;
     syncEncryptorDecryptorFactory(encryptKey: RsaKey.Public, decryptKey: RsaKey.Private): Sync<EncryptorDecryptor>;
-    syncGenerateKeys(seed: Uint8Array, keysLengthBytes?: number | undefined): {
+    syncGenerateKeys(seed: Uint8Array | null, keysLengthBytes?: number | undefined): {
         publicKey: RsaKey.Public;
         privateKey: RsaKey.Private;
     };
@@ -36,7 +36,7 @@ export declare const rsa: {
         (encryptKey: RsaKey.Private, decryptKey: RsaKey.Public, workerThreadPoolId?: string | undefined): EncryptorDecryptor;
         (encryptKey: RsaKey.Public, decryptKey: RsaKey.Private, workerThreadPoolId?: string | undefined): EncryptorDecryptor;
     };
-    generateKeys: (seed: Uint8Array, keysLengthBytes?: number | undefined, workerThreadId?: string | undefined) => Promise<{
+    generateKeys: (seed: Uint8Array | null, keysLengthBytes?: number | undefined, workerThreadId?: string | undefined) => Promise<{
         publicKey: RsaKey.Public;
         privateKey: RsaKey.Private;
     }>;

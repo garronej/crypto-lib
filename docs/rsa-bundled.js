@@ -67,7 +67,7 @@ function spawn(source) {
 exports.spawn = spawn;
 
 }).call(this,require("buffer").Buffer)
-},{"../../sync/_worker_thread/ThreadMessage":7,"buffer":12,"path":17,"ts-events-extended":27}],3:[function(require,module,exports){
+},{"../../sync/_worker_thread/ThreadMessage":7,"buffer":12,"path":17,"ts-events-extended":29}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ts_events_extended_1 = require("ts-events-extended");
@@ -88,7 +88,7 @@ function spawn(source) {
 }
 exports.spawn = spawn;
 
-},{"ts-events-extended":27}],4:[function(require,module,exports){
+},{"ts-events-extended":29}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ts_events_extended_1 = require("ts-events-extended");
@@ -109,7 +109,7 @@ function spawn(source) {
 }
 exports.spawn = spawn;
 
-},{"ts-events-extended":27}],5:[function(require,module,exports){
+},{"ts-events-extended":29}],5:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 var __assign = (this && this.__assign) || function () {
@@ -457,7 +457,7 @@ exports.scrypt = (function () {
 })();
 
 }).call(this,require("buffer").Buffer)
-},{"../sync/environnement":8,"../sync/types":9,"./WorkerThread":1,"./serializer":6,"buffer":12,"path":17,"run-exclusive":19}],6:[function(require,module,exports){
+},{"../sync/environnement":8,"../sync/types":9,"./WorkerThread":1,"./serializer":6,"buffer":12,"path":17,"run-exclusive":20}],6:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -496,7 +496,7 @@ function decryptThenParseFactory(decryptor) {
 exports.decryptThenParseFactory = decryptThenParseFactory;
 
 }).call(this,require("buffer").Buffer)
-},{"../sync/types":9,"buffer":12,"transfer-tools/dist/lib/JSON_CUSTOM":22}],7:[function(require,module,exports){
+},{"../sync/types":9,"buffer":12,"transfer-tools/dist/lib/JSON_CUSTOM":24}],7:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -667,84 +667,72 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var lib = require("../async");
-var log = (function () {
-    var acc = "";
-    var f = function (str) {
-        acc += str + "\n";
-        console.log(str);
-    };
-    f.alert = function () {
-        alert(acc);
-    };
-    return f;
-})();
-log("Started");
-var text = "<<secret>>";
-var salt = "...salty?";
+var async = require("../async");
+var randombytes = require("randombytes");
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var n, digest, equals, i, duration_multi, start, duration_single, start, i, out;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+    var testEncryptorDecryptor, _i, _a, keyLengthBytes, start, rsaKeys;
+    var _this = this;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
-                n = 4;
-                log(n);
-                return [4 /*yield*/, lib.scrypt.hash(text, salt)];
+                testEncryptorDecryptor = function (encryptorDecryptor) { return __awaiter(_this, void 0, void 0, function () {
+                    var plainData, plainDataAsHex, start, encryptedData, restoredPlainData;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                plainData = randombytes(150);
+                                plainDataAsHex = async.toBuffer(plainData).toString("hex");
+                                start = Date.now();
+                                return [4 /*yield*/, encryptorDecryptor.encrypt(plainData)];
+                            case 1:
+                                encryptedData = _a.sent();
+                                console.log("encrypt duration: " + (Date.now() - start) + "ms");
+                                start = Date.now();
+                                return [4 /*yield*/, encryptorDecryptor.decrypt(encryptedData)];
+                            case 2:
+                                restoredPlainData = _a.sent();
+                                console.log("decrypt duration: " + (Date.now() - start) + "ms");
+                                if (async.toBuffer(restoredPlainData).toString("hex")
+                                    !==
+                                        plainDataAsHex) {
+                                    throw new Error("fail");
+                                }
+                                return [2 /*return*/];
+                        }
+                    });
+                }); };
+                _i = 0, _a = [80, 128, 160, 255, 512];
+                _b.label = 1;
             case 1:
-                digest = _a.sent();
-                equals = function (a, b) {
-                    var _a = [a, b].map(function (o) { return Buffer.from(o).toString("hex"); }), s1 = _a[0], s2 = _a[1];
-                    if (s1 === s2) {
-                        return true;
-                    }
-                    else {
-                        console.log({ s1: s1, s2: s2 });
-                        return false;
-                    }
-                };
-                for (i = 0; i < n; i++) {
-                    lib.preSpawnWorkerThread("" + i);
-                }
-                return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 3000); })];
-            case 2:
-                _a.sent();
-                log("start multithreading");
+                if (!(_i < _a.length)) return [3 /*break*/, 6];
+                keyLengthBytes = _a[_i];
+                console.log({ keyLengthBytes: keyLengthBytes }, "( " + keyLengthBytes * 8 + " bits )");
                 start = Date.now();
-                return [4 /*yield*/, Promise.all((new Array(n))
-                        .fill("")
-                        .map(function (_, i) { return lib.scrypt.hash(text, salt, undefined, undefined, "" + i).then(function (out) {
-                        if (!equals(out, digest)) {
-                            throw new Error("mismatch async");
-                        }
-                    }); }))];
+                return [4 /*yield*/, async.rsa.generateKeys(Buffer.from("seed", "utf8"), keyLengthBytes)];
+            case 2:
+                rsaKeys = _b.sent();
+                console.log("Rsa key generation duration: " + (Date.now() - start));
+                console.log("encrypt with private key");
+                return [4 /*yield*/, testEncryptorDecryptor(async.rsa.encryptorDecryptorFactory(rsaKeys.privateKey, rsaKeys.publicKey))];
             case 3:
-                _a.sent();
-                duration_multi = Date.now() - start;
-                log("Duration with multithreading: " + duration_multi);
-                {
-                    start = Date.now();
-                    for (i = 0; i < n; i++) {
-                        out = lib.scrypt.syncHash(text, salt);
-                        if (!equals(out, digest)) {
-                            throw new Error("mismatch sync");
-                        }
-                    }
-                    duration_single = Date.now() - start;
-                    log("Duration single thread: " + duration_single);
-                }
-                log("ratio single/multi: " + (duration_single / duration_multi).toFixed(2));
-                lib.terminateWorkerThreads();
-                log("DONE");
-                if (typeof alert !== "undefined") {
-                    log.alert();
-                }
+                _b.sent();
+                console.log("encrypt with public key");
+                return [4 /*yield*/, testEncryptorDecryptor(async.rsa.encryptorDecryptorFactory(rsaKeys.publicKey, rsaKeys.privateKey))];
+            case 4:
+                _b.sent();
+                _b.label = 5;
+            case 5:
+                _i++;
+                return [3 /*break*/, 1];
+            case 6:
+                console.log("PASS");
                 return [2 /*return*/];
         }
     });
 }); })();
 
 }).call(this,require("buffer").Buffer)
-},{"../async":5,"buffer":12}],11:[function(require,module,exports){
+},{"../async":5,"buffer":12,"randombytes":19}],11:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -3325,6 +3313,60 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],19:[function(require,module,exports){
+(function (process,global){
+'use strict'
+
+// limit of Crypto.getRandomValues()
+// https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues
+var MAX_BYTES = 65536
+
+// Node supports requesting up to this number of bytes
+// https://github.com/nodejs/node/blob/master/lib/internal/crypto/random.js#L48
+var MAX_UINT32 = 4294967295
+
+function oldBrowser () {
+  throw new Error('Secure random number generation is not supported by this browser.\nUse Chrome, Firefox or Internet Explorer 11')
+}
+
+var Buffer = require('safe-buffer').Buffer
+var crypto = global.crypto || global.msCrypto
+
+if (crypto && crypto.getRandomValues) {
+  module.exports = randomBytes
+} else {
+  module.exports = oldBrowser
+}
+
+function randomBytes (size, cb) {
+  // phantomjs needs to throw
+  if (size > MAX_UINT32) throw new RangeError('requested too many random bytes')
+
+  var bytes = Buffer.allocUnsafe(size)
+
+  if (size > 0) {  // getRandomValues fails on IE if size == 0
+    if (size > MAX_BYTES) { // this is the max bytes crypto.getRandomValues
+      // can do at once see https://developer.mozilla.org/en-US/docs/Web/API/window.crypto.getRandomValues
+      for (var generated = 0; generated < size; generated += MAX_BYTES) {
+        // buffer.slice automatically checks if the end is past the end of
+        // the buffer so we don't have to here
+        crypto.getRandomValues(bytes.slice(generated, generated + MAX_BYTES))
+      }
+    } else {
+      crypto.getRandomValues(bytes)
+    }
+  }
+
+  if (typeof cb === 'function') {
+    return process.nextTick(function () {
+      cb(null, bytes)
+    })
+  }
+
+  return bytes
+}
+
+}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"_process":18,"safe-buffer":21}],20:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -3616,7 +3658,71 @@ function buildFnCallback(isGlobal, groupRef, fun) {
     return runExclusiveFunction;
 }
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
+/* eslint-disable node/no-deprecated-api */
+var buffer = require('buffer')
+var Buffer = buffer.Buffer
+
+// alternative to using Object.keys for old browsers
+function copyProps (src, dst) {
+  for (var key in src) {
+    dst[key] = src[key]
+  }
+}
+if (Buffer.from && Buffer.alloc && Buffer.allocUnsafe && Buffer.allocUnsafeSlow) {
+  module.exports = buffer
+} else {
+  // Copy properties from require('buffer')
+  copyProps(buffer, exports)
+  exports.Buffer = SafeBuffer
+}
+
+function SafeBuffer (arg, encodingOrOffset, length) {
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+// Copy static methods from Buffer
+copyProps(Buffer, SafeBuffer)
+
+SafeBuffer.from = function (arg, encodingOrOffset, length) {
+  if (typeof arg === 'number') {
+    throw new TypeError('Argument must not be a number')
+  }
+  return Buffer(arg, encodingOrOffset, length)
+}
+
+SafeBuffer.alloc = function (size, fill, encoding) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  var buf = Buffer(size)
+  if (fill !== undefined) {
+    if (typeof encoding === 'string') {
+      buf.fill(fill, encoding)
+    } else {
+      buf.fill(fill)
+    }
+  } else {
+    buf.fill(0)
+  }
+  return buf
+}
+
+SafeBuffer.allocUnsafe = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return Buffer(size)
+}
+
+SafeBuffer.allocUnsafeSlow = function (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('Argument must be a number')
+  }
+  return buffer.SlowBuffer(size)
+}
+
+},{"buffer":12}],22:[function(require,module,exports){
 'use strict'
 /* eslint no-proto: 0 */
 module.exports = Object.setPrototypeOf || ({ __proto__: [] } instanceof Array ? setProtoOf : mixinProperties)
@@ -3635,7 +3741,7 @@ function mixinProperties (obj, proto) {
   return obj
 }
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 (function (global){
 "use strict";
 var has = require('has');
@@ -3970,7 +4076,7 @@ if (symbolSerializer) exports.symbolSerializer = symbolSerializer;
 exports.create = create;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"has":15}],22:[function(require,module,exports){
+},{"has":15}],24:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -4020,7 +4126,7 @@ function get(serializers) {
 }
 exports.get = get;
 
-},{"super-json":21}],23:[function(require,module,exports){
+},{"super-json":23}],25:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4061,7 +4167,7 @@ var VoidSyncEvent = /** @class */ (function (_super) {
 }(SyncEvent));
 exports.VoidSyncEvent = VoidSyncEvent;
 
-},{"./SyncEventBase":24}],24:[function(require,module,exports){
+},{"./SyncEventBase":26}],26:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4279,7 +4385,7 @@ var SyncEventBase = /** @class */ (function (_super) {
 }(SyncEventBaseProtected_1.SyncEventBaseProtected));
 exports.SyncEventBase = SyncEventBase;
 
-},{"./SyncEventBaseProtected":25}],25:[function(require,module,exports){
+},{"./SyncEventBaseProtected":27}],27:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -4564,7 +4670,7 @@ var SyncEventBaseProtected = /** @class */ (function () {
 }());
 exports.SyncEventBaseProtected = SyncEventBaseProtected;
 
-},{"./defs":26,"run-exclusive":19}],26:[function(require,module,exports){
+},{"./defs":28,"run-exclusive":20}],28:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4605,7 +4711,7 @@ var EvtError;
     EvtError.Detached = Detached;
 })(EvtError = exports.EvtError || (exports.EvtError = {}));
 
-},{"setprototypeof":20}],27:[function(require,module,exports){
+},{"setprototypeof":22}],29:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var SyncEvent_1 = require("./SyncEvent");
@@ -4614,4 +4720,4 @@ exports.VoidSyncEvent = SyncEvent_1.VoidSyncEvent;
 var defs_1 = require("./defs");
 exports.EvtError = defs_1.EvtError;
 
-},{"./SyncEvent":23,"./defs":26}]},{},[10]);
+},{"./SyncEvent":25,"./defs":28}]},{},[10]);

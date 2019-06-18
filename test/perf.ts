@@ -2,8 +2,6 @@ import * as ttTesting from "transfer-tools/dist/lib/testing";
 import * as async from "../async";
 import * as sync from "../sync";
 
-declare const Buffer: any;
-
 type Params = {
     target: "SYNC" | "SYNC BUNDLED" | "ASYNC";
     cipherName: "plain" | "aes" | "rsa";
@@ -130,12 +128,21 @@ async function perform(p: Params): Promise<number> {
 
 }
 
+
 namespace perform {
 
     export const prAesKey = async.aes.getTestKey();
 
-    export const prRsaKeys = async.rsa.generateKeys(Buffer.from("seed", "utf8"));
+    //async.disableMultithreading();
 
+    console.log("start key generation");
+    export const prRsaKeys = async.rsa.generateKeys(null).then(out=> {
+
+        console.log("end rsa keys generation");
+
+        return out;
+
+    });
 
 }
 
@@ -182,7 +189,7 @@ function compare(results: Result[]) {
 
     }
 
-    for (const cipherName of ["aes", "rsa", "plain"] as const) {
+    for (const cipherName of ["rsa", "aes", "plain"] as const) {
 
         console.log({ cipherName });
 
@@ -191,7 +198,7 @@ function compare(results: Result[]) {
             const results: Result[] = [];
 
 
-            for (const target of ["ASYNC", "SYNC BUNDLED", "SYNC"] as const) {
+            for (const target of ["SYNC", "ASYNC", "SYNC BUNDLED"] as const) {
 
                 console.log(target);
 

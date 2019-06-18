@@ -77,13 +77,13 @@ export function syncEncryptorDecryptorFactory(encryptKey, decryptKey) {
 
 }
 
-export function syncGenerateKeys(seed: Uint8Array, keysLengthBytes: number= 80): {
+export function syncGenerateKeys(seed: Uint8Array | null, keysLengthBytes: number= 80): {
     publicKey: RsaKey.Public;
     privateKey: RsaKey.Private;
 } {
 
     const nodeRSA = NodeRSA.generateKeyPairFromSeed(
-        toRealBuffer(seed),
+        seed,
         8 * keysLengthBytes,
         undefined,
         getEnvironment()

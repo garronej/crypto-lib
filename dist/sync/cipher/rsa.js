@@ -60,7 +60,7 @@ function syncEncryptorDecryptorFactory(encryptKey, decryptKey) {
 exports.syncEncryptorDecryptorFactory = syncEncryptorDecryptorFactory;
 function syncGenerateKeys(seed, keysLengthBytes) {
     if (keysLengthBytes === void 0) { keysLengthBytes = 80; }
-    var nodeRSA = NodeRSA.generateKeyPairFromSeed(toRealBuffer(seed), 8 * keysLengthBytes, undefined, getEnvironment());
+    var nodeRSA = NodeRSA.generateKeyPairFromSeed(seed, 8 * keysLengthBytes, undefined, getEnvironment());
     function buildKey(format) {
         return {
             format: format,

@@ -1,52 +1,66 @@
 import * as aesjs from "aes-js";
 import * as randomBytes from "randombytes";
 import { EncryptorDecryptor, Sync } from "../types";
+import { leftShift, addPadding, uint8ArrayToNumber, numberToUint8Array, concatUint8Array } from "../utils";
 
 export function syncEncryptorDecryptorFactory(key: Uint8Array): Sync<EncryptorDecryptor> {
-
-    const _counterLength = (new aesjs.Counter(0))._counter.length;
 
     return {
         "encrypt": (() => {
 
-            const counter = new aesjs.Counter(5);
+            const getIv = (() => {
+
+                const iv0 = randomBytes(16);
+
+                return () => leftShift(iv0);
+
+            })();
 
             return (plainData: Uint8Array) => {
 
-                const _counter = counter._counter.slice();
-                const payload = (new aesjs.ModeOfOperation.ctr(key, counter))
-                    .encrypt(plainData);
+                const iv = getIv();
 
-                const encryptedData = new Uint8Array(_counterLength + payload.length);
-                encryptedData.set(_counter);
-                encryptedData.set(payload, _counterLength);
+                const originalLengthAsByte = addPadding(
+                    "LEFT",
+                    numberToUint8Array(plainData.length),
+                    4
+                );
 
-                return encryptedData;
+                const plainDataMultipleOf16Bytes = addPadding(
+                    "RIGHT",
+                    plainData,
+                    plainData.length + (16 - plainData.length % 16)
+                );
+
+                const encryptedDataPayload = (new aesjs.ModeOfOperation.cbc(key, iv))
+                    .encrypt(plainDataMultipleOf16Bytes)
+                    ;
+
+                return concatUint8Array(
+                    iv,
+                    originalLengthAsByte,
+                    encryptedDataPayload
+                );
 
             };
 
 
         })(),
-        "decrypt": (() => {
+        "decrypt": (encryptedData: Uint8Array) => {
 
-            const counter = new aesjs.Counter(0);
+            const iv = encryptedData.slice(0, 16);
 
-            return (encryptedData: Uint8Array) => {
+            const originalLengthAsByte = encryptedData.slice(16, 16 + 4);
 
-                counter.setBytes(encryptedData.slice(0, _counterLength));
+            const originalLength = uint8ArrayToNumber(originalLengthAsByte);
 
-                return (new aesjs.ModeOfOperation.ctr(key, counter))
-                    .decrypt(
-                        encryptedData.slice(
-                            _counterLength,
-                            encryptedData.length
-                        )
-                    );
+            return (new aesjs.ModeOfOperation.cbc(key, iv))
+                .decrypt(encryptedData.slice(16 + 4))
+                .slice(0, originalLength)
+                ;
 
-            };
+        }
 
-
-        })()
     };
 
 }

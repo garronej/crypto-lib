@@ -2,29 +2,31 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var aesjs = require("aes-js");
 var randomBytes = require("randombytes");
+var utils_1 = require("../utils");
 function syncEncryptorDecryptorFactory(key) {
-    var _counterLength = (new aesjs.Counter(0))._counter.length;
     return {
         "encrypt": (function () {
-            var counter = new aesjs.Counter(5);
+            var getIv = (function () {
+                var iv0 = randomBytes(16);
+                return function () { return utils_1.leftShift(iv0); };
+            })();
             return function (plainData) {
-                var _counter = counter._counter.slice();
-                var payload = (new aesjs.ModeOfOperation.ctr(key, counter))
-                    .encrypt(plainData);
-                var encryptedData = new Uint8Array(_counterLength + payload.length);
-                encryptedData.set(_counter);
-                encryptedData.set(payload, _counterLength);
-                return encryptedData;
+                var iv = getIv();
+                var originalLengthAsByte = utils_1.addPadding("LEFT", utils_1.numberToUint8Array(plainData.length), 4);
+                var plainDataMultipleOf16Bytes = utils_1.addPadding("RIGHT", plainData, plainData.length + (16 - plainData.length % 16));
+                var encryptedDataPayload = (new aesjs.ModeOfOperation.cbc(key, iv))
+                    .encrypt(plainDataMultipleOf16Bytes);
+                return utils_1.concatUint8Array(iv, originalLengthAsByte, encryptedDataPayload);
             };
         })(),
-        "decrypt": (function () {
-            var counter = new aesjs.Counter(0);
-            return function (encryptedData) {
-                counter.setBytes(encryptedData.slice(0, _counterLength));
-                return (new aesjs.ModeOfOperation.ctr(key, counter))
-                    .decrypt(encryptedData.slice(_counterLength, encryptedData.length));
-            };
-        })()
+        "decrypt": function (encryptedData) {
+            var iv = encryptedData.slice(0, 16);
+            var originalLengthAsByte = encryptedData.slice(16, 16 + 4);
+            var originalLength = utils_1.uint8ArrayToNumber(originalLengthAsByte);
+            return (new aesjs.ModeOfOperation.cbc(key, iv))
+                .decrypt(encryptedData.slice(16 + 4))
+                .slice(0, originalLength);
+        }
     };
 }
 exports.syncEncryptorDecryptorFactory = syncEncryptorDecryptorFactory;

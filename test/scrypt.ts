@@ -47,9 +47,15 @@ const salt = "...salty?";
 
     }
 
+    const workerThreadIds: lib.WorkerThreadId[]= [];
+
     for (let i = 0; i < n; i++) {
 
-        lib.preSpawnWorkerThread(`${i}`);
+        const id= lib.WorkerThreadId.generate();
+
+        lib.preSpawnWorkerThread(id);
+
+        workerThreadIds.push(id);
 
     }
 
@@ -67,7 +73,7 @@ const salt = "...salty?";
             (new Array(n))
                 .fill("")
                 .map((_, i) => lib.scrypt.hash(
-                    text, salt, undefined, undefined, `${i}`
+                    text, salt, undefined, undefined, workerThreadIds[i]
                 ).then(out => {
 
                     if (!equals(out, digest)) {

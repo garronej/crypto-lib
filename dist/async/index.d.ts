@@ -3,23 +3,35 @@ import { Sync } from "../sync/types";
 export * from "../sync/types";
 export * from "./serializer";
 export declare function disableMultithreading(): void;
-declare const terminateWorkerThreads: (workerThreadId?: string | undefined) => void, listWorkerThreadIds: () => string[];
-export { terminateWorkerThreads, listWorkerThreadIds };
-export declare function preSpawnWorkerThread(workerThreadId: string): void;
+export declare type WorkerThreadId = {
+    type: "WORKER THREAD ID";
+};
+export declare namespace WorkerThreadId {
+    function generate(): WorkerThreadId;
+}
+declare const terminateWorkerThreads: (workerThreadId?: WorkerThreadId | undefined) => void;
+export { terminateWorkerThreads };
+export declare function preSpawnWorkerThread(workerThreadId: WorkerThreadId): void;
 export declare namespace workerThreadPool {
-    function preSpawn(workerThreadPoolId: string, poolSize: number): void;
-    function listIds(workerThreadPoolId: string): string[];
-    function terminate(workerThreadPoolId: string): void;
+    type Id = {
+        type: "WORKER THREAD POOL ID";
+    };
+    namespace Id {
+        function generate(): Id;
+    }
+    function preSpawn(workerThreadPoolId: Id, poolSize: number): void;
+    function listIds(workerThreadPoolId: Id): WorkerThreadId[];
+    function terminate(workerThreadPoolId: Id): void;
 }
 export declare const plain: {
     syncEncryptorDecryptorFactory(): Sync<EncryptorDecryptor>;
-    encryptorDecryptorFactory: (workerThreadPoolId?: string | undefined) => EncryptorDecryptor;
+    encryptorDecryptorFactory: (workerThreadPoolId?: workerThreadPool.Id | undefined) => EncryptorDecryptor;
 };
 export declare const aes: {
     syncEncryptorDecryptorFactory(key: Uint8Array): Sync<EncryptorDecryptor>;
     generateKey(): Promise<Uint8Array>;
     getTestKey(): Promise<Uint8Array>;
-    encryptorDecryptorFactory: (key: Uint8Array, workerThreadPoolId?: string | undefined) => EncryptorDecryptor;
+    encryptorDecryptorFactory: (key: Uint8Array, workerThreadPoolId?: workerThreadPool.Id | undefined) => EncryptorDecryptor;
 };
 export declare const rsa: {
     syncEncryptorFactory(encryptKey: RsaKey): Sync<Encryptor>;
@@ -30,13 +42,13 @@ export declare const rsa: {
         publicKey: RsaKey.Public;
         privateKey: RsaKey.Private;
     };
-    encryptorFactory: (encryptKey: RsaKey, workerThreadPoolId?: string | undefined) => Encryptor;
-    decryptorFactory: (decryptKey: RsaKey, workerThreadPoolId?: string | undefined) => Decryptor;
+    encryptorFactory: (encryptKey: RsaKey, workerThreadPoolId?: workerThreadPool.Id | undefined) => Encryptor;
+    decryptorFactory: (decryptKey: RsaKey, workerThreadPoolId?: workerThreadPool.Id | undefined) => Decryptor;
     encryptorDecryptorFactory: {
-        (encryptKey: RsaKey.Private, decryptKey: RsaKey.Public, workerThreadPoolId?: string | undefined): EncryptorDecryptor;
-        (encryptKey: RsaKey.Public, decryptKey: RsaKey.Private, workerThreadPoolId?: string | undefined): EncryptorDecryptor;
+        (encryptKey: RsaKey.Private, decryptKey: RsaKey.Public, workerThreadPoolId?: workerThreadPool.Id | undefined): EncryptorDecryptor;
+        (encryptKey: RsaKey.Public, decryptKey: RsaKey.Private, workerThreadPoolId?: workerThreadPool.Id | undefined): EncryptorDecryptor;
     };
-    generateKeys: (seed: Uint8Array | null, keysLengthBytes?: number | undefined, workerThreadId?: string | undefined) => Promise<{
+    generateKeys: (seed: Uint8Array | null, keysLengthBytes?: number | undefined, workerThreadId?: WorkerThreadId | undefined) => Promise<{
         publicKey: RsaKey.Public;
         privateKey: RsaKey.Private;
     }>;
@@ -44,5 +56,5 @@ export declare const rsa: {
 export declare const scrypt: {
     syncHash(text: string, salt: string, params?: Partial<ScryptParams> | undefined, progress?: ((percent: number) => void) | undefined): Uint8Array;
     defaultParams: ScryptParams;
-    hash: (text: string, salt: string, params?: Partial<ScryptParams>, progress?: (percent: number) => void, workerThreadId?: string | undefined) => Promise<Uint8Array>;
+    hash: (text: string, salt: string, params?: Partial<ScryptParams>, progress?: (percent: number) => void, workerThreadId?: WorkerThreadId | undefined) => Promise<Uint8Array>;
 };

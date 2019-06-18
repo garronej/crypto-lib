@@ -29,7 +29,8 @@ const texts: string[] = [];
 
 async function perform(p: Params): Promise<number> {
 
-    const workerThreadPoolId = p.threadCount !== undefined ? "myPool" : undefined;
+    const workerThreadPoolId = p.threadCount !== undefined ? 
+        async.workerThreadPool.Id.generate() : undefined;
 
     if (workerThreadPoolId !== undefined) {
         async.workerThreadPool.preSpawn(workerThreadPoolId, p.threadCount!);
@@ -133,16 +134,7 @@ namespace perform {
 
     export const prAesKey = async.aes.getTestKey();
 
-    //async.disableMultithreading();
-
-    console.log("start key generation");
-    export const prRsaKeys = async.rsa.generateKeys(null).then(out=> {
-
-        console.log("end rsa keys generation");
-
-        return out;
-
-    });
+    export const prRsaKeys = async.rsa.generateKeys(null);
 
 }
 

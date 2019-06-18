@@ -1,8 +1,8 @@
 declare const require: any;
 declare const __dirname: any;
 
+import { Map, Set } from "./polyfills";
 import * as runExclusive from "run-exclusive";
-
 import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey, ScryptParams } from "../sync/types";
 
 //@ts-ignore: Need to be imported so it can be named.
@@ -44,6 +44,18 @@ export function disableMultithreading() {
 }
 
 
+export type WorkerThreadId = {
+        type: "WORKER THREAD ID";
+};
+
+export namespace WorkerThreadId {
+
+    export function generate(): WorkerThreadId{
+        return { "type": "WORKER THREAD ID" };
+    }
+
+}
+
 const [getWorkerThread, terminateWorkerThreads, listWorkerThreadIds] = (() => {
 
     const spawn = WorkerThread.factory(
@@ -51,80 +63,110 @@ const [getWorkerThread, terminateWorkerThreads, listWorkerThreadIds] = (() => {
         () => isMultithreadingEnabled
     );
 
-    const record: Record<string, WorkerThread> = {};
+    const map = new Map<WorkerThreadId, WorkerThread>();
 
     return [
-        (workerThreadId: string) => {
+        (workerThreadId: WorkerThreadId) => {
 
-            let appWorker = record[workerThreadId];
+            let workerThread = map.get(workerThreadId);
 
-            if (appWorker === undefined) {
+            if (workerThread === undefined) {
 
-                appWorker = spawn();
+                workerThread = spawn();
 
-                record[workerThreadId] = appWorker;
+                map.set(workerThreadId, workerThread);
 
             }
 
-            return appWorker;
+            return workerThread;
 
         },
-        (workerThreadId?: string) =>
-            Object.keys(record)
-                .filter(id => workerThreadId !== undefined ? id === workerThreadId : true)
-                .map(id => [record[id], id] as const)
-                .filter(([appWorker]) => appWorker !== undefined)
-                .forEach(([appWorker, id]) => {
-                    appWorker.terminate();
-                    delete record[id];
-                }),
-        () => Object.keys(record)
+        (workerThreadId?: WorkerThreadId) => {
+
+            const match: (workerThreadId: WorkerThreadId) => boolean =
+                workerThreadId === undefined ?
+                    (() => true)
+                    :
+                    (o => o === workerThreadId)
+                ;
+
+            for (const workerThreadId of Array.from(map.keys())) {
+
+                if (!match(workerThreadId)) {
+                    continue;
+                }
+
+                map.get(workerThreadId)!.terminate();
+                map.delete(workerThreadId);
+
+            }
+
+        },
+        (): WorkerThreadId[] => Array.from(map.keys())
     ] as const;
 
 })();
 
-export { terminateWorkerThreads, listWorkerThreadIds };
+export { terminateWorkerThreads };
 
-export function preSpawnWorkerThread(workerThreadId: string) {
+export function preSpawnWorkerThread(workerThreadId: WorkerThreadId) {
     getWorkerThread(workerThreadId);
 }
 
 export namespace workerThreadPool {
 
-    function getWorkerThreadId(workerThreadPoolId: string, i?: number) {
-        return `__pool_${workerThreadPoolId}_${i !== undefined ? i : ""}`;
+    export type Id = {
+        type: "WORKER THREAD POOL ID";
+    };
+
+    export namespace Id {
+
+        export function generate(): Id {
+            return { "type": "WORKER THREAD POOL ID" };
+        }
+
     }
 
-    export function preSpawn(workerThreadPoolId: string, poolSize: number) {
+    const map = new Map<Id, Set<WorkerThreadId>>();
+
+    export function preSpawn(workerThreadPoolId: Id, poolSize: number) {
+
+        if (!map.has(workerThreadPoolId)) {
+            map.set(workerThreadPoolId, new Set());
+        }
 
         for (let i = 1; i <= poolSize; i++) {
 
-            preSpawnWorkerThread(getWorkerThreadId(workerThreadPoolId, i));
+            const workerThreadId = WorkerThreadId.generate();
+
+            map.get(workerThreadPoolId)!.add(workerThreadId);
+
+            preSpawnWorkerThread(workerThreadId);
 
         }
 
     }
 
-    export function listIds(workerThreadPoolId: string) {
+    export function listIds(workerThreadPoolId: Id): WorkerThreadId[] {
+
+        const set: Set<WorkerThreadId> = map.get(workerThreadPoolId) || new Set();
 
         return listWorkerThreadIds()
-            .filter(
-                workerThreadId => workerThreadId.startsWith(
-                    getWorkerThreadId(workerThreadPoolId)
-                )
-            );
+            .filter(workerThreadId => set.has(workerThreadId))
+            ;
 
     }
 
-    export function terminate(workerThreadPoolId: string) {
+    export function terminate(workerThreadPoolId: Id) {
 
-        listIds(workerThreadPoolId).forEach(
-            workerThreadId => terminateWorkerThreads(workerThreadId)
-        );
+        for (const workerThreadId of listIds(workerThreadPoolId)) {
+            terminateWorkerThreads(workerThreadId);
+        }
 
     }
 
 }
+
 
 const getCounter = (() => {
 
@@ -134,16 +176,21 @@ const getCounter = (() => {
 
 })();
 
-const generateId = (name: string) => `__]]>>${name}<<[[__`;
+
+const defaultWorkerPoolIds: Record<CipherFactory.CipherName, workerThreadPool.Id> = {
+    "aes": workerThreadPool.Id.generate(),
+    "plain": workerThreadPool.Id.generate(),
+    "rsa": workerThreadPool.Id.generate()
+};
 
 function cipherFactoryPool<A extends CipherFactory.Action>(
     params: cipherFactoryPool.ActionPartial<A>,
-    workerThreadPoolId?: string
+    workerThreadPoolId?: workerThreadPool.Id
 ): cipherFactoryPool.Cipher<A> {
 
     if (workerThreadPoolId === undefined) {
 
-        workerThreadPoolId = generateId(params.cipherName);
+        workerThreadPoolId = defaultWorkerPoolIds[params.cipherName];
 
         workerThreadPool.preSpawn(workerThreadPoolId, 4);
 
@@ -209,7 +256,7 @@ namespace cipherFactoryPool {
 
     export function cipherFactory<A extends Action>(
         params: ActionPartial<A>,
-        workerThreadId: string
+        workerThreadId: WorkerThreadId
     ): Cipher<A> {
 
         const cipherInstanceRef = getCounter();
@@ -258,7 +305,7 @@ namespace cipherFactoryPool {
             cipherInstanceRef: number,
             method: keyof EncryptorDecryptor,
             input: Uint8Array,
-            workerThreadId: string
+            workerThreadId: WorkerThreadId
         ): Promise<Uint8Array> {
 
             type Action = EncryptOrDecrypt.Action;
@@ -301,7 +348,7 @@ namespace cipherFactoryPool {
 
 export const plain = (() => {
 
-    const encryptorDecryptorFactory = (workerThreadPoolId?: string) =>
+    const encryptorDecryptorFactory = (workerThreadPoolId?: workerThreadPool.Id) =>
         cipherFactoryPool<CipherFactory.ActionPoly<"plain", "EncryptorDecryptor">>(
             {
                 "cipherName": "plain",
@@ -320,7 +367,7 @@ export const plain = (() => {
 
 export const aes = (() => {
 
-    const encryptorDecryptorFactory = (key: Uint8Array, workerThreadPoolId?: string) =>
+    const encryptorDecryptorFactory = (key: Uint8Array, workerThreadPoolId?: workerThreadPool.Id) =>
         cipherFactoryPool<CipherFactory.ActionPoly<"aes", "EncryptorDecryptor">>(
             {
                 "cipherName": "aes",
@@ -340,7 +387,7 @@ export const aes = (() => {
 
 export const rsa = (() => {
 
-    const encryptorFactory = (encryptKey: RsaKey, workerThreadPoolId?: string) =>
+    const encryptorFactory = (encryptKey: RsaKey, workerThreadPoolId?: workerThreadPool.Id) =>
         cipherFactoryPool<CipherFactory.ActionPoly<"rsa", "Encryptor">>(
             {
                 "cipherName": "rsa",
@@ -350,7 +397,7 @@ export const rsa = (() => {
             workerThreadPoolId
         );
 
-    const decryptorFactory = (decryptKey: RsaKey, workerThreadPoolId?: string) =>
+    const decryptorFactory = (decryptKey: RsaKey, workerThreadPoolId?: workerThreadPool.Id) =>
         cipherFactoryPool<CipherFactory.ActionPoly<"rsa", "Decryptor">>(
             {
                 "cipherName": "rsa",
@@ -360,9 +407,9 @@ export const rsa = (() => {
             workerThreadPoolId
         );
 
-    function encryptorDecryptorFactory(encryptKey: RsaKey.Private, decryptKey: RsaKey.Public, workerThreadPoolId?: string): EncryptorDecryptor;
-    function encryptorDecryptorFactory(encryptKey: RsaKey.Public, decryptKey: RsaKey.Private, workerThreadPoolId?: string): EncryptorDecryptor;
-    function encryptorDecryptorFactory(encryptKey, decryptKey, workerThreadPoolId?: string): EncryptorDecryptor {
+    function encryptorDecryptorFactory(encryptKey: RsaKey.Private, decryptKey: RsaKey.Public, workerThreadPoolId?: workerThreadPool.Id): EncryptorDecryptor;
+    function encryptorDecryptorFactory(encryptKey: RsaKey.Public, decryptKey: RsaKey.Private, workerThreadPoolId?: workerThreadPool.Id): EncryptorDecryptor;
+    function encryptorDecryptorFactory(encryptKey, decryptKey, workerThreadPoolId?: workerThreadPool.Id): EncryptorDecryptor {
         return cipherFactoryPool<CipherFactory.ActionPoly<"rsa", "EncryptorDecryptor">>(
             {
                 "cipherName": "rsa",
@@ -377,7 +424,7 @@ export const rsa = (() => {
     const generateKeys = async (
         seed: Uint8Array | null,
         keysLengthBytes?: number,
-        workerThreadId?: string
+        workerThreadId?: WorkerThreadId
     ) => {
 
         type Action = GenerateRsaKeys.Action;
@@ -387,7 +434,8 @@ export const rsa = (() => {
 
         workerThreadId = workerThreadId !== undefined ?
             workerThreadId :
-            generateId("rsa generate keys");
+            WorkerThreadId.generate()
+            ;
 
         const actionId = getCounter();
 
@@ -437,9 +485,9 @@ export const scrypt = (() => {
     const hash = async (
         text: string,
         salt: string,
-        params: Partial<ScryptParams>= {},
+        params: Partial<ScryptParams> = {},
         progress: (percent: number) => void = (() => { }),
-        workerThreadId?: string
+        workerThreadId?: WorkerThreadId
     ) => {
 
         type Action = ScryptHash.Action;
@@ -452,7 +500,8 @@ export const scrypt = (() => {
 
         workerThreadId = workerThreadId !== undefined ?
             workerThreadId :
-            generateId(`scrypt${actionId}`);
+            WorkerThreadId.generate()
+            ;
 
         const appWorker = getWorkerThread(
             workerThreadId

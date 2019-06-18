@@ -50,6 +50,7 @@ function __export(m) {
 }
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
+var polyfills_1 = require("./polyfills");
 var runExclusive = require("run-exclusive");
 var WorkerThread_1 = require("./WorkerThread");
 var environnement_1 = require("../sync/environnement");
@@ -69,59 +70,79 @@ function disableMultithreading() {
     isMultithreadingEnabled = false;
 }
 exports.disableMultithreading = disableMultithreading;
+var WorkerThreadId;
+(function (WorkerThreadId) {
+    function generate() {
+        return { "type": "WORKER THREAD ID" };
+    }
+    WorkerThreadId.generate = generate;
+})(WorkerThreadId = exports.WorkerThreadId || (exports.WorkerThreadId = {}));
 var _a = (function () {
     var spawn = WorkerThread_1.WorkerThread.factory(bundle_source, function () { return isMultithreadingEnabled; });
-    var record = {};
+    var map = new polyfills_1.Map();
     return [
         function (workerThreadId) {
-            var appWorker = record[workerThreadId];
-            if (appWorker === undefined) {
-                appWorker = spawn();
-                record[workerThreadId] = appWorker;
+            var workerThread = map.get(workerThreadId);
+            if (workerThread === undefined) {
+                workerThread = spawn();
+                map.set(workerThreadId, workerThread);
             }
-            return appWorker;
+            return workerThread;
         },
         function (workerThreadId) {
-            return Object.keys(record)
-                .filter(function (id) { return workerThreadId !== undefined ? id === workerThreadId : true; })
-                .map(function (id) { return [record[id], id]; })
-                .filter(function (_a) {
-                var appWorker = _a[0];
-                return appWorker !== undefined;
-            })
-                .forEach(function (_a) {
-                var appWorker = _a[0], id = _a[1];
-                appWorker.terminate();
-                delete record[id];
-            });
+            var match = workerThreadId === undefined ?
+                (function () { return true; })
+                :
+                    (function (o) { return o === workerThreadId; });
+            for (var _i = 0, _a = Array.from(map.keys()); _i < _a.length; _i++) {
+                var workerThreadId_1 = _a[_i];
+                if (!match(workerThreadId_1)) {
+                    continue;
+                }
+                map.get(workerThreadId_1).terminate();
+                map.delete(workerThreadId_1);
+            }
         },
-        function () { return Object.keys(record); }
+        function () { return Array.from(map.keys()); }
     ];
 })(), getWorkerThread = _a[0], terminateWorkerThreads = _a[1], listWorkerThreadIds = _a[2];
 exports.terminateWorkerThreads = terminateWorkerThreads;
-exports.listWorkerThreadIds = listWorkerThreadIds;
 function preSpawnWorkerThread(workerThreadId) {
     getWorkerThread(workerThreadId);
 }
 exports.preSpawnWorkerThread = preSpawnWorkerThread;
 var workerThreadPool;
 (function (workerThreadPool) {
-    function getWorkerThreadId(workerThreadPoolId, i) {
-        return "__pool_" + workerThreadPoolId + "_" + (i !== undefined ? i : "");
-    }
+    var Id;
+    (function (Id) {
+        function generate() {
+            return { "type": "WORKER THREAD POOL ID" };
+        }
+        Id.generate = generate;
+    })(Id = workerThreadPool.Id || (workerThreadPool.Id = {}));
+    var map = new polyfills_1.Map();
     function preSpawn(workerThreadPoolId, poolSize) {
+        if (!map.has(workerThreadPoolId)) {
+            map.set(workerThreadPoolId, new polyfills_1.Set());
+        }
         for (var i = 1; i <= poolSize; i++) {
-            preSpawnWorkerThread(getWorkerThreadId(workerThreadPoolId, i));
+            var workerThreadId = WorkerThreadId.generate();
+            map.get(workerThreadPoolId).add(workerThreadId);
+            preSpawnWorkerThread(workerThreadId);
         }
     }
     workerThreadPool.preSpawn = preSpawn;
     function listIds(workerThreadPoolId) {
+        var set = map.get(workerThreadPoolId) || new polyfills_1.Set();
         return listWorkerThreadIds()
-            .filter(function (workerThreadId) { return workerThreadId.startsWith(getWorkerThreadId(workerThreadPoolId)); });
+            .filter(function (workerThreadId) { return set.has(workerThreadId); });
     }
     workerThreadPool.listIds = listIds;
     function terminate(workerThreadPoolId) {
-        listIds(workerThreadPoolId).forEach(function (workerThreadId) { return terminateWorkerThreads(workerThreadId); });
+        for (var _i = 0, _a = listIds(workerThreadPoolId); _i < _a.length; _i++) {
+            var workerThreadId = _a[_i];
+            terminateWorkerThreads(workerThreadId);
+        }
     }
     workerThreadPool.terminate = terminate;
 })(workerThreadPool = exports.workerThreadPool || (exports.workerThreadPool = {}));
@@ -129,11 +150,15 @@ var getCounter = (function () {
     var counter = 0;
     return function () { return counter++; };
 })();
-var generateId = function (name) { return "__]]>>" + name + "<<[[__"; };
+var defaultWorkerPoolIds = {
+    "aes": workerThreadPool.Id.generate(),
+    "plain": workerThreadPool.Id.generate(),
+    "rsa": workerThreadPool.Id.generate()
+};
 function cipherFactoryPool(params, workerThreadPoolId) {
     var _this = this;
     if (workerThreadPoolId === undefined) {
-        workerThreadPoolId = generateId(params.cipherName);
+        workerThreadPoolId = defaultWorkerPoolIds[params.cipherName];
         workerThreadPool.preSpawn(workerThreadPoolId, 4);
     }
     else if (workerThreadPool.listIds(workerThreadPoolId).length === 0) {
@@ -270,7 +295,7 @@ exports.rsa = (function () {
                     wasWorkerThreadIdSpecified = workerThreadId !== undefined;
                     workerThreadId = workerThreadId !== undefined ?
                         workerThreadId :
-                        generateId("rsa generate keys");
+                        WorkerThreadId.generate();
                     actionId = getCounter();
                     appWorker = getWorkerThread(workerThreadId);
                     appWorker.send((function () {
@@ -311,7 +336,7 @@ exports.scrypt = (function () {
                         wasWorkerThreadIdSpecified = workerThreadId !== undefined;
                         workerThreadId = workerThreadId !== undefined ?
                             workerThreadId :
-                            generateId("scrypt" + actionId);
+                            WorkerThreadId.generate();
                         appWorker = getWorkerThread(workerThreadId);
                         appWorker.send((function () {
                             var action = {

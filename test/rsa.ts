@@ -1,6 +1,6 @@
 
 import * as async from "../async";
-import * as randombytes from "randombytes";
+import { randomBytes } from "../sync/utils";
 
 declare const Buffer: any;
 
@@ -8,7 +8,7 @@ declare const Buffer: any;
 
     const testEncryptorDecryptor = async (encryptorDecryptor: async.EncryptorDecryptor) => {
 
-        const plainData = randombytes(150);
+        const plainData = randomBytes(150);
 
         //NOTE: After being passed to encrypt plainData is no longer usable.
         const plainDataAsHex = async.toBuffer(plainData).toString("hex");

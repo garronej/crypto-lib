@@ -1,7 +1,6 @@
 import * as aesjs from "aes-js";
-import * as randomBytes from "randombytes";
 import { EncryptorDecryptor, Sync } from "../types";
-import { leftShift, addPadding, uint8ArrayToNumber, numberToUint8Array, concatUint8Array } from "../utils";
+import { leftShift, addPadding, uint8ArrayToNumber, numberToUint8Array, concatUint8Array, randomBytes } from "../utils";
 
 export function syncEncryptorDecryptorFactory(key: Uint8Array): Sync<EncryptorDecryptor> {
 

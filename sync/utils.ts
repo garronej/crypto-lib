@@ -1,4 +1,24 @@
 
+import { isBrowser } from "./environnement";
+import * as randombytes from "randombytes";
+
+declare const require: any;
+
+export const randomBytes: {
+      (size: number): Uint8Array;
+      (size: number, callback: (err: Error, buf: Uint8Array) => void): void;
+} = isBrowser() ?
+    randombytes
+    :
+    (() => {
+
+        const nodeCrypto = require("" + "crypto");
+
+        return nodeCrypto.randomBytes.bind(nodeCrypto);
+
+    })()
+    ;
+
 export function concatUint8Array(...uint8Arrays: Uint8Array[]): Uint8Array {
 
     const out = new Uint8Array(
@@ -81,14 +101,14 @@ export function uint8ArrayToNumber(uint8Array: Uint8Array) {
 }
 
 /** +1, in place ( array is updated ) */
-export function leftShift(uint8Array: Uint8Array): Uint8Array{
+export function leftShift(uint8Array: Uint8Array): Uint8Array {
 
-    let c= true;
+    let c = true;
 
-    for(let i= uint8Array.length - 1; c && i >= 0; i-- ){
+    for (let i = uint8Array.length - 1; c && i >= 0; i--) {
 
-        if( ++uint8Array[i] !== 256 ){
-            c= false;
+        if (++uint8Array[i] !== 256) {
+            c = false;
         }
 
     }

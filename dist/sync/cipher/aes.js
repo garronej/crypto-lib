@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var aesjs = require("aes-js");
-var randomBytes = require("randombytes");
 var utils_1 = require("../utils");
 function syncEncryptorDecryptorFactory(key) {
     return {
         "encrypt": (function () {
             var getIv = (function () {
-                var iv0 = randomBytes(16);
+                var iv0 = utils_1.randomBytes(16);
                 return function () { return utils_1.leftShift(iv0); };
             })();
             return function (plainData) {
@@ -31,7 +30,7 @@ function syncEncryptorDecryptorFactory(key) {
 }
 exports.syncEncryptorDecryptorFactory = syncEncryptorDecryptorFactory;
 function generateKey() {
-    return new Promise(function (resolve, reject) { return randomBytes(32, function (err, buf) {
+    return new Promise(function (resolve, reject) { return utils_1.randomBytes(32, function (err, buf) {
         if (!!err) {
             reject(err);
         }

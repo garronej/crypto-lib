@@ -173,13 +173,12 @@ else {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var aesjs = require("aes-js");
-var randomBytes = require("randombytes");
 var utils_1 = require("../utils");
 function syncEncryptorDecryptorFactory(key) {
     return {
         "encrypt": (function () {
             var getIv = (function () {
-                var iv0 = randomBytes(16);
+                var iv0 = utils_1.randomBytes(16);
                 return function () { return utils_1.leftShift(iv0); };
             })();
             return function (plainData) {
@@ -203,7 +202,7 @@ function syncEncryptorDecryptorFactory(key) {
 }
 exports.syncEncryptorDecryptorFactory = syncEncryptorDecryptorFactory;
 function generateKey() {
-    return new Promise(function (resolve, reject) { return randomBytes(32, function (err, buf) {
+    return new Promise(function (resolve, reject) { return utils_1.randomBytes(32, function (err, buf) {
         if (!!err) {
             reject(err);
         }
@@ -222,7 +221,7 @@ function getTestKey() {
 }
 exports.getTestKey = getTestKey;
 
-},{"../utils":10,"aes-js":11,"randombytes":63}],4:[function(require,module,exports){
+},{"../utils":10,"aes-js":11}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function syncEncryptorDecryptorFactory() {
@@ -420,6 +419,15 @@ var RsaKey;
 },{"buffer":25}],10:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var environnement_1 = require("./environnement");
+var randombytes = require("randombytes");
+exports.randomBytes = environnement_1.isBrowser() ?
+    randombytes
+    :
+        (function () {
+            var nodeCrypto = require("" + "crypto");
+            return nodeCrypto.randomBytes.bind(nodeCrypto);
+        })();
 function concatUint8Array() {
     var uint8Arrays = [];
     for (var _i = 0; _i < arguments.length; _i++) {
@@ -485,7 +493,7 @@ function leftShift(uint8Array) {
 }
 exports.leftShift = leftShift;
 
-},{}],11:[function(require,module,exports){
+},{"./environnement":6,"randombytes":63}],11:[function(require,module,exports){
 /*! MIT License. Copyright 2015-2018 Richard Moore <me@ricmoo.com>. See LICENSE.txt. */
 (function(root) {
     "use strict";

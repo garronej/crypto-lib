@@ -1,5 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var environnement_1 = require("./environnement");
+var randombytes = require("randombytes");
+exports.randomBytes = environnement_1.isBrowser() ?
+    randombytes
+    :
+        (function () {
+            var nodeCrypto = require("" + "crypto");
+            return nodeCrypto.randomBytes.bind(nodeCrypto);
+        })();
 function concatUint8Array() {
     var uint8Arrays = [];
     for (var _i = 0; _i < arguments.length; _i++) {

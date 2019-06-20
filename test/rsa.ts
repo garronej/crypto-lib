@@ -1,19 +1,27 @@
 
-import * as async from "../async";
+import * as cryptoLib from "../async";
 import { randomBytes } from "../sync/utils";
-
-declare const Buffer: any;
 
 (async () => {
 
-    const testEncryptorDecryptor = async (encryptorDecryptor: async.EncryptorDecryptor) => {
+    const threadPoolId= cryptoLib.workerThreadPool.Id.generate();
+
+    cryptoLib.workerThreadPool.preSpawn(threadPoolId, 1);
+
+    await new Promise(resolve=> setTimeout(resolve, 9000));
+
+    const testEncryptorDecryptor = async (encryptorDecryptor: cryptoLib.EncryptorDecryptor) => {
+
+        let start = Date.now();
 
         const plainData = randomBytes(150);
 
-        //NOTE: After being passed to encrypt plainData is no longer usable.
-        const plainDataAsHex = async.toBuffer(plainData).toString("hex");
+        console.log(`randomBytes(150) duration: ${Date.now()-start}ms`);
 
-        let start = Date.now();
+        //NOTE: After being passed to encrypt plainData is no longer usable.
+        const plainDataAsHex = cryptoLib.toBuffer(plainData).toString("hex");
+
+        start = Date.now();
 
         const encryptedData = await encryptorDecryptor.encrypt(plainData);
 
@@ -26,7 +34,7 @@ declare const Buffer: any;
         console.log(`decrypt duration: ${Date.now() - start}ms`);
 
         if (
-            async.toBuffer(restoredPlainData).toString("hex")
+            cryptoLib.toBuffer(restoredPlainData).toString("hex")
             !==
             plainDataAsHex
         ) {
@@ -36,29 +44,35 @@ declare const Buffer: any;
     }
 
 
-    for (const keyLengthBytes of [80, 128, 160, 255, 512]) {
+    for (const keyLengthBytes of [80, 128, 160, 255]) {
 
         console.log({ keyLengthBytes }, `( ${keyLengthBytes * 8} bits )`);
 
         let start = Date.now();
 
-        const rsaKeys = await async.rsa.generateKeys(Buffer.from("seed", "utf8"), keyLengthBytes);
+        const rsaKeys = await cryptoLib.rsa.generateKeys(
+            null, 
+            keyLengthBytes, 
+            cryptoLib.workerThreadPool.listIds(threadPoolId)[0]
+        );
 
         console.log(`Rsa key generation duration: ${Date.now() - start}`);
 
         console.log("encrypt with private key");
 
         await testEncryptorDecryptor(
-            async.rsa.encryptorDecryptorFactory(rsaKeys.privateKey, rsaKeys.publicKey)
+            cryptoLib.rsa.encryptorDecryptorFactory(rsaKeys.privateKey, rsaKeys.publicKey, threadPoolId)
         );
 
         console.log("encrypt with public key");
 
         await testEncryptorDecryptor(
-            async.rsa.encryptorDecryptorFactory(rsaKeys.publicKey, rsaKeys.privateKey)
+            cryptoLib.rsa.encryptorDecryptorFactory(rsaKeys.publicKey, rsaKeys.privateKey, threadPoolId)
         );
 
     }
+
+    cryptoLib.workerThreadPool.terminate(threadPoolId);
 
     console.log("PASS");
 

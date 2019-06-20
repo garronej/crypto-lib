@@ -805,7 +805,6 @@ function leftShift(uint8Array) {
 exports.leftShift = leftShift;
 
 },{"./environnement":9,"randombytes":21}],12:[function(require,module,exports){
-(function (Buffer){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -844,21 +843,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var async = require("../async");
+var cryptoLib = require("../async");
 var utils_1 = require("../sync/utils");
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var testEncryptorDecryptor, _i, _a, keyLengthBytes, start, rsaKeys;
+    var threadPoolId, testEncryptorDecryptor, _i, _a, keyLengthBytes, start, rsaKeys;
     var _this = this;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
+                threadPoolId = cryptoLib.workerThreadPool.Id.generate();
+                cryptoLib.workerThreadPool.preSpawn(threadPoolId, 1);
+                return [4 /*yield*/, new Promise(function (resolve) { return setTimeout(resolve, 9000); })];
+            case 1:
+                _b.sent();
                 testEncryptorDecryptor = function (encryptorDecryptor) { return __awaiter(_this, void 0, void 0, function () {
-                    var plainData, plainDataAsHex, start, encryptedData, restoredPlainData;
+                    var start, plainData, plainDataAsHex, encryptedData, restoredPlainData;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0:
+                                start = Date.now();
                                 plainData = utils_1.randomBytes(150);
-                                plainDataAsHex = async.toBuffer(plainData).toString("hex");
+                                console.log("randomBytes(150) duration: " + (Date.now() - start) + "ms");
+                                plainDataAsHex = cryptoLib.toBuffer(plainData).toString("hex");
                                 start = Date.now();
                                 return [4 /*yield*/, encryptorDecryptor.encrypt(plainData)];
                             case 1:
@@ -869,7 +875,7 @@ var utils_1 = require("../sync/utils");
                             case 2:
                                 restoredPlainData = _a.sent();
                                 console.log("decrypt duration: " + (Date.now() - start) + "ms");
-                                if (async.toBuffer(restoredPlainData).toString("hex")
+                                if (cryptoLib.toBuffer(restoredPlainData).toString("hex")
                                     !==
                                         plainDataAsHex) {
                                     throw new Error("fail");
@@ -878,38 +884,38 @@ var utils_1 = require("../sync/utils");
                         }
                     });
                 }); };
-                _i = 0, _a = [80, 128, 160, 255, 512];
-                _b.label = 1;
-            case 1:
-                if (!(_i < _a.length)) return [3 /*break*/, 6];
+                _i = 0, _a = [80, 128, 160, 255];
+                _b.label = 2;
+            case 2:
+                if (!(_i < _a.length)) return [3 /*break*/, 7];
                 keyLengthBytes = _a[_i];
                 console.log({ keyLengthBytes: keyLengthBytes }, "( " + keyLengthBytes * 8 + " bits )");
                 start = Date.now();
-                return [4 /*yield*/, async.rsa.generateKeys(Buffer.from("seed", "utf8"), keyLengthBytes)];
-            case 2:
+                return [4 /*yield*/, cryptoLib.rsa.generateKeys(null, keyLengthBytes, cryptoLib.workerThreadPool.listIds(threadPoolId)[0])];
+            case 3:
                 rsaKeys = _b.sent();
                 console.log("Rsa key generation duration: " + (Date.now() - start));
                 console.log("encrypt with private key");
-                return [4 /*yield*/, testEncryptorDecryptor(async.rsa.encryptorDecryptorFactory(rsaKeys.privateKey, rsaKeys.publicKey))];
-            case 3:
-                _b.sent();
-                console.log("encrypt with public key");
-                return [4 /*yield*/, testEncryptorDecryptor(async.rsa.encryptorDecryptorFactory(rsaKeys.publicKey, rsaKeys.privateKey))];
+                return [4 /*yield*/, testEncryptorDecryptor(cryptoLib.rsa.encryptorDecryptorFactory(rsaKeys.privateKey, rsaKeys.publicKey, threadPoolId))];
             case 4:
                 _b.sent();
-                _b.label = 5;
+                console.log("encrypt with public key");
+                return [4 /*yield*/, testEncryptorDecryptor(cryptoLib.rsa.encryptorDecryptorFactory(rsaKeys.publicKey, rsaKeys.privateKey, threadPoolId))];
             case 5:
-                _i++;
-                return [3 /*break*/, 1];
+                _b.sent();
+                _b.label = 6;
             case 6:
+                _i++;
+                return [3 /*break*/, 2];
+            case 7:
+                cryptoLib.workerThreadPool.terminate(threadPoolId);
                 console.log("PASS");
                 return [2 /*return*/];
         }
     });
 }); })();
 
-}).call(this,require("buffer").Buffer)
-},{"../async":5,"../sync/utils":11,"buffer":14}],13:[function(require,module,exports){
+},{"../async":5,"../sync/utils":11}],13:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength

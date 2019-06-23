@@ -7,12 +7,30 @@ const module_dir_path = path.join(__dirname, "..", "..");
 
     const watch = process.argv[2] === "-w" ? "WATCH" as const : undefined;
 
-    await buildTools.tsc_browserify_minify(
+    await buildTools.tsc(
         path.join(module_dir_path, "sync", "tsconfig.json"),
-        path.join(module_dir_path, "dist", "sync", "_worker_thread", "main.js"),
-        path.join(module_dir_path, "dist", "sync", "_worker_thread", "bundle.js"),
         watch
     );
+
+    {
+
+        const bundle_file_path =
+            path.join(module_dir_path, "dist", "sync", "_worker_thread", "bundle.js");
+
+
+        await buildTools.browserify(
+            path.join(module_dir_path, "dist", "sync", "_worker_thread", "main.js"),
+            bundle_file_path,
+            undefined,
+            watch
+        );
+
+        await buildTools.minify(
+            bundle_file_path,
+            watch
+        );
+
+    }
 
     await buildTools.tsc(
         path.join(module_dir_path, "async", "tsconfig.json"),
@@ -39,6 +57,7 @@ const module_dir_path = path.join(__dirname, "..", "..");
             await buildTools.browserify(
                 entry_point_file_path,
                 dst_file_path,
+                undefined,
                 watch
             );
 

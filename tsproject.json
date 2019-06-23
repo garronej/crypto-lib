@@ -20,7 +20,7 @@
     },
     "references": [
         {
-            "path": "./build-script"
+            "path": "./builder"
         },
         {
             "path": "./sync"

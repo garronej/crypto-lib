@@ -3,7 +3,7 @@
   "main": "./dist/async/index.js",
   "types": "./dist/async/index.d.ts",
   "description": "...",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "scripts": {
     "tsc": "node ./node_modules/typescript/bin/tsc -p ",
     "build": "npm run tsc -- ./builder && node ./dist/builder/build.js"
@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@types/node": "^8.9.1",
-    "brfs": "^2.0.2",
     "frontend-build-tools": "github:garronej/frontend-build-tools",
     "typescript": "^3.4.5"
   }

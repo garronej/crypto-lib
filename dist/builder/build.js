@@ -40,23 +40,30 @@ var buildTools = require("frontend-build-tools");
 var path = require("path");
 var module_dir_path = path.join(__dirname, "..", "..");
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var watch, _loop_1, _i, _a, test_file_basename;
+    var watch, bundle_file_path, _loop_1, _i, _a, test_file_basename;
     var _this = this;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 watch = process.argv[2] === "-w" ? "WATCH" : undefined;
-                return [4 /*yield*/, buildTools.tsc_browserify_minify(path.join(module_dir_path, "sync", "tsconfig.json"), path.join(module_dir_path, "dist", "sync", "_worker_thread", "main.js"), path.join(module_dir_path, "dist", "sync", "_worker_thread", "bundle.js"), watch)];
+                return [4 /*yield*/, buildTools.tsc(path.join(module_dir_path, "sync", "tsconfig.json"), watch)];
             case 1:
                 _b.sent();
-                return [4 /*yield*/, buildTools.tsc(path.join(module_dir_path, "async", "tsconfig.json"), watch)];
+                bundle_file_path = path.join(module_dir_path, "dist", "sync", "_worker_thread", "bundle.js");
+                return [4 /*yield*/, buildTools.browserify(path.join(module_dir_path, "dist", "sync", "_worker_thread", "main.js"), bundle_file_path, undefined, watch)];
             case 2:
                 _b.sent();
-                return [4 /*yield*/, buildTools.brfs(path.join(module_dir_path, "dist", "async", "index.js"), watch)];
+                return [4 /*yield*/, buildTools.minify(bundle_file_path, watch)];
             case 3:
                 _b.sent();
-                return [4 /*yield*/, buildTools.tsc(path.join(module_dir_path, "test", "tsconfig.json"), watch)];
+                return [4 /*yield*/, buildTools.tsc(path.join(module_dir_path, "async", "tsconfig.json"), watch)];
             case 4:
+                _b.sent();
+                return [4 /*yield*/, buildTools.brfs(path.join(module_dir_path, "dist", "async", "index.js"), watch)];
+            case 5:
+                _b.sent();
+                return [4 /*yield*/, buildTools.tsc(path.join(module_dir_path, "test", "tsconfig.json"), watch)];
+            case 6:
                 _b.sent();
                 _loop_1 = function (test_file_basename) {
                     (function () { return __awaiter(_this, void 0, void 0, function () {
@@ -66,7 +73,7 @@ var module_dir_path = path.join(__dirname, "..", "..");
                                 case 0:
                                     entry_point_file_path = path.join(module_dir_path, "dist", "test", test_file_basename + ".js");
                                     dst_file_path = path.join(module_dir_path, "docs", test_file_basename + "-bundled.js");
-                                    return [4 /*yield*/, buildTools.browserify(entry_point_file_path, dst_file_path, watch)];
+                                    return [4 /*yield*/, buildTools.browserify(entry_point_file_path, dst_file_path, undefined, watch)];
                                 case 1:
                                     _a.sent();
                                     return [4 /*yield*/, buildTools.minify(dst_file_path, watch)];

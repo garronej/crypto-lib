@@ -86,8 +86,8 @@
         "signature": "c6c9c55769814daf7702623eb8c09bf4315cc1e278c48068ee78a86de6094736"
       },
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/environnement.ts": {
-        "version": "afc16b0094aa8fe9667b51e7cee393616b6397bb35aded8eb0562a3209d2c5b9",
-        "signature": "afc16b0094aa8fe9667b51e7cee393616b6397bb35aded8eb0562a3209d2c5b9"
+        "version": "40c3df24e475fd33f755cfede725f09458f88bab64e8debb75579f9473bfb647",
+        "signature": "40c3df24e475fd33f755cfede725f09458f88bab64e8debb75579f9473bfb647"
       },
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/web.ts": {
         "version": "f59f8da1b913871547c911c2158790990f3cdc6a7933a04425dc75fc8f100550",
@@ -248,37 +248,56 @@
       ]
     },
     "exportedModulesMap": {
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/index.d.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/syncevent.d.ts",
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/defs.d.ts"
-      ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/index.d.ts",
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/_worker_thread/threadmessage.d.ts"
-      ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/index.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts",
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/async/serializer.ts"
-      ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/simulated.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread.ts"
-      ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/node.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread.ts"
-      ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/web.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread.ts"
-      ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/syncevent.d.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/synceventbase.d.ts",
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/synceventbaseprotected.d.ts": [
         "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/defs.d.ts"
       ],
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/synceventbase.d.ts": [
         "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/synceventbaseprotected.d.ts",
         "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/defs.d.ts"
       ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/synceventbaseprotected.d.ts": [
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/syncevent.d.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/synceventbase.d.ts",
         "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/defs.d.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/index.d.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/syncevent.d.ts",
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/defs.d.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/rsa.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/aes.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/_worker_thread/threadmessage.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts",
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/cipher/rsa.d.ts",
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/cipher/aes.d.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/web.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/node.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/_worker_thread/main.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/_worker_thread/threadmessage.d.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/simulated.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/ts-events-extended/dist/lib/index.d.ts",
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/_worker_thread/threadmessage.d.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/serializer.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/scrypt.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts"
+      ],
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/plain.ts": [
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts"
       ],
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/index.ts": [
         "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts",
@@ -287,28 +306,9 @@
         "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/cipher/rsa.d.ts",
         "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/cipher/plain.d.ts"
       ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/plain.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts"
-      ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/scrypt.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts"
-      ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/serializer.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts"
-      ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/_worker_thread/threadmessage.ts": [
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/index.ts": [
         "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts",
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/cipher/rsa.d.ts",
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/cipher/aes.d.ts"
-      ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/_worker_thread/main.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/_worker_thread/threadmessage.d.ts"
-      ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/aes.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts"
-      ],
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/rsa.ts": [
-        "c:/users/joseph/dropbox/shell/github/crypto-lib/dist/sync/types.d.ts"
+        "c:/users/joseph/dropbox/shell/github/crypto-lib/async/serializer.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -333,12 +333,10 @@
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/rsa.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/aes.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/_worker_thread/threadmessage.ts",
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/environnement.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/web.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/node.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/_worker_thread/main.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/simulated.ts",
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/polyfills.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/run-exclusive/dist/lib/runexclusive.d.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/transfer-tools/dist/lib/json_custom.d.ts",
@@ -346,6 +344,8 @@
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/scrypt.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/plain.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/index.ts",
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/environnement.ts",
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/index.ts"
     ]
   },

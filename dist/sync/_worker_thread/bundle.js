@@ -314,8 +314,10 @@ exports.syncGenerateKeys = syncGenerateKeys;
 },{"../environnement":6,"../types":9,"buffer":25,"node-rsa":38}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/** we treat LiquidCore as a browser considering that it does not have the crypto library */
 function isBrowser() {
-    return (typeof window !== "undefined" ||
+    return (typeof setTimeout === "undefined" || //LiquidCore
+        typeof window !== "undefined" ||
         typeof self !== "undefined" && !!self.postMessage);
 }
 exports.isBrowser = isBrowser;

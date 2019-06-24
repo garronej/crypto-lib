@@ -335,11 +335,11 @@
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/typescript/lib/lib.es2017.string.d.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/typescript/lib/lib.es2017.intl.d.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/frontend-build-tools/dist/index.d.ts",
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/builder/build.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/@types/node/inspector.d.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/@types/node/base.d.ts",
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts",
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/frontend-build-tools/dist/index.d.ts",
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/builder/build.ts"
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
     ]
   },
   "version": "3.5.2"

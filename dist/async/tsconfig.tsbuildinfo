@@ -333,10 +333,12 @@
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/rsa.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/aes.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/_worker_thread/threadmessage.ts",
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/environnement.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/web.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/node.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/_worker_thread/main.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread/simulated.ts",
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/polyfills.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/run-exclusive/dist/lib/runexclusive.d.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/transfer-tools/dist/lib/json_custom.d.ts",
@@ -344,8 +346,6 @@
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/scrypt.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/plain.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/index.ts",
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/environnement.ts",
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/async/workerthread.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/index.ts"
     ]
   },

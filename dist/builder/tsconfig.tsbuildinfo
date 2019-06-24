@@ -78,11 +78,11 @@
         "signature": "28569d59e07d4378cb3d54979c4c60f9f06305c9bb6999ffe6cab758957adc46"
       },
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/frontend-build-tools/dist/index.d.ts": {
-        "version": "63e6df5cd0f0dcd795ab7b309fa77ccc24b435c8704741c9e0b9d836006419bb",
-        "signature": "63e6df5cd0f0dcd795ab7b309fa77ccc24b435c8704741c9e0b9d836006419bb"
+        "version": "b838169c844f89586861646be93ef84805ab0a48bbcc5e85e65628f1a4865be8",
+        "signature": "b838169c844f89586861646be93ef84805ab0a48bbcc5e85e65628f1a4865be8"
       },
       "c:/users/joseph/dropbox/shell/github/crypto-lib/builder/build.ts": {
-        "version": "388ba789837e14eed37ea34f313bd7711f57761352d46d050621d1d47a80ddab",
+        "version": "86f0a151e5614b9a3f2f4298cd9e774c213722b03a4bb0cde2ba9d5d96938164",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/@types/node/inspector.d.ts": {
@@ -335,11 +335,11 @@
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/typescript/lib/lib.es2017.string.d.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/typescript/lib/lib.es2017.intl.d.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/frontend-build-tools/dist/index.d.ts",
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/builder/build.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/@types/node/inspector.d.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/@types/node/base.d.ts",
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts",
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/frontend-build-tools/dist/index.d.ts",
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/builder/build.ts"
     ]
   },
   "version": "3.5.2"

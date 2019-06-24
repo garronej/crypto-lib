@@ -19,8 +19,8 @@ const module_dir_path = path.join(__dirname, "..", "..");
 
 
         await buildTools.browserify(
-            path.join(module_dir_path, "dist", "sync", "_worker_thread", "main.js"),
-            bundle_file_path,
+            ["--entry", path.join(module_dir_path, "dist", "sync", "_worker_thread", "main.js")],
+            ["--outfile", bundle_file_path],
             undefined,
             watch
         );
@@ -55,8 +55,8 @@ const module_dir_path = path.join(__dirname, "..", "..");
             const dst_file_path = path.join(module_dir_path, "docs", `${test_file_basename}-bundled.js`);
 
             await buildTools.browserify(
-                entry_point_file_path,
-                dst_file_path,
+                ["--entry", entry_point_file_path],
+                ["--outfile", dst_file_path],
                 undefined,
                 watch
             );

@@ -1,9 +1,9 @@
+
 declare const self: any;
 declare const addEventListener: any;
-declare const document: any;
 
 import * as cryptoLib from "../index";
-import * as environnement from "../environnement";
+import { environnement } from "../utils/environnement";
 import { 
     ThreadMessage, GenerateRsaKeys, EncryptOrDecrypt, ScryptHash,
     transfer 
@@ -28,10 +28,9 @@ if ((() => {
         return false;
     }
 
-    const isMainThead = environnement.isBrowser() ?
-        (typeof document !== "undefined") :
-        (typeof __process_node === "undefined")
-        ;
+    const isMainThead = environnement.isMainThread !== undefined ?
+        environnement.isMainThread :
+        typeof __process_node === "undefined";
 
     return isMainThead;
 
@@ -43,7 +42,7 @@ if ((() => {
 
     const mainThreadApi: MainThreadApi = typeof __simulatedMainThreadApi !== "undefined" ?
         __simulatedMainThreadApi :
-        environnement.isBrowser() ?
+        typeof __process_node === "undefined" ?
             {
                 "sendResponse": self.postMessage.bind(self),
                 "setActionListener": actionListener => addEventListener(

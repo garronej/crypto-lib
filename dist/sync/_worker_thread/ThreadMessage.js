@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var environnement = require("../environnement");
-var types_1 = require("../types");
+var environnement_1 = require("../utils/environnement");
+var toBuffer_1 = require("../utils/toBuffer");
 var transfer;
 (function (transfer) {
     var SerializableUint8Array;
@@ -15,7 +15,7 @@ var transfer;
         function build(value) {
             return {
                 "type": "Uint8Array",
-                "data": types_1.toBuffer(value).toString("binary")
+                "data": toBuffer_1.toBuffer(value).toString("binary")
             };
         }
         SerializableUint8Array.build = build;
@@ -25,7 +25,7 @@ var transfer;
         SerializableUint8Array.restore = restore;
     })(SerializableUint8Array || (SerializableUint8Array = {}));
     function prepare(threadMessage) {
-        if (environnement.isBrowser()) {
+        if (environnement_1.environnement.type !== "NODE") {
             throw new Error("only for node");
         }
         var message = (function () {
@@ -50,7 +50,7 @@ var transfer;
     }
     transfer.prepare = prepare;
     function restore(message) {
-        if (environnement.isBrowser()) {
+        if (environnement_1.environnement.type !== "NODE") {
             throw new Error("only for node");
         }
         var threadMessage = (function () {

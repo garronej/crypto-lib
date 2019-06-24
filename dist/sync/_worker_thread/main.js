@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var cryptoLib = require("../index");
-var environnement = require("../environnement");
+var environnement_1 = require("../utils/environnement");
 var ThreadMessage_1 = require("./ThreadMessage");
 if ((function () {
     if (typeof __simulatedMainThreadApi !== "undefined") {
         return false;
     }
-    var isMainThead = environnement.isBrowser() ?
-        (typeof document !== "undefined") :
-        (typeof __process_node === "undefined");
+    var isMainThead = environnement_1.environnement.isMainThread !== undefined ?
+        environnement_1.environnement.isMainThread :
+        typeof __process_node === "undefined";
     return isMainThead;
 })()) {
     __cryptoLib = cryptoLib;
@@ -17,7 +17,7 @@ if ((function () {
 else {
     var mainThreadApi_1 = typeof __simulatedMainThreadApi !== "undefined" ?
         __simulatedMainThreadApi :
-        environnement.isBrowser() ?
+        typeof __process_node === "undefined" ?
             {
                 "sendResponse": self.postMessage.bind(self),
                 "setActionListener": function (actionListener) { return addEventListener("message", function (_a) {

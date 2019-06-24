@@ -13,7 +13,8 @@ import {
     GenerateRsaKeys, CipherFactory, EncryptOrDecrypt, ScryptHash
 } from "../sync/_worker_thread/ThreadMessage";
 import { WorkerThread } from "./WorkerThread";
-import { isBrowser } from "../sync/environnement";
+import { environnement } from "../sync/utils/environnement";
+
 
 const bundle_source = (() => {
 
@@ -34,10 +35,21 @@ export * from "../sync/types";
 
 export * from "./serializer";
 
-let isMultithreadingEnabled = isBrowser() ? (
-    typeof Worker !== "undefined" &&
-    typeof URL !== "undefined" &&
-    typeof Blob !== "undefined") : true;
+export { Encoding, toBuffer } from "../sync/utils/toBuffer";
+
+let isMultithreadingEnabled = (() => {
+
+    switch (environnement.type) {
+        case "BROWSER": return (
+            typeof Worker !== "undefined" &&
+            typeof URL !== "undefined" &&
+            typeof Blob !== "undefined"
+        );
+        case "LIQUID CORE": return false;
+        case "NODE": return true;
+    }
+
+})();
 
 export function disableMultithreading() {
     isMultithreadingEnabled = false;
@@ -45,12 +57,12 @@ export function disableMultithreading() {
 
 
 export type WorkerThreadId = {
-        type: "WORKER THREAD ID";
+    type: "WORKER THREAD ID";
 };
 
 export namespace WorkerThreadId {
 
-    export function generate(): WorkerThreadId{
+    export function generate(): WorkerThreadId {
         return { "type": "WORKER THREAD ID" };
     }
 

@@ -1,6 +1,7 @@
 
-import * as environnement from "../environnement";
-import { toBuffer, RsaKey } from "../types";
+import { environnement } from "../utils/environnement";
+import { toBuffer } from "../utils/toBuffer";
+import { RsaKey } from "../types";
 declare const Buffer: any;
 
 export type ThreadMessage = ThreadMessage.Action | ThreadMessage.Response;
@@ -143,7 +144,7 @@ export namespace transfer {
 
     export function prepare<T extends ThreadMessage>(threadMessage: T): any {
 
-        if (environnement.isBrowser()) {
+        if( environnement.type !== "NODE" ){
             throw new Error("only for node");
         }
 
@@ -177,7 +178,7 @@ export namespace transfer {
 
     export function restore<T extends ThreadMessage>(message: any): T {
 
-        if (environnement.isBrowser()) {
+        if( environnement.type !== "NODE" ){
             throw new Error("only for node");
         }
 

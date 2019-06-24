@@ -1,29 +1,20 @@
 import { Encryptor, Decryptor, EncryptorDecryptor, Sync } from "../types";
 import { RsaKey } from "../types";
 import * as NodeRSA from "node-rsa";
-import { isBrowser } from "../environnement";
+import { environnement } from "../utils/environnement";
+import { toBuffer } from "../utils/toBuffer";
 
-declare type Buffer= any;
+declare type Buffer = any;
 declare const Buffer: any;
 
-const getEnvironment= ()=> isBrowser() ? "browser" : "node";
+const targetedEnvironnement = environnement.type === "NODE" ? "node" : "browser";
 
 const newNodeRSA = (key: RsaKey) => new NodeRSA(
-    Buffer.from(key.data), 
+    Buffer.from(key.data),
     key.format,
-    { "environment": getEnvironment() }
+    { "environment": targetedEnvironnement }
 );
 
-/** 
- * NOTE: The toBuffer function of the library does not  
- * guaranty that the returned object is an actually
- * buffer instance.
- * */
-const toRealBuffer = (data: Uint8Array): Buffer =>
-    data instanceof Buffer || Object.getPrototypeOf(data).name === "Buffer" ?
-        data as Buffer :
-        Buffer.from(data)
-    ;
 
 export function syncEncryptorFactory(encryptKey: RsaKey): Sync<Encryptor> {
     return {
@@ -37,7 +28,7 @@ export function syncEncryptorFactory(encryptKey: RsaKey): Sync<Encryptor> {
                 ;
 
             return (plainData: Uint8Array): Uint8Array =>
-                encryptNodeRSA[encryptMethod](toRealBuffer(plainData))
+                encryptNodeRSA[encryptMethod](toBuffer(plainData))
                 ;
 
 
@@ -54,11 +45,11 @@ export function syncDecryptorFactory(decryptKey: RsaKey): Sync<Decryptor> {
 
             const decryptMethod = RsaKey.Public.match(decryptKey) ?
                 "decryptPublic" :
-                "decrypt" 
+                "decrypt"
                 ;
 
             return (encryptedData: Uint8Array): Uint8Array =>
-                decryptNodeRSA[decryptMethod](toRealBuffer(encryptedData))
+                decryptNodeRSA[decryptMethod](toBuffer(encryptedData))
                 ;
 
         })()
@@ -77,7 +68,7 @@ export function syncEncryptorDecryptorFactory(encryptKey, decryptKey) {
 
 }
 
-export function syncGenerateKeys(seed: Uint8Array | null, keysLengthBytes: number= 80): {
+export function syncGenerateKeys(seed: Uint8Array | null, keysLengthBytes: number = 80): {
     publicKey: RsaKey.Public;
     privateKey: RsaKey.Private;
 } {
@@ -86,7 +77,7 @@ export function syncGenerateKeys(seed: Uint8Array | null, keysLengthBytes: numbe
         seed,
         8 * keysLengthBytes,
         undefined,
-        getEnvironment()
+        targetedEnvironnement
     );
 
     function buildKey(format: RsaKey.Public["format"]): RsaKey.Public;

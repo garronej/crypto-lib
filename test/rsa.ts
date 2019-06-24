@@ -1,6 +1,6 @@
 
 import * as cryptoLib from "../async";
-import { randomBytes } from "../sync/utils";
+import { randomBytes } from "../sync/utils/randomBytes";
 
 (async () => {
 

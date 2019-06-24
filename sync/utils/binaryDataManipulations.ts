@@ -1,24 +1,4 @@
 
-import { isBrowser } from "./environnement";
-import * as randombytes from "randombytes";
-
-declare const require: any;
-
-export const randomBytes: {
-      (size: number): Uint8Array;
-      (size: number, callback: (err: Error, buf: Uint8Array) => void): void;
-} = isBrowser() ?
-    randombytes
-    :
-    (() => {
-
-        const nodeCrypto = require("" + "crypto");
-
-        return nodeCrypto.randomBytes.bind(nodeCrypto);
-
-    })()
-    ;
-
 export function concatUint8Array(...uint8Arrays: Uint8Array[]): Uint8Array {
 
     const out = new Uint8Array(

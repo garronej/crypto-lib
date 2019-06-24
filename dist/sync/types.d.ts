@@ -12,15 +12,6 @@ declare type SyncFn<T> = T extends (...args: infer A) => Promise<infer R> ? (...
 export declare type Sync<T extends Cipher> = {
     [P in keyof T]: SyncFn<T[P]>;
 };
-/**
- * NOTE: Does not guaranty that the returned object is an acutal
- * buffer instance, just that the to string method can be called
- * as on the Buffer prototype. ( even if the current implementation does)
- */
-export declare function toBuffer(uint8Array: Uint8Array): {
-    toString(encoding: Encoding): string;
-};
-export declare type Encoding = "hex" | "base64" | "binary" | "utf8";
 export declare type RsaKey = RsaKey.Private | RsaKey.Public;
 export declare namespace RsaKey {
     function stringify(rsaKey: RsaKey): string;

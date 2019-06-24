@@ -2,6 +2,7 @@ import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey, ScryptParams } from "
 import { Sync } from "../sync/types";
 export * from "../sync/types";
 export * from "./serializer";
+export { Encoding, toBuffer } from "../sync/utils/toBuffer";
 export declare function disableMultithreading(): void;
 export declare type WorkerThreadId = {
     type: "WORKER THREAD ID";

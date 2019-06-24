@@ -1,4 +1,5 @@
-import { Encryptor, Decryptor, Sync, Encoding, toBuffer } from "../sync/types";
+import { Encryptor, Decryptor, Sync } from "../sync/types";
+import { Encoding, toBuffer } from "../sync/utils/toBuffer";
 import * as ttJC from "transfer-tools/dist/lib/JSON_CUSTOM";
 
 declare const Buffer: any;
@@ -19,7 +20,7 @@ export function stringifyThenEncryptFactory<T extends Encryptor | Sync<Encryptor
             Buffer.from(
                 [
                     stringify(value),
-                    (new Array(9 + Math.floor(Math.random() * 50)))
+                    (new Array(9 + Math.floor(Math.random() * 20)))
                         .fill(" ")
                         .join("")
                 ].join(""),

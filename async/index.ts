@@ -1,7 +1,10 @@
 declare const require: any;
 declare const __dirname: any;
 
-import { Map, Set } from "./polyfills";
+import { Polyfill as Map } from "minimal-polyfills/dist/lib/Map";
+import { Polyfill as Set, LightSet } from "minimal-polyfills/dist/lib/Set";
+import "minimal-polyfills/dist/lib/Array.prototype.find";
+
 import * as runExclusive from "run-exclusive";
 import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey, ScryptParams } from "../sync/types";
 
@@ -139,7 +142,7 @@ export namespace workerThreadPool {
 
     }
 
-    const map = new Map<Id, Set<WorkerThreadId>>();
+    const map = new Map<Id, LightSet<WorkerThreadId>>();
 
     export function preSpawn(workerThreadPoolId: Id, poolSize: number) {
 
@@ -161,7 +164,7 @@ export namespace workerThreadPool {
 
     export function listIds(workerThreadPoolId: Id): WorkerThreadId[] {
 
-        const set: Set<WorkerThreadId> = map.get(workerThreadPoolId) || new Set();
+        const set: LightSet<WorkerThreadId> = map.get(workerThreadPoolId) || new Set();
 
         return listWorkerThreadIds()
             .filter(workerThreadId => set.has(workerThreadId))

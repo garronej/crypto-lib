@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+require("minimal-polyfills/dist/lib/ArrayBuffer.isView");
+var Map_1 = require("minimal-polyfills/dist/lib/Map");
 var cryptoLib = require("../index");
 var environnement_1 = require("../utils/environnement");
 var ThreadMessage_1 = require("./ThreadMessage");
@@ -28,7 +30,7 @@ else {
             "sendResponse": function (response) { return __process_node.send(ThreadMessage_1.transfer.prepare(response)); },
             "setActionListener": function (actionListener) { return __process_node.on("message", function (message) { return actionListener(ThreadMessage_1.transfer.restore(message)); }); }
         };
-    var cipherInstances_1 = new Map();
+    var cipherInstances_1 = new Map_1.Polyfill();
     mainThreadApi_1.setActionListener(function (action) {
         var _a, _b;
         switch (action.action) {

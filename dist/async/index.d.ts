@@ -1,3 +1,4 @@
+import "minimal-polyfills/dist/lib/Array.prototype.find";
 import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey, ScryptParams } from "../sync/types";
 import { Sync } from "../sync/types";
 export * from "../sync/types";

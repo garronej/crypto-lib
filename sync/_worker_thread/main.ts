@@ -2,6 +2,8 @@
 declare const self: any;
 declare const addEventListener: any;
 
+import "minimal-polyfills/dist/lib/ArrayBuffer.isView";
+import { Polyfill as Map } from "minimal-polyfills/dist/lib/Map";
 import * as cryptoLib from "../index";
 import { environnement } from "../utils/environnement";
 import { 

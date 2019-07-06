@@ -53,7 +53,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Map_1 = require("minimal-polyfills/dist/lib/Map");
 var Set_1 = require("minimal-polyfills/dist/lib/Set");
 require("minimal-polyfills/dist/lib/Array.from");
-require("minimal-polyfills/dist/lib/ArrayBuffer.isView");
 var runExclusive = require("run-exclusive");
 var WorkerThread_1 = require("./WorkerThread");
 var environnement_1 = require("../sync/utils/environnement");

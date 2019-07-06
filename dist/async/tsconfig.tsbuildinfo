@@ -125,6 +125,10 @@
         "version": "7440ddf3b6b24f583b2d1a5c2bf16226b6203e99c1e7a93e8337cb6056071007",
         "signature": "7440ddf3b6b24f583b2d1a5c2bf16226b6203e99c1e7a93e8337cb6056071007"
       },
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/minimal-polyfills/dist/lib/array.from.d.ts": {
+        "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/run-exclusive/dist/lib/runexclusive.d.ts": {
         "version": "34f0a70e06970e32d059628f7ff83f615da817a20cb03c79360a5c158ac2a650",
         "signature": "34f0a70e06970e32d059628f7ff83f615da817a20cb03c79360a5c158ac2a650"
@@ -154,8 +158,8 @@
         "signature": "6242dfaf7bbce3de59c2029cc1585c4d3f20fb7a9ec8893b3924884e2ef8155b"
       },
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/index.ts": {
-        "version": "cb8e69e44b4f818b79700c6495e4b9080558a3daca360b61f190f7058f607824",
-        "signature": "c3b6ddd1405f249a76cb967eec706a3e61a6fccfa7a63babd287c8b8a7929d5d"
+        "version": "a45d7ab8190269ced2154e19141f44f6d8ccbec6239854c4629d98bcfb1191a8",
+        "signature": "dcc78409cc7973f9ef1865f157b5b2ddad37d337c479fdcf4406c9789281deb9"
       }
     },
     "options": {
@@ -370,6 +374,7 @@
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/scrypt.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/plain.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/index.ts",
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/minimal-polyfills/dist/lib/array.from.d.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/async/index.ts"
     ]
   },

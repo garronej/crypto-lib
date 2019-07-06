@@ -3,7 +3,7 @@ declare const __dirname: any;
 
 import { Polyfill as Map } from "minimal-polyfills/dist/lib/Map";
 import { Polyfill as Set, LightSet } from "minimal-polyfills/dist/lib/Set";
-import "minimal-polyfills/dist/lib/Array.prototype.find";
+import "minimal-polyfills/dist/lib/Array.from";
 
 import * as runExclusive from "run-exclusive";
 import { Encryptor, Decryptor, EncryptorDecryptor, RsaKey, ScryptParams } from "../sync/types";

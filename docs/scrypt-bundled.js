@@ -73,7 +73,7 @@ function spawn(source) {
 exports.spawn = spawn;
 
 }).call(this,require("buffer").Buffer)
-},{"../../sync/_worker_thread/ThreadMessage":7,"buffer":13,"path":22,"ts-events-extended":32}],3:[function(require,module,exports){
+},{"../../sync/_worker_thread/ThreadMessage":7,"buffer":13,"path":23,"ts-events-extended":33}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ts_events_extended_1 = require("ts-events-extended");
@@ -94,7 +94,7 @@ function spawn(source) {
 }
 exports.spawn = spawn;
 
-},{"ts-events-extended":32}],4:[function(require,module,exports){
+},{"ts-events-extended":33}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ts_events_extended_1 = require("ts-events-extended");
@@ -115,7 +115,7 @@ function spawn(source) {
 }
 exports.spawn = spawn;
 
-},{"ts-events-extended":32}],5:[function(require,module,exports){
+},{"ts-events-extended":33}],5:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 var __assign = (this && this.__assign) || function () {
@@ -171,7 +171,7 @@ var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var Map_1 = require("minimal-polyfills/dist/lib/Map");
 var Set_1 = require("minimal-polyfills/dist/lib/Set");
-require("minimal-polyfills/dist/lib/Array.prototype.find");
+require("minimal-polyfills/dist/lib/Array.from");
 var runExclusive = require("run-exclusive");
 var WorkerThread_1 = require("./WorkerThread");
 var environnement_1 = require("../sync/utils/environnement");
@@ -498,7 +498,7 @@ exports.scrypt = (function () {
 })();
 
 }).call(this,require("buffer").Buffer)
-},{"../sync/types":8,"../sync/utils/environnement":9,"../sync/utils/toBuffer":10,"./WorkerThread":1,"./serializer":6,"buffer":13,"minimal-polyfills/dist/lib/Array.prototype.find":18,"minimal-polyfills/dist/lib/Map":19,"minimal-polyfills/dist/lib/Set":20,"path":22,"run-exclusive":24}],6:[function(require,module,exports){
+},{"../sync/types":8,"../sync/utils/environnement":9,"../sync/utils/toBuffer":10,"./WorkerThread":1,"./serializer":6,"buffer":13,"minimal-polyfills/dist/lib/Array.from":18,"minimal-polyfills/dist/lib/Map":20,"minimal-polyfills/dist/lib/Set":21,"path":23,"run-exclusive":25}],6:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -537,7 +537,7 @@ function decryptThenParseFactory(decryptor) {
 exports.decryptThenParseFactory = decryptThenParseFactory;
 
 }).call(this,require("buffer").Buffer)
-},{"../sync/utils/toBuffer":10,"buffer":13,"transfer-tools/dist/lib/JSON_CUSTOM":27}],7:[function(require,module,exports){
+},{"../sync/utils/toBuffer":10,"buffer":13,"transfer-tools/dist/lib/JSON_CUSTOM":28}],7:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -2905,6 +2905,83 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 }
 
 },{}],18:[function(require,module,exports){
+// Production steps of ECMA-262, Edition 6, 22.1.2.1
+if (!Array.from) {
+    Array.from = (function () {
+        var toStr = Object.prototype.toString;
+        var isCallable = function (fn) {
+            return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
+        };
+        var toInteger = function (value) {
+            var number = Number(value);
+            if (isNaN(number)) {
+                return 0;
+            }
+            if (number === 0 || !isFinite(number)) {
+                return number;
+            }
+            return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
+        };
+        var maxSafeInteger = Math.pow(2, 53) - 1;
+        var toLength = function (value) {
+            var len = toInteger(value);
+            return Math.min(Math.max(len, 0), maxSafeInteger);
+        };
+        // The length property of the from method is 1.
+        return function from(arrayLike /*, mapFn, thisArg */) {
+            // 1. Let C be the this value.
+            var C = this;
+            // 2. Let items be ToObject(arrayLike).
+            var items = Object(arrayLike);
+            // 3. ReturnIfAbrupt(items).
+            if (arrayLike == null) {
+                throw new TypeError('Array.from requires an array-like object - not null or undefined');
+            }
+            // 4. If mapfn is undefined, then let mapping be false.
+            var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
+            var T;
+            if (typeof mapFn !== 'undefined') {
+                // 5. else
+                // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
+                if (!isCallable(mapFn)) {
+                    throw new TypeError('Array.from: when provided, the second argument must be a function');
+                }
+                // 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
+                if (arguments.length > 2) {
+                    T = arguments[2];
+                }
+            }
+            // 10. Let lenValue be Get(items, "length").
+            // 11. Let len be ToLength(lenValue).
+            var len = toLength(items.length);
+            // 13. If IsConstructor(C) is true, then
+            // 13. a. Let A be the result of calling the [[Construct]] internal method 
+            // of C with an argument list containing the single item len.
+            // 14. a. Else, Let A be ArrayCreate(len).
+            var A = isCallable(C) ? Object(new C(len)) : new Array(len);
+            // 16. Let k be 0.
+            var k = 0;
+            // 17. Repeat, while k < len… (also steps a - h)
+            var kValue;
+            while (k < len) {
+                kValue = items[k];
+                if (mapFn) {
+                    A[k] = typeof T === 'undefined' ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
+                }
+                else {
+                    A[k] = kValue;
+                }
+                k += 1;
+            }
+            // 18. Let putStatus be Put(A, "length", len, true).
+            A.length = len;
+            // 20. Return A.
+            return A;
+        };
+    }());
+}
+
+},{}],19:[function(require,module,exports){
 // https://tc39.github.io/ecma262/#sec-array.prototype.find
 if (!Array.prototype.find) {
     Object.defineProperty(Array.prototype, 'find', {
@@ -2945,7 +3022,7 @@ if (!Array.prototype.find) {
     });
 }
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var LightMapImpl = /** @class */ (function () {
@@ -3006,7 +3083,7 @@ var LightMapImpl = /** @class */ (function () {
 }());
 exports.Polyfill = typeof Map !== "undefined" ? Map : LightMapImpl;
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var Map_1 = require("./Map");
@@ -3039,13 +3116,13 @@ var LightSetImpl = /** @class */ (function () {
 exports.LightSetImpl = LightSetImpl;
 exports.Polyfill = typeof Set !== "undefined" ? Set : LightSetImpl;
 
-},{"./Map":19}],21:[function(require,module,exports){
+},{"./Map":20}],22:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var Map_1 = require("./Map");
 exports.Polyfill = typeof WeakMap !== "undefined" ? WeakMap : Map_1.Polyfill;
 
-},{"./Map":19}],22:[function(require,module,exports){
+},{"./Map":20}],23:[function(require,module,exports){
 (function (process){
 // .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
 // backported and transplited with Babel, with backwards-compat fixes
@@ -3351,7 +3428,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":23}],23:[function(require,module,exports){
+},{"_process":24}],24:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -3537,7 +3614,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -3830,7 +3907,7 @@ function buildFnCallback(isGlobal, groupRef, fun) {
     return runExclusiveFunction;
 }
 
-},{"minimal-polyfills/dist/lib/WeakMap":21}],25:[function(require,module,exports){
+},{"minimal-polyfills/dist/lib/WeakMap":22}],26:[function(require,module,exports){
 'use strict'
 /* eslint no-proto: 0 */
 module.exports = Object.setPrototypeOf || ({ __proto__: [] } instanceof Array ? setProtoOf : mixinProperties)
@@ -3849,7 +3926,7 @@ function mixinProperties (obj, proto) {
   return obj
 }
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 (function (global){
 "use strict";
 var has = require('has');
@@ -4184,7 +4261,7 @@ if (symbolSerializer) exports.symbolSerializer = symbolSerializer;
 exports.create = create;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"has":16}],27:[function(require,module,exports){
+},{"has":16}],28:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -4234,7 +4311,7 @@ function get(serializers) {
 }
 exports.get = get;
 
-},{"super-json":26}],28:[function(require,module,exports){
+},{"super-json":27}],29:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4275,7 +4352,7 @@ var VoidSyncEvent = /** @class */ (function (_super) {
 }(SyncEvent));
 exports.VoidSyncEvent = VoidSyncEvent;
 
-},{"./SyncEventBase":29}],29:[function(require,module,exports){
+},{"./SyncEventBase":30}],30:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4493,7 +4570,7 @@ var SyncEventBase = /** @class */ (function (_super) {
 }(SyncEventBaseProtected_1.SyncEventBaseProtected));
 exports.SyncEventBase = SyncEventBase;
 
-},{"./SyncEventBaseProtected":30}],30:[function(require,module,exports){
+},{"./SyncEventBaseProtected":31}],31:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -4780,7 +4857,7 @@ var SyncEventBaseProtected = /** @class */ (function () {
 }());
 exports.SyncEventBaseProtected = SyncEventBaseProtected;
 
-},{"./defs":31,"minimal-polyfills/dist/lib/Array.prototype.find":18,"minimal-polyfills/dist/lib/Map":19,"run-exclusive":24}],31:[function(require,module,exports){
+},{"./defs":32,"minimal-polyfills/dist/lib/Array.prototype.find":19,"minimal-polyfills/dist/lib/Map":20,"run-exclusive":25}],32:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4821,7 +4898,7 @@ var EvtError;
     EvtError.Detached = Detached;
 })(EvtError = exports.EvtError || (exports.EvtError = {}));
 
-},{"setprototypeof":25}],32:[function(require,module,exports){
+},{"setprototypeof":26}],33:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var SyncEvent_1 = require("./SyncEvent");
@@ -4830,4 +4907,4 @@ exports.VoidSyncEvent = SyncEvent_1.VoidSyncEvent;
 var defs_1 = require("./defs");
 exports.EvtError = defs_1.EvtError;
 
-},{"./SyncEvent":28,"./defs":31}]},{},[11]);
+},{"./SyncEvent":29,"./defs":32}]},{},[11]);

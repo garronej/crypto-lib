@@ -52,7 +52,7 @@ var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var Map_1 = require("minimal-polyfills/dist/lib/Map");
 var Set_1 = require("minimal-polyfills/dist/lib/Set");
-require("minimal-polyfills/dist/lib/Array.prototype.find");
+require("minimal-polyfills/dist/lib/Array.from");
 var runExclusive = require("run-exclusive");
 var WorkerThread_1 = require("./WorkerThread");
 var environnement_1 = require("../sync/utils/environnement");

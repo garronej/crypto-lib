@@ -417,7 +417,10 @@ function concatUint8Array() {
 }
 exports.concatUint8Array = concatUint8Array;
 function addPadding(position, uint8Array, targetLengthBytes) {
-    var paddingBytes = new Uint8Array(targetLengthBytes - uint8Array.length).fill(0);
+    var paddingBytes = new Uint8Array(targetLengthBytes - uint8Array.length);
+    for (var i = 0; i < paddingBytes.length; i++) {
+        paddingBytes[i] = 0;
+    }
     return concatUint8Array.apply(void 0, (function () {
         switch (position) {
             case "LEFT": return [paddingBytes, uint8Array];

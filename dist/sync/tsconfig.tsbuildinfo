@@ -66,7 +66,7 @@
         "signature": "9234938a8eb9177e821e453d49f2285935f620a84d7c801dbf651f5cb56b2951"
       },
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/utils/binarydatamanipulations.ts": {
-        "version": "fb960ca03e70a12481f7990f6eb6a41783331fefdcdb03fbe021750a9ab3e2ca",
+        "version": "44e7638978123ab9708551f6049abbf80ae0500bad2742d810f563182cdbdeaf",
         "signature": "e2454beb4257cdb474b3b4bf14defef531a761d03959f98936395566d0a4f516"
       },
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/aes.ts": {
@@ -214,7 +214,6 @@
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/scrypt.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/utils/environnement.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/utils/randombytes.ts",
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/utils/binarydatamanipulations.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/aes.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/rsa.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/cipher/plain.ts",
@@ -222,7 +221,8 @@
       "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/_worker_thread/threadmessage.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/minimal-polyfills/dist/lib/arraybuffer.isview.d.ts",
       "c:/users/joseph/dropbox/shell/github/crypto-lib/node_modules/minimal-polyfills/dist/lib/map.d.ts",
-      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/_worker_thread/main.ts"
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/_worker_thread/main.ts",
+      "c:/users/joseph/dropbox/shell/github/crypto-lib/sync/utils/binarydatamanipulations.ts"
     ]
   },
   "version": "3.5.2"

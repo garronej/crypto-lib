@@ -26,7 +26,11 @@ export function concatUint8Array(...uint8Arrays: Uint8Array[]): Uint8Array {
 
 export function addPadding(position: "LEFT" | "RIGHT", uint8Array: Uint8Array, targetLengthBytes: number) {
 
-    const paddingBytes = new Uint8Array(targetLengthBytes - uint8Array.length).fill(0);
+    const paddingBytes = new Uint8Array(targetLengthBytes - uint8Array.length);
+
+    for( let i= 0; i < paddingBytes.length; i++){
+        paddingBytes[i]= 0;
+    }
 
     return concatUint8Array(...(() => {
         switch (position) {

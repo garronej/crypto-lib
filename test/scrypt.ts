@@ -15,6 +15,8 @@ var log: any = (function () {
 
         alert(acc);
 
+        acc= "";
+
     }
 
     return f;

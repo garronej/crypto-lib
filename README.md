@@ -8,6 +8,10 @@ main thread.
 
 Algorithms implanted AES, RSA and scrypt.
 
+WARNING: This implementation of scrypt is VERY slow compared to alternatives  
+from lower level programing language. Prefer native Web API SubtleCrypto for  
+password derivation.
+
 RSA support key generation from seed.  
 
 Light: 542KB minified, 17KB gziped.
@@ -23,26 +27,4 @@ OR
 
 ```bash
 npm run build -- -w
-```
-
-TODO: Try to use native crypto API instead of scrypt ( too slow ).
-```typescript
-
-const result = crypto.subtle.deriveBits(
-    {
-        "name": "PBKDF2",
-        "hash": "SHA-256",
-        "salt": new Uint8Array(16),
-        "iterations": 100000
-    },
-    await crypto.subtle.importKey(
-        "raw",
-        (new Uint8Array(Buffer.from("password", "utf8"))).buffer,
-        { "name": "PBKDF2" } as any,
-        false,
-        ["deriveBits"]
-    ),
-    265
-);
-
 ```

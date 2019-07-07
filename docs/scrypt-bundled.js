@@ -745,6 +745,7 @@ var log = (function () {
     };
     f.alert = function () {
         alert(acc);
+        acc = "";
     };
     return f;
 })();

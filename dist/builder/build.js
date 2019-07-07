@@ -87,7 +87,7 @@ var module_dir_path = path.join(__dirname, "..", "..");
                         });
                     }); })();
                 };
-                for (_i = 0, _a = ["perf", "scrypt", "rsa"]; _i < _a.length; _i++) {
+                for (_i = 0, _a = ["perf", "scrypt", "rsa", "subtle"]; _i < _a.length; _i++) {
                     test_file_basename = _a[_i];
                     _loop_1(test_file_basename);
                 }

@@ -50,6 +50,7 @@ let isMultithreadingEnabled = (() => {
         );
         case "LIQUID CORE": return false;
         case "NODE": return true;
+        case "REACT NATIVE": return false;
     }
 
 })();

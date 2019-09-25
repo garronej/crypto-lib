@@ -468,7 +468,13 @@ exports.leftShift = leftShift;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.environnement = (function () {
-    if (typeof window !== "undefined") {
+    if (typeof navigator !== "undefined" && navigator.product === "ReactNative") {
+        return {
+            "type": "REACT NATIVE",
+            "isMainThread": true
+        };
+    }
+    else if (typeof window !== "undefined") {
         return {
             "type": "BROWSER",
             "isMainThread": true

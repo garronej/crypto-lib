@@ -8,7 +8,7 @@ var WorkerThread;
 (function (WorkerThread) {
     function factory(source, isMultithreadingEnabled) {
         return function () {
-            if (environnement_1.environnement.type === "LIQUID CORE") {
+            if (environnement_1.environnement.type === "LIQUID CORE" || environnement_1.environnement.type === "REACT NATIVE") {
                 throw new Error("LiquidCore cant fork");
             }
             if (!isMultithreadingEnabled()) {

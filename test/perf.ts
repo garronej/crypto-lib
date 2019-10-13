@@ -29,8 +29,7 @@ const texts: string[] = [];
 
 async function perform(p: Params): Promise<number> {
 
-    const workerThreadPoolId = p.threadCount !== undefined ? 
-        async.workerThreadPool.Id.generate() : undefined;
+    const workerThreadPoolId = (p.threadCount !== undefined) ? (async.workerThreadPool.Id.generate()) : (undefined);
 
     if (workerThreadPoolId !== undefined) {
         async.workerThreadPool.preSpawn(workerThreadPoolId, p.threadCount!);

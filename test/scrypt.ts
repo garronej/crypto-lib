@@ -13,9 +13,14 @@ var log: any = (function () {
 
     f.alert = function () {
 
-        alert(acc);
 
-        acc= "";
+        if (typeof alert !== "undefined") {
+
+            alert(acc);
+
+        }
+
+        acc = "";
 
     }
 
@@ -49,11 +54,11 @@ const salt = "...salty?";
 
     }
 
-    const workerThreadIds: lib.WorkerThreadId[]= [];
+    const workerThreadIds: lib.WorkerThreadId[] = [];
 
     for (let i = 0; i < n; i++) {
 
-        const id= lib.WorkerThreadId.generate();
+        const id = lib.WorkerThreadId.generate();
 
         lib.preSpawnWorkerThread(id);
 
@@ -120,11 +125,8 @@ const salt = "...salty?";
 
     log("DONE");
 
-    if (typeof alert !== "undefined") {
+    log.alert();
 
-        log.alert();
-
-    }
 
 })();
 

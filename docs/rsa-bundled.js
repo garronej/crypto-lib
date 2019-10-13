@@ -9,11 +9,11 @@ var WorkerThread;
 (function (WorkerThread) {
     function factory(source, isMultithreadingEnabled) {
         return function () {
-            if (environnement_1.environnement.type === "LIQUID CORE" || environnement_1.environnement.type === "REACT NATIVE") {
-                throw new Error("LiquidCore cant fork");
-            }
             if (!isMultithreadingEnabled()) {
                 return simulated_1.spawn(source);
+            }
+            if (environnement_1.environnement.type === "LIQUID CORE" || environnement_1.environnement.type === "REACT NATIVE") {
+                throw new Error(environnement_1.environnement.type + " cant fork");
             }
             switch (environnement_1.environnement.type) {
                 case "BROWSER": return web_1.spawn(source);
@@ -24,7 +24,7 @@ var WorkerThread;
     WorkerThread.factory = factory;
 })(WorkerThread = exports.WorkerThread || (exports.WorkerThread = {}));
 
-},{"../sync/utils/environnement":9,"./WorkerThread/node":2,"./WorkerThread/simulated":3,"./WorkerThread/web":4}],2:[function(require,module,exports){
+},{"../sync/utils/environnement":10,"./WorkerThread/node":2,"./WorkerThread/simulated":3,"./WorkerThread/web":5}],2:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -32,11 +32,11 @@ var ts_events_extended_1 = require("ts-events-extended");
 var ThreadMessage_1 = require("../../sync/_worker_thread/ThreadMessage");
 var path = require("path");
 function spawn(source) {
-    var child_process = require("child_process" + "");
-    var fs = require("fs" + "");
+    var child_process = require((function () { return "child_process"; })());
+    var fs = require((function () { return "fs"; })());
     var random_file_path = (function () {
         var getRandom = (function () {
-            var crypto = require("crypto" + "");
+            var crypto = require((function () { return "crypto"; })());
             var base_path = (function () {
                 var out = path.join("/", "tmp");
                 if (!fs.existsSync(out)) {
@@ -73,10 +73,11 @@ function spawn(source) {
 exports.spawn = spawn;
 
 }).call(this,require("buffer").Buffer)
-},{"../../sync/_worker_thread/ThreadMessage":7,"buffer":14,"path":22,"ts-events-extended":34}],3:[function(require,module,exports){
+},{"../../sync/_worker_thread/ThreadMessage":8,"buffer":15,"path":23,"ts-events-extended":35}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ts_events_extended_1 = require("ts-events-extended");
+var runTask_1 = require("./simulated/runTask");
 function spawn(source) {
     var evtResponse = new ts_events_extended_1.SyncEvent();
     var actionListener;
@@ -88,13 +89,19 @@ function spawn(source) {
     eval(source);
     return {
         evtResponse: evtResponse,
-        "send": function (action) { return actionListener(action); },
+        "send": function (action) { return runTask_1.default(function () { return actionListener(action); }); },
         "terminate": function () { }
     };
 }
 exports.spawn = spawn;
 
-},{"ts-events-extended":34}],4:[function(require,module,exports){
+},{"./simulated/runTask":4,"ts-events-extended":35}],4:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var runTask = function (task) { return task(); };
+exports.default = runTask;
+
+},{}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ts_events_extended_1 = require("ts-events-extended");
@@ -115,7 +122,7 @@ function spawn(source) {
 }
 exports.spawn = spawn;
 
-},{"ts-events-extended":34}],5:[function(require,module,exports){
+},{"ts-events-extended":35}],6:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 var __assign = (this && this.__assign) || function () {
@@ -252,6 +259,8 @@ var workerThreadPool;
     })(Id = workerThreadPool.Id || (workerThreadPool.Id = {}));
     var map = new Map_1.Polyfill();
     function preSpawn(workerThreadPoolId, poolSize) {
+        //TODO: When we pre spawn multiple time with the same 
+        //id the treads adds up...
         if (!map.has(workerThreadPoolId)) {
             map.set(workerThreadPoolId, new Set_1.Polyfill());
         }
@@ -499,7 +508,7 @@ exports.scrypt = (function () {
 })();
 
 }).call(this,require("buffer").Buffer)
-},{"../sync/types":8,"../sync/utils/environnement":9,"../sync/utils/toBuffer":11,"./WorkerThread":1,"./serializer":6,"buffer":14,"minimal-polyfills/dist/lib/Array.from":19,"minimal-polyfills/dist/lib/Map":20,"minimal-polyfills/dist/lib/Set":21,"path":22,"run-exclusive":24}],6:[function(require,module,exports){
+},{"../sync/types":9,"../sync/utils/environnement":10,"../sync/utils/toBuffer":12,"./WorkerThread":1,"./serializer":7,"buffer":15,"minimal-polyfills/dist/lib/Array.from":20,"minimal-polyfills/dist/lib/Map":21,"minimal-polyfills/dist/lib/Set":22,"path":23,"run-exclusive":25}],7:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -538,7 +547,7 @@ function decryptThenParseFactory(decryptor) {
 exports.decryptThenParseFactory = decryptThenParseFactory;
 
 }).call(this,require("buffer").Buffer)
-},{"../sync/utils/toBuffer":11,"buffer":14,"transfer-tools/dist/lib/JSON_CUSTOM":29}],7:[function(require,module,exports){
+},{"../sync/utils/toBuffer":12,"buffer":15,"transfer-tools/dist/lib/JSON_CUSTOM":30}],8:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -619,7 +628,7 @@ var transfer;
 })(transfer = exports.transfer || (exports.transfer = {}));
 
 }).call(this,require("buffer").Buffer)
-},{"../utils/environnement":9,"../utils/toBuffer":11,"buffer":14}],8:[function(require,module,exports){
+},{"../utils/environnement":10,"../utils/toBuffer":12,"buffer":15}],9:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -652,7 +661,7 @@ var RsaKey;
 })(RsaKey = exports.RsaKey || (exports.RsaKey = {}));
 
 }).call(this,require("buffer").Buffer)
-},{"./utils/toBuffer":11,"buffer":14}],9:[function(require,module,exports){
+},{"./utils/toBuffer":12,"buffer":15}],10:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.environnement = (function () {
@@ -689,7 +698,7 @@ exports.environnement = (function () {
     }
 })();
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -775,7 +784,7 @@ exports.randomBytes = randomBytes;
 })(randomBytes = exports.randomBytes || (exports.randomBytes = {}));
 
 }).call(this,require("buffer").Buffer)
-},{"./environnement":9,"buffer":14}],11:[function(require,module,exports){
+},{"./environnement":10,"buffer":15}],12:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -789,7 +798,7 @@ function toBuffer(uint8Array) {
 exports.toBuffer = toBuffer;
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":14}],12:[function(require,module,exports){
+},{"buffer":15}],13:[function(require,module,exports){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -900,7 +909,7 @@ var randomBytes_1 = require("../sync/utils/randomBytes");
     });
 }); })();
 
-},{"../async":5,"../sync/utils/randomBytes":10}],13:[function(require,module,exports){
+},{"../async":6,"../sync/utils/randomBytes":11}],14:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -1053,7 +1062,7 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 (function (Buffer){
 /*!
  * The buffer module from node.js, for the browser.
@@ -2834,7 +2843,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"base64-js":13,"buffer":14,"ieee754":18}],15:[function(require,module,exports){
+},{"base64-js":14,"buffer":15,"ieee754":19}],16:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -2888,21 +2897,21 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":15}],17:[function(require,module,exports){
+},{"./implementation":16}],18:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":16}],18:[function(require,module,exports){
+},{"function-bind":17}],19:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -2988,7 +2997,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 // Production steps of ECMA-262, Edition 6, 22.1.2.1
 if (!Array.from) {
     Array.from = (function () {
@@ -3065,7 +3074,7 @@ if (!Array.from) {
     }());
 }
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var LightMapImpl = /** @class */ (function () {
@@ -3126,7 +3135,7 @@ var LightMapImpl = /** @class */ (function () {
 }());
 exports.Polyfill = typeof Map !== "undefined" ? Map : LightMapImpl;
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var Map_1 = require("./Map");
@@ -3159,7 +3168,7 @@ var LightSetImpl = /** @class */ (function () {
 exports.LightSetImpl = LightSetImpl;
 exports.Polyfill = typeof Set !== "undefined" ? Set : LightSetImpl;
 
-},{"./Map":20}],22:[function(require,module,exports){
+},{"./Map":21}],23:[function(require,module,exports){
 (function (process){
 // .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
 // backported and transplited with Babel, with backwards-compat fixes
@@ -3465,7 +3474,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":23}],23:[function(require,module,exports){
+},{"_process":24}],24:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -3651,7 +3660,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -3944,15 +3953,15 @@ function buildFnCallback(isGlobal, groupRef, fun) {
     return runExclusiveFunction;
 }
 
-},{"minimal-polyfills/dist/lib/WeakMap":26}],25:[function(require,module,exports){
-arguments[4][20][0].apply(exports,arguments)
-},{"dup":20}],26:[function(require,module,exports){
+},{"minimal-polyfills/dist/lib/WeakMap":27}],26:[function(require,module,exports){
+arguments[4][21][0].apply(exports,arguments)
+},{"dup":21}],27:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var Map_1 = require("./Map");
 exports.Polyfill = typeof WeakMap !== "undefined" ? WeakMap : Map_1.Polyfill;
 
-},{"./Map":25}],27:[function(require,module,exports){
+},{"./Map":26}],28:[function(require,module,exports){
 'use strict'
 /* eslint no-proto: 0 */
 module.exports = Object.setPrototypeOf || ({ __proto__: [] } instanceof Array ? setProtoOf : mixinProperties)
@@ -3971,7 +3980,7 @@ function mixinProperties (obj, proto) {
   return obj
 }
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 (function (global){
 "use strict";
 var has = require('has');
@@ -4306,7 +4315,7 @@ if (symbolSerializer) exports.symbolSerializer = symbolSerializer;
 exports.create = create;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"has":17}],29:[function(require,module,exports){
+},{"has":18}],30:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -4356,7 +4365,7 @@ function get(serializers) {
 }
 exports.get = get;
 
-},{"super-json":28}],30:[function(require,module,exports){
+},{"super-json":29}],31:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4397,7 +4406,7 @@ var VoidSyncEvent = /** @class */ (function (_super) {
 }(SyncEvent));
 exports.VoidSyncEvent = VoidSyncEvent;
 
-},{"./SyncEventBase":31}],31:[function(require,module,exports){
+},{"./SyncEventBase":32}],32:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4615,7 +4624,7 @@ var SyncEventBase = /** @class */ (function (_super) {
 }(SyncEventBaseProtected_1.SyncEventBaseProtected));
 exports.SyncEventBase = SyncEventBase;
 
-},{"./SyncEventBaseProtected":32}],32:[function(require,module,exports){
+},{"./SyncEventBaseProtected":33}],33:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -4902,7 +4911,7 @@ var SyncEventBaseProtected = /** @class */ (function () {
 }());
 exports.SyncEventBaseProtected = SyncEventBaseProtected;
 
-},{"./defs":33,"minimal-polyfills/dist/lib/Array.prototype.find":35,"minimal-polyfills/dist/lib/Map":36,"run-exclusive":37}],33:[function(require,module,exports){
+},{"./defs":34,"minimal-polyfills/dist/lib/Array.prototype.find":36,"minimal-polyfills/dist/lib/Map":37,"run-exclusive":38}],34:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4943,7 +4952,7 @@ var EvtError;
     EvtError.Detached = Detached;
 })(EvtError = exports.EvtError || (exports.EvtError = {}));
 
-},{"setprototypeof":27}],34:[function(require,module,exports){
+},{"setprototypeof":28}],35:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var SyncEvent_1 = require("./SyncEvent");
@@ -4952,7 +4961,7 @@ exports.VoidSyncEvent = SyncEvent_1.VoidSyncEvent;
 var defs_1 = require("./defs");
 exports.EvtError = defs_1.EvtError;
 
-},{"./SyncEvent":30,"./defs":33}],35:[function(require,module,exports){
+},{"./SyncEvent":31,"./defs":34}],36:[function(require,module,exports){
 // https://tc39.github.io/ecma262/#sec-array.prototype.find
 if (!Array.prototype.find) {
     Object.defineProperty(Array.prototype, 'find', {
@@ -4993,12 +5002,12 @@ if (!Array.prototype.find) {
     });
 }
 
-},{}],36:[function(require,module,exports){
-arguments[4][20][0].apply(exports,arguments)
-},{"dup":20}],37:[function(require,module,exports){
-arguments[4][24][0].apply(exports,arguments)
-},{"dup":24,"minimal-polyfills/dist/lib/WeakMap":39}],38:[function(require,module,exports){
-arguments[4][20][0].apply(exports,arguments)
-},{"dup":20}],39:[function(require,module,exports){
-arguments[4][26][0].apply(exports,arguments)
-},{"./Map":38,"dup":26}]},{},[12]);
+},{}],37:[function(require,module,exports){
+arguments[4][21][0].apply(exports,arguments)
+},{"dup":21}],38:[function(require,module,exports){
+arguments[4][25][0].apply(exports,arguments)
+},{"dup":25,"minimal-polyfills/dist/lib/WeakMap":40}],39:[function(require,module,exports){
+arguments[4][21][0].apply(exports,arguments)
+},{"dup":21}],40:[function(require,module,exports){
+arguments[4][27][0].apply(exports,arguments)
+},{"./Map":39,"dup":27}]},{},[13]);

@@ -21,14 +21,14 @@ export namespace WorkerThread {
 
         return () => {
 
-            if (environnement.type === "LIQUID CORE" || environnement.type === "REACT NATIVE") {
-                throw new Error("LiquidCore cant fork");
-            }
-
             if (!isMultithreadingEnabled()) {
 
                 return spawnSimulated(source);
 
+            }
+
+            if (environnement.type === "LIQUID CORE" || environnement.type === "REACT NATIVE") {
+                throw new Error(`${environnement.type} cant fork`);
             }
 
             switch (environnement.type) {

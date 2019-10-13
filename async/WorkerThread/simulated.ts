@@ -1,6 +1,7 @@
 
 import { SyncEvent } from "ts-events-extended";
 import { ThreadMessage } from "../../sync/_worker_thread/ThreadMessage";
+import runTask from "./simulated/runTask";
 
 export function spawn(source: string): import("../WorkerThread").WorkerThread {
 
@@ -10,7 +11,7 @@ export function spawn(source: string): import("../WorkerThread").WorkerThread {
 
     //@ts-ignore
     const __simulatedMainThreadApi: import("../../sync/_worker_thread/main").MainThreadApi = {
-        "sendResponse": response=> setTimeout(()=> evtResponse.post(response), 0),
+        "sendResponse": response => setTimeout(() => evtResponse.post(response), 0),
         "setActionListener": actionListener_ => actionListener = actionListener_
     };
 
@@ -18,8 +19,8 @@ export function spawn(source: string): import("../WorkerThread").WorkerThread {
 
     return {
         evtResponse,
-        "send": action => actionListener(action),
-        "terminate": () => {}
+        "send": action => runTask(()=> actionListener(action)) ,
+        "terminate": () => { }
     };
 
 }

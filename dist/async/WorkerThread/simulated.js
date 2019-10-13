@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ts_events_extended_1 = require("ts-events-extended");
+var runTask_1 = require("./simulated/runTask");
 function spawn(source) {
     var evtResponse = new ts_events_extended_1.SyncEvent();
     var actionListener;
@@ -12,7 +13,7 @@ function spawn(source) {
     eval(source);
     return {
         evtResponse: evtResponse,
-        "send": function (action) { return actionListener(action); },
+        "send": function (action) { return runTask_1.default(function () { return actionListener(action); }); },
         "terminate": function () { }
     };
 }

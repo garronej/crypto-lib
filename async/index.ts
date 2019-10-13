@@ -147,6 +147,8 @@ export namespace workerThreadPool {
 
     export function preSpawn(workerThreadPoolId: Id, poolSize: number) {
 
+        //TODO: When we pre spawn multiple time with the same 
+        //id the treads adds up...
         if (!map.has(workerThreadPoolId)) {
             map.set(workerThreadPoolId, new Set());
         }

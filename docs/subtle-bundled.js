@@ -62,7 +62,9 @@ var log = (function () {
         console.log(str);
     };
     f.alert = function () {
-        alert(acc);
+        if (typeof alert === "function") {
+            alert(acc);
+        }
         acc = "";
     };
     return f;

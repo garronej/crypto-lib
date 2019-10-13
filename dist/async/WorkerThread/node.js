@@ -4,11 +4,11 @@ var ts_events_extended_1 = require("ts-events-extended");
 var ThreadMessage_1 = require("../../sync/_worker_thread/ThreadMessage");
 var path = require("path");
 function spawn(source) {
-    var child_process = require("child_process" + "");
-    var fs = require("fs" + "");
+    var child_process = require((function () { return "child_process"; })());
+    var fs = require((function () { return "fs"; })());
     var random_file_path = (function () {
         var getRandom = (function () {
-            var crypto = require("crypto" + "");
+            var crypto = require((function () { return "crypto"; })());
             var base_path = (function () {
                 var out = path.join("/", "tmp");
                 if (!fs.existsSync(out)) {

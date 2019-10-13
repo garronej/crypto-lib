@@ -17,7 +17,7 @@ export const environnement: Environnement = (() => {
                 return {
                         "type": "REACT NATIVE" as const,
                         "isMainThread": true
-                }
+                };
 
         } else if (typeof window !== "undefined") {
                 return {

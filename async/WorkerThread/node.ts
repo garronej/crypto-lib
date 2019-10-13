@@ -9,15 +9,15 @@ const path = require("path");
 
 export function spawn(source: string): import("../WorkerThread").WorkerThread {
 
-    const child_process = require("child_process" + "");
+    const child_process = require((()=>"child_process")());
 
-    const fs = require("fs" + "");
+    const fs = require((()=>"fs")());
 
     const random_file_path = (() => {
 
         const getRandom = (() => {
 
-            const crypto = require("crypto" + "");
+            const crypto = require((()=>"crypto")());
 
             const base_path = (() => {
 

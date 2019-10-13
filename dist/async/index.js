@@ -133,6 +133,8 @@ var workerThreadPool;
     })(Id = workerThreadPool.Id || (workerThreadPool.Id = {}));
     var map = new Map_1.Polyfill();
     function preSpawn(workerThreadPoolId, poolSize) {
+        //TODO: When we pre spawn multiple time with the same 
+        //id the treads adds up...
         if (!map.has(workerThreadPoolId)) {
             map.set(workerThreadPoolId, new Set_1.Polyfill());
         }

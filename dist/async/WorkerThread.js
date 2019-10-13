@@ -8,11 +8,11 @@ var WorkerThread;
 (function (WorkerThread) {
     function factory(source, isMultithreadingEnabled) {
         return function () {
-            if (environnement_1.environnement.type === "LIQUID CORE" || environnement_1.environnement.type === "REACT NATIVE") {
-                throw new Error("LiquidCore cant fork");
-            }
             if (!isMultithreadingEnabled()) {
                 return simulated_1.spawn(source);
+            }
+            if (environnement_1.environnement.type === "LIQUID CORE" || environnement_1.environnement.type === "REACT NATIVE") {
+                throw new Error(environnement_1.environnement.type + " cant fork");
             }
             switch (environnement_1.environnement.type) {
                 case "BROWSER": return web_1.spawn(source);

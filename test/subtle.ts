@@ -19,7 +19,11 @@ var log: any = (function () {
 
     f.alert = function () {
 
-        alert(acc);
+        if( typeof alert === "function" ){
+
+            alert(acc);
+
+        }
 
         acc= "";
 

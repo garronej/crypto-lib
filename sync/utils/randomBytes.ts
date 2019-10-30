@@ -16,13 +16,28 @@ export function randomBytes(size: number, callback?: (err: Error | null, buf: Ui
 
     if (environnement.type === "NODE") {
 
-        const nodeBufferInst = getNodeRandomBytes()(size);
-
-        return Buffer.from(
+        const toLocalBufferImplementation = (nodeBufferInst: Uint8Array): Uint8Array => Buffer.from(
             nodeBufferInst.buffer,
             nodeBufferInst.byteOffset,
             nodeBufferInst.length
         );
+
+        const nodeRandomBytes = getNodeRandomBytes();
+
+        if (callback !== undefined) {
+
+            nodeRandomBytes(
+                size,
+                (err, buf) => callback(err, !!buf ? toLocalBufferImplementation(buf) : buf)
+            );
+
+            return;
+
+        }
+
+        const nodeBufferInst = nodeRandomBytes(size);
+
+        return toLocalBufferImplementation(nodeBufferInst);
 
     }
 

@@ -4,8 +4,14 @@ var environnement_1 = require("./environnement");
 function randomBytes(size, callback) {
     var MAX_UINT32 = randomBytes.MAX_UINT32, MAX_BYTES = randomBytes.MAX_BYTES, getRandomValues = randomBytes.getRandomValues, getNodeRandomBytes = randomBytes.getNodeRandomBytes;
     if (environnement_1.environnement.type === "NODE") {
-        var nodeBufferInst = getNodeRandomBytes()(size);
-        return Buffer.from(nodeBufferInst.buffer, nodeBufferInst.byteOffset, nodeBufferInst.length);
+        var toLocalBufferImplementation_1 = function (nodeBufferInst) { return Buffer.from(nodeBufferInst.buffer, nodeBufferInst.byteOffset, nodeBufferInst.length); };
+        var nodeRandomBytes = getNodeRandomBytes();
+        if (callback !== undefined) {
+            nodeRandomBytes(size, function (err, buf) { return callback(err, !!buf ? toLocalBufferImplementation_1(buf) : buf); });
+            return;
+        }
+        var nodeBufferInst = nodeRandomBytes(size);
+        return toLocalBufferImplementation_1(nodeBufferInst);
     }
     // phantomjs needs to throw
     if (size > MAX_UINT32) {

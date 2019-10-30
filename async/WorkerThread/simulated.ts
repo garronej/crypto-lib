@@ -19,7 +19,7 @@ export function spawn(source: string): import("../WorkerThread").WorkerThread {
 
     return {
         evtResponse,
-        "send": action => runTask(()=> actionListener(action)) ,
+        "send": action => runTask(() => actionListener(action)),
         "terminate": () => { }
     };
 

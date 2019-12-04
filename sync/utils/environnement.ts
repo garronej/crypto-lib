@@ -1,8 +1,8 @@
 
 declare const window: any;
 declare const self: any;
-declare const setTimeout: any;
 declare const navigator: any;
+declare const require: any;
 
 
 export type Environnement = {
@@ -19,22 +19,37 @@ export const environnement: Environnement = (() => {
                         "isMainThread": true
                 };
 
-        } else if (typeof window !== "undefined") {
+        }
+
+        if (typeof window !== "undefined") {
                 return {
                         "type": "BROWSER" as const,
                         "isMainThread": true
                 };
-        } else if (typeof self !== "undefined" && !!self.postMessage) {
+        } if (typeof self !== "undefined" && !!self.postMessage) {
                 return {
                         "type": "BROWSER" as const,
                         "isMainThread": false
                 };
-        } else if (typeof setTimeout === "undefined") {
-                return {
-                        "type": "LIQUID CORE" as const,
-                        "isMainThread": true
-                };
-        } else {
+        }
+
+        const isNodeCryptoAvailable = (() => {
+
+                try {
+
+                        require("crypto" + "");
+
+                } catch{
+
+                        return false;
+
+                }
+
+                return true;
+
+        })();
+
+        if (isNodeCryptoAvailable) {
 
                 //NOTE: We do not check process.send because browserify hide it.
                 return {
@@ -42,8 +57,11 @@ export const environnement: Environnement = (() => {
                         "isMainThread": undefined
                 };
 
-
         }
 
+        return {
+                "type": "LIQUID CORE" as const,
+                "isMainThread": true
+        };
 
 })();

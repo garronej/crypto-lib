@@ -931,31 +931,38 @@ exports.environnement = (function () {
             "isMainThread": true
         };
     }
-    else if (typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
         return {
             "type": "BROWSER",
             "isMainThread": true
         };
     }
-    else if (typeof self !== "undefined" && !!self.postMessage) {
+    if (typeof self !== "undefined" && !!self.postMessage) {
         return {
             "type": "BROWSER",
             "isMainThread": false
         };
     }
-    else if (typeof setTimeout === "undefined") {
-        return {
-            "type": "LIQUID CORE",
-            "isMainThread": true
-        };
-    }
-    else {
+    var isNodeCryptoAvailable = (function () {
+        try {
+            require("crypto" + "");
+        }
+        catch (_a) {
+            return false;
+        }
+        return true;
+    })();
+    if (isNodeCryptoAvailable) {
         //NOTE: We do not check process.send because browserify hide it.
         return {
             "type": "NODE",
             "isMainThread": undefined
         };
     }
+    return {
+        "type": "LIQUID CORE",
+        "isMainThread": true
+    };
 })();
 
 },{}],17:[function(require,module,exports){

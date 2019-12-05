@@ -82,7 +82,7 @@ export function syncGenerateKeys(seed: Uint8Array | null, keysLengthBytes: numbe
 
     function buildKey(format: RsaKey.Public["format"]): RsaKey.Public;
     function buildKey(format: RsaKey.Private["format"]): RsaKey.Private;
-    function buildKey(format): RsaKey {
+    function buildKey(format: RsaKey["format"]): RsaKey {
         return {
             format,
             "data": nodeRSA.exportKey(format) as Uint8Array

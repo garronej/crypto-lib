@@ -1,103 +1,103 @@
 {
   "program": {
     "fileInfos": {
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es5.d.ts": {
-        "version": "1f753cee573dea40df8a9dc873fef5566957b19ad513874f6643d8dfb14842d0",
-        "signature": "1f753cee573dea40df8a9dc873fef5566957b19ad513874f6643d8dfb14842d0"
+      "../../node_modules/typescript/lib/lib.es5.d.ts": {
+        "version": "fc43680ad3a1a4ec8c7b8d908af1ec9ddff87845346de5f02c735c9171fa98ea",
+        "signature": "fc43680ad3a1a4ec8c7b8d908af1ec9ddff87845346de5f02c735c9171fa98ea"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2015.d.ts": {
         "version": "7994d44005046d1413ea31d046577cdda33b8b2470f30281fd9c8b3c99fe2d96",
         "signature": "7994d44005046d1413ea31d046577cdda33b8b2470f30281fd9c8b3c99fe2d96"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.core.d.ts": {
-        "version": "2a0390a665763bcc90f0670e43c587928d8fefe2a94a11209c1e22cba7b09f52",
-        "signature": "2a0390a665763bcc90f0670e43c587928d8fefe2a94a11209c1e22cba7b09f52"
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts": {
+        "version": "734ddc145e147fbcd55f07d034f50ccff1086f5a880107665ec326fb368876f6",
+        "signature": "734ddc145e147fbcd55f07d034f50ccff1086f5a880107665ec326fb368876f6"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.collection.d.ts": {
-        "version": "dd94d8ef48c562389eb58af8df3a3a34d11367f7c818192aa5f16470d469e3f0",
-        "signature": "dd94d8ef48c562389eb58af8df3a3a34d11367f7c818192aa5f16470d469e3f0"
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts": {
+        "version": "4a0862a21f4700de873db3b916f70e41570e2f558da77d2087c9490f5a0615d8",
+        "signature": "4a0862a21f4700de873db3b916f70e41570e2f558da77d2087c9490f5a0615d8"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.generator.d.ts": {
-        "version": "828413486bdcaa342558e8e4570b1b287b776cb61b4b70b0214bd10c5d9a94c3",
-        "signature": "828413486bdcaa342558e8e4570b1b287b776cb61b4b70b0214bd10c5d9a94c3"
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts": {
+        "version": "765e0e9c9d74cf4d031ca8b0bdb269a853e7d81eda6354c8510218d03db12122",
+        "signature": "765e0e9c9d74cf4d031ca8b0bdb269a853e7d81eda6354c8510218d03db12122"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.iterable.d.ts": {
-        "version": "6c9f73334f8bf47aea685ca5b46a8f7e992a223e96fbceb030f26a4d2324ba21",
-        "signature": "6c9f73334f8bf47aea685ca5b46a8f7e992a223e96fbceb030f26a4d2324ba21"
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts": {
+        "version": "285958e7699f1babd76d595830207f18d719662a0c30fac7baca7df7162a9210",
+        "signature": "285958e7699f1babd76d595830207f18d719662a0c30fac7baca7df7162a9210"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.promise.d.ts": {
-        "version": "e6b8ff2798f8ebd7a1c7afd8671f2cb67ee1901c422f5964d74b0b34c6574ea2",
-        "signature": "e6b8ff2798f8ebd7a1c7afd8671f2cb67ee1901c422f5964d74b0b34c6574ea2"
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts": {
+        "version": "d4deaafbb18680e3143e8b471acd650ed6f72a408a33137f0a0dd104fbe7f8ca",
+        "signature": "d4deaafbb18680e3143e8b471acd650ed6f72a408a33137f0a0dd104fbe7f8ca"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.proxy.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts": {
         "version": "5e72f949a89717db444e3bd9433468890068bb21a5638d8ab15a1359e05e54fe",
         "signature": "5e72f949a89717db444e3bd9433468890068bb21a5638d8ab15a1359e05e54fe"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.reflect.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts": {
         "version": "f5b242136ae9bfb1cc99a5971cccc44e99947ae6b5ef6fd8aa54b5ade553b976",
         "signature": "f5b242136ae9bfb1cc99a5971cccc44e99947ae6b5ef6fd8aa54b5ade553b976"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.symbol.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts": {
         "version": "9ae2860252d6b5f16e2026d8a2c2069db7b2a3295e98b6031d01337b96437230",
         "signature": "9ae2860252d6b5f16e2026d8a2c2069db7b2a3295e98b6031d01337b96437230"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": {
         "version": "3e0a459888f32b42138d5a39f706ff2d55d500ab1031e0988b5568b0f67c2303",
         "signature": "3e0a459888f32b42138d5a39f706ff2d55d500ab1031e0988b5568b0f67c2303"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/tobuffer.ts": {
+      "../../sync/utils/tobuffer.ts": {
         "version": "fa67d5df0674fb6f4c5c34faf564c4ecf142fecee3ac4c99c60af9755054f34f",
         "signature": "63abf3b8b4871cf1e30f7c01cbf173452b6df2c47fd4693bba039846caac69b4"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts": {
+      "../../sync/types.ts": {
         "version": "a6e9c525ee8ec37ca1cf14178e7940447a8350d07ef11394c1afd1a981a34555",
         "signature": "ece2ed9e7494bdd3ed91165738857e5c391089ad5584823582efb5b563ee94de"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/scrypt.ts": {
+      "../../sync/scrypt.ts": {
         "version": "451ae11ec60baec401523bc6b93b9182455d41e91d1e745e79c27f69c60383a7",
         "signature": "6db3074f04c0a2524724f2935b4aa6d8a6d2f3d3b026362e2fb0bfd9c861c503"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/environnement.ts": {
+      "../../sync/utils/environnement.ts": {
         "version": "2ded716a0c0d9a4920fdb94aec9651a71ff91cf0964c64ba4b9cf38685c7c991",
         "signature": "caf8bd34ffc23b397e7f9d3df7b38f3530d7a482d690593b7fcf5cea898f2322"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/randombytes.ts": {
+      "../../sync/utils/randombytes.ts": {
         "version": "01e209d02cf8507fcefb8f6a8b9cece6c742e1e86d6b1be5b257385c24241578",
         "signature": "9234938a8eb9177e821e453d49f2285935f620a84d7c801dbf651f5cb56b2951"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/binarydatamanipulations.ts": {
+      "../../sync/utils/binarydatamanipulations.ts": {
         "version": "44e7638978123ab9708551f6049abbf80ae0500bad2742d810f563182cdbdeaf",
         "signature": "e2454beb4257cdb474b3b4bf14defef531a761d03959f98936395566d0a4f516"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/aes.ts": {
+      "../../sync/cipher/aes.ts": {
         "version": "6d868a7e4cbe5c68b1a9e53688f716b78bb6580dce49395498a66aa2f5b7db2c",
         "signature": "66b429619fe6ae214ebfbb5c0be0869058e81da6cf18464d3740b520137275f4"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/rsa.ts": {
-        "version": "7755dc4eca63a9b0d0bb122009e454c58dc8c0ba189058ddac86a60602aff3f7",
+      "../../sync/cipher/rsa.ts": {
+        "version": "622de7c4ccfd265fda6e441cac6104f02484743f14e07a5bf443ac5eaedce75c",
         "signature": "1af97e273a688363eda4322cc0fd00a56def0be4ea94d0660f45b7593be42b6b"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/plain.ts": {
+      "../../sync/cipher/plain.ts": {
         "version": "c868efd9855344c52c615d076502f364ad449303f70e19f45d61c00216b01d13",
         "signature": "a22fcbcec6b0a3ab992b3b87c745b6b87eaf246b86ca07fbd0a35c8f63391e0c"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/index.ts": {
+      "../../sync/index.ts": {
         "version": "60447cc2ede73f8c3207224b367379d12183f3349d8781375f35e9be9a23d3a5",
         "signature": "6242dfaf7bbce3de59c2029cc1585c4d3f20fb7a9ec8893b3924884e2ef8155b"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/_worker_thread/threadmessage.ts": {
+      "../../sync/_worker_thread/threadmessage.ts": {
         "version": "a4b50915dd26162036ec1862dd3e7f73350b9517099880dfa3bce8428b8b2f1f",
         "signature": "c6c9c55769814daf7702623eb8c09bf4315cc1e278c48068ee78a86de6094736"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/minimal-polyfills/dist/lib/arraybuffer.isview.d.ts": {
+      "../../node_modules/minimal-polyfills/dist/lib/arraybuffer.isview.d.ts": {
         "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/minimal-polyfills/dist/lib/map.d.ts": {
+      "../../node_modules/minimal-polyfills/dist/lib/map.d.ts": {
         "version": "2d162f406a62931fce0fb487b97ee27cebc186ecb9c6628f4e540e0cb3eeadaf",
         "signature": "2d162f406a62931fce0fb487b97ee27cebc186ecb9c6628f4e540e0cb3eeadaf"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/_worker_thread/main.ts": {
+      "../../sync/_worker_thread/main.ts": {
         "version": "d4244ac37d50903bde1392dea5bf3bdc7525e73d46fe76f1d4b11f9d3afde9cc",
         "signature": "6b1385e3cd58d71e4132acf0b6a63eda15bb29bc8777cac9aafe80c328cc9879"
       }
@@ -110,7 +110,7 @@
         "lib.es2015.d.ts"
       ],
       "declaration": true,
-      "outDir": "/Users/joseph/semasim/frontend/local_modules/crypto-lib/dist/sync",
+      "outDir": "./",
       "strictNullChecks": true,
       "sourceMap": false,
       "newLine": 1,
@@ -120,110 +120,110 @@
       "strictFunctionTypes": true,
       "composite": true,
       "types": [],
-      "rootDir": "/Users/joseph/semasim/frontend/local_modules/crypto-lib/sync",
-      "project": "/Users/joseph/semasim/frontend/local_modules/crypto-lib/sync/tsconfig.json",
-      "configFilePath": "/Users/joseph/semasim/frontend/local_modules/crypto-lib/sync/tsconfig.json"
+      "rootDir": "../../sync",
+      "project": "../../sync/tsconfig.json",
+      "configFilePath": "../../sync/tsconfig.json"
     },
     "referencedMap": {
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/tobuffer.ts"
+      "../../sync/types.ts": [
+        "../../sync/utils/tobuffer.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/scrypt.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts"
+      "../../sync/scrypt.ts": [
+        "../../sync/types.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/randombytes.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/environnement.ts"
+      "../../sync/utils/randombytes.ts": [
+        "../../sync/utils/environnement.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/aes.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/randombytes.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/binarydatamanipulations.ts"
+      "../../sync/cipher/aes.ts": [
+        "../../sync/types.ts",
+        "../../sync/utils/randombytes.ts",
+        "../../sync/utils/binarydatamanipulations.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/rsa.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/environnement.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/tobuffer.ts"
+      "../../sync/cipher/rsa.ts": [
+        "../../sync/types.ts",
+        "../../sync/utils/environnement.ts",
+        "../../sync/utils/tobuffer.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/plain.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts"
+      "../../sync/cipher/plain.ts": [
+        "../../sync/types.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/index.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/scrypt.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/aes.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/rsa.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/plain.ts"
+      "../../sync/index.ts": [
+        "../../sync/types.ts",
+        "../../sync/scrypt.ts",
+        "../../sync/cipher/aes.ts",
+        "../../sync/cipher/rsa.ts",
+        "../../sync/cipher/plain.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/_worker_thread/threadmessage.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/environnement.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/tobuffer.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/rsa.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/aes.ts"
+      "../../sync/_worker_thread/threadmessage.ts": [
+        "../../sync/utils/environnement.ts",
+        "../../sync/utils/tobuffer.ts",
+        "../../sync/types.ts",
+        "../../sync/cipher/rsa.ts",
+        "../../sync/cipher/aes.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/_worker_thread/main.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/minimal-polyfills/dist/lib/map.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/index.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/environnement.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/_worker_thread/threadmessage.ts"
+      "../../sync/_worker_thread/main.ts": [
+        "../../node_modules/minimal-polyfills/dist/lib/map.d.ts",
+        "../../sync/index.ts",
+        "../../sync/utils/environnement.ts",
+        "../../sync/_worker_thread/threadmessage.ts"
       ]
     },
     "exportedModulesMap": {
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/scrypt.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts"
+      "../../sync/scrypt.ts": [
+        "../../sync/types.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/aes.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts"
+      "../../sync/cipher/aes.ts": [
+        "../../sync/types.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/rsa.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts"
+      "../../sync/cipher/rsa.ts": [
+        "../../sync/types.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/plain.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts"
+      "../../sync/cipher/plain.ts": [
+        "../../sync/types.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/index.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/scrypt.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/aes.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/rsa.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/plain.ts"
+      "../../sync/index.ts": [
+        "../../sync/types.ts",
+        "../../sync/scrypt.ts",
+        "../../sync/cipher/aes.ts",
+        "../../sync/cipher/rsa.ts",
+        "../../sync/cipher/plain.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/_worker_thread/threadmessage.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/rsa.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/aes.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts"
+      "../../sync/_worker_thread/threadmessage.ts": [
+        "../../sync/cipher/rsa.ts",
+        "../../sync/cipher/aes.ts",
+        "../../sync/types.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/_worker_thread/main.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/_worker_thread/threadmessage.ts"
+      "../../sync/_worker_thread/main.ts": [
+        "../../sync/_worker_thread/threadmessage.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es5.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.core.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.collection.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.generator.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.iterable.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.promise.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.proxy.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.reflect.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.symbol.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/tobuffer.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/types.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/scrypt.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/randombytes.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/binarydatamanipulations.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/aes.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/rsa.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/cipher/plain.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/index.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/_worker_thread/threadmessage.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/minimal-polyfills/dist/lib/arraybuffer.isview.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/minimal-polyfills/dist/lib/map.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/_worker_thread/main.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/sync/utils/environnement.ts"
+      "../../node_modules/typescript/lib/lib.es5.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "../../sync/utils/tobuffer.ts",
+      "../../sync/types.ts",
+      "../../sync/scrypt.ts",
+      "../../sync/utils/environnement.ts",
+      "../../sync/utils/randombytes.ts",
+      "../../sync/utils/binarydatamanipulations.ts",
+      "../../sync/cipher/aes.ts",
+      "../../sync/cipher/plain.ts",
+      "../../sync/index.ts",
+      "../../sync/_worker_thread/threadmessage.ts",
+      "../../node_modules/minimal-polyfills/dist/lib/arraybuffer.isview.d.ts",
+      "../../node_modules/minimal-polyfills/dist/lib/map.d.ts",
+      "../../sync/_worker_thread/main.ts",
+      "../../sync/cipher/rsa.ts"
     ]
   },
-  "version": "3.5.2"
+  "version": "3.7.3"
 }

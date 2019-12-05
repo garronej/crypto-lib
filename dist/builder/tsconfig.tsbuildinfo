@@ -1,99 +1,99 @@
 {
   "program": {
     "fileInfos": {
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es5.d.ts": {
-        "version": "1f753cee573dea40df8a9dc873fef5566957b19ad513874f6643d8dfb14842d0",
-        "signature": "1f753cee573dea40df8a9dc873fef5566957b19ad513874f6643d8dfb14842d0"
+      "../../node_modules/typescript/lib/lib.es5.d.ts": {
+        "version": "fc43680ad3a1a4ec8c7b8d908af1ec9ddff87845346de5f02c735c9171fa98ea",
+        "signature": "fc43680ad3a1a4ec8c7b8d908af1ec9ddff87845346de5f02c735c9171fa98ea"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2015.d.ts": {
         "version": "7994d44005046d1413ea31d046577cdda33b8b2470f30281fd9c8b3c99fe2d96",
         "signature": "7994d44005046d1413ea31d046577cdda33b8b2470f30281fd9c8b3c99fe2d96"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2016.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2016.d.ts": {
         "version": "5f217838d25704474d9ef93774f04164889169ca31475fe423a9de6758f058d1",
         "signature": "5f217838d25704474d9ef93774f04164889169ca31475fe423a9de6758f058d1"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2017.d.ts": {
         "version": "459097c7bdd88fc5731367e56591e4f465f2c9de81a35427a7bd473165c34743",
         "signature": "459097c7bdd88fc5731367e56591e4f465f2c9de81a35427a7bd473165c34743"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.core.d.ts": {
-        "version": "2a0390a665763bcc90f0670e43c587928d8fefe2a94a11209c1e22cba7b09f52",
-        "signature": "2a0390a665763bcc90f0670e43c587928d8fefe2a94a11209c1e22cba7b09f52"
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts": {
+        "version": "734ddc145e147fbcd55f07d034f50ccff1086f5a880107665ec326fb368876f6",
+        "signature": "734ddc145e147fbcd55f07d034f50ccff1086f5a880107665ec326fb368876f6"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.collection.d.ts": {
-        "version": "dd94d8ef48c562389eb58af8df3a3a34d11367f7c818192aa5f16470d469e3f0",
-        "signature": "dd94d8ef48c562389eb58af8df3a3a34d11367f7c818192aa5f16470d469e3f0"
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts": {
+        "version": "4a0862a21f4700de873db3b916f70e41570e2f558da77d2087c9490f5a0615d8",
+        "signature": "4a0862a21f4700de873db3b916f70e41570e2f558da77d2087c9490f5a0615d8"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.generator.d.ts": {
-        "version": "828413486bdcaa342558e8e4570b1b287b776cb61b4b70b0214bd10c5d9a94c3",
-        "signature": "828413486bdcaa342558e8e4570b1b287b776cb61b4b70b0214bd10c5d9a94c3"
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts": {
+        "version": "765e0e9c9d74cf4d031ca8b0bdb269a853e7d81eda6354c8510218d03db12122",
+        "signature": "765e0e9c9d74cf4d031ca8b0bdb269a853e7d81eda6354c8510218d03db12122"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.iterable.d.ts": {
-        "version": "6c9f73334f8bf47aea685ca5b46a8f7e992a223e96fbceb030f26a4d2324ba21",
-        "signature": "6c9f73334f8bf47aea685ca5b46a8f7e992a223e96fbceb030f26a4d2324ba21"
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts": {
+        "version": "285958e7699f1babd76d595830207f18d719662a0c30fac7baca7df7162a9210",
+        "signature": "285958e7699f1babd76d595830207f18d719662a0c30fac7baca7df7162a9210"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.promise.d.ts": {
-        "version": "e6b8ff2798f8ebd7a1c7afd8671f2cb67ee1901c422f5964d74b0b34c6574ea2",
-        "signature": "e6b8ff2798f8ebd7a1c7afd8671f2cb67ee1901c422f5964d74b0b34c6574ea2"
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts": {
+        "version": "d4deaafbb18680e3143e8b471acd650ed6f72a408a33137f0a0dd104fbe7f8ca",
+        "signature": "d4deaafbb18680e3143e8b471acd650ed6f72a408a33137f0a0dd104fbe7f8ca"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.proxy.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts": {
         "version": "5e72f949a89717db444e3bd9433468890068bb21a5638d8ab15a1359e05e54fe",
         "signature": "5e72f949a89717db444e3bd9433468890068bb21a5638d8ab15a1359e05e54fe"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.reflect.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts": {
         "version": "f5b242136ae9bfb1cc99a5971cccc44e99947ae6b5ef6fd8aa54b5ade553b976",
         "signature": "f5b242136ae9bfb1cc99a5971cccc44e99947ae6b5ef6fd8aa54b5ade553b976"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.symbol.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts": {
         "version": "9ae2860252d6b5f16e2026d8a2c2069db7b2a3295e98b6031d01337b96437230",
         "signature": "9ae2860252d6b5f16e2026d8a2c2069db7b2a3295e98b6031d01337b96437230"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": {
         "version": "3e0a459888f32b42138d5a39f706ff2d55d500ab1031e0988b5568b0f67c2303",
         "signature": "3e0a459888f32b42138d5a39f706ff2d55d500ab1031e0988b5568b0f67c2303"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2016.array.include.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2016.array.include.d.ts": {
         "version": "3f96f1e570aedbd97bf818c246727151e873125d0512e4ae904330286c721bc0",
         "signature": "3f96f1e570aedbd97bf818c246727151e873125d0512e4ae904330286c721bc0"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.object.d.ts": {
-        "version": "ff8ad203e83338289b0f5defc1a5b5c253fb7d251b464db497383f915a0df3f4",
-        "signature": "ff8ad203e83338289b0f5defc1a5b5c253fb7d251b464db497383f915a0df3f4"
+      "../../node_modules/typescript/lib/lib.es2017.object.d.ts": {
+        "version": "c2d60b2e558d44384e4704b00e6b3d154334721a911f094d3133c35f0917b408",
+        "signature": "c2d60b2e558d44384e4704b00e6b3d154334721a911f094d3133c35f0917b408"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts": {
         "version": "b8667586a618c5cf64523d4e500ae39e781428abfb28f3de441fc66b56144b6f",
         "signature": "b8667586a618c5cf64523d4e500ae39e781428abfb28f3de441fc66b56144b6f"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.string.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2017.string.d.ts": {
         "version": "21df2e0059f14dcb4c3a0e125859f6b6ff01332ee24b0065a741d121250bc71c",
         "signature": "21df2e0059f14dcb4c3a0e125859f6b6ff01332ee24b0065a741d121250bc71c"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.intl.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2017.intl.d.ts": {
         "version": "c1759cb171c7619af0d2234f2f8fb2a871ee88e956e2ed91bb61778e41f272c6",
         "signature": "c1759cb171c7619af0d2234f2f8fb2a871ee88e956e2ed91bb61778e41f272c6"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts": {
+      "../../node_modules/typescript/lib/lib.es2017.typedarrays.d.ts": {
         "version": "28569d59e07d4378cb3d54979c4c60f9f06305c9bb6999ffe6cab758957adc46",
         "signature": "28569d59e07d4378cb3d54979c4c60f9f06305c9bb6999ffe6cab758957adc46"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/frontend-build-tools/dist/index.d.ts": {
+      "../../node_modules/frontend-build-tools/dist/index.d.ts": {
         "version": "b838169c844f89586861646be93ef84805ab0a48bbcc5e85e65628f1a4865be8",
         "signature": "b838169c844f89586861646be93ef84805ab0a48bbcc5e85e65628f1a4865be8"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/builder/build.ts": {
+      "../../builder/build.ts": {
         "version": "2285ca6c6c4a8eeb89002a35d4f27e4e9479a5396c617857f69a31d0e825695c",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/inspector.d.ts": {
+      "../../node_modules/@types/node/inspector.d.ts": {
         "version": "7e49dbf1543b3ee54853ade4c5e9fa460b6a4eca967efe6bf943e0c505d087ed",
         "signature": "7e49dbf1543b3ee54853ade4c5e9fa460b6a4eca967efe6bf943e0c505d087ed"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts": {
-        "version": "a4108880c4f54e282bd9ed6f91ae6fbdc5f2cd8ed78bad8a38342403c0b65471",
-        "signature": "a4108880c4f54e282bd9ed6f91ae6fbdc5f2cd8ed78bad8a38342403c0b65471"
+      "../../node_modules/@types/node/base.d.ts": {
+        "version": "9eb6ed7f67245f815a70e718cb2396070890ce589978cb5ae9738fa2287a9c72",
+        "signature": "9eb6ed7f67245f815a70e718cb2396070890ce589978cb5ae9738fa2287a9c72"
       },
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts": {
+      "../../node_modules/@types/node/ts3.2/index.d.ts": {
         "version": "1de0ff6200b92798a5aef43f57029c79dbf69932037dee1c007fdd2c562db258",
         "signature": "1de0ff6200b92798a5aef43f57029c79dbf69932037dee1c007fdd2c562db258"
       }
@@ -106,7 +106,7 @@
         "lib.es2015.d.ts"
       ],
       "declaration": true,
-      "outDir": "/Users/joseph/semasim/frontend/local_modules/crypto-lib/dist/builder",
+      "outDir": "./",
       "strictNullChecks": true,
       "sourceMap": false,
       "newLine": 1,
@@ -118,229 +118,229 @@
       "types": [
         "node"
       ],
-      "rootDir": "/Users/joseph/semasim/frontend/local_modules/crypto-lib/builder",
-      "project": "./builder",
-      "configFilePath": "/Users/joseph/semasim/frontend/local_modules/crypto-lib/builder/tsconfig.json"
+      "rootDir": "../../builder",
+      "project": "../../builder",
+      "configFilePath": "../../builder/tsconfig.json"
     },
     "referencedMap": {
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es5.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es5.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2016.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2016.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2017.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.core.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.collection.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.generator.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.iterable.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.promise.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.proxy.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.reflect.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.symbol.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2016.array.include.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2016.array.include.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.object.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2017.object.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.string.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2017.string.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.intl.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2017.intl.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2017.typedarrays.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/frontend-build-tools/dist/index.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/frontend-build-tools/dist/index.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/builder/build.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/frontend-build-tools/dist/index.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../builder/build.ts": [
+        "../../node_modules/frontend-build-tools/dist/index.d.ts",
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/inspector.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/@types/node/inspector.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/inspector.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/@types/node/base.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/inspector.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts"
+      "../../node_modules/@types/node/ts3.2/index.d.ts": [
+        "../../node_modules/@types/node/base.d.ts"
       ]
     },
     "exportedModulesMap": {
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es5.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es5.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2016.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2016.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2017.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.core.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.collection.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.generator.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.iterable.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.promise.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.proxy.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.reflect.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.symbol.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2016.array.include.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2016.array.include.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.object.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2017.object.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.string.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2017.string.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.intl.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2017.intl.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/typescript/lib/lib.es2017.typedarrays.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/frontend-build-tools/dist/index.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/frontend-build-tools/dist/index.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/inspector.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/@types/node/inspector.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/inspector.d.ts",
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/@types/node/base.d.ts": [
+        "../../node_modules/@types/node/base.d.ts",
+        "../../node_modules/@types/node/inspector.d.ts",
+        "../../node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts": [
-        "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts"
+      "../../node_modules/@types/node/ts3.2/index.d.ts": [
+        "../../node_modules/@types/node/base.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es5.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2016.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.core.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.collection.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.generator.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.iterable.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.promise.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.proxy.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.reflect.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.symbol.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2016.array.include.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.object.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.string.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.intl.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/frontend-build-tools/dist/index.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/builder/build.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/inspector.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/base.d.ts",
-      "/users/joseph/semasim/frontend/local_modules/crypto-lib/node_modules/@types/node/ts3.2/index.d.ts"
+      "../../node_modules/frontend-build-tools/dist/index.d.ts",
+      "../../builder/build.ts",
+      "../../node_modules/@types/node/inspector.d.ts",
+      "../../node_modules/@types/node/base.d.ts",
+      "../../node_modules/@types/node/ts3.2/index.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.d.ts",
+      "../../node_modules/typescript/lib/lib.es2016.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.intl.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.string.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.object.d.ts",
+      "../../node_modules/typescript/lib/lib.es2016.array.include.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
+      "../../node_modules/typescript/lib/lib.es5.d.ts"
     ]
   },
-  "version": "3.5.2"
+  "version": "3.7.3"
 }

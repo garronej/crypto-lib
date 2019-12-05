@@ -46,7 +46,7 @@ function syncDecryptorFactory(decryptKey) {
 }
 exports.syncDecryptorFactory = syncDecryptorFactory;
 function syncEncryptorDecryptorFactory(encryptKey, decryptKey) {
-    return __assign({}, syncEncryptorFactory(encryptKey), syncDecryptorFactory(decryptKey));
+    return __assign(__assign({}, syncEncryptorFactory(encryptKey)), syncDecryptorFactory(decryptKey));
 }
 exports.syncEncryptorDecryptorFactory = syncEncryptorDecryptorFactory;
 function syncGenerateKeys(seed, keysLengthBytes) {

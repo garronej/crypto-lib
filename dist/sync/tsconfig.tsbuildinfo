@@ -58,7 +58,7 @@
         "signature": "6db3074f04c0a2524724f2935b4aa6d8a6d2f3d3b026362e2fb0bfd9c861c503"
       },
       "../../sync/utils/environnement.ts": {
-        "version": "2ded716a0c0d9a4920fdb94aec9651a71ff91cf0964c64ba4b9cf38685c7c991",
+        "version": "6b4b4b6e166c1bbb2f33a4788f10c8d6de6aff9b29c535403d5fba20c55b2c15",
         "signature": "caf8bd34ffc23b397e7f9d3df7b38f3530d7a482d690593b7fcf5cea898f2322"
       },
       "../../sync/utils/randombytes.ts": {
@@ -212,17 +212,17 @@
       "../../sync/utils/tobuffer.ts",
       "../../sync/types.ts",
       "../../sync/scrypt.ts",
-      "../../sync/utils/environnement.ts",
       "../../sync/utils/randombytes.ts",
       "../../sync/utils/binarydatamanipulations.ts",
       "../../sync/cipher/aes.ts",
+      "../../sync/cipher/rsa.ts",
       "../../sync/cipher/plain.ts",
       "../../sync/index.ts",
       "../../sync/_worker_thread/threadmessage.ts",
       "../../node_modules/minimal-polyfills/dist/lib/arraybuffer.isview.d.ts",
       "../../node_modules/minimal-polyfills/dist/lib/map.d.ts",
       "../../sync/_worker_thread/main.ts",
-      "../../sync/cipher/rsa.ts"
+      "../../sync/utils/environnement.ts"
     ]
   },
   "version": "3.7.3"

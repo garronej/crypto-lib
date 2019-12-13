@@ -169,16 +169,15 @@
       ]
     },
     "exportedModulesMap": {
-      "../../sync/scrypt.ts": [
+      "../../sync/_worker_thread/threadmessage.ts": [
+        "../../sync/cipher/rsa.ts",
+        "../../sync/cipher/aes.ts",
         "../../sync/types.ts"
       ],
-      "../../sync/cipher/aes.ts": [
-        "../../sync/types.ts"
+      "../../sync/_worker_thread/main.ts": [
+        "../../sync/_worker_thread/threadmessage.ts"
       ],
       "../../sync/cipher/rsa.ts": [
-        "../../sync/types.ts"
-      ],
-      "../../sync/cipher/plain.ts": [
         "../../sync/types.ts"
       ],
       "../../sync/index.ts": [
@@ -188,30 +187,21 @@
         "../../sync/cipher/rsa.ts",
         "../../sync/cipher/plain.ts"
       ],
-      "../../sync/_worker_thread/threadmessage.ts": [
-        "../../sync/cipher/rsa.ts",
-        "../../sync/cipher/aes.ts",
+      "../../sync/cipher/plain.ts": [
         "../../sync/types.ts"
       ],
-      "../../sync/_worker_thread/main.ts": [
-        "../../sync/_worker_thread/threadmessage.ts"
+      "../../sync/cipher/aes.ts": [
+        "../../sync/types.ts"
+      ],
+      "../../sync/scrypt.ts": [
+        "../../sync/types.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "../../node_modules/typescript/lib/lib.es5.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
       "../../sync/utils/tobuffer.ts",
       "../../sync/types.ts",
       "../../sync/scrypt.ts",
+      "../../sync/utils/environnement.ts",
       "../../sync/utils/randombytes.ts",
       "../../sync/utils/binarydatamanipulations.ts",
       "../../sync/cipher/aes.ts",
@@ -222,7 +212,17 @@
       "../../node_modules/minimal-polyfills/dist/lib/arraybuffer.isview.d.ts",
       "../../node_modules/minimal-polyfills/dist/lib/map.d.ts",
       "../../sync/_worker_thread/main.ts",
-      "../../sync/utils/environnement.ts"
+      "../../node_modules/typescript/lib/lib.es2015.d.ts",
+      "../../node_modules/typescript/lib/lib.es5.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts"
     ]
   },
   "version": "3.7.3"

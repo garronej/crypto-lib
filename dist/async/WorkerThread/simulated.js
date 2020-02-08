@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ts_events_extended_1 = require("ts-events-extended");
+var ts_evt_1 = require("ts-evt");
 var runTask_1 = require("./simulated/runTask");
 function spawn(source) {
-    var evtResponse = new ts_events_extended_1.SyncEvent();
+    var evtResponse = new ts_evt_1.Evt();
     var actionListener;
     //@ts-ignore
     var __simulatedMainThreadApi = {

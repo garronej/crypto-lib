@@ -1,11 +1,11 @@
 
-import { SyncEvent } from "ts-events-extended";
+import { Evt } from "ts-evt";
 import { ThreadMessage } from "../../sync/_worker_thread/ThreadMessage";
 import runTask from "./simulated/runTask";
 
 export function spawn(source: string): import("../WorkerThread").WorkerThread {
 
-    const evtResponse = new SyncEvent<ThreadMessage.Response>();
+    const evtResponse = new Evt<ThreadMessage.Response>();
 
     let actionListener: (action: ThreadMessage.Action) => void;
 

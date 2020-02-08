@@ -1,5 +1,5 @@
 
-import { SyncEvent } from "ts-events-extended";
+import { Evt } from "ts-evt";
 import { ThreadMessage, transfer } from "../../sync/_worker_thread/ThreadMessage";
 
 declare const require: any;
@@ -74,7 +74,7 @@ export function spawn(source: string): import("../WorkerThread").WorkerThread {
         () => fs.unlink(random_file_path, ()=>{})
     );
 
-    const evtResponse = new SyncEvent<ThreadMessage.Response>();
+    const evtResponse = new Evt<ThreadMessage.Response>();
 
     childProcess.on(
         "message",

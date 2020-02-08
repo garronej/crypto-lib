@@ -1,10 +1,10 @@
 
-import { SyncEvent } from "ts-events-extended";
+import { Evt } from "ts-evt";
 import { ThreadMessage } from "../../sync/_worker_thread/ThreadMessage";
 
 export function spawn(source: string): import("../WorkerThread").WorkerThread {
 
-    const evtResponse = new SyncEvent<ThreadMessage.Response>();
+    const evtResponse = new Evt<ThreadMessage.Response>();
 
     const worker = new Worker(
         URL.createObjectURL(

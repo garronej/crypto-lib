@@ -1,5 +1,5 @@
 
-import { SyncEvent } from "ts-events-extended";
+import {  Evt } from "ts-evt";
 import { ThreadMessage } from "../sync/_worker_thread/ThreadMessage";
 import { environnement } from "../sync/utils/environnement";
 import { spawn as spawnWeb } from "./WorkerThread/web";
@@ -7,7 +7,7 @@ import { spawn as spawnNode } from "./WorkerThread/node";
 import { spawn as spawnSimulated } from "./WorkerThread/simulated";
 
 export type WorkerThread = {
-    evtResponse: SyncEvent<ThreadMessage.Response>;
+    evtResponse: Evt<ThreadMessage.Response>;
     send(action: ThreadMessage.Action, transfer?: ArrayBuffer[]): void;
     terminate(): void;
 }

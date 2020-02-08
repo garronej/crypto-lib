@@ -17,7 +17,7 @@
     "run-exclusive": "github:garronej/run-exclusive",
     "scryptsy": "github:garronej/scryptsy",
     "transfer-tools": "garronej/transfer-tools",
-    "ts-events-extended": "github:garronej/ts-events-extended"
+    "ts-evt": "^4.3.3"
   },
   "devDependencies": {
     "@types/node": "^8.9.1",

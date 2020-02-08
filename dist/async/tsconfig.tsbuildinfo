@@ -53,25 +53,29 @@
         "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
-      "../../node_modules/ts-events-extended/dist/lib/defs.d.ts": {
-        "version": "6c144ddf006b0b9daf44748bde17033681faa30f1b4c84953aa2debdc24ccba8",
-        "signature": "6c144ddf006b0b9daf44748bde17033681faa30f1b4c84953aa2debdc24ccba8"
+      "../../node_modules/ts-evt/dist/lib/defs.d.ts": {
+        "version": "b59784276dce6cc61be48b01eebd9ade2808271d5a6ec357fa087e45d8919d80",
+        "signature": "b59784276dce6cc61be48b01eebd9ade2808271d5a6ec357fa087e45d8919d80"
       },
-      "../../node_modules/ts-events-extended/dist/lib/synceventbaseprotected.d.ts": {
-        "version": "7c60a8e25848c21b336c8223ba3f7dfa877bba9e739e82e08156e566cbeefa33",
-        "signature": "7c60a8e25848c21b336c8223ba3f7dfa877bba9e739e82e08156e566cbeefa33"
+      "../../node_modules/ts-evt/dist/lib/evtbaseprotected.d.ts": {
+        "version": "704c89efc359a5b6833660b9a9d3fde3cebc53830963f24d8ac055b3a9d788d1",
+        "signature": "704c89efc359a5b6833660b9a9d3fde3cebc53830963f24d8ac055b3a9d788d1"
       },
-      "../../node_modules/ts-events-extended/dist/lib/synceventbase.d.ts": {
-        "version": "9f764e87e1ed4647647712656a2c47997172a084bddce704b191146463b5f76c",
-        "signature": "9f764e87e1ed4647647712656a2c47997172a084bddce704b191146463b5f76c"
+      "../../node_modules/ts-evt/dist/lib/evtbase.d.ts": {
+        "version": "aff5a2e71bc847398440e25d8518b60938c1ddf661abb4aaaeb141a38fe50e8e",
+        "signature": "aff5a2e71bc847398440e25d8518b60938c1ddf661abb4aaaeb141a38fe50e8e"
       },
-      "../../node_modules/ts-events-extended/dist/lib/syncevent.d.ts": {
-        "version": "92c65bf0b6a632d7537ed3f233d304ca34b06d9d24ffdcfc99e0d8858c010c21",
-        "signature": "92c65bf0b6a632d7537ed3f233d304ca34b06d9d24ffdcfc99e0d8858c010c21"
+      "../../node_modules/ts-evt/dist/lib/evt.d.ts": {
+        "version": "78824ccf723ab31ecbbe2a39fee673a6d5f313830df1eeebd5077771b016c48e",
+        "signature": "78824ccf723ab31ecbbe2a39fee673a6d5f313830df1eeebd5077771b016c48e"
       },
-      "../../node_modules/ts-events-extended/dist/lib/index.d.ts": {
-        "version": "bc2aa2a3e1a5a6bb6366f9a9427632197796d75658ce9ef545ec829738850e45",
-        "signature": "bc2aa2a3e1a5a6bb6366f9a9427632197796d75658ce9ef545ec829738850e45"
+      "../../node_modules/ts-evt/dist/lib/observable.d.ts": {
+        "version": "b0d8bf21a19640c764f41d0f872327df5c8a1810ad536fa1c3ad33ed10c4fd89",
+        "signature": "b0d8bf21a19640c764f41d0f872327df5c8a1810ad536fa1c3ad33ed10c4fd89"
+      },
+      "../../node_modules/ts-evt/dist/lib/index.d.ts": {
+        "version": "038e31eb88fd94b3848a5e7c3a3928b42da4cd023f6430b9beaf3abd5881bab0",
+        "signature": "038e31eb88fd94b3848a5e7c3a3928b42da4cd023f6430b9beaf3abd5881bab0"
       },
       "../../sync/types.ts": {
         "version": "ece2ed9e7494bdd3ed91165738857e5c391089ad5584823582efb5b563ee94de",
@@ -94,11 +98,11 @@
         "signature": "caf8bd34ffc23b397e7f9d3df7b38f3530d7a482d690593b7fcf5cea898f2322"
       },
       "../../async/workerthread/web.ts": {
-        "version": "f59f8da1b913871547c911c2158790990f3cdc6a7933a04425dc75fc8f100550",
+        "version": "8a73595961044ee7b20ffda8a56c961cdab32776a1c02ce8179914a88e25b112",
         "signature": "1650708f52373c53cf443f0398fedcbd98abb0f33e8185455a2cf75031bebc6e"
       },
       "../../async/workerthread/node.ts": {
-        "version": "f194f1aae320026ed9430d7efe255c48af2862adc2945acbbd0e150aed1f16e5",
+        "version": "2128ba2d3b1804d1a6782d2fdc50d8fac905a53299f50faf3b0a91f86402f8b4",
         "signature": "1650708f52373c53cf443f0398fedcbd98abb0f33e8185455a2cf75031bebc6e"
       },
       "../../async/workerthread/simulated/runtaskfn.ts": {
@@ -118,12 +122,12 @@
         "signature": "6b1385e3cd58d71e4132acf0b6a63eda15bb29bc8777cac9aafe80c328cc9879"
       },
       "../../async/workerthread/simulated.ts": {
-        "version": "4a10eddfad9a2ec0ac8094a8d6e8c9b082621320be160e5e66c000f17a0e1269",
+        "version": "8e46c81c34991ddac5e56e58781f32529c5d08daab44cb949631455ca3f20503",
         "signature": "1650708f52373c53cf443f0398fedcbd98abb0f33e8185455a2cf75031bebc6e"
       },
       "../../async/workerthread.ts": {
-        "version": "f00c233267acb845998df8adbb75274417810aa0ba216935f1afd59035f6f10f",
-        "signature": "c47eb516361a10c7b7337d503b0b4f8c15f3896557efdbe7f28db685e08efc37"
+        "version": "1eea7722d21d15532084b844f12d550b2fccc87e2132dd6cb589303a5b6ad7c4",
+        "signature": "86dd0840caa44ebf3cf783133b39547f9b932512ee909273c29a86d70ca379ce"
       },
       "../../node_modules/minimal-polyfills/dist/lib/map.d.ts": {
         "version": "2d162f406a62931fce0fb487b97ee27cebc186ecb9c6628f4e540e0cb3eeadaf",
@@ -198,20 +202,24 @@
       "configFilePath": "../../async/tsconfig.json"
     },
     "referencedMap": {
-      "../../node_modules/ts-events-extended/dist/lib/synceventbaseprotected.d.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/defs.d.ts"
+      "../../node_modules/ts-evt/dist/lib/evtbaseprotected.d.ts": [
+        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
       ],
-      "../../node_modules/ts-events-extended/dist/lib/synceventbase.d.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/synceventbaseprotected.d.ts",
-        "../../node_modules/ts-events-extended/dist/lib/defs.d.ts"
+      "../../node_modules/ts-evt/dist/lib/evtbase.d.ts": [
+        "../../node_modules/ts-evt/dist/lib/evtbaseprotected.d.ts",
+        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
       ],
-      "../../node_modules/ts-events-extended/dist/lib/syncevent.d.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/synceventbase.d.ts",
-        "../../node_modules/ts-events-extended/dist/lib/defs.d.ts"
+      "../../node_modules/ts-evt/dist/lib/evt.d.ts": [
+        "../../node_modules/ts-evt/dist/lib/evtbase.d.ts",
+        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
       ],
-      "../../node_modules/ts-events-extended/dist/lib/index.d.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/syncevent.d.ts",
-        "../../node_modules/ts-events-extended/dist/lib/defs.d.ts"
+      "../../node_modules/ts-evt/dist/lib/observable.d.ts": [
+        "../../node_modules/ts-evt/dist/lib/evt.d.ts"
+      ],
+      "../../node_modules/ts-evt/dist/lib/index.d.ts": [
+        "../../node_modules/ts-evt/dist/lib/evt.d.ts",
+        "../../node_modules/ts-evt/dist/lib/defs.d.ts",
+        "../../node_modules/ts-evt/dist/lib/observable.d.ts"
       ],
       "../../sync/cipher/rsa.ts": [
         "../sync/types.d.ts"
@@ -225,12 +233,12 @@
         "../sync/cipher/aes.d.ts"
       ],
       "../../async/workerthread/web.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/index.d.ts",
+        "../../node_modules/ts-evt/dist/lib/index.d.ts",
         "../sync/_worker_thread/threadmessage.d.ts",
         "../../async/workerthread.ts"
       ],
       "../../async/workerthread/node.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/index.d.ts",
+        "../../node_modules/ts-evt/dist/lib/index.d.ts",
         "../sync/_worker_thread/threadmessage.d.ts",
         "../../async/workerthread.ts"
       ],
@@ -241,14 +249,14 @@
         "../sync/_worker_thread/threadmessage.d.ts"
       ],
       "../../async/workerthread/simulated.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/index.d.ts",
+        "../../node_modules/ts-evt/dist/lib/index.d.ts",
         "../sync/_worker_thread/threadmessage.d.ts",
         "../../async/workerthread/simulated/runtask.ts",
         "../../async/workerthread.ts",
         "../sync/_worker_thread/main.d.ts"
       ],
       "../../async/workerthread.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/index.d.ts",
+        "../../node_modules/ts-evt/dist/lib/index.d.ts",
         "../sync/_worker_thread/threadmessage.d.ts",
         "../sync/utils/environnement.d.ts",
         "../../async/workerthread/web.ts",
@@ -290,38 +298,63 @@
       ]
     },
     "exportedModulesMap": {
-      "../../node_modules/ts-events-extended/dist/lib/index.d.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/syncevent.d.ts",
-        "../../node_modules/ts-events-extended/dist/lib/defs.d.ts"
+      "../../node_modules/ts-evt/dist/lib/evtbaseprotected.d.ts": [
+        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
       ],
-      "../../async/workerthread.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/index.d.ts",
-        "../sync/_worker_thread/threadmessage.d.ts"
+      "../../node_modules/ts-evt/dist/lib/evtbase.d.ts": [
+        "../../node_modules/ts-evt/dist/lib/evtbaseprotected.d.ts",
+        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
       ],
-      "../../async/index.ts": [
+      "../../node_modules/ts-evt/dist/lib/evt.d.ts": [
+        "../../node_modules/ts-evt/dist/lib/evtbase.d.ts",
+        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
+      ],
+      "../../node_modules/ts-evt/dist/lib/observable.d.ts": [
+        "../../node_modules/ts-evt/dist/lib/evt.d.ts"
+      ],
+      "../../node_modules/ts-evt/dist/lib/index.d.ts": [
+        "../../node_modules/ts-evt/dist/lib/evt.d.ts",
+        "../../node_modules/ts-evt/dist/lib/defs.d.ts",
+        "../../node_modules/ts-evt/dist/lib/observable.d.ts"
+      ],
+      "../../sync/cipher/rsa.ts": [
+        "../sync/types.d.ts"
+      ],
+      "../../sync/cipher/aes.ts": [
+        "../sync/types.d.ts"
+      ],
+      "../../sync/_worker_thread/threadmessage.ts": [
         "../sync/types.d.ts",
-        "../../async/serializer.ts",
-        "../sync/utils/tobuffer.d.ts"
+        "../sync/cipher/rsa.d.ts",
+        "../sync/cipher/aes.d.ts"
       ],
-      "../../async/workerthread/simulated.ts": [
+      "../../async/workerthread/web.ts": [
         "../../async/workerthread.ts"
       ],
       "../../async/workerthread/node.ts": [
         "../../async/workerthread.ts"
       ],
-      "../../async/workerthread/web.ts": [
+      "../../async/workerthread/simulated/runtask.ts": [
+        "../../async/workerthread/simulated/runtaskfn.ts"
+      ],
+      "../../sync/_worker_thread/main.ts": [
+        "../sync/_worker_thread/threadmessage.d.ts"
+      ],
+      "../../async/workerthread/simulated.ts": [
         "../../async/workerthread.ts"
       ],
-      "../../node_modules/ts-events-extended/dist/lib/syncevent.d.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/synceventbase.d.ts",
-        "../../node_modules/ts-events-extended/dist/lib/defs.d.ts"
+      "../../async/workerthread.ts": [
+        "../../node_modules/ts-evt/dist/lib/index.d.ts",
+        "../sync/_worker_thread/threadmessage.d.ts"
       ],
-      "../../node_modules/ts-events-extended/dist/lib/synceventbase.d.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/synceventbaseprotected.d.ts",
-        "../../node_modules/ts-events-extended/dist/lib/defs.d.ts"
+      "../../async/serializer.ts": [
+        "../sync/types.d.ts"
       ],
-      "../../node_modules/ts-events-extended/dist/lib/synceventbaseprotected.d.ts": [
-        "../../node_modules/ts-events-extended/dist/lib/defs.d.ts"
+      "../../sync/scrypt.ts": [
+        "../sync/types.d.ts"
+      ],
+      "../../sync/cipher/plain.ts": [
+        "../sync/types.d.ts"
       ],
       "../../sync/index.ts": [
         "../sync/types.d.ts",
@@ -330,43 +363,35 @@
         "../sync/cipher/rsa.d.ts",
         "../sync/cipher/plain.d.ts"
       ],
-      "../../sync/cipher/plain.ts": [
-        "../sync/types.d.ts"
-      ],
-      "../../sync/scrypt.ts": [
-        "../sync/types.d.ts"
-      ],
-      "../../async/serializer.ts": [
-        "../sync/types.d.ts"
-      ],
-      "../../sync/_worker_thread/threadmessage.ts": [
+      "../../async/index.ts": [
         "../sync/types.d.ts",
-        "../sync/cipher/rsa.d.ts",
-        "../sync/cipher/aes.d.ts"
-      ],
-      "../../sync/_worker_thread/main.ts": [
-        "../sync/_worker_thread/threadmessage.d.ts"
-      ],
-      "../../sync/cipher/aes.ts": [
-        "../sync/types.d.ts"
-      ],
-      "../../sync/cipher/rsa.ts": [
-        "../sync/types.d.ts"
+        "../../async/serializer.ts",
+        "../sync/utils/tobuffer.d.ts"
       ],
       "../../async/workerthread/simulated/runtask.native.ts": [
-        "../../async/workerthread/simulated/runtaskfn.ts"
-      ],
-      "../../async/workerthread/simulated/runtask.ts": [
         "../../async/workerthread/simulated/runtaskfn.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
+      "../../node_modules/typescript/lib/lib.es5.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.d.ts",
+      "../../node_modules/typescript/lib/lib.dom.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
       "../../node_modules/minimal-polyfills/dist/lib/array.prototype.find.d.ts",
-      "../../node_modules/ts-events-extended/dist/lib/defs.d.ts",
-      "../../node_modules/ts-events-extended/dist/lib/synceventbaseprotected.d.ts",
-      "../../node_modules/ts-events-extended/dist/lib/synceventbase.d.ts",
-      "../../node_modules/ts-events-extended/dist/lib/syncevent.d.ts",
-      "../../node_modules/ts-events-extended/dist/lib/index.d.ts",
+      "../../node_modules/ts-evt/dist/lib/defs.d.ts",
+      "../../node_modules/ts-evt/dist/lib/evtbaseprotected.d.ts",
+      "../../node_modules/ts-evt/dist/lib/evtbase.d.ts",
+      "../../node_modules/ts-evt/dist/lib/evt.d.ts",
+      "../../node_modules/ts-evt/dist/lib/observable.d.ts",
+      "../../node_modules/ts-evt/dist/lib/index.d.ts",
       "../../sync/types.ts",
       "../../sync/cipher/rsa.ts",
       "../../sync/cipher/aes.ts",
@@ -378,7 +403,6 @@
       "../../async/workerthread/simulated/runtask.ts",
       "../../node_modules/minimal-polyfills/dist/lib/arraybuffer.isview.d.ts",
       "../../sync/_worker_thread/main.ts",
-      "../../async/workerthread/simulated.ts",
       "../../async/workerthread.ts",
       "../../node_modules/minimal-polyfills/dist/lib/map.d.ts",
       "../../node_modules/minimal-polyfills/dist/lib/set.d.ts",
@@ -392,19 +416,8 @@
       "../../sync/index.ts",
       "../../async/index.ts",
       "../../async/workerthread/simulated/runtask.native.ts",
-      "../../node_modules/typescript/lib/lib.es2015.d.ts",
-      "../../node_modules/typescript/lib/lib.es5.d.ts",
-      "../../node_modules/typescript/lib/lib.dom.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts"
+      "../../async/workerthread/simulated.ts"
     ]
   },
-  "version": "3.7.3"
+  "version": "3.7.5"
 }

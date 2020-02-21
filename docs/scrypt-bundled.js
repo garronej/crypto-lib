@@ -4630,10 +4630,17 @@ var defs_1 = require("./defs");
 /** If the matcher is not transformative then the transformedData will be the input data */
 function invokeMatcher(matcher, data) {
     var matcherResult = matcher(data);
-    return typeof matcherResult === "boolean" ?
-        (matcherResult ? [data] : null)
+    //NOTE: We assume it was a transformative matcher only 
+    //if the returned value is a singleton tuple, otherwise we evaluate
+    //it as a boolean. 
+    return (matcherResult !== null &&
+        typeof matcherResult === "object" &&
+        matcherResult.length === 1) ?
+        matcherResult
         :
-            matcherResult;
+            (!!matcherResult ?
+                [data] :
+                null);
 }
 exports.invokeMatcher = invokeMatcher;
 exports.overwriteReadonlyProp = function (obj, propertyName, value) {

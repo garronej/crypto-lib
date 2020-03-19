@@ -2,8 +2,8 @@
   "program": {
     "fileInfos": {
       "../../node_modules/typescript/lib/lib.es5.d.ts": {
-        "version": "fc43680ad3a1a4ec8c7b8d908af1ec9ddff87845346de5f02c735c9171fa98ea",
-        "signature": "fc43680ad3a1a4ec8c7b8d908af1ec9ddff87845346de5f02c735c9171fa98ea"
+        "version": "b42eddba1a53c9d27279cfe7fc0416c10a81489826ad47e39013b9d340fc0cc7",
+        "signature": "b42eddba1a53c9d27279cfe7fc0416c10a81489826ad47e39013b9d340fc0cc7"
       },
       "../../node_modules/typescript/lib/lib.es2015.d.ts": {
         "version": "7994d44005046d1413ea31d046577cdda33b8b2470f30281fd9c8b3c99fe2d96",
@@ -225,5 +225,5 @@
       "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts"
     ]
   },
-  "version": "3.7.5"
+  "version": "3.8.3"
 }

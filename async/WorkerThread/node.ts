@@ -1,5 +1,5 @@
 
-import { Evt } from "ts-evt";
+import { Evt } from "evt";
 import { ThreadMessage, transfer } from "../../sync/_worker_thread/ThreadMessage";
 
 declare const require: any;

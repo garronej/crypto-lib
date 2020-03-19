@@ -1,5 +1,5 @@
 
-import { Evt } from "ts-evt";
+import { Evt } from "evt";
 import { ThreadMessage } from "../../sync/_worker_thread/ThreadMessage";
 
 export function spawn(source: string): import("../WorkerThread").WorkerThread {

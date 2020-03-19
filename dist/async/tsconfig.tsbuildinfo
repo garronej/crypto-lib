@@ -2,16 +2,16 @@
   "program": {
     "fileInfos": {
       "../../node_modules/typescript/lib/lib.es5.d.ts": {
-        "version": "fc43680ad3a1a4ec8c7b8d908af1ec9ddff87845346de5f02c735c9171fa98ea",
-        "signature": "fc43680ad3a1a4ec8c7b8d908af1ec9ddff87845346de5f02c735c9171fa98ea"
+        "version": "b42eddba1a53c9d27279cfe7fc0416c10a81489826ad47e39013b9d340fc0cc7",
+        "signature": "b42eddba1a53c9d27279cfe7fc0416c10a81489826ad47e39013b9d340fc0cc7"
       },
       "../../node_modules/typescript/lib/lib.es2015.d.ts": {
         "version": "7994d44005046d1413ea31d046577cdda33b8b2470f30281fd9c8b3c99fe2d96",
         "signature": "7994d44005046d1413ea31d046577cdda33b8b2470f30281fd9c8b3c99fe2d96"
       },
       "../../node_modules/typescript/lib/lib.dom.d.ts": {
-        "version": "d93de5e8a7275cb9d47481410e13b3b1debb997e216490954b5d106e37e086de",
-        "signature": "d93de5e8a7275cb9d47481410e13b3b1debb997e216490954b5d106e37e086de"
+        "version": "f2039e0dbc31f69183f6377b368c033802dfdcf77e5fd214def06c1fd7b225ed",
+        "signature": "f2039e0dbc31f69183f6377b368c033802dfdcf77e5fd214def06c1fd7b225ed"
       },
       "../../node_modules/typescript/lib/lib.es2015.core.d.ts": {
         "version": "734ddc145e147fbcd55f07d034f50ccff1086f5a880107665ec326fb368876f6",
@@ -53,52 +53,136 @@
         "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
-      "../../node_modules/ts-evt/dist/lib/defs.d.ts": {
-        "version": "7f9013056d95212372101dd2699eeeca5c8056284617534bd367a6a8755efa6e",
-        "signature": "7f9013056d95212372101dd2699eeeca5c8056284617534bd367a6a8755efa6e"
+      "../../node_modules/evt/dist/lib/ctx.d.ts": {
+        "version": "253bc49d60c22b13257cee5344388c2aca0783755ef6fabe5cca5c62a0dcac38",
+        "signature": "253bc49d60c22b13257cee5344388c2aca0783755ef6fabe5cca5c62a0dcac38"
       },
-      "../../node_modules/ts-evt/dist/lib/evtbaseprotected.d.ts": {
-        "version": "d802e24186f30866138736cb303be9d49ed3a98bec6d9b591bddf786ef21f416",
-        "signature": "d802e24186f30866138736cb303be9d49ed3a98bec6d9b591bddf786ef21f416"
+      "../../node_modules/evt/dist/lib/types/operator.d.ts": {
+        "version": "a4d9e19d9ca630a7476ff3777bc1849c9a2f19fc0f9df23a31fa8061e26dd006",
+        "signature": "a4d9e19d9ca630a7476ff3777bc1849c9a2f19fc0f9df23a31fa8061e26dd006"
       },
-      "../../node_modules/ts-evt/dist/lib/evtbase.d.ts": {
-        "version": "735367dd9f2519af2b71f84a93f3172038fb1c66e7da58f087b2311ce7bc18a2",
-        "signature": "735367dd9f2519af2b71f84a93f3172038fb1c66e7da58f087b2311ce7bc18a2"
+      "../../node_modules/evt/dist/lib/types/handler.d.ts": {
+        "version": "02b0ab8cbd85d5e460976a2c802d45d040299dc54ca21268b87b392c6c321260",
+        "signature": "02b0ab8cbd85d5e460976a2c802d45d040299dc54ca21268b87b392c6c321260"
       },
-      "../../node_modules/ts-evt/dist/lib/evtcompat.d.ts": {
-        "version": "5ef02748f723bbf765ac4b89ca0a07c2c18457fe281b88127342d3a8e2c943ef",
-        "signature": "5ef02748f723bbf765ac4b89ca0a07c2c18457fe281b88127342d3a8e2c943ef"
+      "../../node_modules/evt/dist/lib/evtcore.d.ts": {
+        "version": "072cb80044ede1dbbe32d759685f3a22bd11cc23669eac4af68658b5f44fdfc0",
+        "signature": "072cb80044ede1dbbe32d759685f3a22bd11cc23669eac4af68658b5f44fdfc0"
       },
-      "../../node_modules/ts-evt/dist/lib/index.d.ts": {
-        "version": "8b43898ffb6cc67c6ab201e03d642baadf21b523548b41965538e5558728c7d8",
-        "signature": "8b43898ffb6cc67c6ab201e03d642baadf21b523548b41965538e5558728c7d8"
+      "../../node_modules/evt/dist/lib/types/helper/evtlike.d.ts": {
+        "version": "a1ca3dd197a3df65e8775e5cc9420e133c55a5b4cd8f17adce683b578c9e25b0",
+        "signature": "a1ca3dd197a3df65e8775e5cc9420e133c55a5b4cd8f17adce683b578c9e25b0"
       },
-      "../../sync/types.ts": {
+      "../../node_modules/evt/dist/lib/types/helper/nonpostable.d.ts": {
+        "version": "073e3d30cc68a4782ac49c6a1ebf35178e76018fa0c3d9ef8c85e9068a398419",
+        "signature": "073e3d30cc68a4782ac49c6a1ebf35178e76018fa0c3d9ef8c85e9068a398419"
+      },
+      "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts": {
+        "version": "657208bb56498963b7264811e6598aa9a8d29588433fc2b98a33ea28395d922a",
+        "signature": "657208bb56498963b7264811e6598aa9a8d29588433fc2b98a33ea28395d922a"
+      },
+      "../../node_modules/evt/dist/lib/util/merge.d.ts": {
+        "version": "4702651cd516ec45b9db1b570f49a0fa4f65b62d7f41c98dce4ac3128176ac78",
+        "signature": "4702651cd516ec45b9db1b570f49a0fa4f65b62d7f41c98dce4ac3128176ac78"
+      },
+      "../../node_modules/evt/dist/lib/types/eventtargetlike.d.ts": {
+        "version": "f216259de546a4ecba7526be59f75ef20da1f61b11516c4eaee78f8cb0f30461",
+        "signature": "f216259de546a4ecba7526be59f75ef20da1f61b11516c4eaee78f8cb0f30461"
+      },
+      "../../node_modules/evt/dist/lib/types/lib.dom.d.ts": {
+        "version": "9fcc9211d83abda8568637968319e1b4482a08120508f4c19786e83effe5e9d8",
+        "signature": "9fcc9211d83abda8568637968319e1b4482a08120508f4c19786e83effe5e9d8"
+      },
+      "../../node_modules/evt/dist/lib/util/from.d.ts": {
+        "version": "ca2e4774845600922309743cd1a1f2712de84bd5f71102e0f665f2ae0d32b5c1",
+        "signature": "ca2e4774845600922309743cd1a1f2712de84bd5f71102e0f665f2ae0d32b5c1"
+      },
+      "../../node_modules/evt/dist/lib/evt.d.ts": {
+        "version": "86fd849b2bebd19efd352597736aba49b0078640a3617fc5f5d1e1477ba366a8",
+        "signature": "86fd849b2bebd19efd352597736aba49b0078640a3617fc5f5d1e1477ba366a8"
+      },
+      "../../node_modules/evt/dist/lib/voidevt.d.ts": {
+        "version": "76630546273868eeb83411ef95bb8f3834f2a56209ae7b3022e42fe9d8b9211f",
+        "signature": "76630546273868eeb83411ef95bb8f3834f2a56209ae7b3022e42fe9d8b9211f"
+      },
+      "../../node_modules/evt/dist/lib/types/evterror.d.ts": {
+        "version": "6a04e04da5aee2dc954d1eea83dd2b86ebb78a73685ad299b1f8fba54c423a10",
+        "signature": "6a04e04da5aee2dc954d1eea83dd2b86ebb78a73685ad299b1f8fba54c423a10"
+      },
+      "../../node_modules/evt/dist/lib/types/helper/index.d.ts": {
+        "version": "7fb934270de01ad9fe6e3a9080b450edddea0dd3f650591cd966bc0bb9711163",
+        "signature": "7fb934270de01ad9fe6e3a9080b450edddea0dd3f650591cd966bc0bb9711163"
+      },
+      "../../node_modules/evt/dist/lib/types/index.d.ts": {
+        "version": "2b0a13c37b0d8ac904d163d0f6a0c539505ebf511244fcd42d21546bd55c6a7a",
+        "signature": "2b0a13c37b0d8ac904d163d0f6a0c539505ebf511244fcd42d21546bd55c6a7a"
+      },
+      "../../node_modules/evt/dist/lib/observable.d.ts": {
+        "version": "d3483f3ad40dd1ec13db4291c3fef424de83c776f2f87651e2909b0c8ec40fcc",
+        "signature": "d3483f3ad40dd1ec13db4291c3fef424de83c776f2f87651e2909b0c8ec40fcc"
+      },
+      "../../node_modules/evt/dist/lib/util/genericoperators/scan.d.ts": {
+        "version": "97ee2edd0b486b1576d849f7f23c1afc94bc34f79822f115bc85c4a0b972c4bc",
+        "signature": "97ee2edd0b486b1576d849f7f23c1afc94bc34f79822f115bc85c4a0b972c4bc"
+      },
+      "../../node_modules/evt/dist/lib/util/genericoperators/throttletime.d.ts": {
+        "version": "32526fc4b2b3f61f254c5e6b69e3e25c6b1d67e1ee4daa1e9bf843121993c883",
+        "signature": "32526fc4b2b3f61f254c5e6b69e3e25c6b1d67e1ee4daa1e9bf843121993c883"
+      },
+      "../../node_modules/evt/dist/lib/util/genericoperators/to.d.ts": {
+        "version": "d2c2ccb606115170cbe9bd569379f616432c6f53842b2e9f0c73067f31005521",
+        "signature": "d2c2ccb606115170cbe9bd569379f616432c6f53842b2e9f0c73067f31005521"
+      },
+      "../../node_modules/evt/dist/lib/util/genericoperators/index.d.ts": {
+        "version": "1ee1294a0ae047789c8012ba1d470d6f6a1e6f6a8ad98d426216dee8ab5f4f9f",
+        "signature": "1ee1294a0ae047789c8012ba1d470d6f6a1e6f6a8ad98d426216dee8ab5f4f9f"
+      },
+      "../../node_modules/evt/dist/lib/util/compose.d.ts": {
+        "version": "4aa4e1955d3936b361059e8fce20519fc50ac6b49cbd99769fe9e4062692b4c8",
+        "signature": "4aa4e1955d3936b361059e8fce20519fc50ac6b49cbd99769fe9e4062692b4c8"
+      },
+      "../../node_modules/evt/dist/lib/util/encapsulateopstate.d.ts": {
+        "version": "6947cb6e26a78fb0a97d82ecde316576a99514e6a7ad25841e887d69e91ae5c9",
+        "signature": "6947cb6e26a78fb0a97d82ecde316576a99514e6a7ad25841e887d69e91ae5c9"
+      },
+      "../../node_modules/evt/dist/lib/util/invokeoperator.d.ts": {
+        "version": "4708b67cfcc4978af1dc970e424af7d56213230749cfd11e45419fa9e190c8eb",
+        "signature": "4708b67cfcc4978af1dc970e424af7d56213230749cfd11e45419fa9e190c8eb"
+      },
+      "../../node_modules/evt/dist/lib/util/index.d.ts": {
+        "version": "6056e8f1663366d0c067b360001f83d50749c6d0144e6fec3977b1d50f4e8c0f",
+        "signature": "6056e8f1663366d0c067b360001f83d50749c6d0144e6fec3977b1d50f4e8c0f"
+      },
+      "../../node_modules/evt/dist/lib/index.d.ts": {
+        "version": "bc5d12fc2e94fb79b38c1ade0154e12cb2d4acdd2b81d450f2fba2268b952ed1",
+        "signature": "bc5d12fc2e94fb79b38c1ade0154e12cb2d4acdd2b81d450f2fba2268b952ed1"
+      },
+      "../sync/types.d.ts": {
         "version": "ece2ed9e7494bdd3ed91165738857e5c391089ad5584823582efb5b563ee94de",
         "signature": "ece2ed9e7494bdd3ed91165738857e5c391089ad5584823582efb5b563ee94de"
       },
-      "../../sync/cipher/rsa.ts": {
+      "../sync/cipher/rsa.d.ts": {
         "version": "1af97e273a688363eda4322cc0fd00a56def0be4ea94d0660f45b7593be42b6b",
         "signature": "1af97e273a688363eda4322cc0fd00a56def0be4ea94d0660f45b7593be42b6b"
       },
-      "../../sync/cipher/aes.ts": {
+      "../sync/cipher/aes.d.ts": {
         "version": "66b429619fe6ae214ebfbb5c0be0869058e81da6cf18464d3740b520137275f4",
         "signature": "66b429619fe6ae214ebfbb5c0be0869058e81da6cf18464d3740b520137275f4"
       },
-      "../../sync/_worker_thread/threadmessage.ts": {
+      "../sync/_worker_thread/threadmessage.d.ts": {
         "version": "c6c9c55769814daf7702623eb8c09bf4315cc1e278c48068ee78a86de6094736",
         "signature": "c6c9c55769814daf7702623eb8c09bf4315cc1e278c48068ee78a86de6094736"
       },
-      "../../sync/utils/environnement.ts": {
+      "../sync/utils/environnement.d.ts": {
         "version": "caf8bd34ffc23b397e7f9d3df7b38f3530d7a482d690593b7fcf5cea898f2322",
         "signature": "caf8bd34ffc23b397e7f9d3df7b38f3530d7a482d690593b7fcf5cea898f2322"
       },
       "../../async/workerthread/web.ts": {
-        "version": "8a73595961044ee7b20ffda8a56c961cdab32776a1c02ce8179914a88e25b112",
+        "version": "c10ab82c3a9aa872a9365d15739f538f28ade3cb26b7d6b35af22d6773093e62",
         "signature": "1650708f52373c53cf443f0398fedcbd98abb0f33e8185455a2cf75031bebc6e"
       },
       "../../async/workerthread/node.ts": {
-        "version": "2128ba2d3b1804d1a6782d2fdc50d8fac905a53299f50faf3b0a91f86402f8b4",
+        "version": "0241a0b62694e76588d0a3a248a4038c174cee3a26ec34586dd8dae1ebf96784",
         "signature": "1650708f52373c53cf443f0398fedcbd98abb0f33e8185455a2cf75031bebc6e"
       },
       "../../async/workerthread/simulated/runtaskfn.ts": {
@@ -113,17 +197,17 @@
         "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
-      "../../sync/_worker_thread/main.ts": {
+      "../sync/_worker_thread/main.d.ts": {
         "version": "6b1385e3cd58d71e4132acf0b6a63eda15bb29bc8777cac9aafe80c328cc9879",
         "signature": "6b1385e3cd58d71e4132acf0b6a63eda15bb29bc8777cac9aafe80c328cc9879"
       },
       "../../async/workerthread/simulated.ts": {
-        "version": "8e46c81c34991ddac5e56e58781f32529c5d08daab44cb949631455ca3f20503",
+        "version": "1f5f50b261f914bf20ffa6220353deb05f33eb41539819719aeff63c374ab272",
         "signature": "1650708f52373c53cf443f0398fedcbd98abb0f33e8185455a2cf75031bebc6e"
       },
       "../../async/workerthread.ts": {
-        "version": "1eea7722d21d15532084b844f12d550b2fccc87e2132dd6cb589303a5b6ad7c4",
-        "signature": "86dd0840caa44ebf3cf783133b39547f9b932512ee909273c29a86d70ca379ce"
+        "version": "c58f2a7aef4cfbdc803ae29d9eb810f0fa0c35e7a427dd9998b0759331e30ffb",
+        "signature": "15b5ee80ba595d86e4e92dbc41a1a8cd23476b11bfdeaa8ac678f9b1461d2eee"
       },
       "../../node_modules/minimal-polyfills/dist/lib/map.d.ts": {
         "version": "7908ba1a7a694d123a1cf71a1f33b95e6f6e9e3b318e43fc4240d7e539835c69",
@@ -141,7 +225,7 @@
         "version": "90a1a2924191bd83973e51f024ebe870f8bdff6918f3b801232728515f37d14c",
         "signature": "90a1a2924191bd83973e51f024ebe870f8bdff6918f3b801232728515f37d14c"
       },
-      "../../sync/utils/tobuffer.ts": {
+      "../sync/utils/tobuffer.d.ts": {
         "version": "63abf3b8b4871cf1e30f7c01cbf173452b6df2c47fd4693bba039846caac69b4",
         "signature": "63abf3b8b4871cf1e30f7c01cbf173452b6df2c47fd4693bba039846caac69b4"
       },
@@ -153,20 +237,20 @@
         "version": "7495859a0ee0a5c67731ac56eb6300df216a082ed788a6db2fbc516e472fb71c",
         "signature": "ab92620bc1dcc144ef6766893d84da02dfd9fd9e3f40991d11ed18d780b2ecc1"
       },
-      "../../sync/scrypt.ts": {
+      "../sync/scrypt.d.ts": {
         "version": "6db3074f04c0a2524724f2935b4aa6d8a6d2f3d3b026362e2fb0bfd9c861c503",
         "signature": "6db3074f04c0a2524724f2935b4aa6d8a6d2f3d3b026362e2fb0bfd9c861c503"
       },
-      "../../sync/cipher/plain.ts": {
+      "../sync/cipher/plain.d.ts": {
         "version": "a22fcbcec6b0a3ab992b3b87c745b6b87eaf246b86ca07fbd0a35c8f63391e0c",
         "signature": "a22fcbcec6b0a3ab992b3b87c745b6b87eaf246b86ca07fbd0a35c8f63391e0c"
       },
-      "../../sync/index.ts": {
+      "../sync/index.d.ts": {
         "version": "6242dfaf7bbce3de59c2029cc1585c4d3f20fb7a9ec8893b3924884e2ef8155b",
         "signature": "6242dfaf7bbce3de59c2029cc1585c4d3f20fb7a9ec8893b3924884e2ef8155b"
       },
       "../../async/index.ts": {
-        "version": "8de6e04ed5de588ca2e815ea9678a1401798fbbdb178476585792fbbda7059a1",
+        "version": "9ec8a949f4459a6f6ee7bf11b1e37e16477caa56459035665403040e4551a102",
         "signature": "dcc78409cc7973f9ef1865f157b5b2ddad37d337c479fdcf4406c9789281deb9"
       },
       "../../async/workerthread/simulated/runtask.native.ts": {
@@ -198,57 +282,142 @@
       "configFilePath": "../../async/tsconfig.json"
     },
     "referencedMap": {
-      "../../node_modules/ts-evt/dist/lib/evtbaseprotected.d.ts": [
-        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
+      "../../node_modules/evt/dist/lib/ctx.d.ts": [
+        "../../node_modules/evt/dist/lib/types/handler.d.ts",
+        "../../node_modules/evt/dist/lib/evt.d.ts",
+        "../../node_modules/evt/dist/lib/evtcore.d.ts"
       ],
-      "../../node_modules/ts-evt/dist/lib/evtbase.d.ts": [
-        "../../node_modules/ts-evt/dist/lib/evtbaseprotected.d.ts",
-        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
+      "../../node_modules/evt/dist/lib/types/operator.d.ts": [
+        "../../node_modules/evt/dist/lib/ctx.d.ts"
       ],
-      "../../node_modules/ts-evt/dist/lib/evtcompat.d.ts": [
-        "../../node_modules/ts-evt/dist/lib/evtbase.d.ts",
-        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
+      "../../node_modules/evt/dist/lib/types/handler.d.ts": [
+        "../../node_modules/evt/dist/lib/types/operator.d.ts",
+        "../../node_modules/evt/dist/lib/evtcore.d.ts",
+        "../../node_modules/evt/dist/lib/ctx.d.ts"
       ],
-      "../../node_modules/ts-evt/dist/lib/index.d.ts": [
-        "../../node_modules/ts-evt/dist/lib/evtcompat.d.ts",
-        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
+      "../../node_modules/evt/dist/lib/evtcore.d.ts": [
+        "../../node_modules/evt/dist/lib/types/handler.d.ts",
+        "../../node_modules/evt/dist/lib/types/operator.d.ts",
+        "../../node_modules/evt/dist/lib/ctx.d.ts"
       ],
-      "../../sync/cipher/rsa.ts": [
+      "../../node_modules/evt/dist/lib/types/helper/nonpostable.d.ts": [
+        "../../node_modules/evt/dist/lib/types/helper/evtlike.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts": [
+        "../../node_modules/evt/dist/lib/types/helper/evtlike.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/merge.d.ts": [
+        "../../node_modules/evt/dist/lib/evt.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/nonpostable.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
+        "../../node_modules/evt/dist/lib/ctx.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/from.d.ts": [
+        "../../node_modules/evt/dist/lib/evt.d.ts",
+        "../../node_modules/evt/dist/lib/types/eventtargetlike.d.ts",
+        "../../node_modules/evt/dist/lib/types/lib.dom.d.ts",
+        "../../node_modules/evt/dist/lib/ctx.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/evt.d.ts": [
+        "../../node_modules/evt/dist/lib/evtcore.d.ts",
+        "../../node_modules/evt/dist/lib/types/handler.d.ts",
+        "../../node_modules/evt/dist/lib/types/operator.d.ts",
+        "../../node_modules/evt/dist/lib/ctx.d.ts",
+        "../../node_modules/evt/dist/lib/util/merge.d.ts",
+        "../../node_modules/evt/dist/lib/util/from.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/voidevt.d.ts": [
+        "../../node_modules/evt/dist/lib/evt.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/types/helper/index.d.ts": [
+        "../../node_modules/evt/dist/lib/types/helper/nonpostable.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/evtlike.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/types/index.d.ts": [
+        "../../node_modules/evt/dist/lib/types/evterror.d.ts",
+        "../../node_modules/evt/dist/lib/types/handler.d.ts",
+        "../../node_modules/evt/dist/lib/types/operator.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/index.d.ts",
+        "../../node_modules/evt/dist/lib/types/lib.dom.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/observable.d.ts": [
+        "../../node_modules/evt/dist/lib/evt.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/nonpostable.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/genericoperators/scan.d.ts": [
+        "../../node_modules/evt/dist/lib/index.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/genericoperators/throttletime.d.ts": [
+        "../../node_modules/evt/dist/lib/index.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/genericoperators/to.d.ts": [
+        "../../node_modules/evt/dist/lib/types/operator.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/genericoperators/index.d.ts": [
+        "../../node_modules/evt/dist/lib/util/genericoperators/scan.d.ts",
+        "../../node_modules/evt/dist/lib/util/genericoperators/throttletime.d.ts",
+        "../../node_modules/evt/dist/lib/util/genericoperators/to.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/compose.d.ts": [
+        "../../node_modules/evt/dist/lib/types/operator.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/encapsulateopstate.d.ts": [
+        "../../node_modules/evt/dist/lib/types/operator.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/invokeoperator.d.ts": [
+        "../../node_modules/evt/dist/lib/types/operator.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/index.d.ts": [
+        "../../node_modules/evt/dist/lib/util/genericoperators/index.d.ts",
+        "../../node_modules/evt/dist/lib/util/compose.d.ts",
+        "../../node_modules/evt/dist/lib/util/encapsulateopstate.d.ts",
+        "../../node_modules/evt/dist/lib/util/invokeoperator.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/index.d.ts": [
+        "../../node_modules/evt/dist/lib/evt.d.ts",
+        "../../node_modules/evt/dist/lib/voidevt.d.ts",
+        "../../node_modules/evt/dist/lib/types/index.d.ts",
+        "../../node_modules/evt/dist/lib/observable.d.ts",
+        "../../node_modules/evt/dist/lib/util/index.d.ts",
+        "../../node_modules/evt/dist/lib/ctx.d.ts"
+      ],
+      "../sync/cipher/rsa.d.ts": [
         "../sync/types.d.ts"
       ],
-      "../../sync/cipher/aes.ts": [
+      "../sync/cipher/aes.d.ts": [
         "../sync/types.d.ts"
       ],
-      "../../sync/_worker_thread/threadmessage.ts": [
+      "../sync/_worker_thread/threadmessage.d.ts": [
         "../sync/types.d.ts",
         "../sync/cipher/rsa.d.ts",
         "../sync/cipher/aes.d.ts"
       ],
       "../../async/workerthread/web.ts": [
-        "../../node_modules/ts-evt/dist/lib/index.d.ts",
+        "../../node_modules/evt/dist/lib/index.d.ts",
         "../sync/_worker_thread/threadmessage.d.ts",
         "../../async/workerthread.ts"
       ],
       "../../async/workerthread/node.ts": [
-        "../../node_modules/ts-evt/dist/lib/index.d.ts",
+        "../../node_modules/evt/dist/lib/index.d.ts",
         "../sync/_worker_thread/threadmessage.d.ts",
         "../../async/workerthread.ts"
       ],
       "../../async/workerthread/simulated/runtask.ts": [
         "../../async/workerthread/simulated/runtaskfn.ts"
       ],
-      "../../sync/_worker_thread/main.ts": [
+      "../sync/_worker_thread/main.d.ts": [
         "../sync/_worker_thread/threadmessage.d.ts"
       ],
       "../../async/workerthread/simulated.ts": [
-        "../../node_modules/ts-evt/dist/lib/index.d.ts",
+        "../../node_modules/evt/dist/lib/index.d.ts",
         "../sync/_worker_thread/threadmessage.d.ts",
         "../../async/workerthread/simulated/runtask.ts",
         "../../async/workerthread.ts",
         "../sync/_worker_thread/main.d.ts"
       ],
       "../../async/workerthread.ts": [
-        "../../node_modules/ts-evt/dist/lib/index.d.ts",
+        "../../node_modules/evt/dist/lib/index.d.ts",
         "../sync/_worker_thread/threadmessage.d.ts",
         "../sync/utils/environnement.d.ts",
         "../../async/workerthread/web.ts",
@@ -260,13 +429,13 @@
         "../sync/utils/tobuffer.d.ts",
         "../../node_modules/transfer-tools/dist/lib/json_custom.d.ts"
       ],
-      "../../sync/scrypt.ts": [
+      "../sync/scrypt.d.ts": [
         "../sync/types.d.ts"
       ],
-      "../../sync/cipher/plain.ts": [
+      "../sync/cipher/plain.d.ts": [
         "../sync/types.d.ts"
       ],
-      "../../sync/index.ts": [
+      "../sync/index.d.ts": [
         "../sync/types.d.ts",
         "../sync/scrypt.d.ts",
         "../sync/cipher/aes.d.ts",
@@ -281,6 +450,7 @@
         "../sync/_worker_thread/threadmessage.d.ts",
         "../../async/workerthread.ts",
         "../sync/utils/environnement.d.ts",
+        "../../node_modules/evt/dist/lib/index.d.ts",
         "../../async/serializer.ts",
         "../sync/utils/tobuffer.d.ts",
         "../sync/index.d.ts"
@@ -290,110 +460,164 @@
       ]
     },
     "exportedModulesMap": {
-      "../../node_modules/ts-evt/dist/lib/index.d.ts": [
-        "../../node_modules/ts-evt/dist/lib/evtcompat.d.ts",
-        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
+      "../../node_modules/evt/dist/lib/ctx.d.ts": [
+        "../../node_modules/evt/dist/lib/types/handler.d.ts",
+        "../../node_modules/evt/dist/lib/evt.d.ts",
+        "../../node_modules/evt/dist/lib/evtcore.d.ts"
       ],
-      "../../async/workerthread.ts": [
-        "../../node_modules/ts-evt/dist/lib/index.d.ts",
-        "../sync/_worker_thread/threadmessage.d.ts"
+      "../../node_modules/evt/dist/lib/types/operator.d.ts": [
+        "../../node_modules/evt/dist/lib/ctx.d.ts"
       ],
-      "../../async/index.ts": [
+      "../../node_modules/evt/dist/lib/types/handler.d.ts": [
+        "../../node_modules/evt/dist/lib/types/operator.d.ts",
+        "../../node_modules/evt/dist/lib/evtcore.d.ts",
+        "../../node_modules/evt/dist/lib/ctx.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/evtcore.d.ts": [
+        "../../node_modules/evt/dist/lib/types/handler.d.ts",
+        "../../node_modules/evt/dist/lib/types/operator.d.ts",
+        "../../node_modules/evt/dist/lib/ctx.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/types/helper/nonpostable.d.ts": [
+        "../../node_modules/evt/dist/lib/types/helper/evtlike.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts": [
+        "../../node_modules/evt/dist/lib/types/helper/evtlike.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/merge.d.ts": [
+        "../../node_modules/evt/dist/lib/evt.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/nonpostable.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
+        "../../node_modules/evt/dist/lib/ctx.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/from.d.ts": [
+        "../../node_modules/evt/dist/lib/evt.d.ts",
+        "../../node_modules/evt/dist/lib/types/eventtargetlike.d.ts",
+        "../../node_modules/evt/dist/lib/types/lib.dom.d.ts",
+        "../../node_modules/evt/dist/lib/ctx.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/evt.d.ts": [
+        "../../node_modules/evt/dist/lib/evtcore.d.ts",
+        "../../node_modules/evt/dist/lib/types/handler.d.ts",
+        "../../node_modules/evt/dist/lib/types/operator.d.ts",
+        "../../node_modules/evt/dist/lib/ctx.d.ts",
+        "../../node_modules/evt/dist/lib/util/merge.d.ts",
+        "../../node_modules/evt/dist/lib/util/from.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/voidevt.d.ts": [
+        "../../node_modules/evt/dist/lib/evt.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/types/helper/index.d.ts": [
+        "../../node_modules/evt/dist/lib/types/helper/nonpostable.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/evtlike.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/types/index.d.ts": [
+        "../../node_modules/evt/dist/lib/types/evterror.d.ts",
+        "../../node_modules/evt/dist/lib/types/handler.d.ts",
+        "../../node_modules/evt/dist/lib/types/operator.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/index.d.ts",
+        "../../node_modules/evt/dist/lib/types/lib.dom.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/observable.d.ts": [
+        "../../node_modules/evt/dist/lib/evt.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/nonpostable.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/genericoperators/scan.d.ts": [
+        "../../node_modules/evt/dist/lib/index.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/genericoperators/throttletime.d.ts": [
+        "../../node_modules/evt/dist/lib/index.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/genericoperators/to.d.ts": [
+        "../../node_modules/evt/dist/lib/types/operator.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/genericoperators/index.d.ts": [
+        "../../node_modules/evt/dist/lib/util/genericoperators/scan.d.ts",
+        "../../node_modules/evt/dist/lib/util/genericoperators/throttletime.d.ts",
+        "../../node_modules/evt/dist/lib/util/genericoperators/to.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/compose.d.ts": [
+        "../../node_modules/evt/dist/lib/types/operator.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/encapsulateopstate.d.ts": [
+        "../../node_modules/evt/dist/lib/types/operator.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/invokeoperator.d.ts": [
+        "../../node_modules/evt/dist/lib/types/operator.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/util/index.d.ts": [
+        "../../node_modules/evt/dist/lib/util/genericoperators/index.d.ts",
+        "../../node_modules/evt/dist/lib/util/compose.d.ts",
+        "../../node_modules/evt/dist/lib/util/encapsulateopstate.d.ts",
+        "../../node_modules/evt/dist/lib/util/invokeoperator.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/index.d.ts": [
+        "../../node_modules/evt/dist/lib/evt.d.ts",
+        "../../node_modules/evt/dist/lib/voidevt.d.ts",
+        "../../node_modules/evt/dist/lib/types/index.d.ts",
+        "../../node_modules/evt/dist/lib/observable.d.ts",
+        "../../node_modules/evt/dist/lib/util/index.d.ts",
+        "../../node_modules/evt/dist/lib/ctx.d.ts"
+      ],
+      "../sync/cipher/rsa.d.ts": [
+        "../sync/types.d.ts"
+      ],
+      "../sync/cipher/aes.d.ts": [
+        "../sync/types.d.ts"
+      ],
+      "../sync/_worker_thread/threadmessage.d.ts": [
         "../sync/types.d.ts",
-        "../../async/serializer.ts",
-        "../sync/utils/tobuffer.d.ts"
+        "../sync/cipher/rsa.d.ts",
+        "../sync/cipher/aes.d.ts"
       ],
-      "../../async/workerthread/simulated.ts": [
+      "../../async/workerthread/web.ts": [
         "../../async/workerthread.ts"
       ],
       "../../async/workerthread/node.ts": [
         "../../async/workerthread.ts"
       ],
-      "../../async/workerthread/web.ts": [
+      "../../async/workerthread/simulated/runtask.ts": [
+        "../../async/workerthread/simulated/runtaskfn.ts"
+      ],
+      "../sync/_worker_thread/main.d.ts": [
+        "../sync/_worker_thread/threadmessage.d.ts"
+      ],
+      "../../async/workerthread/simulated.ts": [
         "../../async/workerthread.ts"
       ],
-      "../../node_modules/ts-evt/dist/lib/evtcompat.d.ts": [
-        "../../node_modules/ts-evt/dist/lib/evtbase.d.ts",
-        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
+      "../../async/workerthread.ts": [
+        "../../node_modules/evt/dist/lib/index.d.ts",
+        "../sync/_worker_thread/threadmessage.d.ts"
       ],
-      "../../node_modules/ts-evt/dist/lib/evtbase.d.ts": [
-        "../../node_modules/ts-evt/dist/lib/evtbaseprotected.d.ts",
-        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
+      "../../async/serializer.ts": [
+        "../sync/types.d.ts"
       ],
-      "../../node_modules/ts-evt/dist/lib/evtbaseprotected.d.ts": [
-        "../../node_modules/ts-evt/dist/lib/defs.d.ts"
+      "../sync/scrypt.d.ts": [
+        "../sync/types.d.ts"
       ],
-      "../../sync/index.ts": [
+      "../sync/cipher/plain.d.ts": [
+        "../sync/types.d.ts"
+      ],
+      "../sync/index.d.ts": [
         "../sync/types.d.ts",
         "../sync/scrypt.d.ts",
         "../sync/cipher/aes.d.ts",
         "../sync/cipher/rsa.d.ts",
         "../sync/cipher/plain.d.ts"
       ],
-      "../../sync/cipher/plain.ts": [
-        "../sync/types.d.ts"
-      ],
-      "../../sync/scrypt.ts": [
-        "../sync/types.d.ts"
-      ],
-      "../../async/serializer.ts": [
-        "../sync/types.d.ts"
-      ],
-      "../../sync/_worker_thread/threadmessage.ts": [
+      "../../async/index.ts": [
         "../sync/types.d.ts",
-        "../sync/cipher/rsa.d.ts",
-        "../sync/cipher/aes.d.ts"
-      ],
-      "../../sync/_worker_thread/main.ts": [
-        "../sync/_worker_thread/threadmessage.d.ts"
-      ],
-      "../../sync/cipher/aes.ts": [
-        "../sync/types.d.ts"
-      ],
-      "../../sync/cipher/rsa.ts": [
-        "../sync/types.d.ts"
+        "../../async/serializer.ts",
+        "../sync/utils/tobuffer.d.ts"
       ],
       "../../async/workerthread/simulated/runtask.native.ts": [
-        "../../async/workerthread/simulated/runtaskfn.ts"
-      ],
-      "../../async/workerthread/simulated/runtask.ts": [
         "../../async/workerthread/simulated/runtaskfn.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "../../node_modules/minimal-polyfills/dist/lib/array.prototype.find.d.ts",
-      "../../node_modules/ts-evt/dist/lib/defs.d.ts",
-      "../../node_modules/ts-evt/dist/lib/evtbaseprotected.d.ts",
-      "../../node_modules/ts-evt/dist/lib/evtbase.d.ts",
-      "../../node_modules/ts-evt/dist/lib/evtcompat.d.ts",
-      "../../node_modules/ts-evt/dist/lib/index.d.ts",
-      "../../sync/types.ts",
-      "../../sync/cipher/rsa.ts",
-      "../../sync/cipher/aes.ts",
-      "../../sync/_worker_thread/threadmessage.ts",
-      "../../sync/utils/environnement.ts",
-      "../../async/workerthread/web.ts",
-      "../../async/workerthread/node.ts",
-      "../../async/workerthread/simulated/runtaskfn.ts",
-      "../../async/workerthread/simulated/runtask.ts",
-      "../../node_modules/minimal-polyfills/dist/lib/arraybuffer.isview.d.ts",
-      "../../sync/_worker_thread/main.ts",
-      "../../async/workerthread/simulated.ts",
-      "../../async/workerthread.ts",
-      "../../node_modules/minimal-polyfills/dist/lib/map.d.ts",
-      "../../node_modules/minimal-polyfills/dist/lib/set.d.ts",
-      "../../node_modules/minimal-polyfills/dist/lib/array.from.d.ts",
-      "../../node_modules/run-exclusive/dist/lib/runexclusive.d.ts",
-      "../../sync/utils/tobuffer.ts",
-      "../../node_modules/transfer-tools/dist/lib/json_custom.d.ts",
-      "../../async/serializer.ts",
-      "../../sync/scrypt.ts",
-      "../../sync/cipher/plain.ts",
-      "../../sync/index.ts",
-      "../../async/index.ts",
-      "../../async/workerthread/simulated/runtask.native.ts",
-      "../../node_modules/typescript/lib/lib.es2015.d.ts",
       "../../node_modules/typescript/lib/lib.es5.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.d.ts",
       "../../node_modules/typescript/lib/lib.dom.d.ts",
       "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
       "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
@@ -403,8 +627,60 @@
       "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
       "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
       "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
-      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts"
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "../../node_modules/minimal-polyfills/dist/lib/array.prototype.find.d.ts",
+      "../../node_modules/evt/dist/lib/ctx.d.ts",
+      "../../node_modules/evt/dist/lib/types/operator.d.ts",
+      "../../node_modules/evt/dist/lib/types/handler.d.ts",
+      "../../node_modules/evt/dist/lib/evtcore.d.ts",
+      "../../node_modules/evt/dist/lib/types/helper/evtlike.d.ts",
+      "../../node_modules/evt/dist/lib/types/helper/nonpostable.d.ts",
+      "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
+      "../../node_modules/evt/dist/lib/util/merge.d.ts",
+      "../../node_modules/evt/dist/lib/types/eventtargetlike.d.ts",
+      "../../node_modules/evt/dist/lib/types/lib.dom.d.ts",
+      "../../node_modules/evt/dist/lib/util/from.d.ts",
+      "../../node_modules/evt/dist/lib/evt.d.ts",
+      "../../node_modules/evt/dist/lib/voidevt.d.ts",
+      "../../node_modules/evt/dist/lib/types/evterror.d.ts",
+      "../../node_modules/evt/dist/lib/types/helper/index.d.ts",
+      "../../node_modules/evt/dist/lib/types/index.d.ts",
+      "../../node_modules/evt/dist/lib/observable.d.ts",
+      "../../node_modules/evt/dist/lib/util/genericoperators/scan.d.ts",
+      "../../node_modules/evt/dist/lib/util/genericoperators/throttletime.d.ts",
+      "../../node_modules/evt/dist/lib/util/genericoperators/to.d.ts",
+      "../../node_modules/evt/dist/lib/util/genericoperators/index.d.ts",
+      "../../node_modules/evt/dist/lib/util/compose.d.ts",
+      "../../node_modules/evt/dist/lib/util/encapsulateopstate.d.ts",
+      "../../node_modules/evt/dist/lib/util/invokeoperator.d.ts",
+      "../../node_modules/evt/dist/lib/util/index.d.ts",
+      "../../node_modules/evt/dist/lib/index.d.ts",
+      "../sync/types.d.ts",
+      "../sync/cipher/rsa.d.ts",
+      "../sync/cipher/aes.d.ts",
+      "../sync/_worker_thread/threadmessage.d.ts",
+      "../sync/utils/environnement.d.ts",
+      "../../async/workerthread/web.ts",
+      "../../async/workerthread/node.ts",
+      "../../async/workerthread/simulated/runtaskfn.ts",
+      "../../async/workerthread/simulated/runtask.ts",
+      "../../node_modules/minimal-polyfills/dist/lib/arraybuffer.isview.d.ts",
+      "../sync/_worker_thread/main.d.ts",
+      "../../async/workerthread/simulated.ts",
+      "../../async/workerthread.ts",
+      "../../node_modules/minimal-polyfills/dist/lib/map.d.ts",
+      "../../node_modules/minimal-polyfills/dist/lib/set.d.ts",
+      "../../node_modules/minimal-polyfills/dist/lib/array.from.d.ts",
+      "../../node_modules/run-exclusive/dist/lib/runexclusive.d.ts",
+      "../sync/utils/tobuffer.d.ts",
+      "../../node_modules/transfer-tools/dist/lib/json_custom.d.ts",
+      "../../async/serializer.ts",
+      "../sync/scrypt.d.ts",
+      "../sync/cipher/plain.d.ts",
+      "../sync/index.d.ts",
+      "../../async/workerthread/simulated/runtask.native.ts",
+      "../../async/index.ts"
     ]
   },
-  "version": "3.7.5"
+  "version": "3.8.3"
 }

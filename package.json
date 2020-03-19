@@ -17,7 +17,7 @@
     "run-exclusive": "2.1.5",
     "scryptsy": "github:garronej/scryptsy",
     "transfer-tools": "garronej/transfer-tools",
-    "ts-evt": "^6.0.0"
+    "evt": "~1.0.0"
   },
   "devDependencies": {
     "@types/node": "^8.9.1",

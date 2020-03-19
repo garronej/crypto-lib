@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ts_evt_1 = require("ts-evt");
+var evt_1 = require("evt");
 var ThreadMessage_1 = require("../../sync/_worker_thread/ThreadMessage");
 var path = require("path");
 function spawn(source) {
@@ -34,7 +34,7 @@ function spawn(source) {
     ].join("\n"), "utf8"));
     var childProcess = child_process.fork(random_file_path, [], { "silent": true });
     childProcess.stdout.once("data", function () { return fs.unlink(random_file_path, function () { }); });
-    var evtResponse = new ts_evt_1.Evt();
+    var evtResponse = new evt_1.Evt();
     childProcess.on("message", function (message) { return evtResponse.post(ThreadMessage_1.transfer.restore(message)); });
     return {
         evtResponse: evtResponse,

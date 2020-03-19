@@ -17,6 +17,7 @@ import {
 } from "../sync/_worker_thread/ThreadMessage";
 import { WorkerThread } from "./WorkerThread";
 import { environnement } from "../sync/utils/environnement";
+import { Evt } from "evt";
 
 
 const bundle_source = (() => {
@@ -537,14 +538,14 @@ export const scrypt = (() => {
 
         })());
 
-        const boundTo = {};
+        const ctx= Evt.newCtx();
 
         appWorker.evtResponse.attach(
             (response): response is Response_Progress => (
                 response.actionId === actionId &&
                 "percent" in response
             ),
-            boundTo,
+            ctx,
             ({ percent }) => progress(percent)
         );
 
@@ -555,7 +556,7 @@ export const scrypt = (() => {
             )
         );
 
-        appWorker.evtResponse.detach(boundTo);
+        appWorker.evtResponse.detach(ctx);
 
         if (!wasWorkerThreadIdSpecified) {
 

@@ -12,12 +12,12 @@
   "license": "MIT",
   "dependencies": {
     "aes-js": "3.1.2",
+    "evt": "^1.0.16",
     "minimal-polyfills": "1.0.4",
     "node-rsa": "github:garronej/node-rsa",
     "run-exclusive": "2.1.5",
     "scryptsy": "github:garronej/scryptsy",
-    "transfer-tools": "garronej/transfer-tools",
-    "evt": "~1.0.0"
+    "transfer-tools": "garronej/transfer-tools"
   },
   "devDependencies": {
     "@types/node": "^8.9.1",

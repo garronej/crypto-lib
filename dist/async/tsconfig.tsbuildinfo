@@ -114,8 +114,8 @@
         "signature": "44640af941c5f16fe081099c5c5beb7f7e2cfb8a76ce01f990a262f2a63be102"
       },
       "../../node_modules/evt/dist/lib/types/helper/index.d.ts": {
-        "version": "c8ff0852be0b62b05a4fb4363a0754dffef58aee810ab9f4daba122d38ba73e7",
-        "signature": "c8ff0852be0b62b05a4fb4363a0754dffef58aee810ab9f4daba122d38ba73e7"
+        "version": "e243af681d0efddc36bee6f029291a57c4d557e1b34710a789f9e951fc95a1fc",
+        "signature": "e243af681d0efddc36bee6f029291a57c4d557e1b34710a789f9e951fc95a1fc"
       },
       "../../node_modules/evt/dist/lib/types/eventtargetlike.d.ts": {
         "version": "f216259de546a4ecba7526be59f75ef20da1f61b11516c4eaee78f8cb0f30461",

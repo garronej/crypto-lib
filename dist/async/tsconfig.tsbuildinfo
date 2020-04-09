@@ -98,8 +98,8 @@
         "signature": "89d03e6333f9f684b078524f45a0cd32af16babdbf98710742c277fb15e9451a"
       },
       "../../node_modules/evt/dist/lib/types/helper/swapevttype.d.ts": {
-        "version": "dc0beec1b5b40ff0042ec81377332ec3de6ab5fb40bee3577482e3246215278f",
-        "signature": "dc0beec1b5b40ff0042ec81377332ec3de6ab5fb40bee3577482e3246215278f"
+        "version": "ecc8b67cbffe93b7915b2fef03a9326eb5f75c0a78afe5f60b46ae3442307ae6",
+        "signature": "ecc8b67cbffe93b7915b2fef03a9326eb5f75c0a78afe5f60b46ae3442307ae6"
       },
       "../../node_modules/evt/dist/lib/types/helper/topostableevt.d.ts": {
         "version": "29bd868750b509b317ef1869bb68a41aa7c779e1f83636ccc08619b4dcc0b36b",
@@ -385,7 +385,8 @@
       ],
       "../../node_modules/evt/dist/lib/types/helper/swapevttype.d.ts": [
         "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts",
-        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts"
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
+        "../../node_modules/evt/dist/lib/types/interfaces/voidevt.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/helper/topostableevt.d.ts": [
         "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
@@ -691,7 +692,8 @@
       ],
       "../../node_modules/evt/dist/lib/types/helper/swapevttype.d.ts": [
         "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts",
-        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts"
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
+        "../../node_modules/evt/dist/lib/types/interfaces/voidevt.d.ts"
       ],
       "../../node_modules/evt/dist/lib/evt.loosentype.d.ts": [
         "../../node_modules/evt/dist/lib/types/helper/swapevttype.d.ts",

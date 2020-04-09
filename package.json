@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "aes-js": "3.1.2",
-    "evt": "^1.5.6",
+    "evt": "^1.5.7",
     "minimal-polyfills": "1.0.4",
     "node-rsa": "github:garronej/node-rsa",
     "run-exclusive": "2.1.5",

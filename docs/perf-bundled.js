@@ -73,7 +73,7 @@ function spawn(source) {
 exports.spawn = spawn;
 
 }).call(this,require("buffer").Buffer)
-},{"../../sync/_worker_thread/ThreadMessage":8,"buffer":34,"evt":51,"path":107}],3:[function(require,module,exports){
+},{"../../sync/_worker_thread/ThreadMessage":8,"buffer":34,"evt":54,"path":108}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var evt_1 = require("evt");
@@ -95,7 +95,7 @@ function spawn(source) {
 }
 exports.spawn = spawn;
 
-},{"./simulated/runTask":4,"evt":51}],4:[function(require,module,exports){
+},{"./simulated/runTask":4,"evt":54}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var runTask = function (task) { return task(); };
@@ -122,7 +122,7 @@ function spawn(source) {
 }
 exports.spawn = spawn;
 
-},{"evt":51}],6:[function(require,module,exports){
+},{"evt":54}],6:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 var __assign = (this && this.__assign) || function () {
@@ -509,7 +509,7 @@ exports.scrypt = (function () {
 })();
 
 }).call(this,require("buffer").Buffer)
-},{"../sync/types":14,"../sync/utils/environnement":16,"../sync/utils/toBuffer":18,"./WorkerThread":1,"./serializer":7,"buffer":34,"evt":51,"minimal-polyfills/dist/lib/Array.from":84,"minimal-polyfills/dist/lib/Map":86,"minimal-polyfills/dist/lib/Set":87,"path":107,"run-exclusive":130}],7:[function(require,module,exports){
+},{"../sync/types":14,"../sync/utils/environnement":16,"../sync/utils/toBuffer":18,"./WorkerThread":1,"./serializer":7,"buffer":34,"evt":54,"minimal-polyfills/dist/lib/Array.from":85,"minimal-polyfills/dist/lib/Map":87,"minimal-polyfills/dist/lib/Set":88,"path":108,"run-exclusive":131}],7:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -548,7 +548,7 @@ function decryptThenParseFactory(decryptor) {
 exports.decryptThenParseFactory = decryptThenParseFactory;
 
 }).call(this,require("buffer").Buffer)
-},{"../sync/utils/toBuffer":18,"buffer":34,"transfer-tools/dist/lib/JSON_CUSTOM":155}],8:[function(require,module,exports){
+},{"../sync/utils/toBuffer":18,"buffer":34,"transfer-tools/dist/lib/JSON_CUSTOM":156}],8:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -763,7 +763,7 @@ function syncGenerateKeys(seed, keysLengthBytes) {
 exports.syncGenerateKeys = syncGenerateKeys;
 
 }).call(this,require("buffer").Buffer)
-},{"../types":14,"../utils/environnement":16,"../utils/toBuffer":18,"buffer":34,"node-rsa":89}],12:[function(require,module,exports){
+},{"../types":14,"../utils/environnement":16,"../utils/toBuffer":18,"buffer":34,"node-rsa":90}],12:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -818,7 +818,7 @@ function syncHash(text, salt, params, progress) {
 }
 exports.syncHash = syncHash;
 
-},{"scryptsy":133}],14:[function(require,module,exports){
+},{"scryptsy":134}],14:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -1341,7 +1341,7 @@ function compare(results) {
     });
 }); })();
 
-},{"../async":6,"../sync":12,"transfer-tools/dist/lib/testing":157}],20:[function(require,module,exports){
+},{"../async":6,"../sync":12,"transfer-tools/dist/lib/testing":158}],20:[function(require,module,exports){
 /*! MIT License. Copyright 2015-2018 Richard Moore <me@ricmoo.com>. See LICENSE.txt. */
 (function(root) {
     "use strict";
@@ -2454,7 +2454,7 @@ Reader.prototype._readTag = function (tag) {
 
 module.exports = Reader;
 
-},{"./errors":21,"./types":24,"assert":27,"safer-buffer":132}],24:[function(require,module,exports){
+},{"./errors":21,"./types":24,"assert":27,"safer-buffer":133}],24:[function(require,module,exports){
 // Copyright 2011 Mark Cavage <mcavage@gmail.com> All rights reserved.
 
 
@@ -2811,7 +2811,7 @@ Writer.prototype._ensure = function (len) {
 
 module.exports = Writer;
 
-},{"./errors":21,"./types":24,"assert":27,"safer-buffer":132}],26:[function(require,module,exports){
+},{"./errors":21,"./types":24,"assert":27,"safer-buffer":133}],26:[function(require,module,exports){
 // Copyright 2011 Mark Cavage <mcavage@gmail.com> All rights reserved.
 
 // If you have no idea what ASN.1 or BER is, see this:
@@ -3343,7 +3343,7 @@ var objectKeys = Object.keys || function (obj) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"object-assign":106,"util/":30}],28:[function(require,module,exports){
+},{"object-assign":107,"util/":30}],28:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -3965,7 +3965,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":29,"_process":114,"inherits":28}],31:[function(require,module,exports){
+},{"./support/isBuffer":29,"_process":115,"inherits":28}],31:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -7357,7 +7357,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"base64-js":31,"buffer":34,"ieee754":79}],35:[function(require,module,exports){
+},{"base64-js":31,"buffer":34,"ieee754":80}],35:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 var Transform = require('stream').Transform
 var StringDecoder = require('string_decoder').StringDecoder
@@ -7458,7 +7458,7 @@ CipherBase.prototype._toString = function (value, enc, fin) {
 
 module.exports = CipherBase
 
-},{"inherits":80,"safe-buffer":131,"stream":150,"string_decoder":151}],36:[function(require,module,exports){
+},{"inherits":81,"safe-buffer":132,"stream":151,"string_decoder":152}],36:[function(require,module,exports){
 module.exports={
   "O_RDONLY": 0,
   "O_WRONLY": 1,
@@ -7780,7 +7780,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":81}],38:[function(require,module,exports){
+},{"../../is-buffer/index.js":82}],38:[function(require,module,exports){
 'use strict'
 var inherits = require('inherits')
 var MD5 = require('md5.js')
@@ -7812,14 +7812,14 @@ module.exports = function createHash (alg) {
   return new Hash(sha(alg))
 }
 
-},{"cipher-base":35,"inherits":80,"md5.js":83,"ripemd160":129,"sha.js":143}],39:[function(require,module,exports){
+},{"cipher-base":35,"inherits":81,"md5.js":84,"ripemd160":130,"sha.js":144}],39:[function(require,module,exports){
 var MD5 = require('md5.js')
 
 module.exports = function (buffer) {
   return new MD5().update(buffer).digest()
 }
 
-},{"md5.js":83}],40:[function(require,module,exports){
+},{"md5.js":84}],40:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8346,19 +8346,6 @@ function functionBindPolyfill(context) {
 
 },{}],41:[function(require,module,exports){
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -8386,26 +8373,21 @@ var Set_1 = require("minimal-polyfills/dist/lib/Set");
 var WeakMap_1 = require("minimal-polyfills/dist/lib/WeakMap");
 var assert_1 = require("../tools/typeSafety/assert");
 var typeGuard_1 = require("../tools/typeSafety/typeGuard");
-var LazyEvtFactory_1 = require("./util/LazyEvtFactory");
+var LazyEvt_1 = require("./LazyEvt");
 var importProxy_1 = require("./importProxy");
 var defineAccessors_1 = require("../tools/defineAccessors");
 var id_1 = require("../tools/typeSafety/id");
 /** https://docs.evt.land/api/ctx */
 var Ctx = /** @class */ (function () {
     function Ctx() {
-        this.lazyEvtAttachFactory = new LazyEvtFactory_1.LazyEvtFactory();
-        this.lazyEvtDetachFactory = new LazyEvtFactory_1.LazyEvtFactory();
-        this.lazyEvtDoneOrAbortedFactory = new LazyEvtFactory_1.LazyEvtFactory();
+        this.lazyEvtAttach = new LazyEvt_1.LazyEvt();
+        this.lazyEvtDetach = new LazyEvt_1.LazyEvt();
+        this.lazyEvtDoneOrAborted = new LazyEvt_1.LazyEvt();
         this.handlers = new Set_1.Polyfill();
         this.evtByHandler = new WeakMap_1.Polyfill();
     }
     Ctx.prototype.onDoneOrAborted = function (doneEvtData) {
-        this.lazyEvtDoneOrAbortedFactory.post(doneEvtData);
-    };
-    Ctx.prototype.onHandler = function (isAttach, handler) {
-        isAttach ?
-            this.lazyEvtAttachFactory.post(handler) :
-            this.lazyEvtDetachFactory.post(handler);
+        this.lazyEvtDoneOrAborted.post(doneEvtData);
     };
     /**
      * https://docs.evt.land/api/ctx#ctx-waitfor-timeout
@@ -8493,7 +8475,7 @@ var Ctx = /** @class */ (function () {
         assert_1.assert(typeGuard_1.typeGuard(handler));
         this.handlers.add(handler);
         this.evtByHandler.set(handler, evt);
-        this.onHandler(true, { handler: handler, evt: evt });
+        this.lazyEvtAttach.post({ handler: handler, evt: evt });
     };
     /**
      * Exposed to enable safe interoperability between EVT versions.
@@ -8502,7 +8484,10 @@ var Ctx = /** @class */ (function () {
     Ctx.prototype.zz__removeHandler = function (handler) {
         assert_1.assert(handler.ctx === this);
         assert_1.assert(typeGuard_1.typeGuard(handler));
-        this.onHandler(false, { handler: handler, "evt": this.evtByHandler.get(handler) });
+        this.lazyEvtDetach.post({
+            handler: handler,
+            "evt": this.evtByHandler.get(handler)
+        });
         this.handlers["delete"](handler);
     };
     Ctx.__1 = (function () {
@@ -8511,17 +8496,17 @@ var Ctx = /** @class */ (function () {
         }
         defineAccessors_1.defineAccessors(Ctx.prototype, "evtDoneOrAborted", {
             "get": function () {
-                return id_1.id(this).lazyEvtDoneOrAbortedFactory.getEvt();
+                return id_1.id(this).lazyEvtDoneOrAborted.evt;
             }
         });
         defineAccessors_1.defineAccessors(Ctx.prototype, "evtAttach", {
             "get": function () {
-                return id_1.id(this).lazyEvtAttachFactory.getEvt();
+                return id_1.id(this).lazyEvtAttach.evt;
             }
         });
         defineAccessors_1.defineAccessors(Ctx.prototype, "evtDetach", {
             "get": function () {
-                return id_1.id(this).lazyEvtDetachFactory.getEvt();
+                return id_1.id(this).lazyEvtDetach.evt;
             }
         });
     })();
@@ -8529,26 +8514,26 @@ var Ctx = /** @class */ (function () {
 }());
 exports.Ctx = Ctx;
 importProxy_1.importProxy.Ctx = Ctx;
-/** https://docs.evt.land/api/ctx */
-var VoidCtx = /** @class */ (function (_super) {
-    __extends(VoidCtx, _super);
-    function VoidCtx() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * Detach all handlers.
-     * evtDone will post [ null, undefined, handlers (detached) ]
-     * If getPrDone() was invoked the promise will resolve
-     */
-    VoidCtx.prototype.done = function () {
-        return _super.prototype.done.call(this, undefined);
-    };
-    return VoidCtx;
-}(Ctx));
-exports.VoidCtx = VoidCtx;
-importProxy_1.importProxy.VoidCtx = VoidCtx;
+;
+exports.VoidCtx = Ctx;
+importProxy_1.importProxy.VoidCtx = exports.VoidCtx;
 
-},{"../tools/defineAccessors":67,"../tools/typeSafety/assert":70,"../tools/typeSafety/id":71,"../tools/typeSafety/typeGuard":74,"./importProxy":50,"./util/LazyEvtFactory":57,"minimal-polyfills/dist/lib/Set":87,"minimal-polyfills/dist/lib/WeakMap":88}],42:[function(require,module,exports){
+},{"../tools/defineAccessors":68,"../tools/typeSafety/assert":71,"../tools/typeSafety/id":72,"../tools/typeSafety/typeGuard":75,"./LazyEvt":51,"./importProxy":53,"minimal-polyfills/dist/lib/Set":88,"minimal-polyfills/dist/lib/WeakMap":89}],42:[function(require,module,exports){
+"use strict";
+exports.__esModule = true;
+var importProxy_1 = require("./importProxy");
+function create() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    return args.length === 0 ?
+        new importProxy_1.importProxy.Evt() :
+        new importProxy_1.importProxy.StatefulEvt(args[0]);
+}
+exports.create = create;
+
+},{"./importProxy":53}],43:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var id_1 = require("../tools/typeSafety/id");
@@ -8627,11 +8612,18 @@ function from(ctxOrTarget, targetOrEventName, eventNameOrOptions, options) {
 }
 exports.from = from;
 
-},{"../tools/typeSafety/assert":70,"../tools/typeSafety/id":71,"../tools/typeSafety/typeGuard":74,"./Evt.merge":45,"./importProxy":50,"./types/EventTargetLike":52}],43:[function(require,module,exports){
+},{"../tools/typeSafety/assert":71,"../tools/typeSafety/id":72,"../tools/typeSafety/typeGuard":75,"./Evt.merge":47,"./importProxy":53,"./types/EventTargetLike":55}],44:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var WeakMap_1 = require("minimal-polyfills/dist/lib/WeakMap");
 var importProxy_1 = require("./importProxy");
+/**
+ * https://docs.evt.land/api/evt/getctx
+ *
+ * Evt.weakCtx(obj) always return the same instance of VoidCtx for a given object.
+ * No strong reference to the object is created
+ * when the object is no longer referenced it's associated Ctx will be freed from memory.
+ */
 function getCtxFactory() {
     var ctxByObj = new WeakMap_1.Polyfill();
     function getCtx(obj) {
@@ -8646,21 +8638,8 @@ function getCtxFactory() {
 }
 exports.getCtxFactory = getCtxFactory;
 
-},{"./importProxy":50,"minimal-polyfills/dist/lib/WeakMap":88}],44:[function(require,module,exports){
+},{"./importProxy":53,"minimal-polyfills/dist/lib/WeakMap":89}],45:[function(require,module,exports){
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -8671,42 +8650,6 @@ var __assign = (this && this.__assign) || function () {
         return t;
     };
     return __assign.apply(this, arguments);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
 };
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -8741,38 +8684,33 @@ var __values = (this && this.__values) || function(o) {
 };
 exports.__esModule = true;
 require("minimal-polyfills/dist/lib/Array.prototype.find");
+var importProxy_1 = require("./importProxy");
+var Evt_create_1 = require("./Evt.create");
+var Evt_getCtx_1 = require("./Evt.getCtx");
+var Evt_merge_1 = require("./Evt.merge");
+var Evt_from_1 = require("./Evt.from");
+var Evt_useEffect_1 = require("./Evt.useEffect");
+var Evt_parsePropsFromArgs_1 = require("./Evt.parsePropsFromArgs");
+var Evt_newCtx_1 = require("./Evt.newCtx");
+var LazyEvt_1 = require("./LazyEvt");
+var defineAccessors_1 = require("../tools/defineAccessors");
+var id_1 = require("../tools/typeSafety/id");
+var invokeOperator_1 = require("./util/invokeOperator");
 var Map_1 = require("minimal-polyfills/dist/lib/Map");
 var WeakMap_1 = require("minimal-polyfills/dist/lib/WeakMap");
 var runExclusive = require("run-exclusive");
 var EvtError_1 = require("./types/EvtError");
 var overwriteReadonlyProp_1 = require("../tools/overwriteReadonlyProp");
-var encapsulateOpState_1 = require("./util/encapsulateOpState");
 var typeGuard_1 = require("../tools/typeSafety/typeGuard");
-var Operator_1 = require("./types/Operator");
-var invokeOperator_1 = require("./util/invokeOperator");
-var Evt_merge_1 = require("./Evt.merge");
-var Evt_from_1 = require("./Evt.from");
-var Evt_getCtx_1 = require("./Evt.getCtx");
-var Evt_useEffect_1 = require("./Evt.useEffect");
-var Evt_parseOverloadsArgs_1 = require("./Evt.parseOverloadsArgs");
-var LazyEvtFactory_1 = require("./util/LazyEvtFactory");
-var importProxy_1 = require("./importProxy");
-var defineAccessors_1 = require("../tools/defineAccessors");
-var id_1 = require("../tools/typeSafety/id");
+var encapsulateOpState_1 = require("./util/encapsulateOpState");
 var Deferred_1 = require("../tools/Deferred");
-/** https://docs.evt.land/api/evt */
-var Evt = /** @class */ (function () {
-    function Evt() {
-        this.lazyEvtAttachFactory = new LazyEvtFactory_1.LazyEvtFactory();
-        this.lazyEvtDetachFactory = new LazyEvtFactory_1.LazyEvtFactory();
+var Evt_loosenType_1 = require("./Evt.loosenType");
+var Operator_1 = require("./types/Operator");
+var EvtImpl = /** @class */ (function () {
+    function EvtImpl() {
+        this.lazyEvtAttach = new LazyEvt_1.LazyEvt();
+        this.lazyEvtDetach = new LazyEvt_1.LazyEvt();
         this.__maxHandlers = undefined;
-        //NOTE: Not really readonly but we want to prevent user from setting the value
-        //manually and we cant user accessor because we target es3.
-        /**
-         * https://docs.evt.land/api/evt/post
-         *
-         * Number of times .post(data) have been called.
-         */
         this.postCount = 0;
         this.traceId = null;
         this.handlers = [];
@@ -8785,37 +8723,25 @@ var Evt = /** @class */ (function () {
         this.__currentChronologyMark = 0;
         this.asyncHandlerCount = 0;
     }
-    Evt.newCtx = function () { return new importProxy_1.importProxy.Ctx(); };
-    Evt.prototype.onHandler = function (isAttach, handler) {
-        isAttach ?
-            this.lazyEvtAttachFactory.post(handler) :
-            this.lazyEvtDetachFactory.post(handler);
-    };
-    /** https://docs.evt.land/api/evt/post */
-    Evt.prototype.postAsyncOnceHandled = function (data) {
-        var _this_1 = this;
-        if (this.isHandled(data)) {
-            return this.post(data);
-        }
-        var resolvePr;
-        var pr = new Promise(function (resolve) { return resolvePr = resolve; });
-        this.evtAttach.attachOnce(function (_a) {
-            var op = _a.op;
-            return !!invokeOperator_1.invokeOperator(_this_1.getStatelessOp(op), data);
-        }, function () { return Promise.resolve().then(function () { return resolvePr(_this_1.post(data)); }); });
-        return pr;
-    };
-    /** https://docs.evt.land/api/evt/setdefaultmaxhandlers */
-    Evt.setDefaultMaxHandlers = function (n) {
+    EvtImpl.setDefaultMaxHandlers = function (n) {
         this.__defaultMaxHandlers = isFinite(n) ? n : 0;
     };
-    /** https://docs.evt.land/api/evt/setmaxhandlers */
-    Evt.prototype.setMaxHandlers = function (n) {
+    EvtImpl.prototype.toStateful = function (initialState, ctx) {
+        var out = new importProxy_1.importProxy.StatefulEvt(initialState);
+        var callback = function (data) { return out.post(data); };
+        if (!!ctx) {
+            this.attach(ctx, callback);
+        }
+        else {
+            this.attach(callback);
+        }
+        return out;
+    };
+    EvtImpl.prototype.setMaxHandlers = function (n) {
         this.__maxHandlers = isFinite(n) ? n : 0;
         return this;
     };
-    /** https://docs.evt.land/api/evt/enabletrace */
-    Evt.prototype.enableTrace = function (params
+    EvtImpl.prototype.enableTrace = function (params
     //NOTE: Not typeof console.log as we don't want to expose types from node
     ) {
         var id = params.id, formatter = params.formatter, log = params.log;
@@ -8839,15 +8765,14 @@ var Evt = /** @class */ (function () {
                 }) :
                 log === false ? undefined : log;
     };
-    /** https://docs.evt.land/api/evt/enabletrace */
-    Evt.prototype.disableTrace = function () {
+    EvtImpl.prototype.disableTrace = function () {
         this.traceId = null;
+        return this;
     };
-    Evt.prototype.getChronologyMark = function () {
+    EvtImpl.prototype.getChronologyMark = function () {
         return this.__currentChronologyMark++;
     };
-    Evt.prototype.detachHandler = function (handler, wTimer, rejectPr) {
-        var _a;
+    EvtImpl.prototype.detachHandler = function (handler, wTimer, rejectPr) {
         var index = this.handlers.indexOf(handler);
         if (index < 0) {
             return false;
@@ -8864,36 +8789,21 @@ var Evt = /** @class */ (function () {
             clearTimeout(wTimer[0]);
             rejectPr(new EvtError_1.EvtError.Detached());
         }
-        (_a = this.onHandler) === null || _a === void 0 ? void 0 : _a.call(this, false, handler);
+        this.lazyEvtDetach.post(handler);
         return true;
     };
-    Evt.doDetachIfNeeded = function (handler, opResult, once) {
-        var detach = Operator_1.Operator.fλ.Result.getDetachArg(opResult);
-        if (typeof detach !== "boolean") {
-            var _a = __read(detach, 3), ctx = _a[0], error = _a[1], res = _a[2];
-            if (!!error) {
-                ctx.abort(error);
-            }
-            else {
-                ctx.done(res);
-            }
-        }
-        else if (detach || !!once) {
-            handler.detach();
-        }
-    };
-    Evt.prototype.triggerHandler = function (handler, wTimer, resolvePr, opResult) {
+    EvtImpl.prototype.triggerHandler = function (handler, wTimer, resolvePr, opResult) {
         var callback = handler.callback, once = handler.once;
         if (wTimer[0] !== undefined) {
             clearTimeout(wTimer[0]);
             wTimer[0] = undefined;
         }
-        Evt.doDetachIfNeeded(handler, opResult, once);
+        EvtImpl.doDetachIfNeeded(handler, opResult, once);
         var _a = __read(opResult, 1), transformedData = _a[0];
         callback === null || callback === void 0 ? void 0 : callback.call(this, transformedData);
         resolvePr === null || resolvePr === void 0 ? void 0 : resolvePr(transformedData);
     };
-    Evt.prototype.addHandler = function (propsFromArgs, propsFromMethodName) {
+    EvtImpl.prototype.addHandler = function (propsFromArgs, propsFromMethodName) {
         var _this_1 = this;
         if (Operator_1.Operator.fλ.Stateful.match(propsFromArgs.op)) {
             this.statelessByStatefulOp.set(propsFromArgs.op, encapsulateOpState_1.encapsulateOpState(propsFromArgs.op));
@@ -8932,12 +8842,12 @@ var Evt = /** @class */ (function () {
         if (typeGuard_1.typeGuard(handler, !!handler.ctx)) {
             handler.ctx.zz__addHandler(handler, this);
         }
-        this.onHandler(true, handler);
+        this.lazyEvtAttach.post(handler);
         return handler;
     };
-    Evt.prototype.checkForPotentialMemoryLeak = function () {
+    EvtImpl.prototype.checkForPotentialMemoryLeak = function () {
         var _a;
-        var maxHandlers = (_a = this.__maxHandlers) !== null && _a !== void 0 ? _a : Evt.__defaultMaxHandlers;
+        var maxHandlers = (_a = this.__maxHandlers) !== null && _a !== void 0 ? _a : EvtImpl.__defaultMaxHandlers;
         if (maxHandlers === 0 ||
             this.handlers.length % (maxHandlers + 1) !== 0) {
             return;
@@ -8946,7 +8856,7 @@ var Evt = /** @class */ (function () {
             "MaxHandlersExceededWarning: Possible Evt memory leak detected.",
             this.handlers.length + " handlers attached" + (this.traceId ? " to \"" + this.traceId + "\"" : "") + ".\n",
             "Use Evt.prototype.setMaxHandlers(n) to increase limit on a specific Evt.\n",
-            "Use Evt.setDefaultMaxHandlers(n) to change the default limit currently set to " + Evt.__defaultMaxHandlers + ".\n",
+            "Use Evt.setDefaultMaxHandlers(n) to change the default limit currently set to " + EvtImpl.__defaultMaxHandlers + ".\n",
         ].join("");
         var map = new Map_1.Polyfill();
         this.getHandlers()
@@ -8954,7 +8864,7 @@ var Evt = /** @class */ (function () {
             var ctx = _a.ctx, async = _a.async, once = _a.once, prepend = _a.prepend, extract = _a.extract, op = _a.op, callback = _a.callback;
             return (__assign(__assign({ "hasCtx": !!ctx, once: once,
                 prepend: prepend,
-                extract: extract, "isWaitFor": async }, (op === Evt_parseOverloadsArgs_1.matchAll ? {} : { "op": op.toString() })), (!callback ? {} : { "callback": callback.toString() })));
+                extract: extract, "isWaitFor": async }, (op === Evt_parsePropsFromArgs_1.matchAll ? {} : { "op": op.toString() })), (!callback ? {} : { "callback": callback.toString() })));
         })
             .map(function (obj) {
             return "{\n" + Object.keys(obj)
@@ -8977,13 +8887,12 @@ var Evt = /** @class */ (function () {
         catch (_b) {
         }
     };
-    /** https://docs.evt.land/api/evt/getstatelessop */
-    Evt.prototype.getStatelessOp = function (op) {
+    EvtImpl.prototype.getStatelessOp = function (op) {
         return Operator_1.Operator.fλ.Stateful.match(op) ?
             this.statelessByStatefulOp.get(op) :
             op;
     };
-    Evt.prototype.trace = function (data) {
+    EvtImpl.prototype.trace = function (data) {
         var _this_1 = this;
         var _a;
         if (this.traceId === null) {
@@ -9010,25 +8919,8 @@ var Evt = /** @class */ (function () {
         }
         (_a = this.log) === null || _a === void 0 ? void 0 : _a.call(this, message + this.traceFormatter(data));
     };
-    //private test_pr: Promise<void> | undefined = undefined;
-    /**
-     * https://garronej.github.io/ts-evt/#evtattach-evtattachonce-and-evtpost
-     *
-     * Returns post count
-     * */
-    Evt.prototype.post = function (data) {
-        this.trace(data);
-        overwriteReadonlyProp_1.overwriteReadonlyProp(this, "postCount", this.postCount + 1);
-        //NOTE: Must be before postSync.
-        var postChronologyMark = this.getChronologyMark();
-        var isExtracted = this.postSync(data);
-        if (!isExtracted && (!!this.__postAsync || this.asyncHandlerCount !== 0)) {
-            this.postAsync(data, postChronologyMark);
-        }
-        return this.postCount;
-    };
     /** Return isExtracted */
-    Evt.prototype.postSync = function (data) {
+    EvtImpl.prototype.postSync = function (data) {
         var e_1, _a;
         try {
             for (var _b = __values(__spread(this.handlers)), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -9039,7 +8931,7 @@ var Evt = /** @class */ (function () {
                 }
                 var opResult = invokeOperator_1.invokeOperator(this.getStatelessOp(op), data, true);
                 if (Operator_1.Operator.fλ.Result.NotMatched.match(opResult)) {
-                    Evt.doDetachIfNeeded(handler, opResult);
+                    EvtImpl.doDetachIfNeeded(handler, opResult);
                     continue;
                 }
                 var handlerTrigger = this.handlerTriggers.get(handler);
@@ -9062,7 +8954,7 @@ var Evt = /** @class */ (function () {
         }
         return false;
     };
-    Evt.prototype.__postAsyncFactory = function () {
+    EvtImpl.prototype.postAsyncFactory = function () {
         var _this_1 = this;
         return runExclusive.buildMethodCb(function (data, postChronologyMark, releaseLock) {
             var e_2, _a;
@@ -9080,7 +8972,7 @@ var Evt = /** @class */ (function () {
                 }
                 var opResult = invokeOperator_1.invokeOperator(_this_1.getStatelessOp(handler.op), data, true);
                 if (Operator_1.Operator.fλ.Result.NotMatched.match(opResult)) {
-                    Evt.doDetachIfNeeded(handler, opResult);
+                    EvtImpl.doDetachIfNeeded(handler, opResult);
                     return "continue";
                 }
                 var handlerTrigger = _this_1.handlerTriggers.get(handler);
@@ -9151,76 +9043,7 @@ var Evt = /** @class */ (function () {
             });
         });
     };
-    Evt.prototype.__waitFor = function (attachParams) {
-        return this.addHandler(attachParams, {
-            "async": true,
-            "extract": false,
-            "once": true,
-            "prepend": false
-        }).promise;
-    };
-    Evt.prototype.__attach = function (attachParams) {
-        return this.addHandler(attachParams, {
-            "async": false,
-            "extract": false,
-            "once": false,
-            "prepend": false
-        }).promise;
-    };
-    Evt.prototype.__attachExtract = function (attachParams) {
-        return this.addHandler(attachParams, {
-            "async": false,
-            "extract": true,
-            "once": false,
-            "prepend": true
-        }).promise;
-    };
-    Evt.prototype.__attachPrepend = function (attachParams) {
-        return this.addHandler(attachParams, {
-            "async": false,
-            "extract": false,
-            "once": false,
-            "prepend": true
-        }).promise;
-    };
-    Evt.prototype.__attachOnce = function (attachParams) {
-        return this.addHandler(attachParams, {
-            "async": false,
-            "extract": false,
-            "once": true,
-            "prepend": false
-        }).promise;
-    };
-    Evt.prototype.__attachOncePrepend = function (attachParams) {
-        return this.addHandler(attachParams, {
-            "async": false,
-            "extract": false,
-            "once": true,
-            "prepend": true
-        }).promise;
-    };
-    Evt.prototype.__attachOnceExtract = function (attachParams) {
-        return this.addHandler(attachParams, {
-            "async": false,
-            "extract": true,
-            "once": true,
-            "prepend": true
-        }).promise;
-    };
-    /**
-     * https://docs.evt.land/api/evt/ishandled
-     *
-     * Test if posting a given event data will have an effect.
-     *
-     * Return true if:
-     * -There is at least one handler matching
-     * this event data ( at least one handler's callback function
-     * will be invoked if the data is posted. )
-     * -Handlers could be will be detached
-     * if the event data is posted.
-     *
-     */
-    Evt.prototype.isHandled = function (data) {
+    EvtImpl.prototype.isHandled = function (data) {
         var _this_1 = this;
         return !!this.getHandlers()
             .find(function (_a) {
@@ -9228,11 +9051,10 @@ var Evt = /** @class */ (function () {
             return !!_this_1.getStatelessOp(op)(data);
         });
     };
-    /** https://docs.evt.land/api/evt/gethandler */
-    Evt.prototype.getHandlers = function () {
+    EvtImpl.prototype.getHandlers = function () {
         return __spread(this.handlers);
     };
-    Evt.prototype.detach = function (ctx) {
+    EvtImpl.prototype.detach = function (ctx) {
         var e_4, _a;
         var detachedHandlers = [];
         try {
@@ -9258,142 +9080,164 @@ var Evt = /** @class */ (function () {
         }
         return detachedHandlers;
     };
-    Evt.prototype.pipe = function () {
-        var inputs = [];
+    EvtImpl.prototype.pipe = function () {
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            inputs[_i] = arguments[_i];
+            args[_i] = arguments[_i];
         }
-        var evtDelegate = new Evt();
-        this.__attach(__assign(__assign({}, Evt.parseOverloadsArgs(inputs, "pipe")), { "callback": function (transformedData) { return evtDelegate.post(transformedData); } }));
+        var evtDelegate = new EvtImpl();
+        this.addHandler(__assign(__assign({}, Evt_parsePropsFromArgs_1.parsePropsFromArgs(args, "pipe")), { "callback": function (transformedData) { return evtDelegate.post(transformedData); } }), EvtImpl.propsFormMethodNames.attach);
         return evtDelegate;
     };
-    Evt.prototype.waitFor = function () {
-        var inputs = [];
+    EvtImpl.prototype.waitFor = function () {
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            inputs[_i] = arguments[_i];
+            args[_i] = arguments[_i];
         }
-        return this.__waitFor(Evt.parseOverloadsArgs(inputs, "waitFor"));
+        return this.addHandler(Evt_parsePropsFromArgs_1.parsePropsFromArgs(args, "waitFor"), EvtImpl.propsFormMethodNames.waitFor).promise;
     };
-    Evt.prototype.$attach = function () {
+    EvtImpl.prototype.$attach = function () {
         var inputs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             inputs[_i] = arguments[_i];
         }
         return this.attach.apply(this, __spread(inputs));
     };
-    Evt.prototype.attach = function () {
-        var inputs = [];
+    EvtImpl.prototype.attach = function () {
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            inputs[_i] = arguments[_i];
+            args[_i] = arguments[_i];
         }
-        return this.__attach(Evt.parseOverloadsArgs(inputs, "attach*"));
+        return this.addHandler(Evt_parsePropsFromArgs_1.parsePropsFromArgs(args, "attach*"), EvtImpl.propsFormMethodNames.attach).promise;
     };
-    Evt.prototype.$attachOnce = function () {
+    EvtImpl.prototype.$attachOnce = function () {
         var inputs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             inputs[_i] = arguments[_i];
         }
         return this.attachOnce.apply(this, __spread(inputs));
     };
-    Evt.prototype.attachOnce = function () {
+    EvtImpl.prototype.attachOnce = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return this.addHandler(Evt_parsePropsFromArgs_1.parsePropsFromArgs(args, "attach*"), EvtImpl.propsFormMethodNames.attachOnce).promise;
+    };
+    EvtImpl.prototype.$attachExtract = function () {
         var inputs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             inputs[_i] = arguments[_i];
         }
-        return this.__attachOnce(Evt.parseOverloadsArgs(inputs, "attach*"));
+        return this.attachExtract.apply(this, __spread(inputs));
     };
-    Evt.prototype.$attachExtract = function () {
-        var inputs = [];
+    EvtImpl.prototype.attachExtract = function () {
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            inputs[_i] = arguments[_i];
+            args[_i] = arguments[_i];
         }
-        return this.attachOnceExtract.apply(this, __spread(inputs));
+        return this.addHandler(Evt_parsePropsFromArgs_1.parsePropsFromArgs(args, "attach*"), EvtImpl.propsFormMethodNames.attachExtract).promise;
     };
-    Evt.prototype.attachExtract = function () {
-        var inputs = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            inputs[_i] = arguments[_i];
-        }
-        return this.__attachExtract(Evt.parseOverloadsArgs(inputs, "attach*"));
-    };
-    Evt.prototype.$attachPrepend = function () {
+    EvtImpl.prototype.$attachPrepend = function () {
         var inputs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             inputs[_i] = arguments[_i];
         }
         return this.attachPrepend.apply(this, __spread(inputs));
     };
-    Evt.prototype.attachPrepend = function () {
-        var inputs = [];
+    EvtImpl.prototype.attachPrepend = function () {
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            inputs[_i] = arguments[_i];
+            args[_i] = arguments[_i];
         }
-        return this.__attachPrepend(Evt.parseOverloadsArgs(inputs, "attach*"));
+        return this.addHandler(Evt_parsePropsFromArgs_1.parsePropsFromArgs(args, "attach*"), EvtImpl.propsFormMethodNames.attachPrepend).promise;
     };
-    Evt.prototype.$attachOncePrepend = function () {
+    EvtImpl.prototype.$attachOncePrepend = function () {
         var inputs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             inputs[_i] = arguments[_i];
         }
         return this.attachOncePrepend.apply(this, __spread(inputs));
     };
-    Evt.prototype.attachOncePrepend = function () {
-        var inputs = [];
+    EvtImpl.prototype.attachOncePrepend = function () {
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            inputs[_i] = arguments[_i];
+            args[_i] = arguments[_i];
         }
-        return this.__attachOncePrepend(Evt.parseOverloadsArgs(inputs, "attach*"));
+        return this.addHandler(Evt_parsePropsFromArgs_1.parsePropsFromArgs(args, "attach*"), EvtImpl.propsFormMethodNames.attachOncePrepend).promise;
     };
-    Evt.prototype.$attachOnceExtract = function () {
+    EvtImpl.prototype.$attachOnceExtract = function () {
         var inputs = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             inputs[_i] = arguments[_i];
         }
         return this.attachOnceExtract.apply(this, __spread(inputs));
     };
-    Evt.prototype.attachOnceExtract = function () {
-        var inputs = [];
+    EvtImpl.prototype.attachOnceExtract = function () {
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            inputs[_i] = arguments[_i];
+            args[_i] = arguments[_i];
         }
-        return this.__attachOnceExtract(Evt.parseOverloadsArgs(inputs, "attach*"));
+        return this.addHandler(Evt_parsePropsFromArgs_1.parsePropsFromArgs(args, "attach*"), EvtImpl.propsFormMethodNames.attachOnceExtract).promise;
     };
-    /**
-     * https://docs.evt.land/api/evt/getctx
-     *
-     * Evt.weakCtx(obj) always return the same instance of VoidCtx for a given object.
-     * No strong reference to the object is created
-     * when the object is no longer referenced it's associated Ctx will be freed from memory.
-     */
-    Evt.getCtx = Evt_getCtx_1.getCtxFactory();
-    /** https://docs.evt.land/api/evt/merge */
-    Evt.merge = Evt_merge_1.merge;
-    /** https://docs.evt.land/api/evt/from */
-    Evt.from = Evt_from_1.from;
-    /** https://docs.evt.land/api/evt/use-effect */
-    Evt.useEffect = Evt_useEffect_1.useEffect;
-    Evt.parseOverloadsArgs = Evt_parseOverloadsArgs_1.parseOverloadsArgs;
-    Evt.__1 = (function () {
-        if (false) {
-            Evt.__1;
+    EvtImpl.prototype.postAsyncOnceHandled = function (data) {
+        var _this_1 = this;
+        if (this.isHandled(data)) {
+            return this.post(data);
         }
-        defineAccessors_1.defineAccessors(Evt.prototype, "evtAttach", {
+        var d = new Deferred_1.Deferred();
+        this.evtAttach.attachOnce(function (_a) {
+            var op = _a.op;
+            return !!invokeOperator_1.invokeOperator(_this_1.getStatelessOp(op), data);
+        }, function () { return Promise.resolve().then(function () { return d.resolve(_this_1.post(data)); }); });
+        return d.pr;
+    };
+    EvtImpl.prototype.post = function (data) {
+        this.trace(data);
+        overwriteReadonlyProp_1.overwriteReadonlyProp(this, "postCount", this.postCount + 1);
+        //NOTE: Must be before postSync.
+        var postChronologyMark = this.getChronologyMark();
+        var isExtracted = this.postSync(data);
+        if (isExtracted) {
+            return this.postCount;
+        }
+        if (this.postAsync === undefined) {
+            if (this.asyncHandlerCount === 0) {
+                return this.postCount;
+            }
+            this.postAsync = this.postAsyncFactory();
+        }
+        this.postAsync(data, postChronologyMark);
+        return this.postCount;
+    };
+    EvtImpl.create = Evt_create_1.create;
+    EvtImpl.newCtx = Evt_newCtx_1.newCtx;
+    EvtImpl.merge = Evt_merge_1.merge;
+    EvtImpl.from = Evt_from_1.from;
+    EvtImpl.useEffect = Evt_useEffect_1.useEffect;
+    EvtImpl.getCtx = Evt_getCtx_1.getCtxFactory();
+    EvtImpl.loosenType = Evt_loosenType_1.loosenType;
+    EvtImpl.__defaultMaxHandlers = 25;
+    EvtImpl.__1 = (function () {
+        if (false) {
+            EvtImpl.__1;
+        }
+        defineAccessors_1.defineAccessors(EvtImpl.prototype, "evtAttach", {
             "get": function () {
-                return id_1.id(this).lazyEvtAttachFactory.getEvt();
+                return id_1.id(this).lazyEvtAttach.evt;
             }
         });
-        defineAccessors_1.defineAccessors(Evt.prototype, "evtDetach", {
+        defineAccessors_1.defineAccessors(EvtImpl.prototype, "evtDetach", {
             "get": function () {
-                return id_1.id(this).lazyEvtDetachFactory.getEvt();
+                return id_1.id(this).lazyEvtDetach.evt;
             }
         });
     })();
-    Evt.__defaultMaxHandlers = 25;
-    Evt.__2 = (function () {
+    EvtImpl.__2 = (function () {
         if (false) {
-            Evt.__2;
+            EvtImpl.__2;
         }
-        Object.defineProperties(Evt.prototype, [
+        Object.defineProperties(EvtImpl.prototype, [
             "__asyncHandlerChronologyMark",
             "__asyncHandlerChronologyExceptionRange",
             "__statelessByStatefulOp"
@@ -9414,49 +9258,59 @@ var Evt = /** @class */ (function () {
             return (__assign(__assign({}, prev), (_b = {}, _b[key] = obj, _b)));
         }, {}));
     })();
-    Evt.__3 = (function () {
-        if (false) {
-            Evt.__3;
-        }
-        Object.defineProperty(Evt.prototype, "postAsync", {
-            "get": function () {
-                var self = this;
-                if (self.__postAsync === undefined) {
-                    self.__postAsync = self.__postAsyncFactory();
-                }
-                return self.__postAsync;
-            }
-        });
-    })();
-    return Evt;
+    EvtImpl.propsFormMethodNames = {
+        "waitFor": { "async": true, "extract": false, "once": true, "prepend": false },
+        "attach": { "async": false, "extract": false, "once": false, "prepend": false },
+        "attachExtract": { "async": false, "extract": true, "once": false, "prepend": true },
+        "attachPrepend": { "async": false, "extract": false, "once": false, "prepend": true },
+        "attachOnce": { "async": false, "extract": false, "once": true, "prepend": false },
+        "attachOncePrepend": { "async": false, "extract": false, "once": true, "prepend": true },
+        "attachOnceExtract": { "async": false, "extract": true, "once": true, "prepend": true }
+    };
+    return EvtImpl;
 }());
-exports.Evt = Evt;
-importProxy_1.importProxy.Evt = Evt;
-/** https://docs.evt.land/api/voidevt */
-var VoidEvt = /** @class */ (function (_super) {
-    __extends(VoidEvt, _super);
-    function VoidEvt() {
-        return _super !== null && _super.apply(this, arguments) || this;
+(function (EvtImpl) {
+    function doDetachIfNeeded(handler, opResult, once) {
+        var detach = Operator_1.Operator.fλ.Result.getDetachArg(opResult);
+        if (typeof detach !== "boolean") {
+            var _a = __read(detach, 3), ctx = _a[0], error = _a[1], res = _a[2];
+            if (!!error) {
+                ctx.abort(error);
+            }
+            else {
+                ctx.done(res);
+            }
+        }
+        else if (detach || !!once) {
+            handler.detach();
+        }
     }
-    VoidEvt.prototype.post = function () {
-        return _super.prototype.post.call(this, undefined);
-    };
-    VoidEvt.prototype.postAsyncOnceHandled = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, _super.prototype.postAsyncOnceHandled.call(this, undefined)];
-            });
-        });
-    };
-    return VoidEvt;
-}(Evt));
-exports.VoidEvt = VoidEvt;
+    EvtImpl.doDetachIfNeeded = doDetachIfNeeded;
+})(EvtImpl || (EvtImpl = {}));
+exports.Evt = EvtImpl;
+importProxy_1.importProxy.Evt = exports.Evt;
+exports.VoidEvt = EvtImpl;
 
-},{"../tools/Deferred":66,"../tools/defineAccessors":67,"../tools/overwriteReadonlyProp":68,"../tools/typeSafety/id":71,"../tools/typeSafety/typeGuard":74,"./Evt.from":42,"./Evt.getCtx":43,"./Evt.merge":45,"./Evt.parseOverloadsArgs":46,"./Evt.useEffect":47,"./importProxy":50,"./types/EvtError":53,"./types/Operator":54,"./util/LazyEvtFactory":57,"./util/encapsulateOpState":59,"./util/invokeOperator":65,"minimal-polyfills/dist/lib/Array.prototype.find":85,"minimal-polyfills/dist/lib/Map":86,"minimal-polyfills/dist/lib/WeakMap":88,"run-exclusive":130}],45:[function(require,module,exports){
+},{"../tools/Deferred":67,"../tools/defineAccessors":68,"../tools/overwriteReadonlyProp":69,"../tools/typeSafety/id":72,"../tools/typeSafety/typeGuard":75,"./Evt.create":42,"./Evt.from":43,"./Evt.getCtx":44,"./Evt.loosenType":46,"./Evt.merge":47,"./Evt.newCtx":48,"./Evt.parsePropsFromArgs":49,"./Evt.useEffect":50,"./LazyEvt":51,"./importProxy":53,"./types/EvtError":56,"./types/Operator":57,"./util/encapsulateOpState":61,"./util/invokeOperator":66,"minimal-polyfills/dist/lib/Array.prototype.find":86,"minimal-polyfills/dist/lib/Map":87,"minimal-polyfills/dist/lib/WeakMap":89,"run-exclusive":131}],46:[function(require,module,exports){
+"use strict";
+exports.__esModule = true;
+/**
+ * https://docs.evt.land/api/evt/loosenType
+ */
+function loosenType(evt) {
+    return evt;
+}
+exports.loosenType = loosenType;
+/*
+import { Evt } from "./Evt";
+const x: Evt<boolean> = loosenType(new Evt<true>()); x;
+const y: Evt<boolean> = loosenType(new Evt<number>()); y;
+*/
+
+},{}],47:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var importProxy_1 = require("./importProxy");
-//TODO: Fix interoperability between versions.
 function mergeImpl(ctx, evts) {
     var evtUnion = new importProxy_1.importProxy.Evt();
     var callback = function (data) { return evtUnion.post(data); };
@@ -9478,7 +9332,16 @@ function merge(p1, p2) {
 }
 exports.merge = merge;
 
-},{"./importProxy":50}],46:[function(require,module,exports){
+},{"./importProxy":53}],48:[function(require,module,exports){
+"use strict";
+exports.__esModule = true;
+var importProxy_1 = require("./importProxy");
+function newCtx() {
+    return new importProxy_1.importProxy.Ctx();
+}
+exports.newCtx = newCtx;
+
+},{"./importProxy":53}],49:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -9529,7 +9392,7 @@ var defaultParams = {
     "timeout": undefined,
     "callback": undefined
 };
-function parseOverloadsArgs(inputs, methodName) {
+function parsePropsFromArgs(inputs, methodName) {
     typeGuard_1.typeGuard(defaultParams);
     switch (methodName) {
         case "pipe":
@@ -9570,7 +9433,7 @@ function parseOverloadsArgs(inputs, methodName) {
                 //[ timeout ]
                 //[ undefined ]
                 //[ callback ]
-                return parseOverloadsArgs(__spread(inputs.filter(function (value, index) { return !(index === inputs.length - 1 &&
+                return parsePropsFromArgs(__spread(inputs.filter(function (value, index) { return !(index === inputs.length - 1 &&
                     value === undefined); }), [
                     defaultParams.callback
                 ]), "attach*");
@@ -9662,9 +9525,9 @@ function parseOverloadsArgs(inputs, methodName) {
             break;
     }
 }
-exports.parseOverloadsArgs = parseOverloadsArgs;
+exports.parsePropsFromArgs = parsePropsFromArgs;
 
-},{"../tools/typeSafety/id":71,"../tools/typeSafety/typeGuard":74,"./util/compose":58}],47:[function(require,module,exports){
+},{"../tools/typeSafety/id":72,"../tools/typeSafety/typeGuard":75,"./util/compose":60}],50:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 function useEffect(effect, evt, dataFirst) {
@@ -9674,129 +9537,171 @@ function useEffect(effect, evt, dataFirst) {
 }
 exports.useEffect = useEffect;
 
-},{}],48:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
-var importProxy_1 = require("./importProxy");
-var typeGuard_1 = require("../tools/typeSafety/typeGuard");
-var assert_1 = require("../tools/typeSafety/assert");
-function fromEvtImpl(evt, initialValue) {
-    var trk = new importProxy_1.importProxy.Tracked(initialValue);
-    evt.attach(function (data) { return trk.val = data; });
-    return trk;
-}
-function fromTrkImpl(ctx, trk, transform) {
-    var evtDelegate = new importProxy_1.importProxy.Evt();
-    {
-        var callback = function (data) { return evtDelegate.post(transform(data)); };
-        //NOTE: Not using pipe for types reasons.
-        if (!!ctx) {
-            trk.evt.attach(ctx, callback);
-        }
-        else {
-            trk.evt.attach(callback);
-        }
-    }
-    return fromEvtImpl(evtDelegate, transform(trk.val));
-}
-function from(p1, p2, p3) {
-    if ("abort" in p1) {
-        //1
-        assert_1.assert(typeGuard_1.typeGuard(p2));
-        assert_1.assert(typeGuard_1.typeGuard(p3));
-        return fromTrkImpl(p1, p2, p3);
-    }
-    else {
-        //2 or 3
-        if ("attach" in p1) {
-            //3
-            assert_1.assert(typeGuard_1.typeGuard(p2));
-            return fromEvtImpl(p1, p2);
-        }
-        else {
-            //2
-            assert_1.assert(typeGuard_1.typeGuard(p2));
-            return fromTrkImpl(undefined, p1, p2);
-        }
-    }
-}
-exports.from = from;
-
-},{"../tools/typeSafety/assert":70,"../tools/typeSafety/typeGuard":74,"./importProxy":50}],49:[function(require,module,exports){
-"use strict";
-exports.__esModule = true;
-require("../tools/polyfill/Object.is");
-var Evt_2 = require("./Evt");
-var Tracked_from_1 = require("./Tracked.from");
+var overwriteReadonlyProp_1 = require("../tools/overwriteReadonlyProp");
 var importProxy_1 = require("./importProxy");
 var defineAccessors_1 = require("../tools/defineAccessors");
-var id_1 = require("../tools/typeSafety/id");
-/** https://docs.evt.land/api/tracked */
-var Tracked = /** @class */ (function () {
-    function Tracked(val) {
-        var evtChangeDiff = new Evt_2.Evt();
-        this.__postEvtChangeDiff = function (changeDiff) { return evtChangeDiff.post(changeDiff); };
-        this.evt = evtChangeDiff.pipe(function (_a) {
-            var newVal = _a.newVal;
-            return [newVal];
-        });
-        this.evtDiff = evtChangeDiff;
-        this.__val = val;
+var LazyEvt = /** @class */ (function () {
+    function LazyEvt() {
+        this.initialPostCount = 0;
     }
-    Tracked.prototype.forceUpdate = function (newVal) {
-        this.__setValAndPost(newVal);
-    };
-    Tracked.prototype.__setValAndPost = function (newVal) {
-        var prevVal = this.__val;
-        this.__val = newVal;
-        this.__postEvtChangeDiff({ prevVal: prevVal, newVal: newVal });
-    };
-    /** https://docs.evt.land/api/tracked#tracked-from */
-    Tracked.from = Tracked_from_1.from;
-    Tracked.__1 = (function () {
-        if (false) {
-            Tracked.__1;
+    LazyEvt.prototype.post = function (data) {
+        if (this.__evt === undefined) {
+            return ++this.initialPostCount;
         }
-        defineAccessors_1.defineAccessors(Tracked.prototype, "val", {
-            "get": function () { return id_1.id(this).__val; },
-            "set": function (newVal) {
+        return this.__evt.post(data);
+    };
+    LazyEvt.__1 = (function () {
+        if (false) {
+            LazyEvt.__1;
+        }
+        defineAccessors_1.defineAccessors(LazyEvt.prototype, "evt", {
+            "get": function () {
                 var self = this;
-                if (Object.is(self.__val, newVal)) {
-                    return;
+                if (self.__evt === undefined) {
+                    self.__evt = new importProxy_1.importProxy.Evt();
+                    overwriteReadonlyProp_1.overwriteReadonlyProp(self.__evt, "postCount", self.initialPostCount);
                 }
-                self.__setValAndPost(newVal);
+                return self.__evt;
             }
         });
     })();
-    return Tracked;
+    return LazyEvt;
 }());
-exports.Tracked = Tracked;
-importProxy_1.importProxy.Tracked = Tracked;
+exports.LazyEvt = LazyEvt;
 
-},{"../tools/defineAccessors":67,"../tools/polyfill/Object.is":69,"../tools/typeSafety/id":71,"./Evt":44,"./Tracked.from":48,"./importProxy":50}],50:[function(require,module,exports){
+},{"../tools/defineAccessors":68,"../tools/overwriteReadonlyProp":69,"./importProxy":53}],52:[function(require,module,exports){
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
+exports.__esModule = true;
+require("../tools/polyfill/Object.is");
+var id_1 = require("../tools/typeSafety/id");
+var defineAccessors_1 = require("../tools/defineAccessors");
+var LazyEvt_1 = require("./LazyEvt");
+var importProxy_1 = require("./importProxy");
+var invokeOperator_1 = require("./util/invokeOperator");
+var Operator_1 = require("./types/Operator");
+var Evt_parsePropsFromArgs_1 = require("./Evt.parsePropsFromArgs");
+var Evt_2 = require("./Evt");
+var StatefulEvtImpl = /** @class */ (function (_super) {
+    __extends(StatefulEvtImpl, _super);
+    function StatefulEvtImpl(initialState) {
+        var _this_1 = _super.call(this) || this;
+        _this_1.lazyEvtDiff = new LazyEvt_1.LazyEvt();
+        _this_1.lazyEvtChange = new LazyEvt_1.LazyEvt();
+        _this_1.lazyEvtChangeDiff = new LazyEvt_1.LazyEvt();
+        _this_1.__state = initialState;
+        return _this_1;
+    }
+    StatefulEvtImpl.prototype.post = function (data) {
+        return this.__post(data, false);
+    };
+    StatefulEvtImpl.prototype.postForceChange = function (wData) {
+        return this.__post(!!wData ? wData[0] : this.state, true);
+    };
+    StatefulEvtImpl.prototype.__post = function (data, forceChange) {
+        var prevState = this.state;
+        this.__state = data;
+        var diff = { prevState: prevState, "newState": this.state };
+        this.lazyEvtDiff.post(diff);
+        if (forceChange || !Object.is(prevState, this.state)) {
+            this.lazyEvtChange.post(this.state);
+            this.lazyEvtChangeDiff.post(diff);
+        }
+        return _super.prototype.post.call(this, data);
+    };
+    StatefulEvtImpl.prototype.statefulPipe = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        var evt = this
+            .pipe.apply(this, __spread(args));
+        var opResult = invokeOperator_1.invokeOperator(this.getStatelessOp(Evt_parsePropsFromArgs_1.parsePropsFromArgs(args, "pipe").op), this.state);
+        if (Operator_1.Operator.fλ.Result.NotMatched.match(opResult)) {
+            throw new Error([
+                "Operator do not match current state",
+                "use evt.pipe([ctx], op).toStatic(initialState)",
+                "to be sure the StatefulEvt is correctly initialized"
+            ].join(" "));
+        }
+        return evt.toStateful(opResult[0]);
+    };
+    StatefulEvtImpl.__4 = (function () {
+        if (false) {
+            StatefulEvtImpl.__4;
+        }
+        defineAccessors_1.defineAccessors(StatefulEvtImpl.prototype, "state", {
+            "get": function () { return id_1.id(this).__state; },
+            "set": function (state) { id_1.id(this).post(state); }
+        });
+        defineAccessors_1.defineAccessors(StatefulEvtImpl.prototype, "evtDiff", { "get": function () { return id_1.id(this).lazyEvtDiff.evt; } });
+        defineAccessors_1.defineAccessors(StatefulEvtImpl.prototype, "evtChange", { "get": function () { return id_1.id(this).lazyEvtChange.evt; } });
+        defineAccessors_1.defineAccessors(StatefulEvtImpl.prototype, "evtChangeDiff", { "get": function () { return id_1.id(this).lazyEvtChangeDiff.evt; } });
+    })();
+    return StatefulEvtImpl;
+}(Evt_2.Evt));
+exports.StatefulEvt = StatefulEvtImpl;
+importProxy_1.importProxy.StatefulEvt = exports.StatefulEvt;
+
+},{"../tools/defineAccessors":68,"../tools/polyfill/Object.is":70,"../tools/typeSafety/id":72,"./Evt":45,"./Evt.parsePropsFromArgs":49,"./LazyEvt":51,"./importProxy":53,"./types/Operator":57,"./util/invokeOperator":66}],53:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 /** Manually handling circular import so React Native does not gives warning. */
 exports.importProxy = {};
 
-},{}],51:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 exports.__esModule = true;
-var Evt_2 = require("./Evt");
-exports.Evt = Evt_2.Evt;
-exports.VoidEvt = Evt_2.VoidEvt;
+__export(require("./types"));
+__export(require("./util"));
 var Ctx_1 = require("./Ctx");
 exports.Ctx = Ctx_1.Ctx;
 exports.VoidCtx = Ctx_1.VoidCtx;
-__export(require("./types"));
-var Tracked_1 = require("./Tracked");
-exports.Tracked = Tracked_1.Tracked;
-__export(require("./util"));
+var Evt_2 = require("./Evt");
+exports.Evt = Evt_2.Evt;
+exports.VoidEvt = Evt_2.VoidEvt;
+var StatefulEvt_1 = require("./StatefulEvt");
+exports.StatefulEvt = StatefulEvt_1.StatefulEvt;
 
-},{"./Ctx":41,"./Evt":44,"./Tracked":49,"./types":55,"./util":64}],52:[function(require,module,exports){
+},{"./Ctx":41,"./Evt":45,"./StatefulEvt":52,"./types":58,"./util":65}],55:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var typeSafety_1 = require("../../tools/typeSafety");
@@ -9844,7 +9749,7 @@ var EventTargetLike;
     })(HasEventTargetAddRemove = EventTargetLike.HasEventTargetAddRemove || (EventTargetLike.HasEventTargetAddRemove = {}));
 })(EventTargetLike = exports.EventTargetLike || (exports.EventTargetLike = {}));
 
-},{"../../tools/typeSafety":72}],53:[function(require,module,exports){
+},{"../../tools/typeSafety":73}],56:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -9887,7 +9792,7 @@ var EvtError;
     EvtError.Detached = Detached;
 })(EvtError = exports.EvtError || (exports.EvtError = {}));
 
-},{}],54:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var typeSafety_1 = require("../../tools/typeSafety");
@@ -9971,17 +9876,19 @@ var Operator;
     })(fλ = Operator.fλ || (Operator.fλ = {}));
 })(Operator = exports.Operator || (exports.Operator = {}));
 
-},{"../../tools/typeSafety":72}],55:[function(require,module,exports){
+},{"../../tools/typeSafety":73}],58:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
+var EventTargetLike_1 = require("./EventTargetLike");
+exports.EventTargetLike = EventTargetLike_1.EventTargetLike;
 var EvtError_1 = require("./EvtError");
 exports.EvtError = EvtError_1.EvtError;
-var Operator_1 = require("./Operator");
-exports.Operator = Operator_1.Operator;
 var dom = require("./lib.dom");
 exports.dom = dom;
+var Operator_1 = require("./Operator");
+exports.Operator = Operator_1.Operator;
 
-},{"./EvtError":53,"./Operator":54,"./lib.dom":56}],56:[function(require,module,exports){
+},{"./EventTargetLike":55,"./EvtError":56,"./Operator":57,"./lib.dom":59}],59:[function(require,module,exports){
 "use strict";
 /*
 This is a curated re export of the dom API definitions.
@@ -9996,35 +9903,7 @@ projects that targets Node.JS.
 */
 exports.__esModule = true;
 
-},{}],57:[function(require,module,exports){
-"use strict";
-exports.__esModule = true;
-var overwriteReadonlyProp_1 = require("../../tools/overwriteReadonlyProp");
-var importProxy_1 = require("../importProxy");
-var LazyEvtFactory = /** @class */ (function () {
-    function LazyEvtFactory() {
-        this.initialPostCount = 0;
-        this.evt = undefined;
-    }
-    LazyEvtFactory.prototype.getEvt = function () {
-        if (this.evt === undefined) {
-            this.evt = new importProxy_1.importProxy.Evt();
-            overwriteReadonlyProp_1.overwriteReadonlyProp(this.evt, "postCount", this.initialPostCount);
-        }
-        return this.evt;
-    };
-    LazyEvtFactory.prototype.post = function (data) {
-        if (this.evt === undefined) {
-            this.initialPostCount++;
-            return;
-        }
-        this.evt.post(data);
-    };
-    return LazyEvtFactory;
-}());
-exports.LazyEvtFactory = LazyEvtFactory;
-
-},{"../../tools/overwriteReadonlyProp":68,"../importProxy":50}],58:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -10109,7 +9988,7 @@ function compose() {
 }
 exports.compose = compose;
 
-},{"../../tools/typeSafety/assert":70,"../../tools/typeSafety/id":71,"../../tools/typeSafety/typeGuard":74,"../types/Operator":54,"./encapsulateOpState":59,"./invokeOperator":65}],59:[function(require,module,exports){
+},{"../../tools/typeSafety/assert":71,"../../tools/typeSafety/id":72,"../../tools/typeSafety/typeGuard":75,"../types/Operator":57,"./encapsulateOpState":61,"./invokeOperator":66}],61:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -10148,48 +10027,15 @@ function encapsulateOpState(statefulFλOp) {
 }
 exports.encapsulateOpState = encapsulateOpState;
 
-},{"../../tools/typeSafety/id":71,"../types/Operator":54}],60:[function(require,module,exports){
+},{"../../tools/typeSafety/id":72,"../types/Operator":57}],62:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
-var scan_1 = require("./scan");
-exports.scan = scan_1.scan;
 var throttleTime_1 = require("./throttleTime");
 exports.throttleTime = throttleTime_1.throttleTime;
 var to_1 = require("./to");
 exports.to = to_1.to;
 
-},{"./scan":61,"./throttleTime":62,"./to":63}],61:[function(require,module,exports){
-"use strict";
-var __read = (this && this.__read) || function (o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-    }
-    catch (error) { e = { error: error }; }
-    finally {
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        }
-        finally { if (e) throw e.error; }
-    }
-    return ar;
-};
-exports.__esModule = true;
-var compose_1 = require("../compose");
-exports.scan = function (accumulator, seed) { return compose_1.compose([
-    function (data, _a) {
-        var _b = __read(_a, 3), acc = _b[1], index = _b[2];
-        return [[data, accumulator(acc, data, index), index + 1]];
-    },
-    [null, seed, 0]
-], function (_a) {
-    var _b = __read(_a, 2), acc = _b[1];
-    return [acc];
-}); };
-
-},{"../compose":58}],62:[function(require,module,exports){
+},{"./throttleTime":63,"./to":64}],63:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var compose_1 = require("../compose");
@@ -10209,7 +10055,7 @@ exports.throttleTime = function (duration) {
     });
 };
 
-},{"../compose":58}],63:[function(require,module,exports){
+},{"../compose":60}],64:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 exports.to = function (eventName) {
@@ -10217,7 +10063,7 @@ exports.to = function (eventName) {
         null : [data[1]]; };
 };
 
-},{}],64:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -10229,7 +10075,7 @@ exports.compose = compose_1.compose;
 var invokeOperator_1 = require("./invokeOperator");
 exports.invokeOperator = invokeOperator_1.invokeOperator;
 
-},{"./compose":58,"./genericOperators":60,"./invokeOperator":65}],65:[function(require,module,exports){
+},{"./compose":60,"./genericOperators":62,"./invokeOperator":66}],66:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var Operator_1 = require("../types/Operator");
@@ -10241,7 +10087,7 @@ function invokeOperator(op, data, isPost) {
 }
 exports.invokeOperator = invokeOperator;
 
-},{"../types/Operator":54}],66:[function(require,module,exports){
+},{"../types/Operator":57}],67:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -10289,7 +10135,7 @@ var VoidDeferred = /** @class */ (function (_super) {
 }(Deferred));
 exports.VoidDeferred = VoidDeferred;
 
-},{"./overwriteReadonlyProp":68}],67:[function(require,module,exports){
+},{"./overwriteReadonlyProp":69}],68:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -10312,7 +10158,7 @@ exports.defineAccessors = function (obj, propertyName, propertyDescriptor) {
     })), (get !== undefined ? { "get": function () { return get.call(this); } } : {})), (set !== undefined ? { "set": function (value) { set.call(this, value); } } : {})));
 };
 
-},{}],68:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -10341,11 +10187,15 @@ exports.overwriteReadonlyProp = function (obj, propertyName, value) {
         return value;
     }
     var errorDefineProperty = undefined;
+    var propertyDescriptor = (_a = Object.getOwnPropertyDescriptor(obj, propertyName)) !== null && _a !== void 0 ? _a : {
+        "enumerable": true,
+        "configurable": true
+    };
+    if (!!propertyDescriptor.get) {
+        throw new Error("Probably a wrong ides to overwrite " + propertyName + " getter");
+    }
     try {
-        Object.defineProperty(obj, propertyName, __assign(__assign({}, ((_a = Object.getOwnPropertyDescriptor(obj, propertyName)) !== null && _a !== void 0 ? _a : {
-            "enumerable": true,
-            "configurable": true
-        })), { value: value }));
+        Object.defineProperty(obj, propertyName, __assign(__assign({}, propertyDescriptor), { value: value }));
     }
     catch (error) {
         errorDefineProperty = error;
@@ -10356,7 +10206,7 @@ exports.overwriteReadonlyProp = function (obj, propertyName, value) {
     return value;
 };
 
-},{}],69:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 if (!Object.is) {
     Object.is = function (x, y) {
         // SameValue algorithm
@@ -10371,7 +10221,7 @@ if (!Object.is) {
     };
 }
 
-},{}],70:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 function assert(condition, msg) {
@@ -10381,7 +10231,7 @@ function assert(condition, msg) {
 }
 exports.assert = assert;
 
-},{}],71:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 /**
@@ -10421,7 +10271,7 @@ exports.__esModule = true;
  */
 exports.id = function (x) { return x; };
 
-},{}],72:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -10432,7 +10282,7 @@ __export(require("./typeGuard"));
 __export(require("./assert"));
 __export(require("./matchVoid"));
 
-},{"./assert":70,"./id":71,"./matchVoid":73,"./typeGuard":74}],73:[function(require,module,exports){
+},{"./assert":71,"./id":72,"./matchVoid":74,"./typeGuard":75}],74:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var typeGuard_1 = require("./typeGuard");
@@ -10457,7 +10307,7 @@ function matchVoid(o) {
 }
 exports.matchVoid = matchVoid;
 
-},{"./typeGuard":74}],74:[function(require,module,exports){
+},{"./typeGuard":75}],75:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 /**
@@ -10514,7 +10364,7 @@ function typeGuard(o, isMatched) {
 }
 exports.typeGuard = typeGuard;
 
-},{}],75:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -10568,21 +10418,21 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],76:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":75}],77:[function(require,module,exports){
+},{"./implementation":76}],78:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":76}],78:[function(require,module,exports){
+},{"function-bind":77}],79:[function(require,module,exports){
 'use strict'
 var Buffer = require('safe-buffer').Buffer
 var Transform = require('stream').Transform
@@ -10679,7 +10529,7 @@ HashBase.prototype._digest = function () {
 
 module.exports = HashBase
 
-},{"inherits":80,"safe-buffer":131,"stream":150}],79:[function(require,module,exports){
+},{"inherits":81,"safe-buffer":132,"stream":151}],80:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -10765,7 +10615,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],80:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -10794,7 +10644,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],81:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -10817,14 +10667,14 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],82:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],83:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 'use strict'
 var inherits = require('inherits')
 var HashBase = require('hash-base')
@@ -10972,7 +10822,7 @@ function fnI (a, b, c, d, m, k, s) {
 
 module.exports = MD5
 
-},{"hash-base":78,"inherits":80,"safe-buffer":131}],84:[function(require,module,exports){
+},{"hash-base":79,"inherits":81,"safe-buffer":132}],85:[function(require,module,exports){
 // Production steps of ECMA-262, Edition 6, 22.1.2.1
 if (!Array.from) {
     Array.from = (function () {
@@ -11049,7 +10899,7 @@ if (!Array.from) {
     }());
 }
 
-},{}],85:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 // https://tc39.github.io/ecma262/#sec-array.prototype.find
 if (!Array.prototype.find) {
     Object.defineProperty(Array.prototype, 'find', {
@@ -11090,7 +10940,7 @@ if (!Array.prototype.find) {
     });
 }
 
-},{}],86:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var LightMapImpl = /** @class */ (function () {
@@ -11152,7 +11002,7 @@ var LightMapImpl = /** @class */ (function () {
 exports.LightMapImpl = LightMapImpl;
 exports.Polyfill = typeof Map !== "undefined" ? Map : LightMapImpl;
 
-},{}],87:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var Map_1 = require("./Map");
@@ -11185,13 +11035,13 @@ var LightSetImpl = /** @class */ (function () {
 exports.LightSetImpl = LightSetImpl;
 exports.Polyfill = typeof Set !== "undefined" ? Set : LightSetImpl;
 
-},{"./Map":86}],88:[function(require,module,exports){
+},{"./Map":87}],89:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var Map_1 = require("./Map");
 exports.Polyfill = typeof WeakMap !== "undefined" ? WeakMap : Map_1.Polyfill;
 
-},{"./Map":86}],89:[function(require,module,exports){
+},{"./Map":87}],90:[function(require,module,exports){
 (function (Buffer){
 /*!
  * RSA library for Node.js
@@ -11650,7 +11500,7 @@ module.exports = (function () {
 })();
 
 }).call(this,require("buffer").Buffer)
-},{"./formats/formats.js":96,"./libs/rsa.js":100,"./schemes/schemes.js":104,"./utils":105,"buffer":34,"constants":36,"seedrandom":134}],90:[function(require,module,exports){
+},{"./formats/formats.js":97,"./libs/rsa.js":101,"./schemes/schemes.js":105,"./utils":106,"buffer":34,"constants":36,"seedrandom":135}],91:[function(require,module,exports){
 (function (Buffer){
 'use strict'
 
@@ -11816,7 +11666,7 @@ module.exports.randomBytes = (function () {
 })();
 
 }).call(this,require("buffer").Buffer)
-},{"./utils":105,"buffer":34,"create-hash":38}],91:[function(require,module,exports){
+},{"./utils":106,"buffer":34,"create-hash":38}],92:[function(require,module,exports){
 
 
 module.exports = {
@@ -11835,7 +11685,7 @@ module.exports = {
         return engine(keyPair, options);
     }
 };
-},{"./io.js":92,"./js.js":93,"./node12.js":94}],92:[function(require,module,exports){
+},{"./io.js":93,"./js.js":94,"./node12.js":95}],93:[function(require,module,exports){
 var crypto = require('crypto' + "");
 var constants = require('constants');
 var schemes = require('../schemes/schemes.js');
@@ -11908,7 +11758,7 @@ module.exports = function (keyPair, options) {
         }
     };
 };
-},{"../schemes/schemes.js":104,"constants":36}],93:[function(require,module,exports){
+},{"../schemes/schemes.js":105,"constants":36}],94:[function(require,module,exports){
 var BigInteger = require('../libs/jsbn.js');
 var schemes = require('../schemes/schemes.js');
 
@@ -11943,7 +11793,7 @@ module.exports = function (keyPair, options) {
         }
     };
 };
-},{"../libs/jsbn.js":99,"../schemes/schemes.js":104}],94:[function(require,module,exports){
+},{"../libs/jsbn.js":100,"../schemes/schemes.js":105}],95:[function(require,module,exports){
 var crypto = require('crypto' + "");
 var constants = require('constants');
 var schemes = require('../schemes/schemes.js');
@@ -12000,7 +11850,7 @@ module.exports = function (keyPair, options) {
         }
     };
 };
-},{"../schemes/schemes.js":104,"./js.js":93,"constants":36}],95:[function(require,module,exports){
+},{"../schemes/schemes.js":105,"./js.js":94,"constants":36}],96:[function(require,module,exports){
 var _ = require('../utils')._;
 
 module.exports = {
@@ -12072,7 +11922,7 @@ module.exports = {
     }
 };
 
-},{"../utils":105}],96:[function(require,module,exports){
+},{"../utils":106}],97:[function(require,module,exports){
 
 function formatParse(format) {
     format = format.split('-');
@@ -12168,7 +12018,7 @@ module.exports = {
         }
     }
 };
-},{"./components":95,"./pkcs1":97,"./pkcs8":98}],97:[function(require,module,exports){
+},{"./components":96,"./pkcs1":98,"./pkcs8":99}],98:[function(require,module,exports){
 (function (Buffer){
 var ber = require('asn1').Ber;
 var _ = require('../utils')._;
@@ -12319,7 +12169,7 @@ module.exports = {
     }
 };
 }).call(this,require("buffer").Buffer)
-},{"../utils":105,"asn1":26,"buffer":34}],98:[function(require,module,exports){
+},{"../utils":106,"asn1":26,"buffer":34}],99:[function(require,module,exports){
 (function (Buffer){
 var ber = require('asn1').Ber;
 var _ = require('../utils')._;
@@ -12510,7 +12360,7 @@ module.exports = {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"../utils":105,"asn1":26,"buffer":34}],99:[function(require,module,exports){
+},{"../utils":106,"asn1":26,"buffer":34}],100:[function(require,module,exports){
 (function (Buffer){
 /*
  * Basic JavaScript BN library - subset useful for RSA encryption.
@@ -14146,7 +13996,7 @@ BigInteger.prototype.square = bnSquare;
 module.exports = BigInteger;
 
 }).call(this,require("buffer").Buffer)
-},{"../crypto":90,"../utils":105,"big-integer":32,"buffer":34}],100:[function(require,module,exports){
+},{"../crypto":91,"../utils":106,"big-integer":32,"buffer":34}],101:[function(require,module,exports){
 (function (Buffer){
 /*
  * RSA Encryption / Decryption with PKCS1 v2 Padding.
@@ -14465,7 +14315,7 @@ module.exports.Key = (function () {
 
 
 }).call(this,require("buffer").Buffer)
-},{"../encryptEngines/encryptEngines.js":91,"../schemes/schemes.js":104,"../utils":105,"../utils.js":105,"./jsbn.js":99,"buffer":34}],101:[function(require,module,exports){
+},{"../encryptEngines/encryptEngines.js":92,"../schemes/schemes.js":105,"../utils":106,"../utils.js":106,"./jsbn.js":100,"buffer":34}],102:[function(require,module,exports){
 (function (Buffer){
 /**
  * PKCS_OAEP signature scheme
@@ -14647,7 +14497,7 @@ module.exports.makeScheme = function (key, options) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"../crypto":90,"buffer":34}],102:[function(require,module,exports){
+},{"../crypto":91,"buffer":34}],103:[function(require,module,exports){
 (function (Buffer){
 /**
  * PKCS1 padding and signature scheme
@@ -14895,7 +14745,7 @@ module.exports.makeScheme = function (key, options) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"../crypto":90,"../libs/jsbn":99,"buffer":34,"constants":36}],103:[function(require,module,exports){
+},{"../crypto":91,"../libs/jsbn":100,"buffer":34,"constants":36}],104:[function(require,module,exports){
 (function (Buffer){
 /**
  * PSS signature scheme
@@ -15082,7 +14932,7 @@ module.exports.makeScheme = function (key, options) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"../crypto":90,"../libs/jsbn":99,"./schemes":104,"buffer":34}],104:[function(require,module,exports){
+},{"../crypto":91,"../libs/jsbn":100,"./schemes":105,"buffer":34}],105:[function(require,module,exports){
 module.exports = {
     pkcs1: require('./pkcs1'),
     pkcs1_oaep: require('./oaep'),
@@ -15106,7 +14956,7 @@ module.exports = {
         return module.exports[scheme] && module.exports[scheme].isSignature;
     }
 };
-},{"./oaep":101,"./pkcs1":102,"./pss":103}],105:[function(require,module,exports){
+},{"./oaep":102,"./pkcs1":103,"./pss":104}],106:[function(require,module,exports){
 /*
  * Utils functions
  *
@@ -15213,7 +15063,7 @@ module.exports.trimSurroundingText = function (data, opening, closing) {
 
     return data.substring(trimStartIndex, trimEndIndex);
 }
-},{}],106:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 /*
 object-assign
 (c) Sindre Sorhus
@@ -15305,7 +15155,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}],107:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 (function (process){
 // .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
 // backported and transplited with Babel, with backwards-compat fixes
@@ -15611,11 +15461,11 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":114}],108:[function(require,module,exports){
+},{"_process":115}],109:[function(require,module,exports){
 exports.pbkdf2 = require('./lib/async')
 exports.pbkdf2Sync = require('./lib/sync')
 
-},{"./lib/async":109,"./lib/sync":112}],109:[function(require,module,exports){
+},{"./lib/async":110,"./lib/sync":113}],110:[function(require,module,exports){
 (function (process,global){
 var checkParameters = require('./precondition')
 var defaultEncoding = require('./default-encoding')
@@ -15719,7 +15569,7 @@ module.exports = function (password, salt, iterations, keylen, digest, callback)
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./default-encoding":110,"./precondition":111,"./sync":112,"_process":114,"safe-buffer":131}],110:[function(require,module,exports){
+},{"./default-encoding":111,"./precondition":112,"./sync":113,"_process":115,"safe-buffer":132}],111:[function(require,module,exports){
 (function (process){
 var defaultEncoding
 /* istanbul ignore next */
@@ -15733,7 +15583,7 @@ if (process.browser) {
 module.exports = defaultEncoding
 
 }).call(this,require('_process'))
-},{"_process":114}],111:[function(require,module,exports){
+},{"_process":115}],112:[function(require,module,exports){
 (function (Buffer){
 var MAX_ALLOC = Math.pow(2, 30) - 1 // default in iojs
 
@@ -15765,7 +15615,7 @@ module.exports = function (password, salt, iterations, keylen) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":81}],112:[function(require,module,exports){
+},{"../../is-buffer/index.js":82}],113:[function(require,module,exports){
 var md5 = require('create-hash/md5')
 var RIPEMD160 = require('ripemd160')
 var sha = require('sha.js')
@@ -15871,7 +15721,7 @@ function pbkdf2 (password, salt, iterations, keylen, digest) {
 
 module.exports = pbkdf2
 
-},{"./default-encoding":110,"./precondition":111,"create-hash/md5":39,"ripemd160":129,"safe-buffer":131,"sha.js":143}],113:[function(require,module,exports){
+},{"./default-encoding":111,"./precondition":112,"create-hash/md5":39,"ripemd160":130,"safe-buffer":132,"sha.js":144}],114:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -15920,7 +15770,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 
 
 }).call(this,require('_process'))
-},{"_process":114}],114:[function(require,module,exports){
+},{"_process":115}],115:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -16106,10 +15956,10 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],115:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 module.exports = require('./lib/_stream_duplex.js');
 
-},{"./lib/_stream_duplex.js":116}],116:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":117}],117:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -16241,7 +16091,7 @@ Duplex.prototype._destroy = function (err, cb) {
 
   pna.nextTick(cb, err);
 };
-},{"./_stream_readable":118,"./_stream_writable":120,"core-util-is":37,"inherits":80,"process-nextick-args":113}],117:[function(require,module,exports){
+},{"./_stream_readable":119,"./_stream_writable":121,"core-util-is":37,"inherits":81,"process-nextick-args":114}],118:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -16289,7 +16139,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":119,"core-util-is":37,"inherits":80}],118:[function(require,module,exports){
+},{"./_stream_transform":120,"core-util-is":37,"inherits":81}],119:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -17311,7 +17161,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":116,"./internal/streams/BufferList":121,"./internal/streams/destroy":122,"./internal/streams/stream":123,"_process":114,"core-util-is":37,"events":40,"inherits":80,"isarray":82,"process-nextick-args":113,"safe-buffer":124,"string_decoder/":151,"util":33}],119:[function(require,module,exports){
+},{"./_stream_duplex":117,"./internal/streams/BufferList":122,"./internal/streams/destroy":123,"./internal/streams/stream":124,"_process":115,"core-util-is":37,"events":40,"inherits":81,"isarray":83,"process-nextick-args":114,"safe-buffer":125,"string_decoder/":152,"util":33}],120:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -17526,7 +17376,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":116,"core-util-is":37,"inherits":80}],120:[function(require,module,exports){
+},{"./_stream_duplex":117,"core-util-is":37,"inherits":81}],121:[function(require,module,exports){
 (function (process,global,setImmediate){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -18216,7 +18066,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
-},{"./_stream_duplex":116,"./internal/streams/destroy":122,"./internal/streams/stream":123,"_process":114,"core-util-is":37,"inherits":80,"process-nextick-args":113,"safe-buffer":124,"timers":154,"util-deprecate":158}],121:[function(require,module,exports){
+},{"./_stream_duplex":117,"./internal/streams/destroy":123,"./internal/streams/stream":124,"_process":115,"core-util-is":37,"inherits":81,"process-nextick-args":114,"safe-buffer":125,"timers":155,"util-deprecate":159}],122:[function(require,module,exports){
 'use strict';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18296,7 +18146,7 @@ if (util && util.inspect && util.inspect.custom) {
     return this.constructor.name + ' ' + obj;
   };
 }
-},{"safe-buffer":124,"util":33}],122:[function(require,module,exports){
+},{"safe-buffer":125,"util":33}],123:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -18371,10 +18221,10 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":113}],123:[function(require,module,exports){
+},{"process-nextick-args":114}],124:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":40}],124:[function(require,module,exports){
+},{"events":40}],125:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -18438,10 +18288,10 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":34}],125:[function(require,module,exports){
+},{"buffer":34}],126:[function(require,module,exports){
 module.exports = require('./readable').PassThrough
 
-},{"./readable":126}],126:[function(require,module,exports){
+},{"./readable":127}],127:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -18450,13 +18300,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":116,"./lib/_stream_passthrough.js":117,"./lib/_stream_readable.js":118,"./lib/_stream_transform.js":119,"./lib/_stream_writable.js":120}],127:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":117,"./lib/_stream_passthrough.js":118,"./lib/_stream_readable.js":119,"./lib/_stream_transform.js":120,"./lib/_stream_writable.js":121}],128:[function(require,module,exports){
 module.exports = require('./readable').Transform
 
-},{"./readable":126}],128:[function(require,module,exports){
+},{"./readable":127}],129:[function(require,module,exports){
 module.exports = require('./lib/_stream_writable.js');
 
-},{"./lib/_stream_writable.js":120}],129:[function(require,module,exports){
+},{"./lib/_stream_writable.js":121}],130:[function(require,module,exports){
 'use strict'
 var Buffer = require('buffer').Buffer
 var inherits = require('inherits')
@@ -18621,7 +18471,7 @@ function fn5 (a, b, c, d, e, m, k, s) {
 
 module.exports = RIPEMD160
 
-},{"buffer":34,"hash-base":78,"inherits":80}],130:[function(require,module,exports){
+},{"buffer":34,"hash-base":79,"inherits":81}],131:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -18914,7 +18764,7 @@ function buildFnCallback(isGlobal, groupRef, fun) {
     return runExclusiveFunction;
 }
 
-},{"minimal-polyfills/dist/lib/WeakMap":88}],131:[function(require,module,exports){
+},{"minimal-polyfills/dist/lib/WeakMap":89}],132:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -18980,7 +18830,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":34}],132:[function(require,module,exports){
+},{"buffer":34}],133:[function(require,module,exports){
 (function (process){
 /* eslint-disable node/no-deprecated-api */
 
@@ -19061,7 +18911,7 @@ if (!safer.constants) {
 module.exports = safer
 
 }).call(this,require('_process'))
-},{"_process":114,"buffer":34}],133:[function(require,module,exports){
+},{"_process":115,"buffer":34}],134:[function(require,module,exports){
 (function (Buffer){
 var pbkdf2 = require('pbkdf2')
 /* eslint-disable camelcase */
@@ -19245,7 +19095,7 @@ function arraycopy (src, srcPos, dest, destPos, length) {
 module.exports = scrypt
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":34,"pbkdf2":108}],134:[function(require,module,exports){
+},{"buffer":34,"pbkdf2":109}],135:[function(require,module,exports){
 // A library of seedable RNGs implemented in Javascript.
 //
 // Usage:
@@ -19307,7 +19157,7 @@ sr.tychei = tychei;
 
 module.exports = sr;
 
-},{"./lib/alea":135,"./lib/tychei":136,"./lib/xor128":137,"./lib/xor4096":138,"./lib/xorshift7":139,"./lib/xorwow":140,"./seedrandom":141}],135:[function(require,module,exports){
+},{"./lib/alea":136,"./lib/tychei":137,"./lib/xor128":138,"./lib/xor4096":139,"./lib/xorshift7":140,"./lib/xorwow":141,"./seedrandom":142}],136:[function(require,module,exports){
 // A port of an algorithm by Johannes Baagøe <baagoe@baagoe.com>, 2010
 // http://baagoe.com/en/RandomMusings/javascript/
 // https://github.com/nquinlan/better-random-numbers-for-javascript-mirror
@@ -19423,7 +19273,7 @@ if (module && module.exports) {
 
 
 
-},{}],136:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 // A Javascript implementaion of the "Tyche-i" prng algorithm by
 // Samuel Neves and Filipe Araujo.
 // See https://eden.dei.uc.pt/~sneves/pubs/2011-snfa2.pdf
@@ -19528,7 +19378,7 @@ if (module && module.exports) {
 
 
 
-},{}],137:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 // A Javascript implementaion of the "xor128" prng algorithm by
 // George Marsaglia.  See http://www.jstatsoft.org/v08/i14/paper
 
@@ -19611,7 +19461,7 @@ if (module && module.exports) {
 
 
 
-},{}],138:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 // A Javascript implementaion of Richard Brent's Xorgens xor4096 algorithm.
 //
 // This fast non-cryptographic random number generator is designed for
@@ -19759,7 +19609,7 @@ if (module && module.exports) {
   (typeof define) == 'function' && define   // present with an AMD loader
 );
 
-},{}],139:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 // A Javascript implementaion of the "xorshift7" algorithm by
 // François Panneton and Pierre L'ecuyer:
 // "On the Xorgshift Random Number Generators"
@@ -19858,7 +19708,7 @@ if (module && module.exports) {
 );
 
 
-},{}],140:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 // A Javascript implementaion of the "xorwow" prng algorithm by
 // George Marsaglia.  See http://www.jstatsoft.org/v08/i14/paper
 
@@ -19946,7 +19796,7 @@ if (module && module.exports) {
 
 
 
-},{}],141:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 /*
 Copyright 2014 David Bau.
 
@@ -20201,7 +20051,7 @@ if ((typeof module) == 'object' && module.exports) {
   Math    // math: package containing random, pow, and seedrandom
 );
 
-},{"crypto":33}],142:[function(require,module,exports){
+},{"crypto":33}],143:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 
 // prototype class for hash functions
@@ -20284,7 +20134,7 @@ Hash.prototype._update = function () {
 
 module.exports = Hash
 
-},{"safe-buffer":131}],143:[function(require,module,exports){
+},{"safe-buffer":132}],144:[function(require,module,exports){
 var exports = module.exports = function SHA (algorithm) {
   algorithm = algorithm.toLowerCase()
 
@@ -20301,7 +20151,7 @@ exports.sha256 = require('./sha256')
 exports.sha384 = require('./sha384')
 exports.sha512 = require('./sha512')
 
-},{"./sha":144,"./sha1":145,"./sha224":146,"./sha256":147,"./sha384":148,"./sha512":149}],144:[function(require,module,exports){
+},{"./sha":145,"./sha1":146,"./sha224":147,"./sha256":148,"./sha384":149,"./sha512":150}],145:[function(require,module,exports){
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-0, as defined
  * in FIPS PUB 180-1
@@ -20397,7 +20247,7 @@ Sha.prototype._hash = function () {
 
 module.exports = Sha
 
-},{"./hash":142,"inherits":80,"safe-buffer":131}],145:[function(require,module,exports){
+},{"./hash":143,"inherits":81,"safe-buffer":132}],146:[function(require,module,exports){
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
  * in FIPS PUB 180-1
@@ -20498,7 +20348,7 @@ Sha1.prototype._hash = function () {
 
 module.exports = Sha1
 
-},{"./hash":142,"inherits":80,"safe-buffer":131}],146:[function(require,module,exports){
+},{"./hash":143,"inherits":81,"safe-buffer":132}],147:[function(require,module,exports){
 /**
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
  * in FIPS 180-2
@@ -20553,7 +20403,7 @@ Sha224.prototype._hash = function () {
 
 module.exports = Sha224
 
-},{"./hash":142,"./sha256":147,"inherits":80,"safe-buffer":131}],147:[function(require,module,exports){
+},{"./hash":143,"./sha256":148,"inherits":81,"safe-buffer":132}],148:[function(require,module,exports){
 /**
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
  * in FIPS 180-2
@@ -20690,7 +20540,7 @@ Sha256.prototype._hash = function () {
 
 module.exports = Sha256
 
-},{"./hash":142,"inherits":80,"safe-buffer":131}],148:[function(require,module,exports){
+},{"./hash":143,"inherits":81,"safe-buffer":132}],149:[function(require,module,exports){
 var inherits = require('inherits')
 var SHA512 = require('./sha512')
 var Hash = require('./hash')
@@ -20749,7 +20599,7 @@ Sha384.prototype._hash = function () {
 
 module.exports = Sha384
 
-},{"./hash":142,"./sha512":149,"inherits":80,"safe-buffer":131}],149:[function(require,module,exports){
+},{"./hash":143,"./sha512":150,"inherits":81,"safe-buffer":132}],150:[function(require,module,exports){
 var inherits = require('inherits')
 var Hash = require('./hash')
 var Buffer = require('safe-buffer').Buffer
@@ -21011,7 +20861,7 @@ Sha512.prototype._hash = function () {
 
 module.exports = Sha512
 
-},{"./hash":142,"inherits":80,"safe-buffer":131}],150:[function(require,module,exports){
+},{"./hash":143,"inherits":81,"safe-buffer":132}],151:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -21140,7 +20990,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":40,"inherits":80,"readable-stream/duplex.js":115,"readable-stream/passthrough.js":125,"readable-stream/readable.js":126,"readable-stream/transform.js":127,"readable-stream/writable.js":128}],151:[function(require,module,exports){
+},{"events":40,"inherits":81,"readable-stream/duplex.js":116,"readable-stream/passthrough.js":126,"readable-stream/readable.js":127,"readable-stream/transform.js":128,"readable-stream/writable.js":129}],152:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -21437,9 +21287,9 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":152}],152:[function(require,module,exports){
-arguments[4][124][0].apply(exports,arguments)
-},{"buffer":34,"dup":124}],153:[function(require,module,exports){
+},{"safe-buffer":153}],153:[function(require,module,exports){
+arguments[4][125][0].apply(exports,arguments)
+},{"buffer":34,"dup":125}],154:[function(require,module,exports){
 (function (global){
 "use strict";
 var has = require('has');
@@ -21774,7 +21624,7 @@ if (symbolSerializer) exports.symbolSerializer = symbolSerializer;
 exports.create = create;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"has":77}],154:[function(require,module,exports){
+},{"has":78}],155:[function(require,module,exports){
 (function (setImmediate,clearImmediate){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -21853,7 +21703,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":114,"timers":154}],155:[function(require,module,exports){
+},{"process/browser.js":115,"timers":155}],156:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -21903,7 +21753,7 @@ function get(serializers) {
 }
 exports.get = get;
 
-},{"super-json":153}],156:[function(require,module,exports){
+},{"super-json":154}],157:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 exports.__esModule = true;
@@ -21965,7 +21815,7 @@ function textSplit(partMaxLength, text) {
 exports.textSplit = textSplit;
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":34}],157:[function(require,module,exports){
+},{"buffer":34}],158:[function(require,module,exports){
 "use strict";
 var __values = (this && this.__values) || function (o) {
     var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
@@ -22265,7 +22115,7 @@ exports.genUtf8Str = genUtf8Str;
     ;
 })(genUtf8Str = exports.genUtf8Str || (exports.genUtf8Str = {}));
 
-},{"./stringTransform":156,"seedrandom":134}],158:[function(require,module,exports){
+},{"./stringTransform":157,"seedrandom":135}],159:[function(require,module,exports){
 (function (global){
 
 /**

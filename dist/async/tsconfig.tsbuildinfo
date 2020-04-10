@@ -65,13 +65,9 @@
         "version": "a0204048e26eabf2db7373967ce5623b190033509334f0b1b70a47d2fe28f34a",
         "signature": "a0204048e26eabf2db7373967ce5623b190033509334f0b1b70a47d2fe28f34a"
       },
-      "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts": {
-        "version": "ca57bfaea8a7753c40930d7624211e89a23dce6394425f70fbd18fa18ae868f4",
-        "signature": "ca57bfaea8a7753c40930d7624211e89a23dce6394425f70fbd18fa18ae868f4"
-      },
       "../../node_modules/evt/dist/lib/types/interfaces/ctxlike.d.ts": {
-        "version": "f7900404b5961f734c22f855ffdff3743bbc6ec357d0f0c9014c897c2b09c52f",
-        "signature": "f7900404b5961f734c22f855ffdff3743bbc6ec357d0f0c9014c897c2b09c52f"
+        "version": "8b19c15d39337bd8bb5d784d274ca82b822d531767ed582815c7177a8708309a",
+        "signature": "8b19c15d39337bd8bb5d784d274ca82b822d531767ed582815c7177a8708309a"
       },
       "../../node_modules/evt/dist/lib/types/interfaces/statefulreadonlyevt.d.ts": {
         "version": "b09521dbf05c4d39e7a5542d69fc02837e050a0a320d3032f2056538203b4484",
@@ -98,28 +94,28 @@
         "signature": "3639c4da28942839545665cdc88587ba745914a0403bc3d0c4d7870e3c3da028"
       },
       "../../node_modules/evt/dist/lib/types/interfaces/voidctx.d.ts": {
-        "version": "4bc60dad28fb6bcf025efb5e2dbba0092b8a50fca92bdafec37be82ddf47c057",
-        "signature": "4bc60dad28fb6bcf025efb5e2dbba0092b8a50fca92bdafec37be82ddf47c057"
+        "version": "0a0019e594a8bf4080ae3762c85d4455257b26345b258f6e3fae93e24bbddb91",
+        "signature": "0a0019e594a8bf4080ae3762c85d4455257b26345b258f6e3fae93e24bbddb91"
       },
       "../../node_modules/evt/dist/lib/types/interfaces/voidevt.d.ts": {
-        "version": "bea8797a60c01ed5d110372ddbc5c742be6b487b8abc00539a5f84756ff7ba7f",
-        "signature": "bea8797a60c01ed5d110372ddbc5c742be6b487b8abc00539a5f84756ff7ba7f"
+        "version": "a5ab2e15e909deebeba94fa8cbfd6625bd1285e96cc50f03a7977334e7117c47",
+        "signature": "a5ab2e15e909deebeba94fa8cbfd6625bd1285e96cc50f03a7977334e7117c47"
       },
       "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts": {
-        "version": "a93042df2f5d0fcfa3c02a0075efb8314a824703750a5eb0e98cf05aa11b03bb",
-        "signature": "a93042df2f5d0fcfa3c02a0075efb8314a824703750a5eb0e98cf05aa11b03bb"
+        "version": "4f2c4ff8251930a018df4750c78f3609aead660a81f58fae9381cf4039748939",
+        "signature": "4f2c4ff8251930a018df4750c78f3609aead660a81f58fae9381cf4039748939"
       },
       "../../node_modules/evt/dist/lib/types/helper/swapevttype.d.ts": {
-        "version": "8c6eb9642d76a70514dba5b85b5b84ea4c67feb105927d9cf3dda5439891553d",
-        "signature": "8c6eb9642d76a70514dba5b85b5b84ea4c67feb105927d9cf3dda5439891553d"
+        "version": "0bb5168f142918c69238c17b2375c830c32ef69548a02a16564416b36fd506b3",
+        "signature": "0bb5168f142918c69238c17b2375c830c32ef69548a02a16564416b36fd506b3"
       },
       "../../node_modules/evt/dist/lib/types/helper/factorizeevt.d.ts": {
         "version": "23a770f959450e2743dd0b819b49b6755beef132e9c1ce79eafa06bf03d70736",
         "signature": "23a770f959450e2743dd0b819b49b6755beef132e9c1ce79eafa06bf03d70736"
       },
       "../../node_modules/evt/dist/lib/types/helper/topostableevt.d.ts": {
-        "version": "83d23eb2e4d68c5f58a5a77de1ddeb0347c582196488478b8ecb51f05cdc7503",
-        "signature": "83d23eb2e4d68c5f58a5a77de1ddeb0347c582196488478b8ecb51f05cdc7503"
+        "version": "f2eaa5f14df99ecda1aad8a67bd03f62985688e62b0648f49a08124297d55a74",
+        "signature": "f2eaa5f14df99ecda1aad8a67bd03f62985688e62b0648f49a08124297d55a74"
       },
       "../../node_modules/evt/dist/lib/types/helper/tononpostableevt.d.ts": {
         "version": "2b9c5384eaee39d38f046732a2ad95aa629d0e81393bcef5632d92ce9e429c31",
@@ -189,10 +185,6 @@
         "version": "a723f62079650f6833cf59e5bdee6a0dbfa543068e50a0ac1b31e5f676f848df",
         "signature": "a723f62079650f6833cf59e5bdee6a0dbfa543068e50a0ac1b31e5f676f848df"
       },
-      "../../node_modules/evt/dist/lib/evt.isvoid.d.ts": {
-        "version": "e884c133e7950d2c51f400c4452559e682f03bcc0f1ca2bde00de3d1f842441b",
-        "signature": "e884c133e7950d2c51f400c4452559e682f03bcc0f1ca2bde00de3d1f842441b"
-      },
       "../../node_modules/evt/dist/lib/evt.factorize.d.ts": {
         "version": "bef9489111014df94a93410fb62109d64614fdbaca680e1998acd24e59c3b601",
         "signature": "bef9489111014df94a93410fb62109d64614fdbaca680e1998acd24e59c3b601"
@@ -218,8 +210,8 @@
         "signature": "d10272ae6e4470c769450a5414326fac1b473bdb07a09e9372fda9f172ec5ab3"
       },
       "../../node_modules/evt/dist/lib/evt.d.ts": {
-        "version": "fb013ceb38716a84658b4490b6509ce53fe2520d37011c71456ac66d62401c70",
-        "signature": "fb013ceb38716a84658b4490b6509ce53fe2520d37011c71456ac66d62401c70"
+        "version": "5b2599dfd81710d38351b557a3043ea56279d4c3b50ac2669a5839765bf0acf2",
+        "signature": "5b2599dfd81710d38351b557a3043ea56279d4c3b50ac2669a5839765bf0acf2"
       },
       "../../node_modules/evt/dist/tools/polyfill/object.is.d.ts": {
         "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -229,9 +221,13 @@
         "version": "5085836f8e34fc8377dae80fddb8481e6b588ebaa0db2b88473ff56f623f3b75",
         "signature": "5085836f8e34fc8377dae80fddb8481e6b588ebaa0db2b88473ff56f623f3b75"
       },
+      "../../node_modules/evt/dist/tools/typesafety/matchvoid.d.ts": {
+        "version": "549f3bd8b575c5345ecafc490b17e3d356ce0b50fae87ffb795f9732920012b6",
+        "signature": "549f3bd8b575c5345ecafc490b17e3d356ce0b50fae87ffb795f9732920012b6"
+      },
       "../../node_modules/evt/dist/lib/index.d.ts": {
-        "version": "0fde525b372bfc7a50e45a6edc682937cda56c2d9aca70c072046f00f4bfdc47",
-        "signature": "0fde525b372bfc7a50e45a6edc682937cda56c2d9aca70c072046f00f4bfdc47"
+        "version": "65968b137efb216789699104f52727bed7b9ac0f5d4b79a558732018094b6a35",
+        "signature": "65968b137efb216789699104f52727bed7b9ac0f5d4b79a558732018094b6a35"
       },
       "../sync/types.d.ts": {
         "version": "ece2ed9e7494bdd3ed91165738857e5c391089ad5584823582efb5b563ee94de",
@@ -368,8 +364,7 @@
       ],
       "../../node_modules/evt/dist/lib/types/interfaces/ctxlike.d.ts": [
         "../../node_modules/evt/dist/lib/types/handler.d.ts",
-        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts"
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/interfaces/statefulreadonlyevt.d.ts": [
         "../../node_modules/evt/dist/lib/types/operator.d.ts",
@@ -403,12 +398,10 @@
       ],
       "../../node_modules/evt/dist/lib/types/interfaces/voidctx.d.ts": [
         "../../node_modules/evt/dist/lib/types/handler.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/ctx.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts"
+        "../../node_modules/evt/dist/lib/types/interfaces/ctx.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/interfaces/voidevt.d.ts": [
-        "../../node_modules/evt/dist/lib/types/interfaces/evt.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts"
+        "../../node_modules/evt/dist/lib/types/interfaces/evt.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts": [
         "../../node_modules/evt/dist/lib/types/interfaces/ctx.d.ts",
@@ -419,14 +412,12 @@
         "../../node_modules/evt/dist/lib/types/interfaces/statefulevt.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/statefulreadonlyevt.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/statefulpostable.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/voidctx.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/voidevt.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/helper/swapevttype.d.ts": [
         "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts",
-        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts"
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/helper/factorizeevt.d.ts": [
         "../../node_modules/evt/dist/lib/types/helper/swapevttype.d.ts",
@@ -434,8 +425,7 @@
       ],
       "../../node_modules/evt/dist/lib/types/helper/topostableevt.d.ts": [
         "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts"
+        "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/helper/tononpostableevt.d.ts": [
         "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
@@ -488,9 +478,6 @@
       "../../node_modules/evt/dist/lib/evt.getctx.d.ts": [
         "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts"
       ],
-      "../../node_modules/evt/dist/lib/evt.isvoid.d.ts": [
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts"
-      ],
       "../../node_modules/evt/dist/lib/evt.factorize.d.ts": [
         "../../node_modules/evt/dist/lib/types/helper/factorizeevt.d.ts",
         "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts"
@@ -517,7 +504,6 @@
       "../../node_modules/evt/dist/lib/evt.d.ts": [
         "../../node_modules/evt/dist/lib/evt.create.d.ts",
         "../../node_modules/evt/dist/lib/evt.getctx.d.ts",
-        "../../node_modules/evt/dist/lib/evt.isvoid.d.ts",
         "../../node_modules/evt/dist/lib/evt.factorize.d.ts",
         "../../node_modules/evt/dist/lib/evt.merge.d.ts",
         "../../node_modules/evt/dist/lib/evt.from.d.ts",
@@ -534,7 +520,8 @@
         "../../node_modules/evt/dist/lib/util/index.d.ts",
         "../../node_modules/evt/dist/lib/ctx.d.ts",
         "../../node_modules/evt/dist/lib/evt.d.ts",
-        "../../node_modules/evt/dist/lib/statefulevt.d.ts"
+        "../../node_modules/evt/dist/lib/statefulevt.d.ts",
+        "../../node_modules/evt/dist/tools/typesafety/matchvoid.d.ts"
       ],
       "../sync/cipher/rsa.d.ts": [
         "../sync/types.d.ts"
@@ -630,7 +617,8 @@
         "../../node_modules/evt/dist/lib/util/index.d.ts",
         "../../node_modules/evt/dist/lib/ctx.d.ts",
         "../../node_modules/evt/dist/lib/evt.d.ts",
-        "../../node_modules/evt/dist/lib/statefulevt.d.ts"
+        "../../node_modules/evt/dist/lib/statefulevt.d.ts",
+        "../../node_modules/evt/dist/tools/typesafety/matchvoid.d.ts"
       ],
       "../../async/index.ts": [
         "../sync/types.d.ts",
@@ -688,7 +676,6 @@
         "../../node_modules/evt/dist/lib/types/interfaces/statefulevt.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/statefulreadonlyevt.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/statefulpostable.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/voidctx.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/voidevt.d.ts"
       ],
@@ -698,7 +685,6 @@
       "../../node_modules/evt/dist/lib/evt.d.ts": [
         "../../node_modules/evt/dist/lib/evt.create.d.ts",
         "../../node_modules/evt/dist/lib/evt.getctx.d.ts",
-        "../../node_modules/evt/dist/lib/evt.isvoid.d.ts",
         "../../node_modules/evt/dist/lib/evt.factorize.d.ts",
         "../../node_modules/evt/dist/lib/evt.merge.d.ts",
         "../../node_modules/evt/dist/lib/evt.from.d.ts",
@@ -745,13 +731,11 @@
       ],
       "../../node_modules/evt/dist/lib/types/helper/topostableevt.d.ts": [
         "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts"
+        "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/helper/swapevttype.d.ts": [
         "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts",
-        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts"
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts"
       ],
       "../../node_modules/evt/dist/lib/evt.loosentype.d.ts": [
         "../../node_modules/evt/dist/lib/types/helper/swapevttype.d.ts",
@@ -772,8 +756,7 @@
       ],
       "../../node_modules/evt/dist/lib/types/interfaces/voidctx.d.ts": [
         "../../node_modules/evt/dist/lib/types/handler.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/ctx.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts"
+        "../../node_modules/evt/dist/lib/types/interfaces/ctx.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/interfaces/ctx.d.ts": [
         "../../node_modules/evt/dist/lib/types/handler.d.ts",
@@ -783,8 +766,7 @@
       ],
       "../../node_modules/evt/dist/lib/types/interfaces/ctxlike.d.ts": [
         "../../node_modules/evt/dist/lib/types/handler.d.ts",
-        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts"
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/interfaces/statefulreadonlyevt.d.ts": [
         "../../node_modules/evt/dist/lib/types/operator.d.ts",
@@ -801,14 +783,10 @@
         "../../node_modules/evt/dist/lib/types/interfaces/nonpostableevt.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/interfaces/voidevt.d.ts": [
-        "../../node_modules/evt/dist/lib/types/interfaces/evt.d.ts",
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts"
+        "../../node_modules/evt/dist/lib/types/interfaces/evt.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/interfaces/statefulpostable.d.ts": [
         "../../node_modules/evt/dist/lib/types/interfaces/postable.d.ts"
-      ],
-      "../../node_modules/evt/dist/lib/evt.isvoid.d.ts": [
-        "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts"
       ],
       "../sync/index.d.ts": [
         "../sync/types.d.ts",
@@ -852,7 +830,6 @@
       "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
       "../../node_modules/evt/dist/lib/types/handler.d.ts",
       "../../node_modules/evt/dist/lib/types/interfaces/postable.d.ts",
-      "../../node_modules/evt/dist/lib/types/interfaces/void.d.ts",
       "../../node_modules/evt/dist/lib/types/interfaces/ctxlike.d.ts",
       "../../node_modules/evt/dist/lib/types/interfaces/statefulreadonlyevt.d.ts",
       "../../node_modules/evt/dist/lib/types/interfaces/statefulpostable.d.ts",
@@ -883,7 +860,6 @@
       "../../node_modules/minimal-polyfills/dist/lib/array.prototype.find.d.ts",
       "../../node_modules/evt/dist/lib/evt.create.d.ts",
       "../../node_modules/evt/dist/lib/evt.getctx.d.ts",
-      "../../node_modules/evt/dist/lib/evt.isvoid.d.ts",
       "../../node_modules/evt/dist/lib/evt.factorize.d.ts",
       "../../node_modules/evt/dist/lib/evt.merge.d.ts",
       "../../node_modules/evt/dist/lib/evt.from.d.ts",
@@ -893,6 +869,7 @@
       "../../node_modules/evt/dist/lib/evt.d.ts",
       "../../node_modules/evt/dist/tools/polyfill/object.is.d.ts",
       "../../node_modules/evt/dist/lib/statefulevt.d.ts",
+      "../../node_modules/evt/dist/tools/typesafety/matchvoid.d.ts",
       "../../node_modules/evt/dist/lib/index.d.ts",
       "../sync/types.d.ts",
       "../sync/cipher/rsa.d.ts",

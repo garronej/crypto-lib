@@ -173,7 +173,7 @@
         "version": "4f9e2269f1f73e8c9a4413c713c6f7a98e49926c8ccc52d69677d4057bb575fd",
         "signature": "4f9e2269f1f73e8c9a4413c713c6f7a98e49926c8ccc52d69677d4057bb575fd"
       },
-      "../../node_modules/minimal-polyfills/dist/lib/array.prototype.find.d.ts": {
+      "../../node_modules/evt/node_modules/minimal-polyfills/dist/lib/array.prototype.find.d.ts": {
         "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
@@ -201,6 +201,14 @@
         "version": "641a6a3f991d6ebc0d8d734b8b0d9dbb86deafe4659ce93d0257f588267b9cfb",
         "signature": "641a6a3f991d6ebc0d8d734b8b0d9dbb86deafe4659ce93d0257f588267b9cfb"
       },
+      "../../node_modules/evt/dist/lib/evt.aspostable.d.ts": {
+        "version": "91bdef0183012fef0a3d5e67084cbe4573c21a0e3e22e63f6644c8aa041fc1b8",
+        "signature": "91bdef0183012fef0a3d5e67084cbe4573c21a0e3e22e63f6644c8aa041fc1b8"
+      },
+      "../../node_modules/evt/dist/lib/evt.asnonpostable.d.ts": {
+        "version": "f0cc971ff5cbeafced229f72a3fbc5d69ab3bb3c18fab73db92774cc99a4237d",
+        "signature": "f0cc971ff5cbeafced229f72a3fbc5d69ab3bb3c18fab73db92774cc99a4237d"
+      },
       "../../node_modules/evt/dist/lib/evt.newctx.d.ts": {
         "version": "1d714d9a00fcab06be2b09dd1a3d38e8ea105ef44f33f6d73aa79b0231dc410a",
         "signature": "1d714d9a00fcab06be2b09dd1a3d38e8ea105ef44f33f6d73aa79b0231dc410a"
@@ -210,16 +218,16 @@
         "signature": "d10272ae6e4470c769450a5414326fac1b473bdb07a09e9372fda9f172ec5ab3"
       },
       "../../node_modules/evt/dist/lib/evt.d.ts": {
-        "version": "5b2599dfd81710d38351b557a3043ea56279d4c3b50ac2669a5839765bf0acf2",
-        "signature": "5b2599dfd81710d38351b557a3043ea56279d4c3b50ac2669a5839765bf0acf2"
+        "version": "3ff6124e9ebf4ba7f5bb61f8ad4290b72a687b9fc7d850b3ba1dfc062b591bb8",
+        "signature": "3ff6124e9ebf4ba7f5bb61f8ad4290b72a687b9fc7d850b3ba1dfc062b591bb8"
       },
-      "../../node_modules/evt/dist/tools/polyfill/object.is.d.ts": {
+      "../../node_modules/evt/node_modules/minimal-polyfills/dist/lib/object.is.d.ts": {
         "version": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
       "../../node_modules/evt/dist/lib/statefulevt.d.ts": {
-        "version": "5085836f8e34fc8377dae80fddb8481e6b588ebaa0db2b88473ff56f623f3b75",
-        "signature": "5085836f8e34fc8377dae80fddb8481e6b588ebaa0db2b88473ff56f623f3b75"
+        "version": "a607bf14aa9b8e6322dc9b9112e27e9d2fcdfe7bd8e664d0d1a249fb31d100ec",
+        "signature": "a607bf14aa9b8e6322dc9b9112e27e9d2fcdfe7bd8e664d0d1a249fb31d100ec"
       },
       "../../node_modules/evt/dist/tools/typesafety/matchvoid.d.ts": {
         "version": "549f3bd8b575c5345ecafc490b17e3d356ce0b50fae87ffb795f9732920012b6",
@@ -493,6 +501,14 @@
         "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts"
       ],
+      "../../node_modules/evt/dist/lib/evt.aspostable.d.ts": [
+        "../../node_modules/evt/dist/lib/types/helper/topostableevt.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/evt.asnonpostable.d.ts": [
+        "../../node_modules/evt/dist/lib/types/helper/tononpostableevt.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts"
+      ],
       "../../node_modules/evt/dist/lib/evt.newctx.d.ts": [
         "../../node_modules/evt/dist/lib/ctx.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts"
@@ -508,6 +524,8 @@
         "../../node_modules/evt/dist/lib/evt.merge.d.ts",
         "../../node_modules/evt/dist/lib/evt.from.d.ts",
         "../../node_modules/evt/dist/lib/evt.useeffect.d.ts",
+        "../../node_modules/evt/dist/lib/evt.aspostable.d.ts",
+        "../../node_modules/evt/dist/lib/evt.asnonpostable.d.ts",
         "../../node_modules/evt/dist/lib/evt.newctx.d.ts",
         "../../node_modules/evt/dist/lib/evt.loosentype.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts"
@@ -689,6 +707,8 @@
         "../../node_modules/evt/dist/lib/evt.merge.d.ts",
         "../../node_modules/evt/dist/lib/evt.from.d.ts",
         "../../node_modules/evt/dist/lib/evt.useeffect.d.ts",
+        "../../node_modules/evt/dist/lib/evt.aspostable.d.ts",
+        "../../node_modules/evt/dist/lib/evt.asnonpostable.d.ts",
         "../../node_modules/evt/dist/lib/evt.newctx.d.ts",
         "../../node_modules/evt/dist/lib/evt.loosentype.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts"
@@ -721,6 +741,10 @@
         "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts"
       ],
+      "../../node_modules/evt/dist/lib/evt.asnonpostable.d.ts": [
+        "../../node_modules/evt/dist/lib/types/helper/tononpostableevt.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts"
+      ],
       "../../node_modules/evt/dist/lib/types/helper/index.d.ts": [
         "../../node_modules/evt/dist/lib/types/helper/factorizeevt.d.ts",
         "../../node_modules/evt/dist/lib/types/helper/swapevttype.d.ts",
@@ -732,6 +756,10 @@
       "../../node_modules/evt/dist/lib/types/helper/topostableevt.d.ts": [
         "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts",
         "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts"
+      ],
+      "../../node_modules/evt/dist/lib/evt.aspostable.d.ts": [
+        "../../node_modules/evt/dist/lib/types/helper/topostableevt.d.ts",
+        "../../node_modules/evt/dist/lib/types/helper/unpackevt.d.ts"
       ],
       "../../node_modules/evt/dist/lib/types/helper/swapevttype.d.ts": [
         "../../node_modules/evt/dist/lib/types/interfaces/index.d.ts",
@@ -857,17 +885,19 @@
       "../../node_modules/evt/dist/lib/util/invokeoperator.d.ts",
       "../../node_modules/evt/dist/lib/util/index.d.ts",
       "../../node_modules/evt/dist/lib/ctx.d.ts",
-      "../../node_modules/minimal-polyfills/dist/lib/array.prototype.find.d.ts",
+      "../../node_modules/evt/node_modules/minimal-polyfills/dist/lib/array.prototype.find.d.ts",
       "../../node_modules/evt/dist/lib/evt.create.d.ts",
       "../../node_modules/evt/dist/lib/evt.getctx.d.ts",
       "../../node_modules/evt/dist/lib/evt.factorize.d.ts",
       "../../node_modules/evt/dist/lib/evt.merge.d.ts",
       "../../node_modules/evt/dist/lib/evt.from.d.ts",
       "../../node_modules/evt/dist/lib/evt.useeffect.d.ts",
+      "../../node_modules/evt/dist/lib/evt.aspostable.d.ts",
+      "../../node_modules/evt/dist/lib/evt.asnonpostable.d.ts",
       "../../node_modules/evt/dist/lib/evt.newctx.d.ts",
       "../../node_modules/evt/dist/lib/evt.loosentype.d.ts",
       "../../node_modules/evt/dist/lib/evt.d.ts",
-      "../../node_modules/evt/dist/tools/polyfill/object.is.d.ts",
+      "../../node_modules/evt/node_modules/minimal-polyfills/dist/lib/object.is.d.ts",
       "../../node_modules/evt/dist/lib/statefulevt.d.ts",
       "../../node_modules/evt/dist/tools/typesafety/matchvoid.d.ts",
       "../../node_modules/evt/dist/lib/index.d.ts",

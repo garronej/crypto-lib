@@ -73,7 +73,7 @@ function spawn(source) {
 exports.spawn = spawn;
 
 }).call(this,require("buffer").Buffer)
-},{"../../sync/_worker_thread/ThreadMessage":8,"buffer":14,"evt":31,"path":68}],3:[function(require,module,exports){
+},{"../../sync/_worker_thread/ThreadMessage":8,"buffer":14,"evt":31,"path":69}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var evt_1 = require("evt");
@@ -509,7 +509,7 @@ exports.scrypt = (function () {
 })();
 
 }).call(this,require("buffer").Buffer)
-},{"../sync/types":9,"../sync/utils/environnement":10,"../sync/utils/toBuffer":11,"./WorkerThread":1,"./serializer":7,"buffer":14,"evt":31,"minimal-polyfills/dist/lib/Array.from":64,"minimal-polyfills/dist/lib/Map":65,"minimal-polyfills/dist/lib/Set":66,"path":68,"run-exclusive":70}],7:[function(require,module,exports){
+},{"../sync/types":9,"../sync/utils/environnement":10,"../sync/utils/toBuffer":11,"./WorkerThread":1,"./serializer":7,"buffer":14,"evt":31,"minimal-polyfills/dist/lib/Array.from":65,"minimal-polyfills/dist/lib/Map":66,"minimal-polyfills/dist/lib/Set":67,"path":69,"run-exclusive":71}],7:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -548,7 +548,7 @@ function decryptThenParseFactory(decryptor) {
 exports.decryptThenParseFactory = decryptThenParseFactory;
 
 }).call(this,require("buffer").Buffer)
-},{"../sync/utils/toBuffer":11,"buffer":14,"transfer-tools/dist/lib/JSON_CUSTOM":72}],8:[function(require,module,exports){
+},{"../sync/utils/toBuffer":11,"buffer":14,"transfer-tools/dist/lib/JSON_CUSTOM":73}],8:[function(require,module,exports){
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -2776,7 +2776,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"base64-js":13,"buffer":14,"ieee754":63}],15:[function(require,module,exports){
+},{"base64-js":13,"buffer":14,"ieee754":64}],15:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -2918,7 +2918,7 @@ try {
 catch (_a) { }
 importProxy_1.importProxy.Ctx = exports.Ctx;
 
-},{"../tools/typeSafety/assert":45,"../tools/typeSafety/defineAccessors":46,"../tools/typeSafety/overwriteReadonlyProp":52,"../tools/typeSafety/typeGuard":53,"./LazyEvt":28,"./importProxy":30,"minimal-polyfills/dist/lib/Set":57,"minimal-polyfills/dist/lib/WeakMap":58}],16:[function(require,module,exports){
+},{"../tools/typeSafety/assert":46,"../tools/typeSafety/defineAccessors":47,"../tools/typeSafety/overwriteReadonlyProp":53,"../tools/typeSafety/typeGuard":54,"./LazyEvt":28,"./importProxy":30,"minimal-polyfills/dist/lib/Set":58,"minimal-polyfills/dist/lib/WeakMap":59}],16:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 /** https://docs.evt.land/api/evt/asnonpostable */
@@ -3047,7 +3047,7 @@ function from(ctxOrTarget, targetOrEventName, eventNameOrOptions, options) {
 }
 exports.from = from;
 
-},{"../tools/typeSafety/assert":45,"../tools/typeSafety/id":48,"../tools/typeSafety/typeGuard":53,"./Evt.merge":24,"./importProxy":30,"./types/EventTargetLike":32}],21:[function(require,module,exports){
+},{"../tools/typeSafety/assert":46,"../tools/typeSafety/id":49,"../tools/typeSafety/typeGuard":54,"./Evt.merge":24,"./importProxy":30,"./types/EventTargetLike":32}],21:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var WeakMap_1 = require("minimal-polyfills/dist/lib/WeakMap");
@@ -3073,7 +3073,7 @@ function getCtxFactory() {
 }
 exports.getCtxFactory = getCtxFactory;
 
-},{"./importProxy":30,"minimal-polyfills/dist/lib/WeakMap":58}],22:[function(require,module,exports){
+},{"./importProxy":30,"minimal-polyfills/dist/lib/WeakMap":59}],22:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -3142,6 +3142,7 @@ var typeGuard_1 = require("../tools/typeSafety/typeGuard");
 var encapsulateOpState_1 = require("./util/encapsulateOpState");
 var Deferred_1 = require("../tools/Deferred");
 var Evt_loosenType_1 = require("./Evt.loosenType");
+var CtxLike_1 = require("./types/interfaces/CtxLike");
 var Operator_1 = require("./types/Operator");
 var safeSetTimeout = function (callback, ms) { return setTimeout(callback, ms); };
 var safeClearTimeout = function (timer) { return clearTimeout(timer); };
@@ -3165,8 +3166,11 @@ var EvtImpl = /** @class */ (function () {
     EvtImpl.setDefaultMaxHandlers = function (n) {
         this.__defaultMaxHandlers = isFinite(n) ? n : 0;
     };
-    EvtImpl.prototype.toStateful = function (initialState, ctx) {
-        var out = new importProxy_1.importProxy.StatefulEvt(initialState);
+    EvtImpl.prototype.toStateful = function (p1, p2) {
+        var isP1Ctx = CtxLike_1.CtxLike.match(p1);
+        var initialValue = isP1Ctx ? undefined : p1;
+        var ctx = p2 !== null && p2 !== void 0 ? p2 : (isP1Ctx ? p1 : undefined);
+        var out = new importProxy_1.importProxy.StatefulEvt(initialValue);
         var callback = function (data) { return out.post(data); };
         if (!!ctx) {
             this.attach(ctx, callback);
@@ -3742,7 +3746,7 @@ try {
 catch (_a) { }
 importProxy_1.importProxy.Evt = exports.Evt;
 
-},{"../tools/Deferred":44,"../tools/typeSafety/defineAccessors":46,"../tools/typeSafety/overwriteReadonlyProp":52,"../tools/typeSafety/typeGuard":53,"./Evt.asNonPostable":16,"./Evt.asPostable":17,"./Evt.create":18,"./Evt.factorize":19,"./Evt.from":20,"./Evt.getCtx":21,"./Evt.loosenType":23,"./Evt.merge":24,"./Evt.newCtx":25,"./Evt.parsePropsFromArgs":26,"./Evt.useEffect":27,"./LazyEvt":28,"./importProxy":30,"./types/EvtError":33,"./types/Operator":34,"./util/encapsulateOpState":38,"./util/invokeOperator":43,"minimal-polyfills/dist/lib/Array.prototype.find":54,"minimal-polyfills/dist/lib/Map":55,"minimal-polyfills/dist/lib/WeakMap":58,"run-exclusive":59}],23:[function(require,module,exports){
+},{"../tools/Deferred":45,"../tools/typeSafety/defineAccessors":47,"../tools/typeSafety/overwriteReadonlyProp":53,"../tools/typeSafety/typeGuard":54,"./Evt.asNonPostable":16,"./Evt.asPostable":17,"./Evt.create":18,"./Evt.factorize":19,"./Evt.from":20,"./Evt.getCtx":21,"./Evt.loosenType":23,"./Evt.merge":24,"./Evt.newCtx":25,"./Evt.parsePropsFromArgs":26,"./Evt.useEffect":27,"./LazyEvt":28,"./importProxy":30,"./types/EvtError":33,"./types/Operator":34,"./types/interfaces/CtxLike":36,"./util/encapsulateOpState":39,"./util/invokeOperator":44,"minimal-polyfills/dist/lib/Array.prototype.find":55,"minimal-polyfills/dist/lib/Map":56,"minimal-polyfills/dist/lib/WeakMap":59,"run-exclusive":60}],23:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 /**
@@ -3978,7 +3982,7 @@ function parsePropsFromArgs(inputs, methodName) {
 }
 exports.parsePropsFromArgs = parsePropsFromArgs;
 
-},{"../tools/typeSafety/id":48,"../tools/typeSafety/typeGuard":53,"./util/compose":37}],27:[function(require,module,exports){
+},{"../tools/typeSafety/id":49,"../tools/typeSafety/typeGuard":54,"./util/compose":38}],27:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 function useEffect(effect, evt, dataFirst) {
@@ -4022,7 +4026,7 @@ var LazyEvt = /** @class */ (function () {
 }());
 exports.LazyEvt = LazyEvt;
 
-},{"../tools/typeSafety/defineAccessors":46,"../tools/typeSafety/overwriteReadonlyProp":52,"./importProxy":30}],29:[function(require,module,exports){
+},{"../tools/typeSafety/defineAccessors":47,"../tools/typeSafety/overwriteReadonlyProp":53,"./importProxy":30}],29:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -4127,7 +4131,7 @@ var StatefulEvtImpl = /** @class */ (function (_super) {
 exports.StatefulEvt = StatefulEvtImpl;
 importProxy_1.importProxy.StatefulEvt = exports.StatefulEvt;
 
-},{"../tools/typeSafety/defineAccessors":46,"./Evt":22,"./Evt.parsePropsFromArgs":26,"./LazyEvt":28,"./importProxy":30,"./types/Operator":34,"./util/invokeOperator":43,"minimal-polyfills/dist/lib/Object.is":56}],30:[function(require,module,exports){
+},{"../tools/typeSafety/defineAccessors":47,"./Evt":22,"./Evt.parsePropsFromArgs":26,"./LazyEvt":28,"./importProxy":30,"./types/Operator":34,"./util/invokeOperator":44,"minimal-polyfills/dist/lib/Object.is":57}],30:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 /** Manually handling circular import so React Native does not gives warning. */
@@ -4150,7 +4154,7 @@ exports.StatefulEvt = StatefulEvt_1.StatefulEvt;
 var matchVoid_1 = require("../tools/typeSafety/matchVoid");
 exports.matchVoid = matchVoid_1.matchVoid;
 
-},{"../tools/typeSafety/matchVoid":50,"./Ctx":15,"./Evt":22,"./StatefulEvt":29,"./types":35,"./util":42}],32:[function(require,module,exports){
+},{"../tools/typeSafety/matchVoid":51,"./Ctx":15,"./Evt":22,"./StatefulEvt":29,"./types":35,"./util":43}],32:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var typeSafety_1 = require("../../tools/typeSafety");
@@ -4198,7 +4202,7 @@ var EventTargetLike;
     })(HasEventTargetAddRemove = EventTargetLike.HasEventTargetAddRemove || (EventTargetLike.HasEventTargetAddRemove = {}));
 })(EventTargetLike = exports.EventTargetLike || (exports.EventTargetLike = {}));
 
-},{"../../tools/typeSafety":49}],33:[function(require,module,exports){
+},{"../../tools/typeSafety":50}],33:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -4325,7 +4329,7 @@ var Operator;
     })(fλ = Operator.fλ || (Operator.fλ = {}));
 })(Operator = exports.Operator || (exports.Operator = {}));
 
-},{"../../tools/typeSafety":49}],35:[function(require,module,exports){
+},{"../../tools/typeSafety":50}],35:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var EventTargetLike_1 = require("./EventTargetLike");
@@ -4337,7 +4341,24 @@ exports.dom = dom;
 var Operator_1 = require("./Operator");
 exports.Operator = Operator_1.Operator;
 
-},{"./EventTargetLike":32,"./EvtError":33,"./Operator":34,"./lib.dom":36}],36:[function(require,module,exports){
+},{"./EventTargetLike":32,"./EvtError":33,"./Operator":34,"./lib.dom":37}],36:[function(require,module,exports){
+"use strict";
+exports.__esModule = true;
+var typeGuard_1 = require("../../../tools/typeSafety/typeGuard");
+var CtxLike;
+(function (CtxLike) {
+    function match(o) {
+        return (typeGuard_1.typeGuard(o) &&
+            o instanceof Object &&
+            typeof o.done === "function" &&
+            typeof o.abort === "function" &&
+            typeof o.zz__addHandler === "function" &&
+            typeof o.zz__removeHandler === "function");
+    }
+    CtxLike.match = match;
+})(CtxLike = exports.CtxLike || (exports.CtxLike = {}));
+
+},{"../../../tools/typeSafety/typeGuard":54}],37:[function(require,module,exports){
 "use strict";
 /*
 This is a curated re export of the dom API definitions.
@@ -4352,7 +4373,7 @@ projects that targets Node.JS.
 */
 exports.__esModule = true;
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -4437,7 +4458,7 @@ function compose() {
 }
 exports.compose = compose;
 
-},{"../../tools/typeSafety/assert":45,"../../tools/typeSafety/id":48,"../../tools/typeSafety/typeGuard":53,"../types/Operator":34,"./encapsulateOpState":38,"./invokeOperator":43}],38:[function(require,module,exports){
+},{"../../tools/typeSafety/assert":46,"../../tools/typeSafety/id":49,"../../tools/typeSafety/typeGuard":54,"../types/Operator":34,"./encapsulateOpState":39,"./invokeOperator":44}],39:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -4476,7 +4497,7 @@ function encapsulateOpState(statefulFλOp) {
 }
 exports.encapsulateOpState = encapsulateOpState;
 
-},{"../../tools/typeSafety/id":48,"../types/Operator":34}],39:[function(require,module,exports){
+},{"../../tools/typeSafety/id":49,"../types/Operator":34}],40:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var throttleTime_1 = require("./throttleTime");
@@ -4484,7 +4505,7 @@ exports.throttleTime = throttleTime_1.throttleTime;
 var to_1 = require("./to");
 exports.to = to_1.to;
 
-},{"./throttleTime":40,"./to":41}],40:[function(require,module,exports){
+},{"./throttleTime":41,"./to":42}],41:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var compose_1 = require("../compose");
@@ -4504,7 +4525,7 @@ exports.throttleTime = function (duration) {
     });
 };
 
-},{"../compose":37}],41:[function(require,module,exports){
+},{"../compose":38}],42:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 exports.to = function (eventName) {
@@ -4512,7 +4533,7 @@ exports.to = function (eventName) {
         null : [data[1]]; };
 };
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -4524,7 +4545,7 @@ exports.compose = compose_1.compose;
 var invokeOperator_1 = require("./invokeOperator");
 exports.invokeOperator = invokeOperator_1.invokeOperator;
 
-},{"./compose":37,"./genericOperators":39,"./invokeOperator":43}],43:[function(require,module,exports){
+},{"./compose":38,"./genericOperators":40,"./invokeOperator":44}],44:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var Operator_1 = require("../types/Operator");
@@ -4536,7 +4557,7 @@ function invokeOperator(op, data, isPost) {
 }
 exports.invokeOperator = invokeOperator;
 
-},{"../types/Operator":34}],44:[function(require,module,exports){
+},{"../types/Operator":34}],45:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -4584,7 +4605,7 @@ var VoidDeferred = /** @class */ (function (_super) {
 }(Deferred));
 exports.VoidDeferred = VoidDeferred;
 
-},{"./typeSafety/overwriteReadonlyProp":52}],45:[function(require,module,exports){
+},{"./typeSafety/overwriteReadonlyProp":53}],46:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 function assert(condition, msg) {
@@ -4594,7 +4615,7 @@ function assert(condition, msg) {
 }
 exports.assert = assert;
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -4617,7 +4638,7 @@ exports.defineAccessors = function (obj, propertyName, propertyDescriptor) {
     })), (get !== undefined ? { "get": function () { return get.call(this); } } : {})), (set !== undefined ? { "set": function (value) { set.call(this, value); } } : {})));
 };
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 /** Return a function to use as Array.prototype.filter argument
@@ -4634,7 +4655,7 @@ function exclude(target) {
 }
 exports.exclude = exclude;
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 /**
@@ -4674,7 +4695,7 @@ exports.__esModule = true;
  */
 exports.id = function (x) { return x; };
 
-},{}],49:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var assert_1 = require("./assert");
@@ -4690,7 +4711,7 @@ exports.objectKeys = objectKeys_1.objectKeys;
 var typeGuard_1 = require("./typeGuard");
 exports.typeGuard = typeGuard_1.typeGuard;
 
-},{"./assert":45,"./exclude":47,"./id":48,"./matchVoid":50,"./objectKeys":51,"./typeGuard":53}],50:[function(require,module,exports){
+},{"./assert":46,"./exclude":48,"./id":49,"./matchVoid":51,"./objectKeys":52,"./typeGuard":54}],51:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 /**
@@ -4713,7 +4734,7 @@ function matchVoid(o) {
 }
 exports.matchVoid = matchVoid;
 
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 /** Object.keys() with types */
@@ -4722,7 +4743,7 @@ function objectKeys(o) {
 }
 exports.objectKeys = objectKeys;
 
-},{}],52:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 "use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
@@ -4770,7 +4791,7 @@ exports.overwriteReadonlyProp = function (obj, propertyName, value) {
     return value;
 };
 
-},{}],53:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 /**
@@ -4828,7 +4849,7 @@ function typeGuard(o, isMatched) {
 }
 exports.typeGuard = typeGuard;
 
-},{}],54:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 "use strict";
 // https://tc39.github.io/ecma262/#sec-array.prototype.find
 if (!Array.prototype.find) {
@@ -4870,7 +4891,7 @@ if (!Array.prototype.find) {
     });
 }
 
-},{}],55:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var LightMapImpl = /** @class */ (function () {
@@ -4932,7 +4953,7 @@ var LightMapImpl = /** @class */ (function () {
 exports.LightMapImpl = LightMapImpl;
 exports.Polyfill = typeof Map !== "undefined" ? Map : LightMapImpl;
 
-},{}],56:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 "use strict";
 if (!Object.is) {
     Object.is = function (x, y) {
@@ -4948,7 +4969,7 @@ if (!Object.is) {
     };
 }
 
-},{}],57:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var Map_1 = require("./Map");
@@ -4981,13 +5002,13 @@ var LightSetImpl = /** @class */ (function () {
 exports.LightSetImpl = LightSetImpl;
 exports.Polyfill = typeof Set !== "undefined" ? Set : LightSetImpl;
 
-},{"./Map":55}],58:[function(require,module,exports){
+},{"./Map":56}],59:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var Map_1 = require("./Map");
 exports.Polyfill = typeof WeakMap !== "undefined" ? WeakMap : Map_1.Polyfill;
 
-},{"./Map":55}],59:[function(require,module,exports){
+},{"./Map":56}],60:[function(require,module,exports){
 "use strict";
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
@@ -5267,7 +5288,7 @@ function buildFnCallback(isGlobal, groupRef, fun) {
     return runExclusiveFunction;
 }
 
-},{"minimal-polyfills/dist/lib/WeakMap":58}],60:[function(require,module,exports){
+},{"minimal-polyfills/dist/lib/WeakMap":59}],61:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -5321,21 +5342,21 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],61:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":60}],62:[function(require,module,exports){
+},{"./implementation":61}],63:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":61}],63:[function(require,module,exports){
+},{"function-bind":62}],64:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -5421,7 +5442,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],64:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 // Production steps of ECMA-262, Edition 6, 22.1.2.1
 if (!Array.from) {
     Array.from = (function () {
@@ -5498,7 +5519,7 @@ if (!Array.from) {
     }());
 }
 
-},{}],65:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var LightMapImpl = /** @class */ (function () {
@@ -5560,7 +5581,7 @@ var LightMapImpl = /** @class */ (function () {
 exports.LightMapImpl = LightMapImpl;
 exports.Polyfill = typeof Map !== "undefined" ? Map : LightMapImpl;
 
-},{}],66:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var Map_1 = require("./Map");
@@ -5593,13 +5614,13 @@ var LightSetImpl = /** @class */ (function () {
 exports.LightSetImpl = LightSetImpl;
 exports.Polyfill = typeof Set !== "undefined" ? Set : LightSetImpl;
 
-},{"./Map":65}],67:[function(require,module,exports){
+},{"./Map":66}],68:[function(require,module,exports){
 "use strict";
 exports.__esModule = true;
 var Map_1 = require("./Map");
 exports.Polyfill = typeof WeakMap !== "undefined" ? WeakMap : Map_1.Polyfill;
 
-},{"./Map":65}],68:[function(require,module,exports){
+},{"./Map":66}],69:[function(require,module,exports){
 (function (process){
 // .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
 // backported and transplited with Babel, with backwards-compat fixes
@@ -5905,7 +5926,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":69}],69:[function(require,module,exports){
+},{"_process":70}],70:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -6091,7 +6112,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],70:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -6384,7 +6405,7 @@ function buildFnCallback(isGlobal, groupRef, fun) {
     return runExclusiveFunction;
 }
 
-},{"minimal-polyfills/dist/lib/WeakMap":67}],71:[function(require,module,exports){
+},{"minimal-polyfills/dist/lib/WeakMap":68}],72:[function(require,module,exports){
 (function (global){
 "use strict";
 var has = require('has');
@@ -6719,7 +6740,7 @@ if (symbolSerializer) exports.symbolSerializer = symbolSerializer;
 exports.create = create;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"has":62}],72:[function(require,module,exports){
+},{"has":63}],73:[function(require,module,exports){
 "use strict";
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -6769,4 +6790,4 @@ function get(serializers) {
 }
 exports.get = get;
 
-},{"super-json":71}]},{},[12]);
+},{"super-json":72}]},{},[12]);

@@ -7,8 +7,8 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     return r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("minimal-polyfills/dist/lib/ArrayBuffer.isView");
-var Map_1 = require("minimal-polyfills/dist/lib/Map");
+require("minimal-polyfills/ArrayBuffer.isView");
+var Map_1 = require("minimal-polyfills/Map");
 var cryptoLib = require("../index");
 var environnement_1 = require("../utils/environnement");
 var ThreadMessage_1 = require("./ThreadMessage");

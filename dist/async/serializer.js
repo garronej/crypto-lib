@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.decryptThenParseFactory = exports.stringifyThenEncryptFactory = void 0;
 var toBuffer_1 = require("../sync/utils/toBuffer");
 var ttJC = require("transfer-tools/dist/lib/JSON_CUSTOM");
 function matchPromise(prOrValue) {

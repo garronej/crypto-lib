@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.environnement = void 0;
 exports.environnement = (function () {
     if (typeof navigator !== "undefined" && navigator.product === "ReactNative") {
         return {

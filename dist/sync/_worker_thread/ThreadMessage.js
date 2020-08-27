@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.transfer = void 0;
 var environnement_1 = require("../utils/environnement");
 var toBuffer_1 = require("../utils/toBuffer");
 var transfer;

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.spawn = void 0;
 var evt_1 = require("evt");
 var ThreadMessage_1 = require("../../sync/_worker_thread/ThreadMessage");
 var path = require("path");

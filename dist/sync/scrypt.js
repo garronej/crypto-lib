@@ -11,6 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.syncHash = exports.defaultParams = void 0;
 var scryptsy = require("scryptsy");
 exports.defaultParams = {
     "n": 13,

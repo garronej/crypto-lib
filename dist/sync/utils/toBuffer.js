@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.toBuffer = void 0;
 /**
  * The returned object is an instance of the global Buffer class.
  * ( toBuffer(data) instanceof Buffer === true )

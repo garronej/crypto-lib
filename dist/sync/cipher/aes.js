@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getTestKey = exports.generateKey = exports.syncEncryptorDecryptorFactory = void 0;
 var aesjs = require("aes-js");
 var randomBytes_1 = require("../utils/randomBytes");
 var binaryDataManipulations_1 = require("../utils/binaryDataManipulations");

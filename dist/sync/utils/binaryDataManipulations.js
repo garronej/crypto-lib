@@ -7,6 +7,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     return r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.leftShift = exports.uint8ArrayToNumber = exports.numberToUint8Array = exports.addPadding = exports.concatUint8Array = void 0;
 function concatUint8Array() {
     var uint8Arrays = [];
     for (var _i = 0; _i < arguments.length; _i++) {

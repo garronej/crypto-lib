@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.spawn = void 0;
 var evt_1 = require("evt");
 function spawn(source) {
     var evtResponse = new evt_1.Evt();

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.WorkerThread = void 0;
 var environnement_1 = require("../sync/utils/environnement");
 var web_1 = require("./WorkerThread/web");
 var node_1 = require("./WorkerThread/node");

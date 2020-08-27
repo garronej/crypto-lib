@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.randomBytes = void 0;
 var environnement_1 = require("./environnement");
 function randomBytes(size, callback) {
     var MAX_UINT32 = randomBytes.MAX_UINT32, MAX_BYTES = randomBytes.MAX_BYTES, getRandomValues = randomBytes.getRandomValues, getNodeRandomBytes = randomBytes.getNodeRandomBytes;

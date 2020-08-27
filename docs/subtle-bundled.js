@@ -2,6 +2,7 @@
 (function (Buffer){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.toBuffer = void 0;
 /**
  * The returned object is an instance of the global Buffer class.
  * ( toBuffer(data) instanceof Buffer === true )
@@ -95,8 +96,7 @@ var log = (function () {
                         "hash": "SHA-1"
                     }];
                 return [4 /*yield*/, window.crypto.subtle.importKey("raw", Buffer.from(password, "utf8"), { "name": "PBKDF2" }, false, ["deriveBits"])];
-            case 3: return [4 /*yield*/, _d.apply(_c, _e.concat([_f.sent(),
-                    256]))];
+            case 3: return [4 /*yield*/, _d.apply(_c, _e.concat([_f.sent(), 256]))];
             case 4:
                 result = new (_b.apply(Uint8Array, [void 0, _f.sent()]))();
                 return [3 /*break*/, 6];

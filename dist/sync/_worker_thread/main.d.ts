@@ -1,4 +1,4 @@
-import "minimal-polyfills/dist/lib/ArrayBuffer.isView";
+import "minimal-polyfills/ArrayBuffer.isView";
 import { ThreadMessage } from "./ThreadMessage";
 export declare type MainThreadApi = {
     sendResponse(response: ThreadMessage.Response, transfer?: ArrayBuffer[]): void;

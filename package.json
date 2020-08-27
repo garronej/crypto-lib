@@ -3,7 +3,7 @@
   "main": "./dist/async/index.js",
   "types": "./dist/async/index.d.ts",
   "description": "...",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "scripts": {
     "tsc": "node ./node_modules/typescript/bin/tsc -p ",
     "build": "npm run tsc -- ./builder && node ./dist/builder/build.js"
